@@ -1,23 +1,19 @@
 {
   "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es5",
     "allowSyntheticDefaultImports": true,
     "declaration": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
     "sourceMap": true,
     "lib": [
       "dom",
       "es2015"
-    ],
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "target": "es5"
+    ]
   },
   "exclude": [
-    "node_modules"
-  ],
-  "compileOnSave": false,
-  "atom": {
-    "rewriteTsconfig": false
-  }
+    "node_modules",
+    "**/*.spec.ts",
+    "demo/**"
+  ]
 }

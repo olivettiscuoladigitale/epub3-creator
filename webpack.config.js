@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 
 module.exports = {
-    entry: './src/index.ts',
+    entry:'./test/demo.ts',
     output: {
         filename: './dist/epub-creator.js'
     },
@@ -12,13 +12,23 @@ module.exports = {
     plugins: [
         new webpack.optimize.UglifyJsPlugin()
     ],
+    tslint: {
+        emitErrors: true,
+        failOnHint: true
+    },
     module: {
+        preLoaders: [
+            { test: /\.tsx?$/, loader: 'tslint', exclude: /node_modules/ }
+        ],
         loaders: [
             { test: /\.ts$/, loader: 'ts' },
             {
                 test: /\.js$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'babel?presets[]=es2015'
+                loader: 'babel', // 'babel-loader' is also a valid name to reference
+                query: {
+                    presets: ['es2015']
+                }
             }
         ]
     }

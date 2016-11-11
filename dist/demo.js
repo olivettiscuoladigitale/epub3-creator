@@ -1,0 +1,2 @@
+!function(t){function r(e){if(o[e])return o[e].exports;var n=o[e]={exports:{},id:e,loaded:!1};return t[e].call(n.exports,n,n.exports,r),n.loaded=!0,n.exports}var o={};return r.m=t,r.c=o,r.p="",r(0)}([function(t,r,o){"use strict";var e=o(!function(){var t=new Error('Cannot find module "./index"');throw t.code="MODULE_NOT_FOUND",t}()),n=function(){function t(){this.epubCreator=new e.EpubCreator}return t.prototype.test=function(){console.log("CIAO",2)},t}();r.demo=n;var u=new n;u.test()}]);
+//# sourceMappingURL=demo.js.map

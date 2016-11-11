@@ -1,21 +1,9 @@
-import {FileContent} from '../../interfaces/file-content'
 import {BaseInfo} from '../../interfaces/base-info';
-import {CssDef} from '../../interfaces/css-def';
-import {Nav} from '../../interfaces/nav';
 
 export class Epub3Template {
 
     _mimetype(): string {
         return `application/epub+zip`;
-    }
-
-    mimetype(): FileContent {
-        let content: string = this._mimetype();
-        return {
-            name: "mimetype",
-            folder: "",
-            content: content
-        }
     }
 
     _container(): string {
@@ -25,55 +13,10 @@ export class Epub3Template {
 		        <rootfile full-path="EPUB/ebook.opf" media-type="application/oebps-package+xml"/>
 	        </rootfiles>
            </container>
-             `
+            `
     }
 
-    container(): FileContent {
-        let content: string = this._container();
-        return {
-            name: "container.xml",
-            folder: "META-INF",
-            content: content
-        }
-    }
-
-    _opf(prop: BaseInfo, css?: CssDef[]) {
-
-        var metadataCoverFragment: string = "";
-        var manifestFragment: string = "";
-        var manifestCoverImage: string = "";
-
-        var cssFiles = "";
-
-        if (css) {
-            let cssIdCounter = 0;
-            for (let style of css) {
-                let cssId = "css-" + cssIdCounter;
-                cssFiles += `<item id="${cssId}" href="${style.name}" media-type="text/css" /> `;
-                cssIdCounter++;
-            }
-        }
-
-
-        if (prop.cover.file != "" && prop.cover.asFileName) {
-            metadataCoverFragment = `<!-- rights expression for the cover image -->       
-                    <link rel="cc:license" refines="#cover" href="${prop.cover.license}" />
-                    <link rel="cc:attributionURL" refines="#cover" href="${prop.cover.attributionUrl}" />        
-                    <!-- cover meta element included for 2.0 reading system compatibility: -->
-                    <meta name="cover" content="cover"/>`;
-
-            manifestCoverImage = `<item id="cover" href="${prop.cover.asFileName}" media-type="${prop.cover.mediaType}" properties="cover-image" />`;
-        }
-
-        manifestFragment += manifestCoverImage;
-        manifestFragment += `<item id="t1" href="ebook-content.xhtml" media-type="application/xhtml+xml" />`;
-        manifestFragment += `<item id="nav" href="ebook-nav.xhtml" properties="nav" media-type="application/xhtml+xml" />`;
-        manifestFragment += `<!-- ncx included for 2.0 reading system compatibility: -->
-                            <item id="ncx" href="ebook.ncx" media-type="application/x-dtbncx+xml" />`;
-
-        manifestFragment += cssFiles;
-
-
+    _opf(prop: BaseInfo, metadataCoverFragment: string, manifestFragment: string) {
         return `<?xml version="1.0" encoding="UTF-8"?>
             <package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="uid" xml:lang="${prop.language}" prefix="cc: http://creativecommons.org/ns#">
                 <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
@@ -96,44 +39,11 @@ export class Epub3Template {
                     <itemref idref="t1" />        
                 </spine>    
             </package>
-            `;
-
-    }
-
-    opf(prop: BaseInfo, css?: CssDef[]) {
-        let content: string = this._opf(prop, css);
-        return {
-            name: "ebook.opf",
-            folder: "EPUB",
-            content: content
-        }
+            `
     }
 
 
-    _nav(navigation: Nav, css?: CssDef[]) {
-
-        var cssFiles = "";
-
-        if (css) {
-            for (let style of css) {
-                let isAlternate = "";
-                if (style.type == "night") isAlternate = "alternate ";
-
-                cssFiles += `<link rel="${isAlternate}stylesheet" type="text/css" href="${style.name}" class="${style.type}" title="${style.type}"/> `;
-            }
-        }
-
-        var landmarks = "";
-
-        for (let l of navigation.landmarks) {
-            landmarks += `<li><a epub:type="${l.type}" href="${l.href}" >${l.type}</a></li>`;
-        }
-
-        var toc = "";
-
-        for (let t of navigation.toc) {
-            toc += `<li><a href="${t.href}">${t.label}</a></li>`;
-        }
+    _nav(cssFiles: string, landmarks: string, toc: string) {
 
 
         return `<?xml version="1.0" encoding="UTF-8"?>
@@ -145,43 +55,20 @@ export class Epub3Template {
                     <body>
                         <nav epub:type="toc" id="toc">			
                             <ol>
-                                ${toc}
+                              ${toc}
                             </ol>
                         </nav>
                         <nav epub:type="landmarks">
                             <ol>
-                            ${landmarks}
+                             ${landmarks}
                             </ol>
                         </nav>
                     </body>
                 </html>`
     }
 
-    nav(navigation: Nav, css?: CssDef[]) {
-        let content: string = this._nav(navigation, css);
-        return {
-            name: "ebook-nav.xhtml",
-            folder: "EPUB",
-            content: content
-        }
-    }
 
-
-    _ncx(prop: BaseInfo, navigation: Nav): string {
-
-        var toc = "";
-
-        for (let t of navigation.toc) {
-            toc += `<navPoint id="${t.id}">
-                     <navLabel>
-                        <text>${t.label}</text>
-                     </navLabel>
-                     <content src="${t.href}"/>
-                    </navPoint>`;
-        }
-
-
-
+    _ncx(prop: BaseInfo, toc): string {
         return `<?xml version="1.0" encoding="UTF-8"?>
                 <ncx xmlns:ncx="http://www.daisy.org/z3986/2005/ncx/" xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1" xml:lang="en">
                     <head>
@@ -195,37 +82,16 @@ export class Epub3Template {
                         ${toc}
                     </navMap>
                 </ncx>
-                    `;
-    }
-
-    ncx(prop: BaseInfo, navigation: Nav) {
-        let content: string = this._ncx(prop, navigation);
-        return {
-            name: "ebook.ncx",
-            folder: "EPUB",
-            content: content
-        }
+                    `
     }
 
 
-    _contentBody(prop: BaseInfo, content, css?: CssDef[]) {
-
-        var cssFiles = "";
-
-        if (css) {
-            for (let style of css) {
-                let isAlternate = "";
-                if (style.type == "night") isAlternate = "alternate ";
-
-                cssFiles += `<link rel="${isAlternate}stylesheet" type="text/css" href="${style.name}" class="${style.type}" title="${style.type}"/> `;
-            }
-        }
-
+    _contentBody(prop: BaseInfo, content, cssFiles) {
         return `<?xml version="1.0" encoding="UTF-8"?>
                 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:epub="http://www.idpf.org/2007/ops">
                     <head>
                         <meta charset="utf-8"></meta>
-                        <title>{{title}}</title>
+                        <title>${prop.title}</title>
                          ${cssFiles}
                     </head>
                     <body>
@@ -233,16 +99,6 @@ export class Epub3Template {
                     </body>
                 </html>
                 `
-
-    }
-
-    contentBody(prop: BaseInfo, body, css?: CssDef[]) {
-        let content: string = this._contentBody(prop, body, css);
-        return {
-            name: "ebook-content.xhtml",
-            folder: "EPUB",
-            content: content
-        }
     }
 
 
