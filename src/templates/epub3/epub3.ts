@@ -1,6 +1,7 @@
 import {FileContent} from '../../interfaces/file-content'
 import {BaseInfo} from '../../interfaces/base-info';
 import {CssDef} from '../../interfaces/css-def';
+import {Nav} from '../../interfaces/nav';
 
 export class Epub3Template {
 
@@ -109,29 +110,55 @@ export class Epub3Template {
     }
 
 
-    _nav() {
+    _nav(navigation: Nav, css?: CssDef[]) {
+
+        var cssFiles = "";
+
+        if (css) {
+            for (let style of css) {
+                let isAlternate = "";
+                if (style.type == "night") isAlternate = "alternate ";
+
+                cssFiles += `<link rel="${isAlternate}stylesheet" type="text/css" href="${style.name}" class="${style.type}" title="${style.type}"/> `;
+            }
+        }
+
+        var landmarks = "";
+
+        for (let l of navigation.landmarks) {
+            landmarks += `<li><a epub:type="${l.type}" href="${l.href}" >${l.type}</a></li>`;
+        }
+
+        var toc = "";
+
+        for (let t of navigation.toc) {
+            toc += `<li><a href="${t.href}">${t.label}</a></li>`;
+        }
+
+
         return `<?xml version="1.0" encoding="UTF-8"?>
-                <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
-                    xmlns:epub="http://www.idpf.org/2007/ops">
+                <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:epub="http://www.idpf.org/2007/ops">
                     <head>
-                        <meta charset="utf-8"></meta>		
+                        <meta charset="utf-8"></meta>
+                        ${cssFiles}
                     </head>
                     <body>
                         <nav epub:type="toc" id="toc">			
                             <ol>
-                                <li><a href="ebook-content.xhtml#ch1">I. THE BURIAL OF THE DEAD</a></li>
+                                ${toc}
                             </ol>
                         </nav>
                         <nav epub:type="landmarks">
                             <ol>
+                            ${landmarks}
                             </ol>
                         </nav>
                     </body>
                 </html>`
     }
 
-    nav() {
-        let content: string = this._nav();
+    nav(navigation: Nav, css?: CssDef[]) {
+        let content: string = this._nav(navigation, css);
         return {
             name: "ebook-nav.xhtml",
             folder: "EPUB",
@@ -140,7 +167,21 @@ export class Epub3Template {
     }
 
 
-    _ncx(prop: BaseInfo): string {
+    _ncx(prop: BaseInfo, navigation: Nav): string {
+
+        var toc = "";
+
+        for (let t of navigation.toc) {
+            toc += `<navPoint id="${t.id}">
+                     <navLabel>
+                        <text>${t.label}</text>
+                     </navLabel>
+                     <content src="${t.href}"/>
+                    </navPoint>`;
+        }
+
+
+
         return `<?xml version="1.0" encoding="UTF-8"?>
                 <ncx xmlns:ncx="http://www.daisy.org/z3986/2005/ncx/" xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1" xml:lang="en">
                     <head>
@@ -151,19 +192,14 @@ export class Epub3Template {
                     </docTitle>
                     <navMap>
                         <!-- 2.01 NCX: playOrder is optional -->
-                        <navPoint id="ch1">
-                            <navLabel>
-                                <text>I. THE BURIAL OF THE DEAD</text>
-                            </navLabel>
-                            <content src="ebook-content.xhtml#ch1"/>
-                        </navPoint>
+                        ${toc}
                     </navMap>
                 </ncx>
-                    `
+                    `;
     }
 
-    ncx(prop: BaseInfo) {
-        let content: string = this._ncx(prop);
+    ncx(prop: BaseInfo, navigation: Nav) {
+        let content: string = this._ncx(prop, navigation);
         return {
             name: "ebook.ncx",
             folder: "EPUB",

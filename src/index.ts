@@ -11,6 +11,7 @@ import {FileContent} from './interfaces/file-content';
 import {BaseInfo} from './interfaces/base-info';
 import {FileInfo} from './interfaces/file-info';
 import {CssDef} from './interfaces/css-def';
+import {Nav} from './interfaces/nav';
 
 var JSZipUtils = require('jszip-utils');
 
@@ -29,6 +30,10 @@ export class EpubCreator {
     private templateClass: any;
     public epubContent: string = "";
     private css: any = [];
+    private navigation: Nav = {
+        "toc": [],
+        "landmarks": []
+    };
 
 
     constructor() {
@@ -98,13 +103,13 @@ export class EpubCreator {
     }
 
     nav() {
-        let fileContent: FileContent = this.templateClass.nav();
+        let fileContent: FileContent = this.templateClass.nav(this.navigation, this.css);
         let folder = this.epubZip.folder(fileContent.folder);
         folder.file(fileContent.name, fileContent.content);
     }
 
     ncx() {
-        let fileContent: FileContent = this.templateClass.ncx(this.properties);
+        let fileContent: FileContent = this.templateClass.ncx(this.properties, this.navigation);
         let folder = this.epubZip.folder(fileContent.folder);
         folder.file(fileContent.name, fileContent.content);
     }
@@ -116,9 +121,12 @@ export class EpubCreator {
     }
 
     addSections(epubSections) {
-        this.epubContent += this.sections.addSections(epubSections);
+        this.epubContent += this._addSections(epubSections);
+
 
         console.log(this.epubContent);
+
+
     }
 
     addCss(cssDef: CssDef) {
@@ -164,6 +172,7 @@ export class EpubCreator {
                     this.ncx();
                     this.content(this.epubContent);
 
+                    console.log("TOC", this.navigation);
                     return resolve();
                 },
                 (err) => {
@@ -241,38 +250,106 @@ export class EpubCreator {
 
     }
 
+    addNavLandmarks(data) {
+        if (data.tag === "section" && data.name === "frontmatter") {
+            this.navigation.landmarks.push({type: "frontmatter", href: "ebook-content.xhtml#frontmatter"})
+        }
+
+        if (data.tag === "section" && data.name === "bodymatter") {
+            this.navigation.landmarks.push({type: "bodymatter", href: "ebook-content.xhtml#bodymatter"})
+        }
+
+        if (data.tag === "section" && data.name === "backmatter") {
+            this.navigation.landmarks.push({type: "backmatter", href: "ebook-content.xhtml#backmatter"})
+        }
+
+    }
+
+
+    addNavToc(id:string ,label: string) {
+        this.navigation.toc.push({label: label, href: "ebook-content.xhtml#"+id, id:id})
+    }
+
+
+    _addSections(epubSections: any): string {
+
+        var sectionAsText = "";
+        var progressiveId = 0;
+
+        for (let data of epubSections) {
+
+            let id = data.id ? data.id : data.name + "_" + progressiveId;
+            let content: string = "";
+
+            if (Array.isArray(data.content))
+                content = this._addSections(data.content);
+            else
+                content = data.content;
+
+
+            if(data.navLabel)
+                this.addNavToc(id, data.navLabel);
+
+
+            if (data.tag && data.tag != "html") {
+
+                this.addNavLandmarks(data);
+
+
+                let epubType = "";
+                if(data.name)
+                    epubType= `epub:type="${data.name}"`;
+
+                sectionAsText += `
+                    <${data.tag} ${epubType} id="${id}">
+                        ${content}
+                    </${data.tag}>`;
+            } else {
+                sectionAsText += content;
+            }
+
+            progressiveId++;
+        }
+
+        return sectionAsText;
+    }
+
+
     blobUrl() {
         return new Promise((resolve, reject): any => {
             this._prepare().then(
                 ()=> {
-                    this.epubZip.generateAsync({type: "blob"})
+                   this.epubZip.generateAsync({type: "blob"})
                         .then((content) => resolve(URL.createObjectURL(content))
                             , (err) => reject(err)
                         );
                 },
                 (err)=> {
                     console.log("Download error on insert asset data: ", err);
+                    return reject(err);
                 }
             );
         });
     }
 
     download(fileName?: string): any {
-        this._prepare().then(
-            ()=> {
-                console.log("OK");
+        return new Promise((resolve, reject): any => {
+            this._prepare().then(
+                ()=> {
 
-                this.epubZip.generateAsync({type: "blob"})
-                    .then((content) => {
-                        FileSaver.saveAs(content, fileName);
-                    });
+                    this.epubZip.generateAsync({type: "blob"})
+                        .then((content) => {
+                            FileSaver.saveAs(content, fileName);
+                            return resolve(true);
+                        });
 
-
-            },
-            (err)=> {
-                console.log("Download error on insert asset data: ", err);
-            }
-        );
+                },
+                (err)=> {
+                    console.log("Download error on insert asset data: ", err);
+                    return reject(err);
+                }
+            );
+        })
 
     }
 
@@ -284,7 +361,7 @@ var content = [
         tag: "section", name: "frontmatter", "content": [
         {
             tag: "section", name: "titlepage", "content": [
-            {tag: "html", content: "<h1>The Waste Land</h1> 	<div class='aut'>T.S. Eliot</div>"},
+            {tag: "html", content: "<h1>Libro Autogenerato</h1> 	<div class='aut'>T.S. Eliot</div>"},
             {
                 tag: "div",
                 name: "epigraph",
@@ -294,7 +371,12 @@ var content = [
         }
     ]
     },
-    {tag: "section", name: "bodymatter", "content": "ciao sono un contenuto"}
+    {
+        tag: "section", name: "bodymatter", "content": [
+        {tag: "section", id: "ch1", navLabel: "CAPITOLO 1", content: "sono il contenuto del body"},
+        {tag: "section", id: "ch2", navLabel: "CAPITOLO 2", content: "sono il secondo capitolo"}
+    ]
+    }
 ];
 
 
@@ -304,6 +386,9 @@ epubCreator.template('epub3');
 epubCreator.properties.title = "Alfabook book title";
 epubCreator.properties.cover.file = "./demo/cover.jpg";
 epubCreator.addSections(content);
-epubCreator.addCss({"content": "body: margin:0", "name": "base.css"});
+epubCreator.addCss({
+    "content": "@namespace '@charset 'UTF-8'; http://www.w3.org/1999/xhtml'; @namespace epub 'http://www.idpf.org/2007/ops'; body: { margin-left:6em, margin-right:2em}",
+    "name": "base.css"
+});
 epubCreator.download();
 //epubCreator.blobUrl().then( (content) =>console.log(content), (err) => console.log(err));
