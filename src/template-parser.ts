@@ -1,9 +1,9 @@
-import {FileContent} from './interfaces/file-content'
-import {BaseInfo} from './interfaces/base-info';
-import {CssDef} from './interfaces/css-def';
-import {Nav} from './interfaces/nav';
+import {FileContent} from "./interfaces/file-content";
+import {BaseInfo} from "./interfaces/base-info";
+import {CssDef} from "./interfaces/css-def";
+import {Nav} from "./interfaces/nav";
 
-import {Epub3Template} from './templates/epub3/epub3';
+import {Epub3Template} from "./templates/epub3/epub3";
 
 
 export class TemplateParser {
@@ -16,7 +16,7 @@ export class TemplateParser {
 
 
     public template(models?: string) {
-        if (!models || models === 'epub3')
+        if (!models || models === "epub3")
             this.templateClass = new Epub3Template();
     }
 
@@ -27,7 +27,7 @@ export class TemplateParser {
             name: "mimetype",
             folder: "",
             content: content
-        }
+        };
     }
 
     public container(): FileContent {
@@ -36,7 +36,7 @@ export class TemplateParser {
             name: "container.xml",
             folder: "META-INF",
             content: content
-        }
+        };
     }
 
     public opf(prop: BaseInfo, css?: CssDef[]) {
@@ -47,7 +47,7 @@ export class TemplateParser {
         let cssFiles = this._opfCss(css);
 
 
-        if (prop.cover.file != "" && prop.cover.asFileName) {
+        if (prop.cover.file !== "" && prop.cover.asFileName) {
             metadataCoverFragment = `<!-- rights expression for the cover image -->       
                     <link rel="cc:license" refines="#cover" href="${prop.cover.license}" />
                     <link rel="cc:attributionURL" refines="#cover" href="${prop.cover.attributionUrl}" />        
@@ -71,7 +71,7 @@ export class TemplateParser {
             name: "ebook.opf",
             folder: "EPUB",
             content: content
-        }
+        };
     }
 
 
@@ -86,45 +86,45 @@ export class TemplateParser {
             name: "ebook-nav.xhtml",
             folder: "EPUB",
             content: content
-        }
+        };
     }
 
     private _navLandmarks(data) {
-        var landmarks: string = "";
+        let landmarks: string = "";
 
         for (let l of data) {
             landmarks += `<li><a epub:type="${l.type}" href="${l.href}" >${l.type}</a></li>`;
         }
 
-        return landmarks
+        return landmarks;
     }
 
     public ncx(prop: BaseInfo, navigation: Nav) {
 
-        var toc = this._ncxToc(navigation.toc);
+        let toc = this._ncxToc(navigation.toc);
 
         let content: string = this.templateClass._ncx(prop, toc);
         return {
             name: "ebook.ncx",
             folder: "EPUB",
             content: content
-        }
+        };
     }
 
     public contentBody(prop: BaseInfo, body, css?: CssDef[]) {
 
-        var cssFiles = this._cssLink(css);
+        let cssFiles = this._cssLink(css);
 
         let content: string = this.templateClass._contentBody(prop, body, cssFiles);
         return {
             name: "ebook-content.xhtml",
             folder: "EPUB",
             content: content
-        }
+        };
     }
 
     private _navToc(data) {
-        var toc = "";
+        let toc = "";
 
         for (let t of data) {
             toc += `<li><a href="${t.href}">${t.label}</a></li>`;
@@ -134,7 +134,7 @@ export class TemplateParser {
     }
 
     private  _ncxToc(data): string {
-        var toc: string = "";
+        let toc: string = "";
 
         for (let t of data) {
             toc += `<navPoint id="${t.id}">
@@ -149,12 +149,12 @@ export class TemplateParser {
     }
 
     private _cssLink(css?: CssDef[]): string {
-        var cssFiles: string = "";
+        let cssFiles: string = "";
 
         if (css) {
             for (let style of css) {
                 let isAlternate = "";
-                if (style.type == "night") isAlternate = "alternate ";
+                if (style.type === "night") isAlternate = "alternate ";
                 cssFiles += `<link rel="${isAlternate}stylesheet" type="text/css" href="${style.name}" class="${style.type}" title="${style.type}"/> `;
             }
         }
@@ -164,7 +164,7 @@ export class TemplateParser {
 
     private  _opfCss(css?: CssDef[]): string {
 
-        var cssFiles = "";
+        let cssFiles = "";
 
         if (css) {
             let cssIdCounter = 0;

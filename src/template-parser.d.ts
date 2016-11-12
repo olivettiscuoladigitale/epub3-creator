@@ -1,7 +1,7 @@
-import { FileContent } from './interfaces/file-content';
-import { BaseInfo } from './interfaces/base-info';
-import { CssDef } from './interfaces/css-def';
-import { Nav } from './interfaces/nav';
+import { FileContent } from "./interfaces/file-content";
+import { BaseInfo } from "./interfaces/base-info";
+import { CssDef } from "./interfaces/css-def";
+import { Nav } from "./interfaces/nav";
 export declare class TemplateParser {
     private templateClass;
     constructor(models: any);

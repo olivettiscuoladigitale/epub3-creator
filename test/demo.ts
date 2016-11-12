@@ -1,6 +1,5 @@
 import {EpubCreator} from "../src/index";
 
-
 console.log("start demo");
 
 let content = [
@@ -38,10 +37,6 @@ epubCreator.addCss({
     "name": "base.css"
 });
 
-// epubCreator.download();
+ epubCreator.download();
 
 // epubCreator.blobUrl().then( (content) =>console.log(content), (err) => console.log(err));
-
-export function ciccio() {
-    alert("ok");
-}

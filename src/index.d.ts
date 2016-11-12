@@ -1,5 +1,5 @@
-import { BaseInfo } from './interfaces/base-info';
-import { CssDef } from './interfaces/css-def';
+import { BaseInfo } from "./interfaces/base-info";
+import { CssDef } from "./interfaces/css-def";
 /**
  * Create a Epub 3 Compliant Idpf file
  *

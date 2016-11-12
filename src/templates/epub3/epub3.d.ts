@@ -1,4 +1,4 @@
-import { BaseInfo } from '../../interfaces/base-info';
+import { BaseInfo } from "../../interfaces/base-info";
 export declare class Epub3Template {
     _mimetype(): string;
     _container(): string;

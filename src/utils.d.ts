@@ -1,4 +1,4 @@
-import { FileInfo } from './interfaces/file-info';
+import { FileInfo } from "./interfaces/file-info";
 /**
  * Utils class
  * group some usefull methods for epub creations

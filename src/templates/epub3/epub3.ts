@@ -1,4 +1,4 @@
-import {BaseInfo} from '../../interfaces/base-info';
+import {BaseInfo} from "../../interfaces/base-info";
 
 export class Epub3Template {
 
@@ -7,13 +7,13 @@ export class Epub3Template {
     }
 
     _container(): string {
-        return `<?xml version="1.0" encoding="UTF-8"?>
-           <container xmlns="urn:oasis:names:tc:opendocument:xmlns:container" version="1.0">
-	        <rootfiles>
-		        <rootfile full-path="EPUB/ebook.opf" media-type="application/oebps-package+xml"/>
-	        </rootfiles>
+        return `<?xml version="1.0" encoding="UTF-8"?> 
+                 <container xmlns="urn:oasis:names:tc:opendocument:xmlns:container" version="1.0"> 
+                  <rootfiles>
+                  <rootfile full-path="EPUB/ebook.opf" media-type="application/oebps-package+xml"/>
+                  </rootfiles>   
            </container>
-            `
+            `;
     }
 
     _opf(prop: BaseInfo, metadataCoverFragment: string, manifestFragment: string) {
@@ -39,7 +39,7 @@ export class Epub3Template {
                     <itemref idref="t1" />        
                 </spine>    
             </package>
-            `
+            `;
     }
 
 
@@ -64,7 +64,7 @@ export class Epub3Template {
                             </ol>
                         </nav>
                     </body>
-                </html>`
+                </html>`;
     }
 
 
@@ -82,7 +82,7 @@ export class Epub3Template {
                         ${toc}
                     </navMap>
                 </ncx>
-                    `
+                    `;
     }
 
 
@@ -98,7 +98,7 @@ export class Epub3Template {
                      ${content}
                     </body>
                 </html>
-                `
+                `;
     }
 
 
