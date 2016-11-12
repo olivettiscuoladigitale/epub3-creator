@@ -3,7 +3,7 @@
 # EPUB-CREATOR
 
 
-A simple class writed in js Typescript to create your epub from text/html. 
+A simple class writed in Typescript (and transpiled in es5) for create your epub from text/html. 
 Can be used in your client browser or nodejs.
 
 ## Install
@@ -225,6 +225,26 @@ Waht about if we need to add some text/html before epigraph section?. We can do 
 
 Now we have an example with frontmatter that has 2 section with one that has only html and the other that is an epigraph.
 
+### section Tag
+For most content `section` tag is the best values but we can create a html5 tag:
+
+	epubCreator.addSections([
+									{
+										tag: "section", 
+										name: "frontmatter", 
+										"content":[
+										  {tag: "section", name: "frontmatter", "content": [
+																		  {
+														                tag: "div",
+														                name: "epigraph",
+														                content: "this is epigraph content "
+								            							  },
+																		]
+									}
+								]);
+
+In this example `epigraph` is created with tag `id`
+
 ## Manual add content as string
 We can add content using the object only for the main structure. This case is usefull if we have content formatted as epub:
 
@@ -245,3 +265,67 @@ We can add content using the object only for the main structure. This case is us
 											}
 
 
+## Create index -> navigation
+Epubcreator generate a index and pupulate it with item that contain object `navLavel`.  
+
+	epubCreator.addSections([
+		 {
+        tag: "section", name: "bodymatter", "content": [
+        {tag: "section", id: "ch1", navLabel: "Chapter 1", content: "Body content for this section"},
+        {tag: "section", id: "ch2", navLabel: "chapter 2", content: "Body Content for this other section"}
+   												 ]
+    	}
+	])
+	
+
+Note: id params is not mandatory, if not preset epubcreator assing a random id to section.
+
+
+# Download file
+To download epub file call method download.
+
+	var epubCreator = new EpubCreator();
+		epubCreator.properties.title = "Alfabook book title";
+		epubCreator.properties.cover.file = "./demo/cover.jpg";
+		epubCreator.addSections(...)
+		epubCreator.addCss({
+	    "content": "@namespace '@charset 'UTF-8'; http://www.w3.org/1999/xhtml'; @namespace epub 'http://www.idpf.org/2007/ops'; body: { margin-left:6em, margin-right:2em}",
+	    "name": "base.css"
+	});
+	epubCreator.download(); // this is important!!
+
+# ReadFile without download
+Create epub on the fly and read it with your favourite reader.
+
+
+			var epubCreator = new EpubCreator();
+			...
+			// es6
+			epubCreator.blobUrl().then( 
+			(content) => console.log(content), 
+			(err) => console.log(err));
+			// es5
+			epubCreator.blobUrl().then( 
+			function (content) { 
+				// this is the blob url content, send it to your epub reader
+				console.log(content) ;
+			}, 
+			function (err) { 
+				console.log(err) }
+			);
+			
+
+		 
+	
+## Development
+Clone this repo and `npm install`.
+`npn start` -> change code and restart with webpack
+`npm run build` -> create dist in ./dist folder
+
+`./src` contain source code.
+
+
+# TODO
+- add more template
+- add more option
+- make more simple
