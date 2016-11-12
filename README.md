@@ -86,7 +86,7 @@ If we want to set a cover we must compile the `cover.file` settings. We can pass
 - a string with path of image 
 - a base64 image 
 
-###Cover with a string:
+### Cover with a string:
 
 	cover: {
 				                file: "./images/mycover.jpg",
@@ -96,7 +96,7 @@ If we want to set a cover we must compile the `cover.file` settings. We can pass
 				            },
 
 
-###Cover with base64 image data: 
+### Cover with base64 image data: 
 
 	cover: {
 				                file: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAgE-THIS IS JUST AN EXAMPLE IS NOT A BASE64 VALID IMAGE- 8eIpiq7FX//2Q==,
@@ -115,7 +115,7 @@ On some example in idpf the cover are jpg image data Width:398 px Height:510 px
 Ok now we have a epub with right properties and a cover but we need to make it better with custom css!. 
 We can add a css as a string of parameters or linking a file:
 
-###Add css with string:
+### Add css with string:
 
 		epubCreator.addCss({
 	    "content": "@namespace '@charset 'UTF-8'; http://www.w3.org/1999/xhtml'; @namespace epub 'http://www.idpf.org/2007/ops'; body: { margin-left:6em, margin-right:2em}",
@@ -127,7 +127,7 @@ Super easy! We have used `addCss` with a object `{content:string, name:string}`.
 
 `content` has css string parameters and `name` is the name of file.
 
-###Add css with file path:
+### Add css with file path:
 
 	epubCreator.addCss({
 		  	"path": "./demo/day.css",
