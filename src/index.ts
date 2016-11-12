@@ -142,6 +142,11 @@ export class EpubCreator {
                 );
 
             } else {
+                if (!cssDef.name) {
+                    const fileInfo: FileInfo = this.utils.getFileNameFromPath(cssDef.path);
+                    cssDef.name = fileInfo.fullName;
+                }
+
                 this.addAssetWithPath(cssDef.path, cssDef.name).then(
                     () => resolve(true),
                     (err) => reject(err)
