@@ -2,11 +2,17 @@ import {FileContent} from "./interfaces/file-content";
 import {BaseInfo} from "./interfaces/base-info";
 import {CssDef} from "./interfaces/css-def";
 import {Nav} from "./interfaces/nav";
+import {Assets} from "./interfaces/assets";
 
 import {Epub3Template} from "./templates/epub3/epub3";
 
-
+/**
+ * Prepare data for Template
+ *
+ * @author Giorgio Modoni <g.modoni@alfabook.it>
+ */
 export class TemplateParser {
+
 
     private templateClass: any;
 
@@ -39,7 +45,7 @@ export class TemplateParser {
         };
     }
 
-    public opf(prop: BaseInfo, css?: CssDef[]) {
+    public opf(prop: BaseInfo, css?: CssDef[], assets?: Assets[]) {
 
         let metadataCoverFragment: string = "";
         let manifestFragment: string = "";
@@ -64,6 +70,10 @@ export class TemplateParser {
                             <item id="ncx" href="ebook.ncx" media-type="application/x-dtbncx+xml" />`;
 
         manifestFragment += cssFiles;
+
+        for (let a of assets) {
+            manifestFragment += `<item id="${a.id}" href="${a.name}" media-type="${a.mediaType}"/>`;
+        }
 
 
         let content: string = this.templateClass._opf(prop, metadataCoverFragment, manifestFragment);

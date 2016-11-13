@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/.bin/webpack-dev-server --progress --colors --watch ",
-    "build": "./node_modules/.bin/webpack --config webpack.config.build.js --progress --colors; ./node_modules/.bin/webpack --config webpack.config.build.js --progress --colors -p"
+    "start": "./node_modules/.bin/webpack-dev-server --progress --colors --watch --no-minimize",
+    "build": "./node_modules/.bin/webpack --config webpack.config.build.js --progress --colors; ./node_modules/.bin/webpack --config webpack.config.build.js --progress --colors -p",
+    "doc": "./node_modules/.bin/typedoc  --exclude ./node_modules/@types/jszip/index.d --out doc/ src/"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +24,8 @@
     "babel-preset-es2015": "^6.18.0",
     "source-map-loader": "^0.1.5",
     "ts-loader": "^1.1.0",
+    "typedoc": "^0.5.1",
+    "typedoc-webpack-plugin": "^1.1.3",
     "typescript": "^2.0.8",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"

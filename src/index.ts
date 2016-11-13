@@ -12,6 +12,7 @@ import {BaseInfo} from "./interfaces/base-info";
 import {FileInfo} from "./interfaces/file-info";
 import {CssDef} from "./interfaces/css-def";
 import {Nav} from "./interfaces/nav";
+import {Assets} from "./interfaces/assets";
 
 const JSZipUtils = require("jszip-utils");
 
@@ -19,21 +20,59 @@ const JSZipUtils = require("jszip-utils");
 /**
  * Create a Epub 3 Compliant Idpf file
  *
- * @autor Giorgio Modoni <g.modoni@alfabook.it>
+ * @author Giorgio Modoni <g.modoni@alfabook.it>
  */
 export class EpubCreator {
 
+    /**
+     * JSZip internal
+     */
     private epubZip: any;
+
+    /**
+     * Utils class
+     */
     private utils: Utils;
+
+    /**
+     * Base epub properties
+     */
     public properties: BaseInfo;
-    private templateClass: any;
+
+    /**
+     * Epub content as string
+     *
+     * @type {string}
+     */
     public epubContent: string = "";
+
+    /**
+     * Custom css
+     * @type {Array}
+     */
     private css: any = [];
+
+    /**
+     * Navigation menu and properties
+     *
+     * @type {{toc: Array; landmarks: Array}}
+     */
     private navigation: Nav = {
         "toc": [],
         "landmarks": []
     };
+
+    /**
+     * Template class
+     */
     private parser: any;
+
+    /**
+     * Asset image data
+     *
+     * @type {Array}
+     */
+    private assets: Assets[] = [];
 
 
     constructor() {
@@ -90,45 +129,68 @@ export class EpubCreator {
         folder.file(fileContent.name, fileContent.content);
     }
 
+    /**
+     * Create basic container file
+     */
     container() {
         let fileContent: FileContent = this.parser.container();
         let folder = this.epubZip.folder(fileContent.folder);
         folder.file(fileContent.name, fileContent.content);
     }
 
+    /**
+     * Create opf file
+     */
     opf() {
-        let fileContent: FileContent = this.parser.opf(this.properties, this.css);
+        let fileContent: FileContent = this.parser.opf(this.properties, this.css, this.assets);
         let folder = this.epubZip.folder(fileContent.folder);
         folder.file(fileContent.name, fileContent.content);
     }
 
+    /**
+     * Create navigation file for epub3
+     */
     nav() {
         let fileContent: FileContent = this.parser.nav(this.navigation, this.css);
         let folder = this.epubZip.folder(fileContent.folder);
         folder.file(fileContent.name, fileContent.content);
     }
 
+    /**
+     * Create ncx menu for epub2 compatibility
+     */
     ncx() {
         let fileContent: FileContent = this.parser.ncx(this.properties, this.navigation);
         let folder = this.epubZip.folder(fileContent.folder);
         folder.file(fileContent.name, fileContent.content);
     }
 
+    /**
+     * Add contento to epub
+     *
+     * @param content - epub string contet
+     */
     content(content: string) {
         let fileContent: FileContent = this.parser.contentBody(this.properties, content, this.css);
         let folder = this.epubZip.folder(fileContent.folder);
         folder.file(fileContent.name, fileContent.content);
     }
 
+    /**
+     * Add content as section and structures
+     *
+     * @param epubSections - epub section object
+     */
     addSections(epubSections) {
         this.epubContent += this._addSections(epubSections);
-
-
-        console.log(this.epubContent);
-
-
     }
 
+    /**
+     * Add css file and populate css value for proper ocx
+     *
+     * @param cssDef - css object
+     * @returns {Promise<T>}
+     */
     addCss(cssDef: CssDef) {
         return new Promise((resolve, reject) => {
 
@@ -148,7 +210,10 @@ export class EpubCreator {
                 }
 
                 this.addAssetWithPath(cssDef.path, cssDef.name).then(
-                    () => resolve(true),
+                    () =>  {
+                        this.css.push({"name": cssDef.name, type: "day"});
+                        return resolve(true);
+                    },
                     (err) => reject(err)
                 );
             }
@@ -156,6 +221,62 @@ export class EpubCreator {
         });
     }
 
+    /**
+     * Add image assets
+     *
+     * @param asset - image asset object
+     * @returns {Promise<T>}
+     */
+    addImage(asset: Assets) {
+        return new Promise((resolve, reject) => {
+
+            if (asset.content) {
+                this.addAsset(asset.content, asset.name).then(
+                    (fileName) => {
+                        this.assets.push({"name": asset.name, mediaType: asset.mediaType, id: asset.id});
+                        return resolve(true);
+                    },
+                    (err) => reject(err)
+                );
+
+            } else {
+                if (!asset.name) {
+                    const fileInfo: FileInfo = this.utils.getFileNameFromPath(asset.path);
+                    asset.name = fileInfo.fullName;
+                }
+
+                this.addAssetWithPath(asset.path, asset.name).then(
+                    () => {
+                        this.assets.push({"name": asset.name, mediaType: asset.mediaType,  id: asset.id});
+                        return resolve(true);
+                    },
+                    (err) => reject(err)
+                );
+            }
+
+        });
+    }
+
+    /**
+     * Before start injecting document, add id if not preset
+     */
+    assignIdAsset() {
+        let i = 0;
+        for (let a of this.assets) {
+            if (!a.id) {
+                a.id = "asset_" + i;
+            }
+
+            i++;
+        }
+    }
+
+    /**
+     * Create epub
+     *
+     * @returns {Promise<T>}
+     * @private
+     */
     _prepare() {
         return new Promise((resolve, reject): any => {
 
@@ -165,6 +286,8 @@ export class EpubCreator {
 
             Promise.all(promises).then(
                 () => {
+
+                    this.assignIdAsset();
                     this.mimetype();
                     this.container();
                     this.opf();
@@ -180,6 +303,13 @@ export class EpubCreator {
         });
     }
 
+    /**
+     * Add cover add a special asseect, cover image
+     * Cover is set in properties.cover
+     *
+     * @returns {Promise<T>}
+     * @private
+     */
     private _addCover() {
         return new Promise((resolve, reject) => {
 
@@ -210,6 +340,13 @@ export class EpubCreator {
         });
     }
 
+    /**
+     * Add asset to Epub
+     *
+     * @param data - base64/binary data
+     * @param fileName - file name
+     * @returns {Promise<T>}
+     */
     addAsset(data: string, fileName: string): Promise<any> {
         return new Promise((resolve) => {
             this.epubZip.folder("EPUB").file(fileName, data);
@@ -218,6 +355,12 @@ export class EpubCreator {
         });
     }
 
+    /**
+     * Add data as base 64
+     * @param data - data encode as base64
+     * @param fileName - file name
+     * @returns {Promise<T>}
+     */
     addAssetAsBase64(data: string, fileName: string): Promise<any> {
         return new Promise((resolve) => {
             this.epubZip.folder("EPUB").file(fileName, data, {base64: true});
@@ -226,6 +369,13 @@ export class EpubCreator {
         });
     }
 
+    /**
+     * Add data with file path
+     *
+     * @param path - file path
+     * @param name - file name
+     * @returns {Promise<T>}
+     */
     addAssetWithPath(path: string, name?: string): Promise<any> {
         return new Promise((resolve, reject) => {
 
@@ -246,7 +396,13 @@ export class EpubCreator {
 
     }
 
-    addNavLandmarks(data) {
+    /**
+     * Populate landmark navigation object
+     *
+     * @param data - landmark
+     * @private
+     */
+    _addNavLandmarks(data) {
         if (data.tag === "section" && data.name === "frontmatter") {
             this.navigation.landmarks.push({type: "frontmatter", href: "ebook-content.xhtml#frontmatter"});
         }
@@ -261,12 +417,24 @@ export class EpubCreator {
 
     }
 
-
-    addNavToc(id: string, label: string) {
+    /**
+     * Add navigation toc
+     *
+     * @param id - string id
+     * @param label - toc label
+     * @private
+     */
+    _addNavToc(id: string, label: string) {
         this.navigation.toc.push({label: label, href: "ebook-content.xhtml#" + id, id: id});
     }
 
-
+    /**
+     * Navigation Toc
+     *
+     * @param epubSections
+     * @returns {string}
+     * @private
+     */
     _addSections(epubSections: any): string {
 
         let sectionAsText = "";
@@ -284,12 +452,12 @@ export class EpubCreator {
 
 
             if (data.navLabel)
-                this.addNavToc(id, data.navLabel);
+                this._addNavToc(id, data.navLabel);
 
 
             if (data.tag && data.tag !== "html") {
 
-                this.addNavLandmarks(data);
+                this._addNavLandmarks(data);
 
 
                 let epubType = "";
@@ -311,6 +479,11 @@ export class EpubCreator {
     }
 
 
+    /**
+     * Create blob url, usefull to create epub and pass to your epub reader without saving it to file
+     *
+     * @returns {Promise<T>}
+     */
     blobUrl() {
         return new Promise((resolve, reject): any => {
             this._prepare().then(
@@ -328,6 +501,12 @@ export class EpubCreator {
         });
     }
 
+    /**
+     * Download Epub
+     *
+     * @param fileName
+     * @returns {Promise<T>}
+     */
     download(fileName?: string): any {
         return new Promise((resolve, reject): any => {
             this._prepare().then(

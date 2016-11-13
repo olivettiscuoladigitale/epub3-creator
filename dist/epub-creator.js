@@ -71,16 +71,36 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Create a Epub 3 Compliant Idpf file
 	 *
-	 * @autor Giorgio Modoni <g.modoni@alfabook.it>
+	 * @author Giorgio Modoni <g.modoni@alfabook.it>
 	 */
 	var EpubCreator = (function () {
 	    function EpubCreator() {
+	        /**
+	         * Epub content as string
+	         *
+	         * @type {string}
+	         */
 	        this.epubContent = "";
+	        /**
+	         * Custom css
+	         * @type {Array}
+	         */
 	        this.css = [];
+	        /**
+	         * Navigation menu and properties
+	         *
+	         * @type {{toc: Array; landmarks: Array}}
+	         */
 	        this.navigation = {
 	            "toc": [],
 	            "landmarks": []
 	        };
+	        /**
+	         * Asset image data
+	         *
+	         * @type {Array}
+	         */
+	        this.assets = [];
 	        this.epubZip = new JSZip(); // get Jszip for epub compress
 	        this.utils = new utils_1.Utils(); // load utils class
 	        this.setDefaultBaseInfo(); // set default value
@@ -130,35 +150,62 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var folder = this.epubZip.folder(fileContent.folder);
 	        folder.file(fileContent.name, fileContent.content);
 	    };
+	    /**
+	     * Create basic container file
+	     */
 	    EpubCreator.prototype.container = function () {
 	        var fileContent = this.parser.container();
 	        var folder = this.epubZip.folder(fileContent.folder);
 	        folder.file(fileContent.name, fileContent.content);
 	    };
+	    /**
+	     * Create opf file
+	     */
 	    EpubCreator.prototype.opf = function () {
-	        var fileContent = this.parser.opf(this.properties, this.css);
+	        var fileContent = this.parser.opf(this.properties, this.css, this.assets);
 	        var folder = this.epubZip.folder(fileContent.folder);
 	        folder.file(fileContent.name, fileContent.content);
 	    };
+	    /**
+	     * Create navigation file for epub3
+	     */
 	    EpubCreator.prototype.nav = function () {
 	        var fileContent = this.parser.nav(this.navigation, this.css);
 	        var folder = this.epubZip.folder(fileContent.folder);
 	        folder.file(fileContent.name, fileContent.content);
 	    };
+	    /**
+	     * Create ncx menu for epub2 compatibility
+	     */
 	    EpubCreator.prototype.ncx = function () {
 	        var fileContent = this.parser.ncx(this.properties, this.navigation);
 	        var folder = this.epubZip.folder(fileContent.folder);
 	        folder.file(fileContent.name, fileContent.content);
 	    };
+	    /**
+	     * Add contento to epub
+	     *
+	     * @param content - epub string contet
+	     */
 	    EpubCreator.prototype.content = function (content) {
 	        var fileContent = this.parser.contentBody(this.properties, content, this.css);
 	        var folder = this.epubZip.folder(fileContent.folder);
 	        folder.file(fileContent.name, fileContent.content);
 	    };
+	    /**
+	     * Add content as section and structures
+	     *
+	     * @param epubSections - epub section object
+	     */
 	    EpubCreator.prototype.addSections = function (epubSections) {
 	        this.epubContent += this._addSections(epubSections);
-	        console.log(this.epubContent);
 	    };
+	    /**
+	     * Add css file and populate css value for proper ocx
+	     *
+	     * @param cssDef - css object
+	     * @returns {Promise<T>}
+	     */
 	    EpubCreator.prototype.addCss = function (cssDef) {
 	        var _this = this;
 	        return new Promise(function (resolve, reject) {
@@ -173,16 +220,66 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    var fileInfo = _this.utils.getFileNameFromPath(cssDef.path);
 	                    cssDef.name = fileInfo.fullName;
 	                }
-	                _this.addAssetWithPath(cssDef.path, cssDef.name).then(function () { return resolve(true); }, function (err) { return reject(err); });
+	                _this.addAssetWithPath(cssDef.path, cssDef.name).then(function () {
+	                    _this.css.push({ "name": cssDef.name, type: "day" });
+	                    return resolve(true);
+	                }, function (err) { return reject(err); });
 	            }
 	        });
 	    };
+	    /**
+	     * Add image assets
+	     *
+	     * @param asset - image asset object
+	     * @returns {Promise<T>}
+	     */
+	    EpubCreator.prototype.addImage = function (asset) {
+	        var _this = this;
+	        return new Promise(function (resolve, reject) {
+	            if (asset.content) {
+	                _this.addAsset(asset.content, asset.name).then(function (fileName) {
+	                    _this.assets.push({ "name": asset.name, mediaType: asset.mediaType, id: asset.id });
+	                    return resolve(true);
+	                }, function (err) { return reject(err); });
+	            }
+	            else {
+	                if (!asset.name) {
+	                    var fileInfo = _this.utils.getFileNameFromPath(asset.path);
+	                    asset.name = fileInfo.fullName;
+	                }
+	                _this.addAssetWithPath(asset.path, asset.name).then(function () {
+	                    _this.assets.push({ "name": asset.name, mediaType: asset.mediaType, id: asset.id });
+	                    return resolve(true);
+	                }, function (err) { return reject(err); });
+	            }
+	        });
+	    };
+	    /**
+	     * Before start injecting document, add id if not preset
+	     */
+	    EpubCreator.prototype.assignIdAsset = function () {
+	        var i = 0;
+	        for (var _i = 0, _a = this.assets; _i < _a.length; _i++) {
+	            var a = _a[_i];
+	            if (!a.id) {
+	                a.id = "asset_" + i;
+	            }
+	            i++;
+	        }
+	    };
+	    /**
+	     * Create epub
+	     *
+	     * @returns {Promise<T>}
+	     * @private
+	     */
 	    EpubCreator.prototype._prepare = function () {
 	        var _this = this;
 	        return new Promise(function (resolve, reject) {
 	            var promises = [];
 	            promises.push(_this._addCover());
 	            Promise.all(promises).then(function () {
+	                _this.assignIdAsset();
 	                _this.mimetype();
 	                _this.container();
 	                _this.opf();
@@ -193,6 +290,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }, function (err) { return reject(err); });
 	        });
 	    };
+	    /**
+	     * Add cover add a special asseect, cover image
+	     * Cover is set in properties.cover
+	     *
+	     * @returns {Promise<T>}
+	     * @private
+	     */
 	    EpubCreator.prototype._addCover = function () {
 	        var _this = this;
 	        return new Promise(function (resolve, reject) {
@@ -212,6 +316,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        });
 	    };
+	    /**
+	     * Add asset to Epub
+	     *
+	     * @param data - base64/binary data
+	     * @param fileName - file name
+	     * @returns {Promise<T>}
+	     */
 	    EpubCreator.prototype.addAsset = function (data, fileName) {
 	        var _this = this;
 	        return new Promise(function (resolve) {
@@ -219,6 +330,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return resolve(fileName);
 	        });
 	    };
+	    /**
+	     * Add data as base 64
+	     * @param data - data encode as base64
+	     * @param fileName - file name
+	     * @returns {Promise<T>}
+	     */
 	    EpubCreator.prototype.addAssetAsBase64 = function (data, fileName) {
 	        var _this = this;
 	        return new Promise(function (resolve) {
@@ -226,6 +343,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return resolve(fileName);
 	        });
 	    };
+	    /**
+	     * Add data with file path
+	     *
+	     * @param path - file path
+	     * @param name - file name
+	     * @returns {Promise<T>}
+	     */
 	    EpubCreator.prototype.addAssetWithPath = function (path, name) {
 	        var _this = this;
 	        return new Promise(function (resolve, reject) {
@@ -241,7 +365,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	            });
 	        });
 	    };
-	    EpubCreator.prototype.addNavLandmarks = function (data) {
+	    /**
+	     * Populate landmark navigation object
+	     *
+	     * @param data - landmark
+	     * @private
+	     */
+	    EpubCreator.prototype._addNavLandmarks = function (data) {
 	        if (data.tag === "section" && data.name === "frontmatter") {
 	            this.navigation.landmarks.push({ type: "frontmatter", href: "ebook-content.xhtml#frontmatter" });
 	        }
@@ -252,9 +382,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.navigation.landmarks.push({ type: "backmatter", href: "ebook-content.xhtml#backmatter" });
 	        }
 	    };
-	    EpubCreator.prototype.addNavToc = function (id, label) {
+	    /**
+	     * Add navigation toc
+	     *
+	     * @param id - string id
+	     * @param label - toc label
+	     * @private
+	     */
+	    EpubCreator.prototype._addNavToc = function (id, label) {
 	        this.navigation.toc.push({ label: label, href: "ebook-content.xhtml#" + id, id: id });
 	    };
+	    /**
+	     * Navigation Toc
+	     *
+	     * @param epubSections
+	     * @returns {string}
+	     * @private
+	     */
 	    EpubCreator.prototype._addSections = function (epubSections) {
 	        var sectionAsText = "";
 	        var progressiveId = 0;
@@ -267,9 +411,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            else
 	                content = data.content;
 	            if (data.navLabel)
-	                this.addNavToc(id, data.navLabel);
+	                this._addNavToc(id, data.navLabel);
 	            if (data.tag && data.tag !== "html") {
-	                this.addNavLandmarks(data);
+	                this._addNavLandmarks(data);
 	                var epubType = "";
 	                if (data.name)
 	                    epubType = "epub:type=\"" + data.name + "\"";
@@ -282,6 +426,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        return sectionAsText;
 	    };
+	    /**
+	     * Create blob url, usefull to create epub and pass to your epub reader without saving it to file
+	     *
+	     * @returns {Promise<T>}
+	     */
 	    EpubCreator.prototype.blobUrl = function () {
 	        var _this = this;
 	        return new Promise(function (resolve, reject) {
@@ -294,6 +443,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            });
 	        });
 	    };
+	    /**
+	     * Download Epub
+	     *
+	     * @param fileName
+	     * @returns {Promise<T>}
+	     */
 	    EpubCreator.prototype.download = function (fileName) {
 	        var _this = this;
 	        return new Promise(function (resolve, reject) {
@@ -17765,6 +17920,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 	var epub3_1 = __webpack_require__(106);
+	/**
+	 * Prepare data for Template
+	 *
+	 * @author Giorgio Modoni <g.modoni@alfabook.it>
+	 */
 	var TemplateParser = (function () {
 	    function TemplateParser(models) {
 	        this.template(models);
@@ -17789,7 +17949,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            content: content
 	        };
 	    };
-	    TemplateParser.prototype.opf = function (prop, css) {
+	    TemplateParser.prototype.opf = function (prop, css, assets) {
 	        var metadataCoverFragment = "";
 	        var manifestFragment = "";
 	        var manifestCoverImage = "";
@@ -17803,6 +17963,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        manifestFragment += "<item id=\"nav\" href=\"ebook-nav.xhtml\" properties=\"nav\" media-type=\"application/xhtml+xml\" />";
 	        manifestFragment += "<!-- ncx included for 2.0 reading system compatibility: -->\n                            <item id=\"ncx\" href=\"ebook.ncx\" media-type=\"application/x-dtbncx+xml\" />";
 	        manifestFragment += cssFiles;
+	        for (var _i = 0, assets_1 = assets; _i < assets_1.length; _i++) {
+	            var a = assets_1[_i];
+	            manifestFragment += "<item id=\"" + a.id + "\" href=\"" + a.name + "\" media-type=\"" + a.mediaType + "\"/>";
+	        }
 	        var content = this.templateClass._opf(prop, metadataCoverFragment, manifestFragment);
 	        return {
 	            name: "ebook.opf",
@@ -17899,6 +18063,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	"use strict";
+	/**
+	 * This is a template for epub3 based on: https://github.com/IDPF/epub3-samples/tree/master/30/wasteland/EPUB
+	 * Template for epub Creation.
+	 *
+	 * @author Giorgio Modoni <g.modoni@alfabook.it>
+	 */
 	var Epub3Template = (function () {
 	    function Epub3Template() {
 	    }
