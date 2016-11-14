@@ -7,7 +7,7 @@ let content = [
         tag: "section", name: "frontmatter", "content": [
         {
             tag: "section", name: "titlepage", "content": [
-            {tag: "html", content: "<h1>Libro Autogenerato</h1> 	<div class='aut'>T.S. Eliot</div>"},
+            {tag: "html", content: "<h1>My book title Section</h1> 	<div class='aut'>Author</div>"},
             {
                 tag: "div",
                 name: "epigraph",
@@ -19,8 +19,8 @@ let content = [
     },
     {
         tag: "section", name: "bodymatter", "content": [
-        {tag: "section", id: "ch1", navLabel: "CAPITOLO 1", content: "sono il contenuto del body"},
-        {tag: "section", id: "ch2", navLabel: "CAPITOLO 2", content: "sono il secondo capitolo"}
+        {tag: "section", id: "ch1", navLabel: "Chapter 1", content: "sono il contenuto del body"},
+        {tag: "section", id: "ch2", navLabel: "Chapter 2", content: "sono il secondo capitolo"}
     ]
     }
 ];

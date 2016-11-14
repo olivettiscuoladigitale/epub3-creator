@@ -280,6 +280,30 @@ Epubcreator generate a index and pupulate it with item that contain object `navL
 
 Note: id params is not mandatory, if not preset epubcreator assing a random id to section.
 
+## Add Assets
+In epub all assetes must be included in epub and declared in definition file. You can add it:
+
+### Add asset as base64 data
+	epubCreator.addAsset({ 
+				content: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAgE-THIS IS JUST AN EXAMPLE IS NOT A BASE64 VALID IMAGE- 8eIpiq7FX//2Q==",
+				mediaType:"image/jpeg",
+				name:"myimage.jpg",
+				id:"image0"
+	});
+Id params is optional.
+
+### Add asset with path
+	epubCreator.addAsset({ 
+					path: "./demo/image0.jpg",
+					mediaType:"image/jpeg",
+					name:"myimage.jpg",
+					id:"image0"
+		});
+Name and id params are optionals
+
+
+
+
 
 # Download file
 To download epub file call method download.
@@ -315,7 +339,47 @@ Create epub on the fly and read it with your favourite reader.
 			);
 			
 
-		 
+# A more Complex Example
+
+Create a Epub with frontmatter title and content bodymatter with 2 chapter.
+	
+	let content = [
+	    {
+	        tag: "section", name: "frontmatter", "content": [
+	        {
+	            tag: "section", name: "titlepage", "content": [
+	            {tag: "html", content: "<h1>My book title Section</h1> 	<div class='aut'>Author</div>"},
+	            {
+	                tag: "div",
+	                name: "epigraph",
+	                content: "<span xml:lang=\"la\">\"Nam Sibyllam quidem Cumis ego ipse oculismeis<br />vidi in ampulla pendere, et cum illi pueri dicerent</span>: <br /> "
+	            },
+	        ]
+	        }
+	    ]
+	    },
+	    {
+	        tag: "section", name: "bodymatter", "content": [
+	        {tag: "section", id: "ch1", navLabel: "Chapter 1", content: "sono il contenuto del body"},
+	        {tag: "section", id: "ch2", navLabel: "Chapter 2", content: "sono il secondo capitolo"}
+	    ]
+	    }
+	];
+	
+	
+	let epubCreator = new EpubCreator();
+	
+	epubCreator.template("epub3");
+	epubCreator.properties.title = "Alfabook book title";
+	epubCreator.properties.cover.file = "./demo/cover.jpg";
+	epubCreator.addSections(content);
+	epubCreator.addCss({
+	    "content": "@namespace '@charset 'UTF-8'; http://www.w3.org/1999/xhtml'; @namespace epub 'http://www.idpf.org/2007/ops'; body: { margin-left:6em, margin-right:2em}",
+	    "name": "base.css"
+	});
+	
+	 epubCreator.download();
+			 
 	
 ## Development
 Clone this repo and `npm install`.

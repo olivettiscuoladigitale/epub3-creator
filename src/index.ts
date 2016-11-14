@@ -4,7 +4,6 @@ import * as JSZip from "jszip";
 import * as FileSaver from "file-saver";
 import {Utils} from "./utils";
 
-// import {Epub3Template} from './templates/epub3/epub3';
 import {TemplateParser} from "./template-parser";
 
 import {FileContent} from "./interfaces/file-content";
@@ -195,7 +194,7 @@ export class EpubCreator {
         return new Promise((resolve, reject) => {
 
             if (cssDef.content) {
-                this.addAsset(cssDef.content, cssDef.name).then(
+                this._addAsset(cssDef.content, cssDef.name).then(
                     (fileName) => {
                         this.css.push({"name": fileName, type: "day"});
                         return resolve(true);
@@ -209,7 +208,7 @@ export class EpubCreator {
                     cssDef.name = fileInfo.fullName;
                 }
 
-                this.addAssetWithPath(cssDef.path, cssDef.name).then(
+                this._addAssetWithPath(cssDef.path, cssDef.name).then(
                     () =>  {
                         this.css.push({"name": cssDef.name, type: "day"});
                         return resolve(true);
@@ -227,11 +226,11 @@ export class EpubCreator {
      * @param asset - image asset object
      * @returns {Promise<T>}
      */
-    addImage(asset: Assets) {
+    addAsset(asset: Assets) {
         return new Promise((resolve, reject) => {
 
             if (asset.content) {
-                this.addAsset(asset.content, asset.name).then(
+                this._addAsset(asset.content, asset.name).then(
                     (fileName) => {
                         this.assets.push({"name": asset.name, mediaType: asset.mediaType, id: asset.id});
                         return resolve(true);
@@ -245,7 +244,7 @@ export class EpubCreator {
                     asset.name = fileInfo.fullName;
                 }
 
-                this.addAssetWithPath(asset.path, asset.name).then(
+                this._addAssetWithPath(asset.path, asset.name).then(
                     () => {
                         this.assets.push({"name": asset.name, mediaType: asset.mediaType,  id: asset.id});
                         return resolve(true);
@@ -323,7 +322,7 @@ export class EpubCreator {
 
             if (this.properties.cover.base64) {
 
-                this.addAssetAsBase64(this.properties.cover.base64, this.properties.cover.asFileName);
+                this._addAssetAsBase64(this.properties.cover.base64, this.properties.cover.asFileName);
 
                 return resolve(true);
 
@@ -331,7 +330,7 @@ export class EpubCreator {
 
                 const fileInfo: FileInfo = this.utils.getFileNameFromPath(this.properties.cover.file);
 
-                this.addAssetWithPath(this.properties.cover.file, fileInfo.fullName).then(
+                this._addAssetWithPath(this.properties.cover.file, fileInfo.fullName).then(
                     () => resolve(true)
                     , (err) => reject(err)
                 );
@@ -347,9 +346,9 @@ export class EpubCreator {
      * @param fileName - file name
      * @returns {Promise<T>}
      */
-    addAsset(data: string, fileName: string): Promise<any> {
+    _addAsset(data: string, fileName: string, options: any =  {}): Promise<any> {
         return new Promise((resolve) => {
-            this.epubZip.folder("EPUB").file(fileName, data);
+            this.epubZip.folder("EPUB").file(fileName, data, options);
 
             return resolve(fileName);
         });
@@ -361,11 +360,12 @@ export class EpubCreator {
      * @param fileName - file name
      * @returns {Promise<T>}
      */
-    addAssetAsBase64(data: string, fileName: string): Promise<any> {
-        return new Promise((resolve) => {
-            this.epubZip.folder("EPUB").file(fileName, data, {base64: true});
-
-            return resolve(fileName);
+    _addAssetAsBase64(data: string, fileName: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this._addAsset(fileName, data, {base64: true} ).then(
+                (result) =>  resolve(result),
+                (err) => reject(err)
+            );
         });
     }
 
@@ -376,7 +376,7 @@ export class EpubCreator {
      * @param name - file name
      * @returns {Promise<T>}
      */
-    addAssetWithPath(path: string, name?: string): Promise<any> {
+    _addAssetWithPath(path: string, name?: string): Promise<any> {
         return new Promise((resolve, reject) => {
 
             if (!name) {
@@ -388,10 +388,13 @@ export class EpubCreator {
                 if (err)
                     return reject(err);
 
-                this.epubZip.folder("EPUB").file(name, data, {binary: true});
-
-                return resolve(name);
+                this._addAsset(name, data, {binary: true} ).then(
+                    (result) =>  resolve(result),
+                    (err) => reject(err)
+                );
             });
+
+
         });
 
     }
@@ -480,7 +483,9 @@ export class EpubCreator {
 
 
     /**
-     * Create blob url, usefull to create epub and pass to your epub reader without saving it to file
+     * Create blob url, usefull
+     * to render epub and pass to your epub
+     * reader without saving it to file
      *
      * @returns {Promise<T>}
      */
