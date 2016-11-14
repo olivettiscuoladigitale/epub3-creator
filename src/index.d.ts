@@ -105,7 +105,7 @@ export declare class EpubCreator {
      * @param asset - image asset object
      * @returns {Promise<T>}
      */
-    addImage(asset: Assets): Promise<{}>;
+    addAsset(asset: Assets): Promise<{}>;
     /**
      * Before start injecting document, add id if not preset
      */
@@ -132,14 +132,14 @@ export declare class EpubCreator {
      * @param fileName - file name
      * @returns {Promise<T>}
      */
-    addAsset(data: string, fileName: string): Promise<any>;
+    _addAsset(data: string, fileName: string, options?: any): Promise<any>;
     /**
      * Add data as base 64
      * @param data - data encode as base64
      * @param fileName - file name
      * @returns {Promise<T>}
      */
-    addAssetAsBase64(data: string, fileName: string): Promise<any>;
+    _addAssetAsBase64(data: string, fileName: string): Promise<any>;
     /**
      * Add data with file path
      *
@@ -147,7 +147,7 @@ export declare class EpubCreator {
      * @param name - file name
      * @returns {Promise<T>}
      */
-    addAssetWithPath(path: string, name?: string): Promise<any>;
+    _addAssetWithPath(path: string, name?: string): Promise<any>;
     /**
      * Populate landmark navigation object
      *
@@ -172,7 +172,9 @@ export declare class EpubCreator {
      */
     _addSections(epubSections: any): string;
     /**
-     * Create blob url, usefull to create epub and pass to your epub reader without saving it to file
+     * Create blob url, usefull
+     * to render epub and pass to your epub
+     * reader without saving it to file
      *
      * @returns {Promise<T>}
      */

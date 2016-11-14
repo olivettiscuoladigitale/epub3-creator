@@ -269,6 +269,24 @@ content: <span class="hljs-built_in">array</span>/<span class="hljs-built_in">st
     }
 ])
 </code></pre><p>Note: id params is not mandatory, if not preset epubcreator assing a random id to section.</p>
+				<h2 id="add-assets">Add Assets</h2>
+				<p>In epub all assetes must be included in epub and declared in definition file. You can add it:</p>
+				<h3 id="add-asset-as-base64-data">Add asset as base64 data</h3>
+				<pre><code><span class="hljs-selector-tag">epubCreator</span><span class="hljs-selector-class">.addAsset</span>({
+            <span class="hljs-attribute">content</span>: <span class="hljs-string">"data:image/jpeg;base64,/9j/4AAQSkZJRgABAgE-THIS IS JUST AN EXAMPLE IS NOT A BASE64 VALID IMAGE- 8eIpiq7FX//2Q=="</span>,
+            mediaType:<span class="hljs-string">"image/jpeg"</span>,
+            name:<span class="hljs-string">"myimage.jpg"</span>,
+            id:<span class="hljs-string">"image0"</span>
+});
+</code></pre><p>Id params is optional.</p>
+				<h3 id="add-asset-with-path">Add asset with path</h3>
+				<pre><code><span class="hljs-selector-tag">epubCreator</span><span class="hljs-selector-class">.addAsset</span>({
+                <span class="hljs-attribute">path</span>: <span class="hljs-string">"./demo/image0.jpg"</span>,
+                mediaType:<span class="hljs-string">"image/jpeg"</span>,
+                name:<span class="hljs-string">"myimage.jpg"</span>,
+                id:<span class="hljs-string">"image0"</span>
+    });
+</code></pre><p>Name and id params are optionals</p>
 				<h1 id="download-file">Download file</h1>
 				<p>To download epub file call method download.</p>
 				<pre><code>var epubCreator = new EpubCreator()<span class="hljs-comment">;</span>
@@ -297,6 +315,44 @@ epubCreator.download()<span class="hljs-comment">; // this is important!!</span>
         <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err</span>) </span>{ 
             <span class="hljs-built_in">console</span>.log(err) }
         );
+</code></pre><h1 id="a-more-complex-example">A more Complex Example</h1>
+				<p>Create a Epub with frontmatter title and content bodymatter with 2 chapter.</p>
+				<pre><code>let content = [
+    {
+<span class="hljs-symbol">        tag:</span> <span class="hljs-string">"section"</span>, <span class="hljs-string">name:</span> <span class="hljs-string">"frontmatter"</span>, <span class="hljs-string">"content"</span>: [
+        {
+<span class="hljs-symbol">            tag:</span> <span class="hljs-string">"section"</span>, <span class="hljs-string">name:</span> <span class="hljs-string">"titlepage"</span>, <span class="hljs-string">"content"</span>: [
+            {<span class="hljs-string">tag:</span> <span class="hljs-string">"html"</span>, <span class="hljs-string">content:</span> <span class="hljs-string">"&lt;h1&gt;My book title Section&lt;/h1&gt;     &lt;div class='aut'&gt;Author&lt;/div&gt;"</span>},
+            {
+<span class="hljs-symbol">                tag:</span> <span class="hljs-string">"div"</span>,
+<span class="hljs-symbol">                name:</span> <span class="hljs-string">"epigraph"</span>,
+<span class="hljs-symbol">                content:</span> <span class="hljs-string">"&lt;span xml:lang=\"la\"&gt;\"Nam Sibyllam quidem Cumis ego ipse oculismeis&lt;br /&gt;vidi in ampulla pendere, et cum illi pueri dicerent&lt;/span&gt;: &lt;br /&gt; "</span>
+            },
+        ]
+        }
+    ]
+    },
+    {
+<span class="hljs-symbol">        tag:</span> <span class="hljs-string">"section"</span>, <span class="hljs-string">name:</span> <span class="hljs-string">"bodymatter"</span>, <span class="hljs-string">"content"</span>: [
+        {<span class="hljs-string">tag:</span> <span class="hljs-string">"section"</span>, <span class="hljs-string">id:</span> <span class="hljs-string">"ch1"</span>, <span class="hljs-string">navLabel:</span> <span class="hljs-string">"Chapter 1"</span>, <span class="hljs-string">content:</span> <span class="hljs-string">"sono il contenuto del body"</span>},
+        {<span class="hljs-string">tag:</span> <span class="hljs-string">"section"</span>, <span class="hljs-string">id:</span> <span class="hljs-string">"ch2"</span>, <span class="hljs-string">navLabel:</span> <span class="hljs-string">"Chapter 2"</span>, <span class="hljs-string">content:</span> <span class="hljs-string">"sono il secondo capitolo"</span>}
+    ]
+    }
+];
+
+
+let epubCreator = <span class="hljs-keyword">new</span> EpubCreator();
+
+epubCreator.template(<span class="hljs-string">"epub3"</span>);
+epubCreator.properties.title = <span class="hljs-string">"Alfabook book title"</span>;
+epubCreator.properties.cover.file = <span class="hljs-string">"./demo/cover.jpg"</span>;
+epubCreator.addSections(content);
+epubCreator.addCss({
+    <span class="hljs-string">"content"</span>: <span class="hljs-string">"@namespace '@charset 'UTF-8'; http://www.w3.org/1999/xhtml'; @namespace epub 'http://www.idpf.org/2007/ops'; body: { margin-left:6em, margin-right:2em}"</span>,
+    <span class="hljs-string">"name"</span>: <span class="hljs-string">"base.css"</span>
+});
+
+ epubCreator.download();
 </code></pre><h2 id="development">Development</h2>
 				<p>Clone this repo and <code>npm install</code>.
 					<code>npn start</code> -&gt; change code and restart with webpack

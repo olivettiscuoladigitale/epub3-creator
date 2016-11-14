@@ -65,7 +65,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	var JSZip = __webpack_require__(2);
 	var FileSaver = __webpack_require__(101);
 	var utils_1 = __webpack_require__(104);
-	// import {Epub3Template} from './templates/epub3/epub3';
 	var template_parser_1 = __webpack_require__(105);
 	var JSZipUtils = __webpack_require__(107);
 	/**
@@ -210,7 +209,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var _this = this;
 	        return new Promise(function (resolve, reject) {
 	            if (cssDef.content) {
-	                _this.addAsset(cssDef.content, cssDef.name).then(function (fileName) {
+	                _this._addAsset(cssDef.content, cssDef.name).then(function (fileName) {
 	                    _this.css.push({ "name": fileName, type: "day" });
 	                    return resolve(true);
 	                }, function (err) { return reject(err); });
@@ -220,7 +219,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    var fileInfo = _this.utils.getFileNameFromPath(cssDef.path);
 	                    cssDef.name = fileInfo.fullName;
 	                }
-	                _this.addAssetWithPath(cssDef.path, cssDef.name).then(function () {
+	                _this._addAssetWithPath(cssDef.path, cssDef.name).then(function () {
 	                    _this.css.push({ "name": cssDef.name, type: "day" });
 	                    return resolve(true);
 	                }, function (err) { return reject(err); });
@@ -233,11 +232,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @param asset - image asset object
 	     * @returns {Promise<T>}
 	     */
-	    EpubCreator.prototype.addImage = function (asset) {
+	    EpubCreator.prototype.addAsset = function (asset) {
 	        var _this = this;
 	        return new Promise(function (resolve, reject) {
 	            if (asset.content) {
-	                _this.addAsset(asset.content, asset.name).then(function (fileName) {
+	                _this._addAsset(asset.content, asset.name).then(function (fileName) {
 	                    _this.assets.push({ "name": asset.name, mediaType: asset.mediaType, id: asset.id });
 	                    return resolve(true);
 	                }, function (err) { return reject(err); });
@@ -247,7 +246,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    var fileInfo = _this.utils.getFileNameFromPath(asset.path);
 	                    asset.name = fileInfo.fullName;
 	                }
-	                _this.addAssetWithPath(asset.path, asset.name).then(function () {
+	                _this._addAssetWithPath(asset.path, asset.name).then(function () {
 	                    _this.assets.push({ "name": asset.name, mediaType: asset.mediaType, id: asset.id });
 	                    return resolve(true);
 	                }, function (err) { return reject(err); });
@@ -307,12 +306,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (!_this.properties.cover.asFileName)
 	                _this.properties.cover.asFileName = "cover.jpg";
 	            if (_this.properties.cover.base64) {
-	                _this.addAssetAsBase64(_this.properties.cover.base64, _this.properties.cover.asFileName);
+	                _this._addAssetAsBase64(_this.properties.cover.base64, _this.properties.cover.asFileName);
 	                return resolve(true);
 	            }
 	            else {
 	                var fileInfo = _this.utils.getFileNameFromPath(_this.properties.cover.file);
-	                _this.addAssetWithPath(_this.properties.cover.file, fileInfo.fullName).then(function () { return resolve(true); }, function (err) { return reject(err); });
+	                _this._addAssetWithPath(_this.properties.cover.file, fileInfo.fullName).then(function () { return resolve(true); }, function (err) { return reject(err); });
 	            }
 	        });
 	    };
@@ -323,10 +322,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @param fileName - file name
 	     * @returns {Promise<T>}
 	     */
-	    EpubCreator.prototype.addAsset = function (data, fileName) {
+	    EpubCreator.prototype._addAsset = function (data, fileName, options) {
 	        var _this = this;
+	        if (options === void 0) { options = {}; }
 	        return new Promise(function (resolve) {
-	            _this.epubZip.folder("EPUB").file(fileName, data);
+	            _this.epubZip.folder("EPUB").file(fileName, data, options);
 	            return resolve(fileName);
 	        });
 	    };
@@ -336,11 +336,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @param fileName - file name
 	     * @returns {Promise<T>}
 	     */
-	    EpubCreator.prototype.addAssetAsBase64 = function (data, fileName) {
+	    EpubCreator.prototype._addAssetAsBase64 = function (data, fileName) {
 	        var _this = this;
-	        return new Promise(function (resolve) {
-	            _this.epubZip.folder("EPUB").file(fileName, data, { base64: true });
-	            return resolve(fileName);
+	        return new Promise(function (resolve, reject) {
+	            _this._addAsset(fileName, data, { base64: true }).then(function (result) { return resolve(result); }, function (err) { return reject(err); });
 	        });
 	    };
 	    /**
@@ -350,7 +349,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @param name - file name
 	     * @returns {Promise<T>}
 	     */
-	    EpubCreator.prototype.addAssetWithPath = function (path, name) {
+	    EpubCreator.prototype._addAssetWithPath = function (path, name) {
 	        var _this = this;
 	        return new Promise(function (resolve, reject) {
 	            if (!name) {
@@ -360,8 +359,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            JSZipUtils.getBinaryContent(path, function (err, data) {
 	                if (err)
 	                    return reject(err);
-	                _this.epubZip.folder("EPUB").file(name, data, { binary: true });
-	                return resolve(name);
+	                _this._addAsset(name, data, { binary: true }).then(function (result) { return resolve(result); }, function (err) { return reject(err); });
 	            });
 	        });
 	    };
@@ -427,7 +425,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return sectionAsText;
 	    };
 	    /**
-	     * Create blob url, usefull to create epub and pass to your epub reader without saving it to file
+	     * Create blob url, usefull
+	     * to render epub and pass to your epub
+	     * reader without saving it to file
 	     *
 	     * @returns {Promise<T>}
 	     */
