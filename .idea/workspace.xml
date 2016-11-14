@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f66b06f5-aefc-4ba7-96c0-e576dfeb1cec" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.ts" afterPath="$PROJECT_DIR$/src/index.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/demo.ts" afterPath="$PROJECT_DIR$/test/demo.ts" />
     </list>
     <ignored path="epub-creator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.ts" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/index.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="231" column="32" selection-start-line="231" selection-start-column="32" selection-end-line="231" selection-end-column="32" />
+            <state relative-caret-position="-6001">
+              <caret line="105" column="10" selection-start-line="87" selection-start-column="6" selection-end-line="105" selection-end-column="10" />
               <folding>
                 <element signature="e#29#60#0" expanded="true" />
               </folding>
@@ -71,15 +68,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider editor-type-id="MarkdownFxPreviewEditor">
             <state />
           </provider>
           <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="286">
-                <caret line="340" column="0" selection-start-line="340" selection-start-column="0" selection-end-line="340" selection-end-column="0" />
+              <first_editor relative-caret-position="916">
+                <caret line="384" column="0" selection-start-line="384" selection-start-column="0" selection-end-line="384" selection-end-column="0" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -170,9 +167,9 @@
         <option value="$PROJECT_DIR$/src/template-parser.ts" />
         <option value="$PROJECT_DIR$/src/templates/epub3/epub3.ts" />
         <option value="$PROJECT_DIR$/webpack.config.build.js" />
-        <option value="$PROJECT_DIR$/src/index.ts" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/test/demo.ts" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/index.ts" />
       </list>
     </option>
   </component>
@@ -188,8 +185,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1803" />
-    <option name="y" value="84" />
+    <option name="x" value="-2254" />
+    <option name="y" value="683" />
     <option name="width" value="1668" />
     <option name="height" value="924" />
   </component>
@@ -346,15 +343,15 @@
       <option name="presentableId" value="Default" />
       <updated>1478705696782</updated>
       <workItem from="1478705698215" duration="71057000" />
-      <workItem from="1479109558608" duration="1144000" />
+      <workItem from="1479109558608" duration="1802000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72201000" />
+    <option name="totallyTimeSpent" value="72859000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1803" y="84" width="1668" height="924" extended-state="0" />
+    <frame x="-2254" y="683" width="1668" height="924" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14996964" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -620,16 +617,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="231" column="32" selection-start-line="231" selection-start-column="32" selection-end-line="231" selection-end-column="32" />
-          <folding>
-            <element signature="e#29#60#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/demo.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -650,11 +637,21 @@
       </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="286">
-            <caret line="340" column="0" selection-start-line="340" selection-start-column="0" selection-end-line="340" selection-end-column="0" />
+          <first_editor relative-caret-position="916">
+            <caret line="384" column="0" selection-start-line="384" selection-start-column="0" selection-end-line="384" selection-end-column="0" />
             <folding />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6001">
+          <caret line="105" column="10" selection-start-line="87" selection-start-column="6" selection-end-line="105" selection-end-column="10" />
+          <folding>
+            <element signature="e#29#60#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -3,23 +3,23 @@
 # EPUB-CREATOR
 
 
-A simple class writed in Typescript (and transpiled in es5) for create your epub from text/html. 
-Can be used in your client browser or nodejs.
+A simple class writed in Typescript (and transpiled in es5) that help you to create epub from source text/html. 
+It work on client browser or server side nodejs.
 
 ## Install
 
-by npm
+***npm***
 
 	npm install --save epub-creator
 	
-bower
+***bower***
 
 	bower install --save epub-creator
 
 
 ## Quick and dirty
 
-Create a epub in a quick and drity way.
+Create a epub in a quick and drity way:
 
 	let epubCreator = new EpubCreator(); // init class
 	epubCreator.properties.title = "Alfabook book title"; //set title property
@@ -33,12 +33,13 @@ Create a epub in a quick and drity way.
 
 
 ## Make epub great again -> epub.properties
-You can create epub with more options and pass to the class some property.
-takea look in te example "quick and dirty" at line 2: `epubCreator.properties.title = "Alfabook book title"; //set title property
-`
-Epubcreator expos a public `properties object` that you can set:
+You can create epub with more options and configure it with properties object. Take a look in te example "quick and dirty" at line 2: 
 
-this is the default settings: 
+	epubCreator.properties.title = "Alfabook book title"; //set title property
+	
+Epubcreator expose a public `properties object` that you can set:
+
+This is the default settings for properties object: 
 
 			{
 		            uuid: "github.com/bbottema/js-epub-maker::it-came-from::example-using-idpf-wasteland",
@@ -61,16 +62,16 @@ this is the default settings:
 		        };
 
 
-You can set what you want like this:
+Channge it as you needed.
 
 		epubCreator.properties.language = "en-EN";
 		epubCretor.properties.author = "my Favorites author";
 		
 # Cover
-This is the image that your epub reader use to make a preview. It's not mandatory, but make epub cool.  
+Cover is a image that your epub reader display as thumbnail. 
+It's not mandatory, but make epub cool.  
 
-The settings for cover are in properties under key `cover`
-
+You can found the cover settings inside `properties` object
 
 	cover: {
 			                file: "",
@@ -79,9 +80,9 @@ The settings for cover are in properties under key `cover`
 			                attributionUrl: "https://www.alfabook.it"
 			            },
 
-if `file` properties is not specified, no cover is set.  
+If `cover.file` properties is not specified, no cover is set.  
 
-If we want to set a cover we must compile the `cover.file` settings. We can pass two type of image:  
+To set a cover we must compile the `cover.file` settings. We can pass two type of image:  
 
 - a string with path of image 
 - a base64 image 
@@ -106,13 +107,13 @@ If we want to set a cover we must compile the `cover.file` settings. We can pass
 				            },
 	
 [^emphasize]:           
-Don't remember to set `cover.mediaType` for image different to jpg. 
+Don't forget to set `cover.mediaType` for image different to jpg. 
 
-On some example in idpf the cover are jpg image data Width:398 px Height:510 px
+On some example in idpf the cover are jpg image data Width: 398px Height:510px, but large are better (600x800, 1200x783)
 
 
 ## Add a custom css files
-Ok now we have a epub with right properties and a cover but we need to make it better with custom css!. 
+Ok, now we have a epub with right properties and a cover, but we need to make it better with custom css!. 
 We can add a css as a string of parameters or linking a file:
 
 ### Add css with string:
@@ -159,15 +160,15 @@ This is the most important part. EpubCreator help you to insert a valid content 
 5 - for a better epub we need to study idpf line guide.    
 
 ### Add section content
-To add a section we need to coll the method "addSection" and pass an array of object with params:
+To add a section we need to call the method `addSection` and set an array of object with params:
  
 	{
 	tag: string -> what type of section, 90%  = section
 	name: string -> name of section ex. bodymatter
-	content: array/string  -> the content inside this section
+	content: array/string  -> the content inside this section, string for display content, array for neted content
 	}
 	
-A simple example
+###A simple example
 
 	epubCreator.addSections([ 
 									{
@@ -177,13 +178,13 @@ A simple example
 									}
 								]);
 	
-***What append if inside of my frontmatter i need to add other section?***
+***What append if inside of my frontmatter i need to add other section?***.  
 We can solve this in 2 way
 1 - autopilot, with nested object
-2 - manual with string
+2 - manual, with string
 
 ### Autopilot: Add nested object inside section (section of section)
-We say above that "content" properties of section can be a string or array, in the example we have see the use of string, let now explain how use the content as array: 
+We say above that `content` properties of section can be a string or array, in the example we have see the use of string, let now explain how use the content as array: 
 
 	epubCreator.addSections([
 									{
@@ -201,10 +202,11 @@ We say above that "content" properties of section can be a string or array, in t
 								]);
 
 
-In the example above section frontMatter has inside content an other section called epigraph that has a string content. We can use array of array of array x n. object inside content. 
+In the example above section frontMatter has inside content an other section called `epigraph` that has a string content. We can use array of array of array x n. object inside content. 
 
 ### Add nested object with inside html
-Waht about if we need to add some text/html before epigraph section?. We can do it set `tag` propery as html and leaving name as null: 
+What about if we need to add some text/html before epigraph section without a section?  
+We can do it set `tag` propery as `html` and leaving name as `null`: 
  `{tag: "html", content: "<br>this is a content"}`
  
 	 epubCreator.addSections([
@@ -226,7 +228,7 @@ Waht about if we need to add some text/html before epigraph section?. We can do 
 Now we have an example with frontmatter that has 2 section with one that has only html and the other that is an epigraph.
 
 ### section Tag
-For most content `section` tag is the best values but we can create a html5 tag:
+For most content `section` tag is the best values but we can use a html5 tag:
 
 	epubCreator.addSections([
 									{
@@ -246,7 +248,7 @@ For most content `section` tag is the best values but we can create a html5 tag:
 In this example `epigraph` is created with tag `id`
 
 ## Manual add content as string
-We can add content using the object only for the main structure. This case is usefull if we have content formatted as epub:
+We can add content using the nested object only for the main structure. This case is usefull if we have content formatted as epub and we can insert `as is`:
 
 
 	 epubCreator.addSections([
@@ -266,7 +268,7 @@ We can add content using the object only for the main structure. This case is us
 
 
 ## Create index -> navigation
-Epubcreator generate a index and pupulate it with item that contain object `navLavel`.  
+Epubcreator generate a index and pupulate it with items that contain object `navLavel`.  
 
 	epubCreator.addSections([
 		 {
@@ -278,10 +280,11 @@ Epubcreator generate a index and pupulate it with item that contain object `navL
 	])
 	
 
-Note: id params is not mandatory, if not preset epubcreator assing a random id to section.
+Note: id params is not mandatory, if not preset epubcreator assing a random id to section. Only item that contain `navLabel` properties are elegible for navigation.
 
 ## Add Assets
-In epub all assetes must be included in epub and declared in definition file. You can add it:
+In epub all assets (image, audio) must be included in epub and declared in definition file. 
+
 
 ### Add asset as base64 data
 	epubCreator.addAsset({ 
@@ -290,7 +293,7 @@ In epub all assetes must be included in epub and declared in definition file. Yo
 				name:"myimage.jpg",
 				id:"image0"
 	});
-Id params is optional.
+`Id` params is optional.
 
 ### Add asset with path
 	epubCreator.addAsset({ 
@@ -299,14 +302,12 @@ Id params is optional.
 					name:"myimage.jpg",
 					id:"image0"
 		});
-Name and id params are optionals
-
-
+`name` and `id` params are optionals
 
 
 
 # Download file
-To download epub file call method download.
+When we are ready to download a file we can call method `download`.
 
 	var epubCreator = new EpubCreator();
 		epubCreator.properties.title = "Alfabook book title";
@@ -317,8 +318,10 @@ To download epub file call method download.
 	    "name": "base.css"
 	});
 	epubCreator.download(); // this is important!!
+	
+This method accepts a string params: nameFile, add it for custom name. `epubCreator.download("mybook.epub"); `
 
-# ReadFile without download
+# Get epub without download
 Create epub on the fly and read it with your favourite reader.
 
 
@@ -341,7 +344,7 @@ Create epub on the fly and read it with your favourite reader.
 
 # A more Complex Example
 
-Create a Epub with frontmatter title and content bodymatter with 2 chapter.
+Create a Epub with frontmatter title and content bodymatter with 2 chapter and download it.
 	
 	let content = [
 	    {

@@ -517,6 +517,9 @@ export class EpubCreator {
             this._prepare().then(
                 () => {
 
+                    if (!fileName)
+                        fileName = this.utils.getTimeStamp() + ".epub";
+
                     this.epubZip.generateAsync({type: "blob"})
                         .then((content) => {
                             FileSaver.saveAs(content, fileName);
