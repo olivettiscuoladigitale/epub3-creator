@@ -8,6 +8,7 @@ import {FileInfo} from  "./interfaces/file-info";
  */
 export class Utils {
 
+
     /**
      * Generate a timestamp
      *

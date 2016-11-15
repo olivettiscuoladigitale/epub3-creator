@@ -4,7 +4,7 @@ import {CssDef} from "./interfaces/css-def";
 import {Nav} from "./interfaces/nav";
 import {Assets} from "./interfaces/assets";
 
-import {Epub3Template} from "./templates/epub3/epub3";
+import {Epub3Template} from "./templates/epub3/epub3-template";
 
 /**
  * Prepare data for Template
@@ -13,90 +13,57 @@ import {Epub3Template} from "./templates/epub3/epub3";
  */
 export class TemplateParser {
 
-
     private templateClass: any;
 
     constructor(models) {
         this.template(models);
     }
 
-
     public template(models?: string) {
         if (!models || models === "epub3")
             this.templateClass = new Epub3Template();
     }
 
-
     public mimetype(): FileContent {
-        let content: string = this.templateClass._mimetype();
-        return {
-            name: "mimetype",
-            folder: "",
-            content: content
-        };
+        return this.templateClass.getMimetype();
     }
 
     public container(): FileContent {
-        let content: string = this.templateClass._container();
-        return {
-            name: "container.xml",
-            folder: "META-INF",
-            content: content
-        };
+        return this.templateClass.getContainer();
     }
 
     public opf(prop: BaseInfo, css?: CssDef[], assets?: Assets[]) {
+        let metadata: string = this._metadata(prop);
+        let manifest: string = this._manifest(prop, css, assets);
+        let spine: string = this._spine(prop);
 
-        let metadataCoverFragment: string = "";
-        let manifestFragment: string = "";
-        let manifestCoverImage: string = "";
-        let cssFiles = this._opfCss(css);
-
-
-        if (prop.cover.file !== "" && prop.cover.asFileName) {
-            metadataCoverFragment = `<!-- rights expression for the cover image -->       
-                    <link rel="cc:license" refines="#cover" href="${prop.cover.license}" />
-                    <link rel="cc:attributionURL" refines="#cover" href="${prop.cover.attributionUrl}" />        
-                    <!-- cover meta element included for 2.0 reading system compatibility: -->
-                    <meta name="cover" content="cover"/>`;
-
-            manifestCoverImage = `<item id="cover" href="${prop.cover.asFileName}" media-type="${prop.cover.mediaType}" properties="cover-image" />`;
-        }
-
-        manifestFragment += manifestCoverImage;
-        manifestFragment += `<item id="t1" href="ebook-content.xhtml" media-type="application/xhtml+xml" />`;
-        manifestFragment += `<item id="nav" href="ebook-nav.xhtml" properties="nav" media-type="application/xhtml+xml" />`;
-        manifestFragment += `<!-- ncx included for 2.0 reading system compatibility: -->
-                            <item id="ncx" href="ebook.ncx" media-type="application/x-dtbncx+xml" />`;
-
-        manifestFragment += cssFiles;
-
-        for (let a of assets) {
-            manifestFragment += `<item id="${a.id}" href="${a.name}" media-type="${a.mediaType}"/>`;
-        }
-
-
-        let content: string = this.templateClass._opf(prop, metadataCoverFragment, manifestFragment);
-        return {
-            name: "ebook.opf",
-            folder: "EPUB",
-            content: content
-        };
+        return this.templateClass.getOpf(prop, metadata, manifest, spine);
     }
 
-
     public nav(navigation: Nav, css?: CssDef[]) {
-
         const cssFiles: string = this._cssLink(css);
         const landmarks: string = this._navLandmarks(navigation.landmarks);
         const toc: string = this._navToc(navigation.toc);
 
-        let content: string = this.templateClass._nav(cssFiles, landmarks, toc);
-        return {
-            name: "ebook-nav.xhtml",
-            folder: "EPUB",
-            content: content
-        };
+        return this.templateClass.getNav(cssFiles, landmarks, toc);
+    }
+
+    public ncx(prop: BaseInfo, navigation: Nav) {
+        let toc = this._ncxToc(navigation.toc);
+
+        return this.templateClass.getNcx(prop, toc);
+    }
+
+    public contentBody(prop: BaseInfo, body, css?: CssDef[]) {
+        let cssFiles = this._cssLink(css);
+
+        return this.templateClass.getContentBody(prop, body, cssFiles);
+    }
+
+    public cover(prop: BaseInfo, css?: CssDef[]) {
+        let cssFiles = this._cssLink(css);
+
+        return this.templateClass.getCover(prop, cssFiles);
     }
 
     private _navLandmarks(data) {
@@ -107,30 +74,6 @@ export class TemplateParser {
         }
 
         return landmarks;
-    }
-
-    public ncx(prop: BaseInfo, navigation: Nav) {
-
-        let toc = this._ncxToc(navigation.toc);
-
-        let content: string = this.templateClass._ncx(prop, toc);
-        return {
-            name: "ebook.ncx",
-            folder: "EPUB",
-            content: content
-        };
-    }
-
-    public contentBody(prop: BaseInfo, body, css?: CssDef[]) {
-
-        let cssFiles = this._cssLink(css);
-
-        let content: string = this.templateClass._contentBody(prop, body, cssFiles);
-        return {
-            name: "ebook-content.xhtml",
-            folder: "EPUB",
-            content: content
-        };
     }
 
     private _navToc(data) {
@@ -175,16 +118,68 @@ export class TemplateParser {
     private  _opfCss(css?: CssDef[]): string {
 
         let cssFiles = "";
+        let cssIdCounter = 0;
 
-        if (css) {
-            let cssIdCounter = 0;
-            for (let style of css) {
-                let cssId = "css-" + cssIdCounter;
-                cssFiles += `<item id="${cssId}" href="${style.name}" media-type="text/css" /> `;
-                cssIdCounter++;
-            }
+        for (let style of css) {
+            let cssId = "css-" + cssIdCounter;
+            cssFiles += `<item id="${cssId}" href="${style.name}" media-type="text/css" />`;
+            cssIdCounter++;
         }
 
         return cssFiles;
     }
+
+    private _metadata(prop: BaseInfo): string {
+
+        let metadata: string = "";
+
+        if (prop.cover.file !== "" && prop.cover.asFileName) {
+            metadata += `<!-- rights expression for the cover image -->       
+                    <link rel="cc:license" refines="#cover-image" href="${prop.cover.license}" />
+                    <link rel="cc:attributionURL" refines="#cover-image" href="${prop.cover.attributionUrl}" />        
+                    <!-- cover meta element included for 2.0 reading system compatibility: -->
+                    <meta name="cover" content="cover-image"/>`;
+        }
+
+        return metadata;
+    }
+
+
+    private _manifest(prop: BaseInfo, css?: CssDef[], assets?: Assets[]): string {
+
+        let manifest: string = "";
+        let cssFiles: string = this._opfCss(css);
+
+        if (prop.cover.file !== "" && prop.cover.asFileName) {
+            manifest += `<item id="cover-image" href="${prop.cover.asFileName}" media-type="${prop.cover.mediaType}" properties="cover-image" />
+                         <item id="cover" href="cover.xhtml" media-type="application/xhtml+xml"/>
+                        `;
+        }
+
+        manifest += cssFiles;
+
+        manifest += `<item id="t1" href="ebook-content.xhtml" media-type="application/xhtml+xml" />
+                     <item id="nav" href="ebook-nav.xhtml" properties="nav" media-type="application/xhtml+xml" />
+                     <!-- ncx included for 2.0 reading system compatibility: -->
+                     <item id="ncx" href="ebook.ncx" media-type="application/x-dtbncx+xml" />
+                    `;
+
+        for (let a of assets) {
+            manifest += `<item id="${a.id}" href="${a.name}" media-type="${a.mediaType}"/>`;
+        }
+
+        return manifest;
+    }
+
+    private _spine(prop: BaseInfo) {
+
+        let spine: string = "";
+
+        if (prop.cover.file !== "" && prop.cover.asFileName)
+            spine += `<itemref idref="cover" linear="no"/>`;
+
+        return spine;
+    }
+
+
 }

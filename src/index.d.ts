@@ -4,6 +4,7 @@ import { Assets } from "./interfaces/assets";
 /**
  * Create a Epub 3 Compliant Idpf file
  *
+ *
  * @author Giorgio Modoni <g.modoni@alfabook.it>
  */
 export declare class EpubCreator {
@@ -91,7 +92,7 @@ export declare class EpubCreator {
      *
      * @param epubSections - epub section object
      */
-    addSections(epubSections: any): void;
+    addSections(epubSections: any): string;
     /**
      * Add css file and populate css value for proper ocx
      *
@@ -180,7 +181,20 @@ export declare class EpubCreator {
      */
     blobUrl(): Promise<{}>;
     /**
+     * Generate a file Url,
+     * this is the most compatible way and to pass data to your favourite reader or save to db.
+     * @returns {Promise<T>}
+     */
+    dataUrl(): Promise<{}>;
+    /**
+     * Generate a file Url,
+     * this is the most compatible way and to pass data to your favourite reader or save to db.
+     * @returns {Promise<T>}
+     */
+    stringUrl(): Promise<{}>;
+    /**
      * Download Epub
+     *
      *
      * @param fileName
      * @returns {Promise<T>}

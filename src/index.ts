@@ -15,9 +15,9 @@ import {Assets} from "./interfaces/assets";
 
 const JSZipUtils = require("jszip-utils");
 
-
 /**
  * Create a Epub 3 Compliant Idpf file
+ *
  *
  * @author Giorgio Modoni <g.modoni@alfabook.it>
  */
@@ -175,13 +175,20 @@ export class EpubCreator {
         folder.file(fileContent.name, fileContent.content);
     }
 
+    cover() {
+        let fileContent: FileContent = this.parser.cover(this.properties, this.css);
+        let folder = this.epubZip.folder(fileContent.folder);
+        folder.file(fileContent.name, fileContent.content);
+    }
+
     /**
      * Add content as section and structures
      *
      * @param epubSections - epub section object
      */
-    addSections(epubSections) {
+    addSections(epubSections): string {
         this.epubContent += this._addSections(epubSections);
+        return this.epubContent;
     }
 
     /**
@@ -209,7 +216,7 @@ export class EpubCreator {
                 }
 
                 this._addAssetWithPath(cssDef.path, cssDef.name).then(
-                    () =>  {
+                    () => {
                         this.css.push({"name": cssDef.name, type: "day"});
                         return resolve(true);
                     },
@@ -246,7 +253,7 @@ export class EpubCreator {
 
                 this._addAssetWithPath(asset.path, asset.name).then(
                     () => {
-                        this.assets.push({"name": asset.name, mediaType: asset.mediaType,  id: asset.id});
+                        this.assets.push({"name": asset.name, mediaType: asset.mediaType, id: asset.id});
                         return resolve(true);
                     },
                     (err) => reject(err)
@@ -285,6 +292,9 @@ export class EpubCreator {
 
             Promise.all(promises).then(
                 () => {
+
+                    if (this.properties.cover.asFileName)
+                        this.cover();
 
                     this.assignIdAsset();
                     this.mimetype();
@@ -346,7 +356,7 @@ export class EpubCreator {
      * @param fileName - file name
      * @returns {Promise<T>}
      */
-    _addAsset(data: string, fileName: string, options: any =  {}): Promise<any> {
+    _addAsset(data: string, fileName: string, options: any = {}): Promise<any> {
         return new Promise((resolve) => {
             this.epubZip.folder("EPUB").file(fileName, data, options);
 
@@ -362,8 +372,8 @@ export class EpubCreator {
      */
     _addAssetAsBase64(data: string, fileName: string): Promise<any> {
         return new Promise((resolve, reject) => {
-            this._addAsset(fileName, data, {base64: true} ).then(
-                (result) =>  resolve(result),
+            this._addAsset(fileName, data, {base64: true}).then(
+                (result) => resolve(result),
                 (err) => reject(err)
             );
         });
@@ -388,12 +398,11 @@ export class EpubCreator {
                 if (err)
                     return reject(err);
 
-                this._addAsset(name, data, {binary: true} ).then(
-                    (result) =>  resolve(result),
+                this._addAsset(data, name, {binary: true}).then(
+                    (result) => resolve(result),
                     (err) => reject(err)
                 );
             });
-
 
         });
 
@@ -453,15 +462,12 @@ export class EpubCreator {
             else
                 content = data.content;
 
-
             if (data.navLabel)
                 this._addNavToc(id, data.navLabel);
-
 
             if (data.tag && data.tag !== "html") {
 
                 this._addNavLandmarks(data);
-
 
                 let epubType = "";
                 if (data.name)
@@ -481,7 +487,6 @@ export class EpubCreator {
         return sectionAsText;
     }
 
-
     /**
      * Create blob url, usefull
      * to render epub and pass to your epub
@@ -493,10 +498,39 @@ export class EpubCreator {
         return new Promise((resolve, reject): any => {
             this._prepare().then(
                 () => {
+
                     this.epubZip.generateAsync({type: "blob"})
-                        .then((content) => resolve(URL.createObjectURL(content))
-                            , (err) => reject(err)
+                        .then((content) => {
+                               let epub: any = URL.createObjectURL(content);
+
+                                return resolve(epub);
+                            },
+                            (err) => reject(err)
                         );
+
+                },
+                (err) => {
+                    console.log("Download error on insert asset data: ", err);
+                    return reject(err);
+                }
+            );
+        });
+    }
+
+
+    asArrayBuffer() {
+        return new Promise((resolve, reject): any => {
+            this._prepare().then(
+                () => {
+
+                    this.epubZip.generateAsync({type: "arraybuffer"})
+                        .then((content) => {
+
+                                return resolve(content);
+                            },
+                            (err) => reject(err)
+                        );
+
                 },
                 (err) => {
                     console.log("Download error on insert asset data: ", err);
@@ -507,12 +541,67 @@ export class EpubCreator {
     }
 
     /**
+     * Generate a file Url,
+     * this is the most compatible way and to pass data to your favourite reader or save to db.
+     * @returns {Promise<T>}
+     */
+    dataUrl() {
+        return new Promise((resolve, reject): any => {
+            this._prepare().then(
+                () => {
+
+                    this.epubZip.generateAsync({type: "base64"}).then((base64) => {
+                        let data = "data:application/zip;base64," + base64;
+
+                        let x = URL.createObjectURL(data);
+                        return resolve(x);
+                    });
+
+                },
+                (err) => {
+                    console.log("Download error on insert asset data: ", err);
+                    return reject(err);
+                }
+            );
+        });
+    }
+
+
+    /**
+     * Generate a file Url,
+     * this is the most compatible way and to pass data to your favourite reader or save to db.
+     * @returns {Promise<T>}
+     */
+    stringUrl() {
+        return new Promise((resolve, reject): any => {
+            this._prepare().then(
+                () => {
+
+                    this.epubZip.generateAsync({type: "arraybuffer"}).then((str) => {
+                        let blob = new Blob([str]);
+                        let x = URL.createObjectURL(blob);
+                        console.log(x);
+                        return resolve(x);
+                    });
+
+                },
+                (err) => {
+                    console.log("Download error on insert asset data: ", err);
+                    return reject(err);
+                }
+            );
+        });
+    }
+
+
+    /**
      * Download Epub
+     *
      *
      * @param fileName
      * @returns {Promise<T>}
      */
-    download(fileName?: string): any {
+    download(fileName ?: string): any {
         return new Promise((resolve, reject): any => {
             this._prepare().then(
                 () => {
@@ -528,7 +617,7 @@ export class EpubCreator {
 
                 },
                 (err) => {
-                    console.log("Download error on insert asset data: ", err);
+                    console.log("Download error on insert asset data:", err);
                     return reject(err);
                 }
             );

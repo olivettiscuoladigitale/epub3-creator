@@ -1,16 +1,17 @@
 import {BaseInfo} from "../../interfaces/base-info";
 
 /**
- * This is a template for epub3 based on: https://github.com/IDPF/epub3-samples/tree/master/30/wasteland/EPUB
- * Template for epub Creation.
+ * Static file template.
+ * Leave this class without code.
  *
  * @author Giorgio Modoni <g.modoni@alfabook.it>
  */
-export class Epub3Template {
+export class StaticTemplate {
 
     _mimetype(): string {
         return `application/epub+zip`;
     }
+
 
     _container(): string {
         return `<?xml version="1.0" encoding="UTF-8"?> 
@@ -22,7 +23,7 @@ export class Epub3Template {
             `;
     }
 
-    _opf(prop: BaseInfo, metadataCoverFragment: string, manifestFragment: string) {
+    _opf(prop: BaseInfo, metadata: string, manifest: string, spine: string) {
         return `<?xml version="1.0" encoding="UTF-8"?>
             <package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="uid" xml:lang="${prop.language}" prefix="cc: http://creativecommons.org/ns#">
                 <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
@@ -36,13 +37,14 @@ export class Epub3Template {
                     <dc:rights>${prop.rights.description}</dc:rights>        
                     <link rel="cc:license" href="${prop.rights.description}"/>
                     <meta property="cc:attributionURL">${prop.attributionUrl}</meta>
-                    ${metadataCoverFragment}
+                    ${metadata}
                 </metadata> 
                 <manifest>
-                    ${manifestFragment}
+                    ${manifest}
                 </manifest>
                 <spine toc="ncx">
-                    <itemref idref="t1" />        
+                    ${spine}
+                    <itemref idref="t1" />  
                 </spine>    
             </package>
             `;
@@ -50,7 +52,6 @@ export class Epub3Template {
 
 
     _nav(cssFiles: string, landmarks: string, toc: string) {
-
 
         return `<?xml version="1.0" encoding="UTF-8"?>
                 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:epub="http://www.idpf.org/2007/ops">
@@ -92,7 +93,7 @@ export class Epub3Template {
     }
 
 
-    _contentBody(prop: BaseInfo, content, cssFiles) {
+    _contentBody(prop: BaseInfo, content, cssFiles: string) {
         return `<?xml version="1.0" encoding="UTF-8"?>
                 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:epub="http://www.idpf.org/2007/ops">
                     <head>
@@ -107,5 +108,20 @@ export class Epub3Template {
                 `;
     }
 
+
+    _cover(prop: BaseInfo, cssFiles: string) {
+        return `<?xml version="1.0" encoding="utf-8"?>
+                <!DOCTYPE html>
+                <html xmlns="http://www.w3.org/1999/xhtml">
+                <head>
+                  <title>${prop.title}</title>
+                   ${cssFiles}
+                  <meta charset="utf-8"/>
+                </head>
+                <body>
+                  <div class="body"><img src="${prop.cover.asFileName}" alt="Cover Image" title="Cover Image"/></div>
+                </body>
+                </html>`;
+    }
 
 }

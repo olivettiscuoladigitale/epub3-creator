@@ -1,13 +1,14 @@
 var webpack = require('webpack');
 
 module.exports = {
-    entry:'./test/demo.ts',
+    entry:'./demo/demo.ts',
     output: {
+        publicPath: '/',
         filename: './dist/epub-creator.js'
     },
     devtool: 'source-map',
     resolve: {
-        extensions: ['', '.webpack.js', '.web.js', '.ts', '.js']
+        extensions: ['', "*", '.webpack.js', '.web.js', '.ts', '.js']
     },
     plugins: [
       //   new webpack.optimize.UglifyJsPlugin()
@@ -22,14 +23,7 @@ module.exports = {
         ],
         loaders: [
             { test: /\.ts$/, loader: 'ts' },
-            {
-                test: /\.js$/,
-                exclude: /(node_modules|bower_components)/,
-                loader: 'babel', // 'babel-loader' is also a valid name to reference
-                query: {
-                    presets: ['es2015']
-                }
-            }
+            { test: /\*/, loader: 'url' },
         ]
     }
 };
