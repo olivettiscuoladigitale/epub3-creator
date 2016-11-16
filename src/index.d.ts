@@ -87,6 +87,7 @@ export declare class EpubCreator {
      * @param content - epub string contet
      */
     content(content: string): void;
+    cover(): void;
     /**
      * Add content as section and structures
      *
@@ -180,6 +181,7 @@ export declare class EpubCreator {
      * @returns {Promise<T>}
      */
     blobUrl(): Promise<{}>;
+    asArrayBuffer(): Promise<{}>;
     /**
      * Generate a file Url,
      * this is the most compatible way and to pass data to your favourite reader or save to db.

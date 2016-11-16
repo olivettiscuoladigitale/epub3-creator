@@ -14,29 +14,17 @@ export declare class TemplateParser {
     template(models?: string): void;
     mimetype(): FileContent;
     container(): FileContent;
-    opf(prop: BaseInfo, css?: CssDef[], assets?: Assets[]): {
-        name: string;
-        folder: string;
-        content: string;
-    };
-    nav(navigation: Nav, css?: CssDef[]): {
-        name: string;
-        folder: string;
-        content: string;
-    };
+    opf(prop: BaseInfo, css?: CssDef[], assets?: Assets[]): any;
+    nav(navigation: Nav, css?: CssDef[]): any;
+    ncx(prop: BaseInfo, navigation: Nav): any;
+    contentBody(prop: BaseInfo, body: any, css?: CssDef[]): any;
+    cover(prop: BaseInfo, css?: CssDef[]): any;
     private _navLandmarks(data);
-    ncx(prop: BaseInfo, navigation: Nav): {
-        name: string;
-        folder: string;
-        content: string;
-    };
-    contentBody(prop: BaseInfo, body: any, css?: CssDef[]): {
-        name: string;
-        folder: string;
-        content: string;
-    };
     private _navToc(data);
     private _ncxToc(data);
     private _cssLink(css?);
     private _opfCss(css?);
+    private _metadata(prop);
+    private _manifest(prop, css?, assets?);
+    private _spine(prop);
 }
