@@ -101,7 +101,8 @@ epubCreator.addSections([
 <span class="hljs-symbol">                    file:</span> <span class="hljs-string">""</span>,
 <span class="hljs-symbol">                    license:</span> <span class="hljs-string">"http://creativecommons.org/licenses/by-sa/3.0/"</span>,
 <span class="hljs-symbol">                    mediaType:</span> <span class="hljs-string">"image/jpeg"</span>,
-<span class="hljs-symbol">                    attributionUrl:</span> <span class="hljs-string">"https://www.alfabook.it"</span>
+<span class="hljs-symbol">                    attributionUrl:</span> <span class="hljs-string">"https://www.alfabook.it"</span>,
+<span class="hljs-symbol">                    inline:</span> <span class="hljs-string">"no"</span>
                 },
 <span class="hljs-symbol">                title:</span> <span class="hljs-string">"Book Title"</span>,
 <span class="hljs-symbol">                publicationDate:</span> new Date().toString()
@@ -300,15 +301,20 @@ content:<span class="hljs-built_in"> array/string </span> -&gt; the content insi
 epubCreator.download()<span class="hljs-comment">; // this is important!!</span>
 </code></pre><p>This method accepts a string params: nameFile, add it for custom name. <code>epubCreator.download(&quot;mybook.epub&quot;);</code></p>
 				<h1 id="get-epub-without-download">Get epub without download</h1>
-				<p>Create epub on the fly and read it with your favourite reader.</p>
+				<p>Create epub on the fly and read it with your favourite reader. there are some methods:</p>
+				<ul>
+					<li>blobUrl -&gt; generate a blob url.   </li>
+					<li>asBase64 -&gt; generate a base64 of epub zip. </li>
+					<li>asArrayBuffer -&gt; generate a buffer for on the fly reading. </li>
+				</ul>
 				<pre><code>        <span class="hljs-keyword">var</span> epubCreator = <span class="hljs-keyword">new</span> EpubCreator();
         ...
         <span class="hljs-comment">// es6</span>
-        epubCreator.blobUrl().then( 
+        epubCreator.asArrayBuffer().then( 
         <span class="hljs-function">(<span class="hljs-params">content</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(content), 
         (err) =&gt; <span class="hljs-built_in">console</span>.log(err));
         <span class="hljs-comment">// es5</span>
-        epubCreator.blobUrl().then( 
+        epubCreator.asArrayBuffer().then( 
         <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">content</span>) </span>{ 
             <span class="hljs-comment">// this is the blob url content, send it to your epub reader</span>
             <span class="hljs-built_in">console</span>.log(content) ;

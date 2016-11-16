@@ -181,19 +181,20 @@ export declare class EpubCreator {
      * @returns {Promise<T>}
      */
     blobUrl(): Promise<{}>;
+    /**
+     * Genrate result as arrayBuffer,
+     * usefull to pass as file to epub reader
+     *
+     * @returns {Promise<T>}
+     */
     asArrayBuffer(): Promise<{}>;
     /**
      * Generate a file Url,
-     * this is the most compatible way and to pass data to your favourite reader or save to db.
+     * this is the most compatible way and to pass data as blob Url
+     *
      * @returns {Promise<T>}
      */
-    dataUrl(): Promise<{}>;
-    /**
-     * Generate a file Url,
-     * this is the most compatible way and to pass data to your favourite reader or save to db.
-     * @returns {Promise<T>}
-     */
-    stringUrl(): Promise<{}>;
+    asBase64(): Promise<{}>;
     /**
      * Download Epub
      *

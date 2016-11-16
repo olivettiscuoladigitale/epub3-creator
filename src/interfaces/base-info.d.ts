@@ -15,6 +15,7 @@ export interface BaseInfo {
         license: string;
         mediaType: string;
         attributionUrl: string;
+        inline: string;
     };
     title: string;
     publicationDate: string;
