@@ -1,8 +1,8 @@
 {
   "name": "epub-creator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Create epub from html or text",
-  "main": "src/index.ts",
+  "main": "dist/epub-creator.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "./node_modules/.bin/webpack-dev-server --progress --colors --watch --no-minimize",

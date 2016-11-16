@@ -2,22 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f66b06f5-aefc-4ba7-96c0-e576dfeb1cec" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/epub-creator.js" afterPath="$PROJECT_DIR$/dist/epub-creator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/epub-creator.js.map" afterPath="$PROJECT_DIR$/dist/epub-creator.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/epub-creator.min.js" afterPath="$PROJECT_DIR$/dist/epub-creator.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/epub-creator.min.js.map" afterPath="$PROJECT_DIR$/dist/epub-creator.min.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/assets/js/search.js" afterPath="$PROJECT_DIR$/docs/assets/js/search.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/classes/epub3template.html" afterPath="$PROJECT_DIR$/docs/classes/epub3template.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/classes/epubcreator.html" afterPath="$PROJECT_DIR$/docs/classes/epubcreator.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/classes/statictemplate.html" afterPath="$PROJECT_DIR$/docs/classes/statictemplate.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/classes/templateparser.html" afterPath="$PROJECT_DIR$/docs/classes/templateparser.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/classes/utils.html" afterPath="$PROJECT_DIR$/docs/classes/utils.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/index.html" afterPath="$PROJECT_DIR$/docs/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/interfaces/baseinfo.html" afterPath="$PROJECT_DIR$/docs/interfaces/baseinfo.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.d.ts" afterPath="$PROJECT_DIR$/src/index.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfaces/base-info.d.ts" afterPath="$PROJECT_DIR$/src/interfaces/base-info.d.ts" />
     </list>
     <ignored path="epub-creator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -69,11 +54,9 @@
       <file leaf-file-name="index.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1530">
-              <caret line="102" column="24" selection-start-line="102" selection-start-column="24" selection-end-line="102" selection-end-column="24" />
-              <folding>
-                <element signature="e#29#60#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="150">
+              <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -91,8 +74,8 @@
       <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+            <state relative-caret-position="30">
+              <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -204,8 +187,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-311" />
-    <option name="y" value="545" />
+    <option name="x" value="-177" />
+    <option name="y" value="495" />
     <option name="width" value="1440" />
     <option name="height" value="832" />
   </component>
@@ -376,15 +359,15 @@
       <updated>1478705696782</updated>
       <workItem from="1478705698215" duration="71057000" />
       <workItem from="1479109558608" duration="70204000" />
-      <workItem from="1479325160611" duration="31000" />
+      <workItem from="1479325160611" duration="717000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141292000" />
+    <option name="totallyTimeSpent" value="141978000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-311" y="545" width="1440" height="832" extended-state="0" />
+    <frame x="-177" y="495" width="1440" height="832" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17406625" sideWeight="0.81914896" order="0" side_tool="false" content_ui="combo" />
@@ -438,7 +421,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -640,14 +623,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/interfaces/base-info.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tsconfig.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -706,20 +681,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/interfaces/base-info.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
-          <caret line="102" column="24" selection-start-line="102" selection-start-column="24" selection-end-line="102" selection-end-column="24" />
-          <folding>
-            <element signature="e#29#60#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="150">
+          <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+        <state relative-caret-position="30">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
           <folding />
         </state>
       </provider>
