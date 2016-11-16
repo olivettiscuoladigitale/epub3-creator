@@ -55,7 +55,8 @@ This is the default settings for properties object:
 		                file: "",
 		                license: "http://creativecommons.org/licenses/by-sa/3.0/",
 		                mediaType: "image/jpeg",
-		                attributionUrl: "https://www.alfabook.it"
+		                attributionUrl: "https://www.alfabook.it",
+		                inline: "no"
 		            },
 		            title: "Book Title",
 		            publicationDate: new Date().toString()
