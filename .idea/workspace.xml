@@ -2,34 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f66b06f5-aefc-4ba7-96c0-e576dfeb1cec" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/epubjs/basic.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/epubjs/epub.min.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/cover.jpg" afterPath="$PROJECT_DIR$/demo/cover.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/demo.ts" afterPath="$PROJECT_DIR$/demo/demo.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/epub-creator.js" afterPath="$PROJECT_DIR$/dist/epub-creator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/epub-creator.js.map" afterPath="$PROJECT_DIR$/dist/epub-creator.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/epub-creator.min.js" afterPath="$PROJECT_DIR$/dist/epub-creator.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/epub-creator.min.js.map" afterPath="$PROJECT_DIR$/dist/epub-creator.min.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/assets/js/search.js" afterPath="$PROJECT_DIR$/docs/assets/js/search.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/classes/epub3template.html" afterPath="$PROJECT_DIR$/docs/classes/epub3template.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/classes/epubcreator.html" afterPath="$PROJECT_DIR$/docs/classes/epubcreator.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/classes/templateparser.html" afterPath="$PROJECT_DIR$/docs/classes/templateparser.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/classes/utils.html" afterPath="$PROJECT_DIR$/docs/classes/utils.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/globals.html" afterPath="$PROJECT_DIR$/docs/globals.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/index.html" afterPath="$PROJECT_DIR$/docs/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/interfaces/assets.html" afterPath="$PROJECT_DIR$/docs/interfaces/assets.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/interfaces/baseinfo.html" afterPath="$PROJECT_DIR$/docs/interfaces/baseinfo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/interfaces/cssdef.html" afterPath="$PROJECT_DIR$/docs/interfaces/cssdef.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/interfaces/epubtp.html" afterPath="$PROJECT_DIR$/docs/interfaces/epubtp.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/interfaces/filecontent.html" afterPath="$PROJECT_DIR$/docs/interfaces/filecontent.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/interfaces/fileinfo.html" afterPath="$PROJECT_DIR$/docs/interfaces/fileinfo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/interfaces/nav.html" afterPath="$PROJECT_DIR$/docs/interfaces/nav.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.d.ts" afterPath="$PROJECT_DIR$/src/index.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/template-parser.d.ts" afterPath="$PROJECT_DIR$/src/template-parser.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/epub3/epub3-template.d.ts" afterPath="$PROJECT_DIR$/src/templates/epub3/epub3-template.d.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.ts" afterPath="$PROJECT_DIR$/src/index.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfaces/base-info.ts" afterPath="$PROJECT_DIR$/src/interfaces/base-info.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/template-parser.ts" afterPath="$PROJECT_DIR$/src/template-parser.ts" />
     </list>
     <ignored path="epub-creator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -81,11 +57,21 @@
       <file leaf-file-name="index.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-45">
-              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="365">
+              <caret line="102" column="24" selection-start-line="102" selection-start-column="24" selection-end-line="102" selection-end-column="24" />
               <folding>
                 <element signature="e#29#60#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base-info.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/interfaces/base-info.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -120,12 +106,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="epub3-template.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="epub3-template.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/templates/epub3/epub3-template.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="49" selection-start-line="0" selection-start-column="49" selection-end-line="0" selection-end-column="49" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="template-parser.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/template-parser.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="332">
+              <caret line="163" column="87" selection-start-line="163" selection-start-column="87" selection-end-line="163" selection-end-column="87" />
+              <folding>
+                <element signature="e#0#54#0" expanded="true" />
+                <marker date="1479311832000" expanded="true" signature="2546:2739" ph="..." />
+                <marker date="1479311832000" expanded="true" signature="2578:2659" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -144,7 +144,6 @@
         <option value="$PROJECT_DIR$/src/interfacers/file-content.ts" />
         <option value="$PROJECT_DIR$/src/interfaces/file-content.ts" />
         <option value="$PROJECT_DIR$/src/interfaces/file-info.ts" />
-        <option value="$PROJECT_DIR$/src/interfaces/base-info.ts" />
         <option value="$PROJECT_DIR$/src/epub-types.ts" />
         <option value="$PROJECT_DIR$/src/interfaces/epub-types.ts" />
         <option value="$PROJECT_DIR$/src/epub-tp.ts" />
@@ -156,7 +155,6 @@
         <option value="$PROJECT_DIR$/webpack.config.prod.js" />
         <option value="$PROJECT_DIR$/prova.js" />
         <option value="$PROJECT_DIR$/src/interfaces/assets.ts" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/test/demo.ts" />
         <option value="$PROJECT_DIR$/demo/demo.js" />
         <option value="$PROJECT_DIR$/src/utils.ts" />
@@ -166,17 +164,19 @@
         <option value="$PROJECT_DIR$/webpack.config.build.js" />
         <option value="$PROJECT_DIR$/src/templates/epub3/epub3.ts" />
         <option value="$PROJECT_DIR$/src/templates/epub3/epub3-template.ts" />
-        <option value="$PROJECT_DIR$/src/template-parser.ts" />
         <option value="$PROJECT_DIR$/src/templates/epub3/static-template.ts" />
         <option value="$PROJECT_DIR$/demo/epubjs/epubjs3.js" />
         <option value="$PROJECT_DIR$/demo/epubjs/polyfill.js" />
         <option value="$PROJECT_DIR$/demo/epubjs/epub.js" />
-        <option value="$PROJECT_DIR$/src/index.ts" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/tsconfig.json" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/demo/demo.ts" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/index.ts" />
+        <option value="$PROJECT_DIR$/src/interfaces/base-info.ts" />
+        <option value="$PROJECT_DIR$/src/template-parser.ts" />
       </list>
     </option>
   </component>
@@ -192,8 +192,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1996" />
-    <option name="y" value="-12" />
+    <option name="x" value="-1820" />
+    <option name="y" value="-46" />
     <option name="width" value="1842" />
     <option name="height" value="857" />
   </component>
@@ -238,6 +238,38 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="epub-creator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="epub-creator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="epub-creator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="epub-creator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="epub-creator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="interfaces" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -349,15 +381,15 @@
       <option name="presentableId" value="Default" />
       <updated>1478705696782</updated>
       <workItem from="1478705698215" duration="71057000" />
-      <workItem from="1479109558608" duration="66350000" />
+      <workItem from="1479109558608" duration="66946000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="137407000" />
+    <option name="totallyTimeSpent" value="138003000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1996" y="-12" width="1842" height="857" extended-state="0" />
+    <frame x="-1820" y="-46" width="1842" height="857" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13563976" sideWeight="0.81914896" order="0" side_tool="false" content_ui="combo" />
@@ -471,14 +503,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/interfaces/base-info.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="17" selection-start-line="0" selection-start-column="17" selection-end-line="0" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -674,69 +698,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/template-parser.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1498">
-          <caret line="184" column="1" selection-start-line="184" selection-start-column="1" selection-end-line="184" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#54#0" expanded="true" />
-            <marker date="1479203404000" expanded="true" signature="2546:2739" ph="..." />
-            <marker date="1479203404000" expanded="true" signature="2578:2659" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/ace-builds/src/ace.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-6885">
           <caret line="59" column="23" selection-start-line="48" selection-start-column="3" selection-end-line="59" selection-end-column="23" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webpack.config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="22" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="MarkdownFxPreviewEditor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="-2310">
-            <caret line="114" column="25" selection-start-line="114" selection-start-column="25" selection-end-line="114" selection-end-column="25" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-45">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding>
-            <element signature="e#29#60#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -762,29 +728,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/demo.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/@types/ace/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="25" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="25" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsconfig.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -796,11 +746,93 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownFxPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="457">
+            <caret line="329" column="0" selection-start-line="329" selection-start-column="0" selection-end-line="329" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="102" column="24" selection-start-line="102" selection-start-column="24" selection-end-line="102" selection-end-column="24" />
+          <folding>
+            <element signature="e#29#60#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/interfaces/base-info.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsconfig.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="22" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/demo.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/epub3/epub3-template.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="49" selection-start-line="0" selection-start-column="49" selection-end-line="0" selection-end-column="49" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/template-parser.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="163" column="87" selection-start-line="163" selection-start-column="87" selection-end-line="163" selection-end-column="87" />
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+            <marker date="1479311832000" expanded="true" signature="2546:2739" ph="..." />
+            <marker date="1479311832000" expanded="true" signature="2578:2659" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

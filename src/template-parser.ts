@@ -175,8 +175,9 @@ export class TemplateParser {
 
         let spine: string = "";
 
-        if (prop.cover.file !== "" && prop.cover.asFileName)
-            spine += `<itemref idref="cover" linear="no"/>`;
+        if (prop.cover.file !== "" && prop.cover.asFileName) {
+            spine += `<itemref idref="cover" linear="${prop.cover.inline}"/>`;
+        }
 
         return spine;
     }

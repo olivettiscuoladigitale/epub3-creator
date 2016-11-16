@@ -1,3 +1,4 @@
+
 export interface BaseInfo {
     uuid: string,
     author: string,
@@ -14,7 +15,8 @@ export interface BaseInfo {
         base64?: string,
         license: string,
         mediaType: string,
-        attributionUrl: string
+        attributionUrl: string,
+        inline: string
     },
     title: string,
     publicationDate: string

@@ -322,17 +322,23 @@ When we are ready to download a file we can call method `download`.
 This method accepts a string params: nameFile, add it for custom name. `epubCreator.download("mybook.epub"); `
 
 # Get epub without download
-Create epub on the fly and read it with your favourite reader.
+Create epub on the fly and read it with your favourite reader. there are some methods:
+
+- blobUrl -> generate a blob url.   
+- asBase64 -> generate a base64 of epub zip. 
+- asArrayBuffer -> generate a buffer for on the fly reading. 
+
+
 
 
 			var epubCreator = new EpubCreator();
 			...
 			// es6
-			epubCreator.blobUrl().then( 
+			epubCreator.asArrayBuffer().then( 
 			(content) => console.log(content), 
 			(err) => console.log(err));
 			// es5
-			epubCreator.blobUrl().then( 
+			epubCreator.asArrayBuffer().then( 
 			function (content) { 
 				// this is the blob url content, send it to your epub reader
 				console.log(content) ;

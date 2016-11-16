@@ -99,7 +99,8 @@ export class EpubCreator {
                 file: "",
                 license: "http://creativecommons.org/licenses/by-sa/3.0/",
                 mediaType: "image/jpeg",
-                attributionUrl: "https://www.alfabook.it"
+                attributionUrl: "https://www.alfabook.it",
+                inline: "no"
             },
             title: "Book Title",
             publicationDate: new Date().toString()
@@ -518,6 +519,12 @@ export class EpubCreator {
     }
 
 
+    /**
+     * Genrate result as arrayBuffer,
+     * usefull to pass as file to epub reader
+     *
+     * @returns {Promise<T>}
+     */
     asArrayBuffer() {
         return new Promise((resolve, reject): any => {
             this._prepare().then(
@@ -542,46 +549,18 @@ export class EpubCreator {
 
     /**
      * Generate a file Url,
-     * this is the most compatible way and to pass data to your favourite reader or save to db.
+     * this is the most compatible way and to pass data as blob Url
+     *
      * @returns {Promise<T>}
      */
-    dataUrl() {
+    asBase64() {
         return new Promise((resolve, reject): any => {
             this._prepare().then(
                 () => {
 
                     this.epubZip.generateAsync({type: "base64"}).then((base64) => {
-                        let data = "data:application/zip;base64," + base64;
 
-                        let x = URL.createObjectURL(data);
-                        return resolve(x);
-                    });
-
-                },
-                (err) => {
-                    console.log("Download error on insert asset data: ", err);
-                    return reject(err);
-                }
-            );
-        });
-    }
-
-
-    /**
-     * Generate a file Url,
-     * this is the most compatible way and to pass data to your favourite reader or save to db.
-     * @returns {Promise<T>}
-     */
-    stringUrl() {
-        return new Promise((resolve, reject): any => {
-            this._prepare().then(
-                () => {
-
-                    this.epubZip.generateAsync({type: "arraybuffer"}).then((str) => {
-                        let blob = new Blob([str]);
-                        let x = URL.createObjectURL(blob);
-                        console.log(x);
-                        return resolve(x);
+                        return resolve(base64);
                     });
 
                 },
