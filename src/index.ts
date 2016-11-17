@@ -240,15 +240,18 @@ export class EpubCreator {
             let name: string;
             let path: string;
             let fileInfo: FileInfo;
+            let options: any = {};
 
             if (asset.content) {
+
+                if (asset.base64)
+                    options.base64 = true;
 
                 fileInfo = this.utils.getFileNameFromPath(asset.name);
                 name = fileInfo.fullName;
                 path = fileInfo.path;
 
-
-                this._addAsset(asset.content, name, {}, path).then(
+                this._addAsset(asset.content, name, options, path).then(
                     (fileName) => {
                         this.assets.push({"name": asset.name, mediaType: asset.mediaType, id: asset.id});
                         return resolve(true);
@@ -257,6 +260,7 @@ export class EpubCreator {
                 );
 
             } else {
+
                 if (!asset.name) {
                     fileInfo = this.utils.getFileNameFromPath(asset.path);
                     asset.name = fileInfo.fullName;

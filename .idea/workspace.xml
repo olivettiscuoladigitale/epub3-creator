@@ -2,28 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f66b06f5-aefc-4ba7-96c0-e576dfeb1cec" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/package_copy.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/epub-creator.js" afterPath="$PROJECT_DIR$/dist/epub-creator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/epub-creator.js.map" afterPath="$PROJECT_DIR$/dist/epub-creator.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/epub-creator.min.js" afterPath="$PROJECT_DIR$/dist/epub-creator.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/epub-creator.min.js.map" afterPath="$PROJECT_DIR$/dist/epub-creator.min.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/assets/js/search.js" afterPath="$PROJECT_DIR$/docs/assets/js/search.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/classes/epub3template.html" afterPath="$PROJECT_DIR$/docs/classes/epub3template.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/classes/epubcreator.html" afterPath="$PROJECT_DIR$/docs/classes/epubcreator.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/classes/statictemplate.html" afterPath="$PROJECT_DIR$/docs/classes/statictemplate.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/classes/templateparser.html" afterPath="$PROJECT_DIR$/docs/classes/templateparser.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/classes/utils.html" afterPath="$PROJECT_DIR$/docs/classes/utils.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/interfaces/fileinfo.html" afterPath="$PROJECT_DIR$/docs/interfaces/fileinfo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.d.ts" afterPath="$PROJECT_DIR$/src/index.d.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.ts" afterPath="$PROJECT_DIR$/src/index.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfaces/file-info.d.ts" afterPath="$PROJECT_DIR$/src/interfaces/file-info.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfaces/file-info.ts" afterPath="$PROJECT_DIR$/src/interfaces/file-info.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/utils.ts" afterPath="$PROJECT_DIR$/src/utils.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack.config.build.js" afterPath="$PROJECT_DIR$/webpack.config.build.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfaces/assets.ts" afterPath="$PROJECT_DIR$/src/interfaces/assets.ts" />
     </list>
     <ignored path="epub-creator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -65,11 +45,21 @@
       <file leaf-file-name="index.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/index.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5015">
-              <caret line="248" column="0" lean-forward="true" selection-start-line="248" selection-start-column="0" selection-end-line="248" selection-end-column="0" />
+            <state relative-caret-position="255">
+              <caret line="382" column="79" lean-forward="true" selection-start-line="382" selection-start-column="8" selection-end-line="382" selection-end-column="79" />
               <folding>
                 <element signature="e#29#60#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="assets.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/interfaces/assets.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="11" lean-forward="false" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -161,7 +151,6 @@
         <option value="$PROJECT_DIR$/src/demo.ts" />
         <option value="$PROJECT_DIR$/webpack.config.prod.js" />
         <option value="$PROJECT_DIR$/prova.js" />
-        <option value="$PROJECT_DIR$/src/interfaces/assets.ts" />
         <option value="$PROJECT_DIR$/test/demo.ts" />
         <option value="$PROJECT_DIR$/demo/demo.js" />
         <option value="$PROJECT_DIR$/webpack.js" />
@@ -183,9 +172,10 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/src/utils.ts" />
         <option value="$PROJECT_DIR$/src/interfaces/file-info.ts" />
-        <option value="$PROJECT_DIR$/src/index.ts" />
         <option value="$PROJECT_DIR$/version.ejs" />
         <option value="$PROJECT_DIR$/webpack.config.build.js" />
+        <option value="$PROJECT_DIR$/src/index.ts" />
+        <option value="$PROJECT_DIR$/src/interfaces/assets.ts" />
       </list>
     </option>
   </component>
@@ -201,8 +191,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1646" />
-    <option name="y" value="47" />
+    <option name="x" value="-1394" />
+    <option name="y" value="228" />
     <option name="width" value="1303" />
     <option name="height" value="790" />
   </component>
@@ -230,6 +220,38 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="epub-creator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="epub-creator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="epub-creator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="epub-creator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="epub-creator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="interfaces" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -339,15 +361,15 @@
       <workItem from="1479325160611" duration="784000" />
       <workItem from="1479326787864" duration="1484000" />
       <workItem from="1479329319317" duration="2361000" />
-      <workItem from="1479374032886" duration="2685000" />
+      <workItem from="1479374032886" duration="7238000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="148575000" />
+    <option name="totallyTimeSpent" value="153128000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1646" y="47" width="1303" height="790" extended-state="0" />
+    <frame x="-1394" y="228" width="1303" height="790" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -454,13 +476,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/interfaces/assets.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -683,10 +698,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/interfaces/assets.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="11" lean-forward="false" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5015">
-          <caret line="248" column="0" lean-forward="true" selection-start-line="248" selection-start-column="0" selection-end-line="248" selection-end-column="0" />
+        <state relative-caret-position="255">
+          <caret line="382" column="79" lean-forward="true" selection-start-line="382" selection-start-column="8" selection-end-line="382" selection-end-column="79" />
           <folding>
             <element signature="e#29#60#0" expanded="true" />
           </folding>
