@@ -71,7 +71,7 @@
 					</div>
 					<dl class="tsd-comment-tags">
 						<dt>author</dt>
-						<dd><p>Giorgio Modoni <a href="&#x6d;&#x61;&#105;&#108;&#x74;&#x6f;&#58;&#103;&#x2e;&#x6d;&#x6f;&#x64;&#x6f;&#x6e;&#105;&#64;&#97;&#x6c;&#102;&#97;&#98;&#111;&#111;&#107;&#x2e;&#105;&#116;">&#103;&#x2e;&#x6d;&#x6f;&#x64;&#x6f;&#x6e;&#105;&#64;&#97;&#x6c;&#102;&#97;&#98;&#111;&#111;&#107;&#x2e;&#105;&#116;</a></p>
+						<dd><p>Giorgio Modoni <a href="&#109;&#97;&#x69;&#x6c;&#116;&#111;&#58;&#103;&#46;&#109;&#x6f;&#x64;&#111;&#x6e;&#x69;&#64;&#x61;&#108;&#x66;&#x61;&#x62;&#111;&#x6f;&#x6b;&#x2e;&#105;&#x74;">&#103;&#46;&#109;&#x6f;&#x64;&#111;&#x6e;&#x69;&#64;&#x61;&#108;&#x66;&#x61;&#x62;&#111;&#x6f;&#x6b;&#x2e;&#105;&#x74;</a></p>
 						</dd>
 					</dl>
 				</div>
@@ -294,13 +294,13 @@
 					<a name="_addasset" class="tsd-anchor"></a>
 					<h3>_add<wbr>Asset</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">_add<wbr>Asset<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, fileName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span></li>
+						<li class="tsd-signature tsd-kind-icon">_add<wbr>Asset<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, fileName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span>, folder<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:360</li>
+									<li>Defined in index.ts:377</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -324,6 +324,15 @@
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>jszip options object</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> folder: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>folder path</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span></h4>
@@ -340,7 +349,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:374</li>
+									<li>Defined in index.ts:391</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -371,13 +380,13 @@
 					<a name="_addassetwithpath" class="tsd-anchor"></a>
 					<h3>_add<wbr>Asset<wbr>With<wbr>Path</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">_add<wbr>Asset<wbr>With<wbr>Path<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span></li>
+						<li class="tsd-signature tsd-kind-icon">_add<wbr>Asset<wbr>With<wbr>Path<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, folder<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:390</li>
+									<li>Defined in index.ts:408</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -399,6 +408,12 @@
 										<p>file name</p>
 									</div>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> folder: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>folder path</p>
+									</div>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span></h4>
 						</li>
@@ -414,7 +429,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:323</li>
+									<li>Defined in index.ts:338</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -437,7 +452,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:418</li>
+									<li>Defined in index.ts:436</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -468,7 +483,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:440</li>
+									<li>Defined in index.ts:458</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -505,7 +520,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:451</li>
+									<li>Defined in index.ts:469</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -533,7 +548,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:287</li>
+									<li>Defined in index.ts:302</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -648,7 +663,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:528</li>
+									<li>Defined in index.ts:546</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -671,7 +686,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:556</li>
+									<li>Defined in index.ts:569</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -694,7 +709,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:270</li>
+									<li>Defined in index.ts:285</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -716,7 +731,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:498</li>
+									<li>Defined in index.ts:516</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -810,7 +825,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:583</li>
+									<li>Defined in index.ts:596</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">

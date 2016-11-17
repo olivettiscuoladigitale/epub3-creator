@@ -237,8 +237,18 @@ export class EpubCreator {
     addAsset(asset: Assets) {
         return new Promise((resolve, reject) => {
 
+            let name: string;
+            let path: string;
+            let fileInfo: FileInfo;
+
             if (asset.content) {
-                this._addAsset(asset.content, asset.name).then(
+
+                fileInfo = this.utils.getFileNameFromPath(asset.name);
+                name = fileInfo.fullName;
+                path = fileInfo.path;
+
+
+                this._addAsset(asset.content, name, {}, path).then(
                     (fileName) => {
                         this.assets.push({"name": asset.name, mediaType: asset.mediaType, id: asset.id});
                         return resolve(true);
@@ -248,11 +258,16 @@ export class EpubCreator {
 
             } else {
                 if (!asset.name) {
-                    const fileInfo: FileInfo = this.utils.getFileNameFromPath(asset.path);
+                    fileInfo = this.utils.getFileNameFromPath(asset.path);
                     asset.name = fileInfo.fullName;
+                    path = "";
+                } else {
+                    fileInfo = this.utils.getFileNameFromPath(asset.name);
+                    name = fileInfo.fullName;
+                    path = fileInfo.path;
                 }
 
-                this._addAssetWithPath(asset.path, asset.name).then(
+                this._addAssetWithPath(asset.path, name, path).then(
                     () => {
                         this.assets.push({"name": asset.name, mediaType: asset.mediaType, id: asset.id});
                         return resolve(true);
@@ -355,11 +370,13 @@ export class EpubCreator {
      *
      * @param data - base64/binary data
      * @param fileName - file name
+     * @param options - jszip options object
+     * @param folder - folder path
      * @returns {Promise<T>}
      */
-    _addAsset(data: string, fileName: string, options: any = {}): Promise<any> {
+    _addAsset(data: string, fileName: string, options: any = {}, folder: string = ""): Promise<any> {
         return new Promise((resolve) => {
-            this.epubZip.folder("EPUB").file(fileName, data, options);
+            this.epubZip.folder("EPUB" + folder).file(fileName, data, options);
 
             return resolve(fileName);
         });
@@ -385,9 +402,10 @@ export class EpubCreator {
      *
      * @param path - file path
      * @param name - file name
+     * @param folder - folder path
      * @returns {Promise<T>}
      */
-    _addAssetWithPath(path: string, name?: string): Promise<any> {
+    _addAssetWithPath(path: string, name?: string, folder: string = ""): Promise<any> {
         return new Promise((resolve, reject) => {
 
             if (!name) {
@@ -399,7 +417,7 @@ export class EpubCreator {
                 if (err)
                     return reject(err);
 
-                this._addAsset(data, name, {binary: true}).then(
+                this._addAsset(data, name, {binary: true}, folder).then(
                     (result) => resolve(result),
                     (err) => reject(err)
                 );
@@ -502,7 +520,7 @@ export class EpubCreator {
 
                     this.epubZip.generateAsync({type: "blob"})
                         .then((content) => {
-                               let epub: any = URL.createObjectURL(content);
+                                let epub: any = URL.createObjectURL(content);
 
                                 return resolve(epub);
                             },
@@ -529,15 +547,10 @@ export class EpubCreator {
         return new Promise((resolve, reject): any => {
             this._prepare().then(
                 () => {
-
-                    this.epubZip.generateAsync({type: "arraybuffer"})
-                        .then((content) => {
-
-                                return resolve(content);
-                            },
-                            (err) => reject(err)
-                        );
-
+                    this.epubZip.generateAsync({type: "arraybuffer"}).then(
+                        (content) => resolve(content),
+                        (err) => reject(err)
+                    );
                 },
                 (err) => {
                     console.log("Download error on insert asset data: ", err);

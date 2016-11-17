@@ -1,7 +1,38 @@
-var TypedocWebpackPlugin = require('typedoc-webpack-plugin');
-var webpack = require('webpack'),
-    yargs = require('yargs');
-var path = require('path');
+var TypedocWebpackPlugin = require('typedoc-webpack-plugin'),
+    webpack = require('webpack'),
+    yargs = require('yargs'),
+    path = require('path');
+
+
+function VersionPlugin(options) {
+}
+
+VersionPlugin.prototype.apply = function (compiler) {
+    compiler.plugin('done', function () {
+
+        var fs = require('fs');
+        var pkg = require('./package.json');
+        var version = pkg.version.split('.');
+        var last = version.length - 1;
+        var newVersion = '';
+
+        version[last] = parseInt(version[last]) + 1;
+
+        for (var i = 0; i < version.length; i++) {
+            newVersion += version[i];
+            if (i != version.length - 1) {
+                newVersion += '.';
+            }
+        }
+        pkg.version = newVersion;
+        //  pkg.versionDate = new Date();
+        console.log('Build version: ' + newVersion);
+        fs.writeFileSync('./package.json', JSON.stringify(pkg, null, '\t'));
+    });
+};
+
+module.exports = VersionPlugin;
+
 
 var libraryName = 'epub-creator',
     plugins = [],
@@ -33,6 +64,8 @@ if (yargs.argv.d) {
     );
 
 }
+
+plugins.push(new VersionPlugin({options: true}));
 
 
 var config = {

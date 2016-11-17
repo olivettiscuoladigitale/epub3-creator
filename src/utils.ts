@@ -39,11 +39,13 @@ export class Utils {
         const fileName: string = fullPath.replace(/^.*[\\\/]/, "");
         const extension: string = fileName.substr(fileName.lastIndexOf(".") + 1);
         const name: string = fileName.substr(0, fileName.length - extension.length - 1);
+        const path: string = fullPath.replace(fileName, fullPath);
 
         return {
             fullName: fileName,
             name: name,
-            extension: extension
+            extension: extension,
+            path: path
         };
     }
 

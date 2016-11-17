@@ -132,9 +132,11 @@ export declare class EpubCreator {
      *
      * @param data - base64/binary data
      * @param fileName - file name
+     * @param options - jszip options object
+     * @param folder - folder path
      * @returns {Promise<T>}
      */
-    _addAsset(data: string, fileName: string, options?: any): Promise<any>;
+    _addAsset(data: string, fileName: string, options?: any, folder?: string): Promise<any>;
     /**
      * Add data as base 64
      * @param data - data encode as base64
@@ -147,9 +149,10 @@ export declare class EpubCreator {
      *
      * @param path - file path
      * @param name - file name
+     * @param folder - folder path
      * @returns {Promise<T>}
      */
-    _addAssetWithPath(path: string, name?: string): Promise<any>;
+    _addAssetWithPath(path: string, name?: string, folder?: string): Promise<any>;
     /**
      * Populate landmark navigation object
      *

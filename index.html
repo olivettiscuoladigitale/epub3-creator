@@ -66,28 +66,29 @@
 </head>
 <body>
 
-<nav class="navbar-fixed nav-extended teal">
+<nav class="nav-extended teal">
     <div class="nav-wrapper">
-        <a href="#" class="brand-logo" style="padding-left:15px;">
+        <a href="#" class="brand-logo hide-on-med-and-down " style="padding-left:15px;">
             Epub-creator Demo
         </a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <ul id="nav-mobile" class="right hide-on-med-and-down ">
             <li><a class="waves-effect waves-light btn purple" href="/">Docs</a></li>
             <li><a class="waves-effect waves-light btn purple" href="/">Github</a></li>
+            <li></li>
         </ul>
 
         <ul class="tabs tabs-transparent">
             <li class="tab"><a class="active" href="#test1">Properties</a></li>
             <li class="tab"><a onclick="populateTab2()" href="#test2">Content code</a></li>
         </ul>
-
     </div>
 </nav>
-<div id="test1" class="col s12">
+
+<div id="test1" class="col">
     <div id="editor" class="editor"></div>
     <div style="height: 10px; width: 100%"></div>
 </div>
-<div id="test2" class="col s12">
+<div id="test2" class="col ">
     <div id="editorContent" class="editor"></div>
     <div style="height: 10px; width: 100%"></div>
 </div>
