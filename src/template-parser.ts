@@ -5,6 +5,7 @@ import {Nav} from "./interfaces/nav";
 import {Assets} from "./interfaces/assets";
 
 import {Epub3Template} from "./templates/epub3/epub3-template";
+import {Epub2Template} from "./templates/epub2/epub2-templates";
 
 /**
  * Prepare data for Template
@@ -19,9 +20,13 @@ export class TemplateParser {
         this.template(models);
     }
 
-    public template(models?: string) {
-        if (!models || models === "epub3")
+    public template(models: string) {
+
+        if (models === "epub3")
             this.templateClass = new Epub3Template();
+
+        if (models === "epub2")
+            this.templateClass = new Epub2Template();
     }
 
     public mimetype(): FileContent {

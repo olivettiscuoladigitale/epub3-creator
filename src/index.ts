@@ -115,9 +115,8 @@ export class EpubCreator {
      *
      * @param models template model
      */
-    template(models?: string) {
-        if (!models || models === "epub3")
-            this.parser = new TemplateParser("epub3");
+    template(models: string = "epub3") {
+        this.parser = new TemplateParser(models);
     }
 
     /**
@@ -250,6 +249,8 @@ export class EpubCreator {
                 fileInfo = this.utils.getFileNameFromPath(asset.name);
                 name = fileInfo.fullName;
                 path = fileInfo.path;
+
+                console.log("TESTTTTTT", fileInfo);
 
                 this._addAsset(asset.content, name, options, path).then(
                     (fileName) => {

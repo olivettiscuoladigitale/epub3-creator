@@ -12,7 +12,6 @@ export class StaticTemplate {
         return `application/epub+zip`;
     }
 
-
     _container(): string {
         return `<?xml version="1.0" encoding="UTF-8"?> 
                  <container xmlns="urn:oasis:names:tc:opendocument:xmlns:container" version="1.0"> 
