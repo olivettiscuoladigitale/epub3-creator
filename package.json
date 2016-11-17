@@ -1,6 +1,6 @@
 {
 	"name": "epub-creator",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"description": "Create epub from html or text",
 	"main": "dist/epub-creator.js",
 	"scripts": {
