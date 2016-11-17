@@ -1,6 +1,6 @@
 {
 	"name": "epub-creator",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "Create epub from html or text",
 	"main": "dist/epub-creator.js",
 	"scripts": {
@@ -38,6 +38,7 @@
 		"typedoc-webpack-plugin": "^1.1.3",
 		"typescript": "^2.0.8",
 		"webpack": "^1.13.3",
-		"webpack-dev-server": "^1.16.2"
+		"webpack-dev-server": "^1.16.2",
+		"open-browser-webpack-plugin": "0.0.3"
 	}
 }

@@ -380,6 +380,11 @@ export class EpubCreator {
      */
     _addAsset(data: string, fileName: string, options: any = {}, folder: string = ""): Promise<any> {
         return new Promise((resolve) => {
+
+            // all files are under EPUB dir, if not start with / we need to add it
+            if (folder !== "" && folder.charAt(0) !== "/")
+                folder = "/" + folder;
+
             this.epubZip.folder("EPUB" + folder).file(fileName, data, options);
 
             return resolve(fileName);

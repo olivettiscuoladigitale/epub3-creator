@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 module.exports = {
     entry:'./demo/demo.ts',
@@ -11,6 +12,7 @@ module.exports = {
         extensions: ['', "*", '.webpack.js', '.web.js', '.ts', '.js']
     },
     plugins: [
+        new OpenBrowserPlugin({ url: 'http://localhost:8080' })
       //   new webpack.optimize.UglifyJsPlugin()
     ],
     tslint: {
