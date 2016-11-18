@@ -80,6 +80,7 @@
         <ul class="tabs tabs-transparent">
             <li class="tab"><a class="active" href="#test1">Properties</a></li>
             <li class="tab"><a onclick="populateTab2()" href="#test2">Content code</a></li>
+            <li class="tab"><a href="#test3">Template</a></li>
         </ul>
     </div>
 </nav>
@@ -91,6 +92,32 @@
 <div id="test2" class="col ">
     <div id="editorContent" class="editor"></div>
     <div style="height: 10px; width: 100%"></div>
+</div>
+
+<div id="test3" class="col ">
+
+    <div class="editor" style="background-color: #ffffff;  border-bottom:1px solid gray">
+
+        <br/>
+        <br/>
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+
+                    <div class="input-field col s12">
+                        <select id="template">
+                            <option value="epub3" selected>Epub3 standard xhtml</option>
+                            <option value="epub3html">Epub3 with html5 content</option>
+                            <option value="epub2">Epub2 standard xhtml</option>
+                        </select>
+                        <label>Select Epub template</label>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
 </div>
 
 
@@ -116,6 +143,10 @@
         <i class="material-icons left">refresh</i>
         Refresh content with code
     </a>
+
+    <div>
+        <h5>Epub Template: <span id="templateText">epub3</span></h5>
+    </div>
 
 </div>
 
@@ -202,6 +233,10 @@
     function remove() {
         jQuery('#area').empty();
     }
+
+    jQuery(document).ready(function () {
+        jQuery('select').material_select();
+    });
 
 </script>
 

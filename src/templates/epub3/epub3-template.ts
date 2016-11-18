@@ -15,6 +15,7 @@ export class Epub3Template {
     staticTemplate: any;
     mediaType: string = "application/xhtml+xml";
     ext: string = "xhtml";
+    sectionTag: string = "epub:type";
 
     constructor() {
         this.staticTemplate = new StaticTemplate();

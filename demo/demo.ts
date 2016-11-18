@@ -1,7 +1,5 @@
 import {EpubCreator} from "../src/index";
 
-// let epub = require("./epubjs/epub.min");
-
 let epub = require("../node_modules/epubjs/build/epub.min");
 
 
@@ -24,7 +22,10 @@ class Demo {
 
         // load epub
         document.getElementById("showepub").addEventListener("click", () => {
-            this.generate();
+            let e = <HTMLSelectElement>document.getElementById("template");
+            let template: string = e.options[e.selectedIndex].value;
+            console.log("TEMPLATE SELECTED: ", template);
+            this.generate(template);
         });
 
     }
@@ -110,13 +111,20 @@ class Demo {
         return JSON.parse(inputElementC.value);
     }
 
-    generate() {
+    updateTemplateText(tx: string) {
+        document.getElementById("templateText").innerHTML = tx;
+    }
+
+    generate(template: string = "epub3") {
+
+        this.updateTemplateText(template);
+
         this.epubCreator = new EpubCreator();
 
         let prop: any = this.getHtmlProp();
         let cont: any = this.getHtmlContent();
 
-        this.epubCreator.template("epub3");
+        this.epubCreator.template(template);
         this.epubCreator.properties = prop;
 
         // add css asset content
@@ -174,7 +182,6 @@ class Demo {
             this.Book.nextPage();
         });
 
-
     }
 
 }
@@ -183,16 +190,4 @@ class Demo {
 let demo = new Demo();
 demo.populateHtmlDefault();
 demo.generate();
-
-
-function generate() {
-    let x = new Demo();
-    x.generate();
-}
-
-
-// bind
-document.getElementById("download").addEventListener("click", () => {
-    generate();
-});
 

@@ -16,8 +16,7 @@ import {Assets} from "./interfaces/assets";
 const JSZipUtils = require("jszip-utils");
 
 /**
- * Create a Epub 3 Compliant Idpf file
- *
+ * Create a Epub Compliant Idpf book
  *
  * @author Giorgio Modoni <g.modoni@alfabook.it>
  */
@@ -40,7 +39,6 @@ export class EpubCreator {
 
     /**
      * Epub content as string
-     *
      * @type {string}
      */
     public epubContent: string = "";
@@ -53,7 +51,6 @@ export class EpubCreator {
 
     /**
      * Navigation menu and properties
-     *
      * @type {{toc: Array; landmarks: Array}}
      */
     private navigation: Nav = {
@@ -68,10 +65,15 @@ export class EpubCreator {
 
     /**
      * Asset image data
-     *
      * @type {Array}
      */
     private assets: Assets[] = [];
+
+    /**
+     * Template model string data
+     * @type {string}
+     */
+    private templateModel: string = "epub3";
 
 
     constructor() {
@@ -108,15 +110,17 @@ export class EpubCreator {
     }
 
     /**
-     * Set specific template for epub creation,
-     * default epub3
+     * Set specific template for epub creation.
+     * Available: epub3 (default), epub3html, epub2
      *
      * More template can be available in future
      *
-     * @param models template model
+     * @param model template model
      */
-    template(models: string = "epub3") {
-        this.parser = new TemplateParser(models);
+    template(model: string = "epub3") {
+
+        this.templateModel = model;
+        this.parser = new TemplateParser(model);
     }
 
     /**
@@ -249,8 +253,6 @@ export class EpubCreator {
                 fileInfo = this.utils.getFileNameFromPath(asset.name);
                 name = fileInfo.fullName;
                 path = fileInfo.path;
-
-                console.log("TESTTTTTT", fileInfo);
 
                 this._addAsset(asset.content, name, options, path).then(
                     (fileName) => {
@@ -500,7 +502,7 @@ export class EpubCreator {
 
                 let epubType = "";
                 if (data.name)
-                    epubType = `epub:type="${data.name}"`;
+                    epubType = `${this.parser.getSectionTag()}="${data.name}"`;
 
                 sectionAsText += `
                     <${data.tag} ${epubType} id="${id}">
@@ -523,7 +525,7 @@ export class EpubCreator {
      *
      * @returns {Promise<T>}
      */
-    blobUrl() {
+    blobUrl(): Promise<any> {
         return new Promise((resolve, reject): any => {
             this._prepare().then(
                 () => {
@@ -553,7 +555,7 @@ export class EpubCreator {
      *
      * @returns {Promise<T>}
      */
-    asArrayBuffer() {
+    asArrayBuffer(): Promise<any> {
         return new Promise((resolve, reject): any => {
             this._prepare().then(
                 () => {
@@ -576,7 +578,7 @@ export class EpubCreator {
      *
      * @returns {Promise<T>}
      */
-    asBase64() {
+    asBase64(): Promise<any> {
         return new Promise((resolve, reject): any => {
             this._prepare().then(
                 () => {
@@ -603,7 +605,7 @@ export class EpubCreator {
      * @param fileName
      * @returns {Promise<T>}
      */
-    download(fileName ?: string): any {
+    download(fileName ?: string): Promise<any> {
         return new Promise((resolve, reject): any => {
             this._prepare().then(
                 () => {

@@ -11,6 +11,10 @@ import {Epub3HtmlTemplate} from "./templates/epub3html/epub3html-template";
 /**
  * Prepare data for Template
  *
+ * Guide IDPF:
+ * Tag structure:
+ * https://idpf.github.io/a11y-guidelines/content/semantics/epub-type.html
+ *
  * @author Giorgio Modoni <g.modoni@alfabook.it>
  */
 export class TemplateParser {
@@ -83,6 +87,16 @@ export class TemplateParser {
         }
 
         return landmarks;
+    }
+
+    /**
+     * Get section tag.
+     * This is the tag inside "section" and it's different between html and xhtml epub template
+     *
+     * @returns {string}
+     */
+    public getSectionTag(): string {
+        return this.templateClass.sectionTag;
     }
 
     private _navToc(data) {
