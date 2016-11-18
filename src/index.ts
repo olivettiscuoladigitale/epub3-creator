@@ -320,10 +320,10 @@ export class EpubCreator {
                     this.assignIdAsset();
                     this.mimetype();
                     this.container();
-                    this.opf();
                     this.nav();
                     this.ncx();
                     this.content(this.epubContent);
+                    this.opf();
 
                     return resolve();
                 },

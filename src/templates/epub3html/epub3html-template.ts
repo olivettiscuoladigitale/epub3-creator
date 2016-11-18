@@ -10,11 +10,11 @@ import {FileContent} from "../../interfaces/file-content";
  *
  * @author Giorgio Modoni <g.modoni@alfabook.it>
  */
-export class Epub3Template {
+export class Epub3HtmlTemplate {
 
     staticTemplate: any;
-    mediaType: string = "application/xhtml+xml";
-    ext: string = "xhtml";
+    mediaType: string = "text/html";
+    ext: string = "html";
 
     constructor() {
         this.staticTemplate = new StaticTemplate();
@@ -54,7 +54,7 @@ export class Epub3Template {
         let content: string = this.staticTemplate._nav(cssFiles, landmarks, toc);
 
         return {
-            name: "ebook-nav.xhtml",
+            name: "ebook-nav.html",
             folder: "EPUB",
             content: content
         };
@@ -74,9 +74,10 @@ export class Epub3Template {
         let content: string = this.staticTemplate._contentBody(prop, body, cssFiles);
 
         return {
-            name: "ebook-content.xhtml",
+            name: "ebook-content.html",
             folder: "EPUB",
-            content: content
+            content: content,
+
         };
     }
 
@@ -84,7 +85,7 @@ export class Epub3Template {
         let content: string = this.staticTemplate._cover(prop, css);
 
         return {
-            name: "cover.xhtml",
+            name: "cover.html",
             folder: "EPUB",
             content: content
         };

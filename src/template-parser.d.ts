@@ -11,7 +11,7 @@ import { Assets } from "./interfaces/assets";
 export declare class TemplateParser {
     private templateClass;
     constructor(models: any);
-    template(models?: string): void;
+    template(models: string): void;
     mimetype(): FileContent;
     container(): FileContent;
     opf(prop: BaseInfo, css?: CssDef[], assets?: Assets[]): any;

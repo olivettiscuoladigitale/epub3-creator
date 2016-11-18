@@ -6,6 +6,7 @@ import {Assets} from "./interfaces/assets";
 
 import {Epub3Template} from "./templates/epub3/epub3-template";
 import {Epub2Template} from "./templates/epub2/epub2-templates";
+import {Epub3HtmlTemplate} from "./templates/epub3html/epub3html-template";
 
 /**
  * Prepare data for Template
@@ -27,6 +28,9 @@ export class TemplateParser {
 
         if (models === "epub2")
             this.templateClass = new Epub2Template();
+
+        if (models === "epub3html")
+            this.templateClass = new Epub3HtmlTemplate();
     }
 
     public mimetype(): FileContent {
@@ -157,14 +161,14 @@ export class TemplateParser {
 
         if (prop.cover.file !== "" && prop.cover.asFileName) {
             manifest += `<item id="cover-image" href="${prop.cover.asFileName}" media-type="${prop.cover.mediaType}" properties="cover-image" />
-                         <item id="cover" href="cover.xhtml" media-type="application/xhtml+xml"/>
+                         <item id="cover" href="cover.${this.templateClass.ext}" media-type="${this.templateClass.mediaType}"/>
                         `;
         }
 
         manifest += cssFiles;
 
-        manifest += `<item id="t1" href="ebook-content.xhtml" media-type="application/xhtml+xml" />
-                     <item id="nav" href="ebook-nav.xhtml" properties="nav" media-type="application/xhtml+xml" />
+        manifest += `<item id="t1" href="ebook-content.${this.templateClass.ext}" media-type="${this.templateClass.mediaType}" />
+                     <item id="nav" href="ebook-nav.${this.templateClass.ext}" properties="nav" media-type="${this.templateClass.mediaType}" />
                      <!-- ncx included for 2.0 reading system compatibility: -->
                      <item id="ncx" href="ebook.ncx" media-type="application/x-dtbncx+xml" />
                     `;

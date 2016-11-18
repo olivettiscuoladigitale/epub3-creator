@@ -18,7 +18,7 @@ export class StaticTemplate {
                   <rootfiles>
                   <rootfile full-path="EPUB/ebook.opf" media-type="application/oebps-package+xml"/>
                   </rootfiles>   
-           </container>
+                </container>
             `;
     }
 

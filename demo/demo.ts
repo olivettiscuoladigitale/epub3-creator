@@ -76,6 +76,15 @@ class Demo {
         ];
     };
 
+    getHtml5Content() {
+        return `[
+                    {
+                        "tag": "html",
+                        "content": "<section class=\"body-rw Chapter-rw\" role=\"doc-chapter\">  <header><h1>Chapter 4. The Counterpane.</h1></header> <p>Upon waking next morning about daylight,</p> </section>"
+                    }
+                ]`;
+    }
+
     populateHtmlDefault() {
 
         // prop

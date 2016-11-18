@@ -6,6 +6,10 @@
 A simple class writed in Typescript (and transpiled in es5) that help you to create epub from source text/html. 
 It work on client browser or server side nodejs.
 
+# Note
+This project is very much still a work in progress.
+Epub-creator is still in beta.
+
 ## Install
 
 ***npm***
@@ -305,7 +309,23 @@ In epub all assets (image, audio) must be included in epub and declared in defin
 		});
 `name` and `id` params are optionals
 
+# Template
+Epub creation is base on template system.   
+We can choose from this template:   
 
+- epub3 -> a xhtml standard epub3
+- epub3html -> a html5 epub3 
+- epub2 -> a xhtml epub2 
+
+example:
+
+	 var epubCreator = new EpubCreator();
+	 epubCreator.template("epub3html");
+	 .....
+
+
+Default template is `epub3`.  
+More template cooming in next version....
 
 # Download file
 When we are ready to download a file we can call method `download`.
