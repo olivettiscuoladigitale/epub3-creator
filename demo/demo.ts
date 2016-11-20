@@ -133,7 +133,8 @@ class Demo {
             "name": "base.css"
         });
 
-        this.epubCreator.addSections(cont);
+        this.epubCreator.addChapter({name: "ebook-content", content: ""});
+        this.epubCreator.addSections(cont, "ebook-content");
 
 
         this.epubCreator.addAsset({

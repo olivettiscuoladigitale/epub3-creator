@@ -43,7 +43,6 @@ export class StaticTemplate {
                 </manifest>
                 <spine toc="ncx">
                     ${spine}
-                    <itemref idref="t1" />  
                 </spine>    
             </package>
             `;
@@ -91,7 +90,6 @@ export class StaticTemplate {
                     `;
     }
 
-
     _contentBody(prop: BaseInfo, content, cssFiles: string) {
         return `<?xml version="1.0" encoding="UTF-8"?>
                 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:epub="http://www.idpf.org/2007/ops">
@@ -109,18 +107,9 @@ export class StaticTemplate {
 
 
     _cover(prop: BaseInfo, cssFiles: string) {
-        return `<?xml version="1.0" encoding="utf-8"?>
-                <!DOCTYPE html>
-                <html xmlns="http://www.w3.org/1999/xhtml">
-                <head>
-                  <title>${prop.title}</title>
-                   ${cssFiles}
-                  <meta charset="utf-8"/>
-                </head>
-                <body>
-                  <div class="body"><img src="${prop.cover.asFileName}" alt="Cover Image" title="Cover Image"/></div>
-                </body>
-                </html>`;
+        return `
+                 <div class="body"><img src="${prop.cover.asFileName}" alt="Cover Image" title="Cover Image"/></div>
+               `;
     }
 
 }

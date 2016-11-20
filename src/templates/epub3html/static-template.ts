@@ -116,17 +116,9 @@ export class StaticTemplate {
 
 
     _cover(prop: BaseInfo, cssFiles: string) {
-        return `<!DOCTYPE html>
-                <html>
-                <head>
-                  <title>${prop.title}</title>
-                 ${cssFiles}
-                  <meta charset="utf-8">
-                </head>
-                <body>
-                  <div class="body"><img src="${prop.cover.asFileName}" alt="Cover Image" title="Cover Image"></div>
-                </body>
-                </html>`;
+        return `
+                 <div class="body"><img src="${prop.cover.asFileName}" alt="Cover Image" title="Cover Image"></div>
+                `;
     }
 
 }

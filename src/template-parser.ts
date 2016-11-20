@@ -25,6 +25,11 @@ export class TemplateParser {
         this.template(models);
     }
 
+    /**
+     * Load specific template class
+     *
+     * @param models - a template name
+     */
     public template(models: string) {
 
         if (models === "epub3")
@@ -37,22 +42,48 @@ export class TemplateParser {
             this.templateClass = new Epub3HtmlTemplate();
     }
 
+    /**
+     * Get template for mimetype file
+     * @returns {FileContent}
+     */
     public mimetype(): FileContent {
         return this.templateClass.getMimetype();
     }
 
+    /**
+     * Get container.xml file
+     *
+     * @returns {FileContent}
+     */
     public container(): FileContent {
         return this.templateClass.getContainer();
     }
 
-    public opf(prop: BaseInfo, css?: CssDef[], assets?: Assets[]) {
+    /**
+     * Create package file
+     * This the most important file!.
+     *
+     *
+     * @param prop - epub properties
+     * @param css - css array definition
+     * @param assets - assets array definition
+     * @returns {{name: string, folder: string, content: string}}
+     */
+    public opf(chapters: any, prop: BaseInfo, css?: CssDef[], assets?: Assets[]) {
         let metadata: string = this._metadata(prop);
-        let manifest: string = this._manifest(prop, css, assets);
-        let spine: string = this._spine(prop);
+        let manifest: string = this._manifest(chapters, prop, css, assets);
+        let spine: string = this._spine(chapters, prop);
 
         return this.templateClass.getOpf(prop, metadata, manifest, spine);
     }
 
+    /**
+     * Create a hrml/xhtml navigation
+     *
+     * @param navigation - navigation data object
+     * @param css - stylesheet array data
+     * @returns {{name: string, folder: string, content: string}}
+     */
     public nav(navigation: Nav, css?: CssDef[]) {
         const cssFiles: string = this._cssLink(css);
         const landmarks: string = this._navLandmarks(navigation.landmarks);
@@ -61,25 +92,59 @@ export class TemplateParser {
         return this.templateClass.getNav(cssFiles, landmarks, toc);
     }
 
+    /**
+     * Generate  ncx file for epub2 and for epub3 compatibility with epub2
+     *
+     * @param prop -  epub properties
+     * @param navigation - navigarion object data
+     * @returns {{name: string, folder: string, content: string}}
+     */
     public ncx(prop: BaseInfo, navigation: Nav) {
         let toc = this._ncxToc(navigation.toc);
 
         return this.templateClass.getNcx(prop, toc);
     }
 
+    /**
+     * Generate a chapter content
+     *
+     * @param prop - epub properties
+     * @param body - content string
+     * @param css - stylesheet array
+     * @returns {{name: string, folder: string, content: string}}
+     */
     public contentBody(prop: BaseInfo, body, css?: CssDef[]) {
         let cssFiles = this._cssLink(css);
 
         return this.templateClass.getContentBody(prop, body, cssFiles);
     }
 
+    /**
+     * Create a Page for cover.
+     * This is optional
+     *
+     * @param prop - epub properties
+     * @param css - stylesheet array
+     * @returns {{name: string, folder: string, content: string}}
+     */
     public cover(prop: BaseInfo, css?: CssDef[]) {
         let cssFiles = this._cssLink(css);
 
         return this.templateClass.getCover(prop, cssFiles);
     }
 
-    private _navLandmarks(data) {
+
+    public getExt() {
+        return this.templateClass.ext;
+    }
+
+    /**
+     * Generate a string of landmark used in opf data
+     * @param data - landmarks data
+     * @returns {string}
+     * @private
+     */
+    private _navLandmarks(data): string {
         let landmarks: string = "";
 
         for (let l of data) {
@@ -168,21 +233,30 @@ export class TemplateParser {
     }
 
 
-    private _manifest(prop: BaseInfo, css?: CssDef[], assets?: Assets[]): string {
+    private _manifest(chapters, prop: BaseInfo, css?: CssDef[], assets?: Assets[]): string {
 
         let manifest: string = "";
         let cssFiles: string = this._opfCss(css);
 
+
         if (prop.cover.file !== "" && prop.cover.asFileName) {
             manifest += `<item id="cover-image" href="${prop.cover.asFileName}" media-type="${prop.cover.mediaType}" properties="cover-image" />
-                         <item id="cover" href="cover.${this.templateClass.ext}" media-type="${this.templateClass.mediaType}"/>
-                        `;
+                     
+`;
         }
 
-        manifest += cssFiles;
+        /*   <item id="cover" href="cover.${this.templateClass.ext}" media-type="${this.templateClass.mediaType}"/>
+*/
 
-        manifest += `<item id="t1" href="ebook-content.${this.templateClass.ext}" media-type="${this.templateClass.mediaType}" />
-                     <item id="nav" href="ebook-nav.${this.templateClass.ext}" properties="nav" media-type="${this.templateClass.mediaType}" />
+         manifest += cssFiles;
+
+        for (let page of chapters) {
+            manifest += `<item id="${page.id}" href="${page.name}.${this.templateClass.ext}" media-type="${this.templateClass.mediaType}" />
+            `;
+        }
+
+
+        manifest += `<item id="nav" href="ebook-nav.${this.templateClass.ext}" properties="nav" media-type="${this.templateClass.mediaType}" />
                      <!-- ncx included for 2.0 reading system compatibility: -->
                      <item id="ncx" href="ebook.ncx" media-type="application/x-dtbncx+xml" />
                     `;
@@ -194,12 +268,15 @@ export class TemplateParser {
         return manifest;
     }
 
-    private _spine(prop: BaseInfo) {
+    private _spine(chapters, prop: BaseInfo) {
 
         let spine: string = "";
 
-        if (prop.cover.file !== "" && prop.cover.asFileName) {
-            spine += `<itemref idref="cover" linear="${prop.cover.inline}"/>`;
+       // if (prop.cover.file !== "" && prop.cover.asFileName)
+         //   spine += `<itemref idref="cover" linear="${prop.cover.inline}"/>`;
+
+        for (let page of chapters) {
+            spine += `<itemref idref="${page.id}" linear="${page.inline}"/>`;
         }
 
         return spine;

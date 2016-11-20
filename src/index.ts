@@ -12,6 +12,7 @@ import {FileInfo} from "./interfaces/file-info";
 import {CssDef} from "./interfaces/css-def";
 import {Nav} from "./interfaces/nav";
 import {Assets} from "./interfaces/assets";
+import {Chapters} from "./interfaces/chapters";
 
 const JSZipUtils = require("jszip-utils");
 
@@ -74,6 +75,9 @@ export class EpubCreator {
      * @type {string}
      */
     private templateModel: string = "epub3";
+
+
+    private chapters: Chapters[] = [];
 
 
     constructor() {
@@ -145,7 +149,7 @@ export class EpubCreator {
      * Create opf file
      */
     opf() {
-        let fileContent: FileContent = this.parser.opf(this.properties, this.css, this.assets);
+        let fileContent: FileContent = this.parser.opf(this.chapters, this.properties, this.css, this.assets);
         let folder = this.epubZip.folder(fileContent.folder);
         folder.file(fileContent.name, fileContent.content);
     }
@@ -170,29 +174,90 @@ export class EpubCreator {
 
     /**
      * Add contento to epub
-     *
+     * @param name - filename
      * @param content - epub string contet
      */
-    content(content: string) {
+    content(name: string, content: string) {
         let fileContent: FileContent = this.parser.contentBody(this.properties, content, this.css);
         let folder = this.epubZip.folder(fileContent.folder);
-        folder.file(fileContent.name, fileContent.content);
-    }
 
-    cover() {
-        let fileContent: FileContent = this.parser.cover(this.properties, this.css);
-        let folder = this.epubZip.folder(fileContent.folder);
-        folder.file(fileContent.name, fileContent.content);
+        folder.file(name + "." + this.parser.getExt(), fileContent.content);
     }
 
     /**
-     * Add content as section and structures
+     * Add a cover page by default if exist properties.cover.file
+     *
+     * @returns {boolean}
+     */
+    cover() {
+        if (!this.properties.cover.asFileName)
+            return false;
+
+        let fileContent: FileContent = this.parser.cover(this.properties, this.css);
+
+        this.addChapter({
+            name: "cover",
+            content: fileContent.content,
+            inline: this.properties.cover.inline,
+            id: "cover",
+            asfirst: true
+        });
+
+    }
+
+    /**
+     * Add all content's chapters
+     */
+    chapterAll() {
+        for (let chapter of this.chapters) {
+            this.content(chapter.name, chapter.content);
+        }
+    }
+
+    /**
+     * Add a chapter as new file
+     *
+     * @param chapter -  chapter object
+     */
+    addChapter(chapter: Chapters) {
+        if (!chapter.id)
+            chapter.id = "ch_" + name;
+
+        if (!chapter.inline)
+            chapter.inline = "yes";
+
+        if (!chapter.content)
+            chapter.content = "";
+
+
+        if (chapter.asfirst)
+            this.chapters.unshift(chapter);
+        else
+            this.chapters.push(chapter);
+
+    }
+
+    /**
+     * Add content as section and structures.
+     * Section is a portion of chapter contents.
+     * You can add more section for a chapter.
+     *
+     * epubCreator.addSection(mysectioncontent, "chapter01");
+     * epubCreator.addSection(myothersection, "chapter01");
      *
      * @param epubSections - epub section object
+     * @param name - chapter name
      */
-    addSections(epubSections): string {
-        this.epubContent += this._addSections(epubSections);
-        return this.epubContent;
+    addSections(epubSections, name: string = "ebook-content") {
+
+        let content: string = this._addSections(epubSections);
+        let item = this.chapters.find((el) => el.name === name);
+
+        if (item)
+            item.content += content;
+        else
+            this.addChapter({name: name, content: content});
+
     }
 
     /**
@@ -316,16 +381,14 @@ export class EpubCreator {
             Promise.all(promises).then(
                 () => {
 
-                    if (this.properties.cover.asFileName)
-                        this.cover();
-
+                    this.cover();
                     this.assignIdAsset();
                     this.mimetype();
                     this.container();
                     this.nav();
                     this.ncx();
-                    this.content(this.epubContent);
-                    this.opf();
+                    this.chapterAll();
+                    this.opf(); // this must be the last
 
                     return resolve();
                 },
