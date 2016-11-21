@@ -47,7 +47,6 @@ export class StaticTemplate {
             </package>`;
     }
 
-
     _nav(cssFiles: string, landmarks: string, toc: string) {
 
         return `<!DOCTYPE html>
@@ -79,7 +78,6 @@ export class StaticTemplate {
                 `;
     }
 
-
     _ncx(prop: BaseInfo, toc): string {
         return `<?xml version="1.0" encoding="UTF-8"?>
                 <ncx xmlns:ncx="http://www.daisy.org/z3986/2005/ncx/" xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1" xml:lang="en">
@@ -97,7 +95,6 @@ export class StaticTemplate {
                     `;
     }
 
-
     _contentBody(prop: BaseInfo, content, cssFiles: string) {
         return `<!DOCTYPE html>
                     <html>
@@ -112,7 +109,6 @@ export class StaticTemplate {
                     </html>
                     `;
     }
-
 
     _cover(prop: BaseInfo, cssFiles: string) {
         return `

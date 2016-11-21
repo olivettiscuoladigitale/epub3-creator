@@ -48,7 +48,6 @@ export class StaticTemplate {
             `;
     }
 
-
     _nav(cssFiles: string, landmarks: string, toc: string) {
 
         return `<?xml version="1.0" encoding="UTF-8"?>
@@ -71,7 +70,6 @@ export class StaticTemplate {
                     </body>
                 </html>`;
     }
-
 
     _ncx(prop: BaseInfo, toc): string {
         return `<?xml version="1.0" encoding="UTF-8"?>
@@ -104,7 +102,6 @@ export class StaticTemplate {
                 </html>
                 `;
     }
-
 
     _cover(prop: BaseInfo, cssFiles: string) {
         return `
