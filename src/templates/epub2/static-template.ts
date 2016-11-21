@@ -39,7 +39,6 @@ export class StaticTemplate {
         </manifest>
         <spine toc="toc">
             ${spine}
-            <itemref idref="t1" />  
         </spine>
         <guide></guide>
         </package>`;

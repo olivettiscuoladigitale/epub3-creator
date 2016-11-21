@@ -77,8 +77,7 @@ export class Epub3HtmlTemplate {
         return {
             name: "ebook-content.html",
             folder: "EPUB",
-            content: content,
-
+            content: content
         };
     }
 

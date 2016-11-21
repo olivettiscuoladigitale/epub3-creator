@@ -43,7 +43,6 @@ export class StaticTemplate {
               </manifest>
               <spine>
                 ${spine}
-                <itemref idref="t1" />
               </spine>
             </package>`;
     }
@@ -117,7 +116,7 @@ export class StaticTemplate {
 
     _cover(prop: BaseInfo, cssFiles: string) {
         return `
-                 <div class="body"><img src="${prop.cover.asFileName}" alt="Cover Image" title="Cover Image"></div>
+                 <div class="body"><img src="${prop.cover.asFileName}" alt="Cover Image" title="Cover Image"></div> 
                 `;
     }
 
