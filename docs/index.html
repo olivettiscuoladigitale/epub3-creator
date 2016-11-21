@@ -66,6 +66,9 @@
 				<h1 id="epub-creator">EPUB-CREATOR</h1>
 				<p>A simple class writed in Typescript (and transpiled in es5) that help you to create epub from source text/html.
 				It work on client browser or server side nodejs.</p>
+				<h1 id="note">Note</h1>
+				<p>This project is very much still a work in progress.
+				Epub-creator is still in beta.</p>
 				<h2 id="install">Install</h2>
 				<p><strong><em>npm</em></strong></p>
 				<pre><code>npm <span class="hljs-keyword">install</span> <span class="hljs-comment">--save epub-creator</span>
@@ -288,6 +291,18 @@ content:<span class="hljs-built_in"> array/string </span> -&gt; the content insi
                 id:<span class="hljs-string">"image0"</span>
     });
 </code></pre><p><code>name</code> and <code>id</code> params are optionals</p>
+				<h1 id="template">Template</h1>
+				<p>Epub creation is base on template system.<br>We can choose from this template:   </p>
+				<ul>
+					<li>epub3 -&gt; a xhtml standard epub3</li>
+					<li>epub3html -&gt; a html5 epub3 </li>
+					<li>epub2 -&gt; a xhtml epub2 </li>
+				</ul>
+				<p>example:</p>
+				<pre><code> <span class="hljs-keyword">var</span> epubCreator = <span class="hljs-keyword">new</span> <span class="hljs-type">EpubCreator</span>();
+ epubCreator.template(<span class="hljs-string">"epub3html"</span>);
+ .....
+</code></pre><p>Default template is <code>epub3</code>.<br>More template cooming in next version....</p>
 				<h1 id="download-file">Download file</h1>
 				<p>When we are ready to download a file we can call method <code>download</code>.</p>
 				<pre><code>var epubCreator = new EpubCreator()<span class="hljs-comment">;</span>
@@ -387,6 +402,9 @@ epubCreator.addCss({
 						<a href="classes/epub2template.html" class="tsd-kind-icon">Epub2<wbr>Template</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="classes/epub3htmltemplate.html" class="tsd-kind-icon">Epub3<wbr>Html<wbr>Template</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="classes/epub3template.html" class="tsd-kind-icon">Epub3<wbr>Template</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -406,6 +424,9 @@ epubCreator.addCss({
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/baseinfo.html" class="tsd-kind-icon">Base<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/chapters.html" class="tsd-kind-icon">Chapters</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/cssdef.html" class="tsd-kind-icon">Css<wbr>Def</a>

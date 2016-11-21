@@ -6,7 +6,7 @@ import { FileContent } from "../../interfaces/file-content";
  *
  * @author Giorgio Modoni <g.modoni@alfabook.it>
  */
-export declare class Epub3Template {
+export declare class Epub3HtmlTemplate {
     staticTemplate: any;
     mediaType: string;
     ext: string;

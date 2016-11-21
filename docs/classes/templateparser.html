@@ -69,9 +69,12 @@
 					<div class="lead">
 						<p>Prepare data for Template</p>
 					</div>
+					<p>Guide IDPF:
+						Tag structure:
+					<a href="https://idpf.github.io/a11y-guidelines/content/semantics/epub-type.html">https://idpf.github.io/a11y-guidelines/content/semantics/epub-type.html</a></p>
 					<dl class="tsd-comment-tags">
 						<dt>author</dt>
-						<dd><p>Giorgio Modoni <a href="&#109;&#x61;&#x69;&#108;&#x74;&#x6f;&#x3a;&#103;&#46;&#109;&#x6f;&#x64;&#111;&#110;&#x69;&#x40;&#x61;&#108;&#x66;&#x61;&#x62;&#x6f;&#111;&#107;&#x2e;&#x69;&#x74;">&#103;&#46;&#109;&#x6f;&#x64;&#111;&#110;&#x69;&#x40;&#x61;&#108;&#x66;&#x61;&#x62;&#x6f;&#111;&#107;&#x2e;&#x69;&#x74;</a></p>
+						<dd><p>Giorgio Modoni <a href="&#109;&#97;&#105;&#108;&#x74;&#111;&#58;&#103;&#46;&#x6d;&#x6f;&#x64;&#111;&#110;&#105;&#64;&#x61;&#x6c;&#102;&#x61;&#98;&#111;&#x6f;&#x6b;&#x2e;&#105;&#116;">&#103;&#46;&#x6d;&#x6f;&#x64;&#111;&#110;&#105;&#64;&#x61;&#x6c;&#102;&#x61;&#98;&#111;&#x6f;&#x6b;&#x2e;&#105;&#116;</a></p>
 						</dd>
 					</dl>
 				</div>
@@ -114,6 +117,8 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="templateparser.html#container" class="tsd-kind-icon">container</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="templateparser.html#contentbody" class="tsd-kind-icon">content<wbr>Body</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="templateparser.html#cover" class="tsd-kind-icon">cover</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="templateparser.html#getext" class="tsd-kind-icon">get<wbr>Ext</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="templateparser.html#getsectiontag" class="tsd-kind-icon">get<wbr>Section<wbr>Tag</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="templateparser.html#mimetype" class="tsd-kind-icon">mimetype</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="templateparser.html#nav" class="tsd-kind-icon">nav</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="templateparser.html#ncx" class="tsd-kind-icon">ncx</a></li>
@@ -136,7 +141,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in template-parser.ts:17</li>
+									<li>Defined in template-parser.ts:22</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -158,7 +163,7 @@
 					<div class="tsd-signature tsd-kind-icon">template<wbr>Class<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in template-parser.ts:17</li>
+							<li>Defined in template-parser.ts:22</li>
 						</ul>
 					</aside>
 				</section>
@@ -175,7 +180,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in template-parser.ts:109</li>
+									<li>Defined in template-parser.ts:192</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -192,17 +197,20 @@
 					<a name="_manifest" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _manifest</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">_manifest<span class="tsd-signature-symbol">(</span>prop<span class="tsd-signature-symbol">: </span><a href="../interfaces/baseinfo.html" class="tsd-signature-type">BaseInfo</a>, css<span class="tsd-signature-symbol">?: </span><a href="../interfaces/cssdef.html" class="tsd-signature-type">CssDef</a><span class="tsd-signature-symbol">[]</span>, assets<span class="tsd-signature-symbol">?: </span><a href="../interfaces/assets.html" class="tsd-signature-type">Assets</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">_manifest<span class="tsd-signature-symbol">(</span>chapters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, prop<span class="tsd-signature-symbol">: </span><a href="../interfaces/baseinfo.html" class="tsd-signature-type">BaseInfo</a>, css<span class="tsd-signature-symbol">?: </span><a href="../interfaces/cssdef.html" class="tsd-signature-type">CssDef</a><span class="tsd-signature-symbol">[]</span>, assets<span class="tsd-signature-symbol">?: </span><a href="../interfaces/assets.html" class="tsd-signature-type">Assets</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in template-parser.ts:153</li>
+									<li>Defined in template-parser.ts:236</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
+								<li>
+									<h5>chapters: <span class="tsd-signature-type">any</span></h5>
+								</li>
 								<li>
 									<h5>prop: <a href="../interfaces/baseinfo.html" class="tsd-signature-type">BaseInfo</a></h5>
 								</li>
@@ -227,7 +235,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in template-parser.ts:137</li>
+									<li>Defined in template-parser.ts:220</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -250,13 +258,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in template-parser.ts:74</li>
+									<li>Defined in template-parser.ts:147</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generate a string of landmark used in opf data</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>data: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>landmarks data</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -273,7 +289,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in template-parser.ts:84</li>
+									<li>Defined in template-parser.ts:167</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -296,7 +312,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in template-parser.ts:94</li>
+									<li>Defined in template-parser.ts:177</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -319,7 +335,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in template-parser.ts:123</li>
+									<li>Defined in template-parser.ts:206</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -336,17 +352,20 @@
 					<a name="_spine" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _spine</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">_spine<span class="tsd-signature-symbol">(</span>prop<span class="tsd-signature-symbol">: </span><a href="../interfaces/baseinfo.html" class="tsd-signature-type">BaseInfo</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">_spine<span class="tsd-signature-symbol">(</span>chapters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, prop<span class="tsd-signature-symbol">: </span><a href="../interfaces/baseinfo.html" class="tsd-signature-type">BaseInfo</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in template-parser.ts:179</li>
+									<li>Defined in template-parser.ts:271</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
+								<li>
+									<h5>chapters: <span class="tsd-signature-type">any</span></h5>
+								</li>
 								<li>
 									<h5>prop: <a href="../interfaces/baseinfo.html" class="tsd-signature-type">BaseInfo</a></h5>
 								</li>
@@ -365,9 +384,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in template-parser.ts:36</li>
+									<li>Defined in template-parser.ts:58</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get container.xml file</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/filecontent.html" class="tsd-signature-type">FileContent</a></h4>
 						</li>
 					</ul>
@@ -382,19 +406,33 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in template-parser.ts:62</li>
+									<li>Defined in template-parser.ts:116</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generate a chapter content</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>prop: <a href="../interfaces/baseinfo.html" class="tsd-signature-type">BaseInfo</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>epub properties</p>
+									</div>
 								</li>
 								<li>
 									<h5>body: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>content string</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> css: <a href="../interfaces/cssdef.html" class="tsd-signature-type">CssDef</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>stylesheet array</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
@@ -411,19 +449,71 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in template-parser.ts:68</li>
+									<li>Defined in template-parser.ts:130</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Create a Page for cover.
+									This is optional</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>prop: <a href="../interfaces/baseinfo.html" class="tsd-signature-type">BaseInfo</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>epub properties</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> css: <a href="../interfaces/cssdef.html" class="tsd-signature-type">CssDef</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>stylesheet array</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getext" class="tsd-anchor"></a>
+					<h3>get<wbr>Ext</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Ext<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in template-parser.ts:137</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getsectiontag" class="tsd-anchor"></a>
+					<h3>get<wbr>Section<wbr>Tag</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Section<wbr>Tag<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in template-parser.ts:163</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get section tag.
+									This is the tag inside &quot;section&quot; and it&#39;s different between html and xhtml epub template</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -437,9 +527,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in template-parser.ts:32</li>
+									<li>Defined in template-parser.ts:49</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get template for mimetype file</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/filecontent.html" class="tsd-signature-type">FileContent</a></h4>
 						</li>
 					</ul>
@@ -454,16 +549,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in template-parser.ts:48</li>
+									<li>Defined in template-parser.ts:87</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Create a hrml/xhtml navigation</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>navigation: <a href="../interfaces/nav.html" class="tsd-signature-type">Nav</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>navigation data object</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> css: <a href="../interfaces/cssdef.html" class="tsd-signature-type">CssDef</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>stylesheet array data</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
@@ -480,16 +586,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in template-parser.ts:56</li>
+									<li>Defined in template-parser.ts:102</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generate  ncx file for epub2 and for epub3 compatibility with epub2</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>prop: <a href="../interfaces/baseinfo.html" class="tsd-signature-type">BaseInfo</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>epub properties</p>
+									</div>
 								</li>
 								<li>
 									<h5>navigation: <a href="../interfaces/nav.html" class="tsd-signature-type">Nav</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>navigarion object data</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
@@ -500,25 +617,43 @@
 					<a name="opf" class="tsd-anchor"></a>
 					<h3>opf</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">opf<span class="tsd-signature-symbol">(</span>prop<span class="tsd-signature-symbol">: </span><a href="../interfaces/baseinfo.html" class="tsd-signature-type">BaseInfo</a>, css<span class="tsd-signature-symbol">?: </span><a href="../interfaces/cssdef.html" class="tsd-signature-type">CssDef</a><span class="tsd-signature-symbol">[]</span>, assets<span class="tsd-signature-symbol">?: </span><a href="../interfaces/assets.html" class="tsd-signature-type">Assets</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">opf<span class="tsd-signature-symbol">(</span>chapters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, prop<span class="tsd-signature-symbol">: </span><a href="../interfaces/baseinfo.html" class="tsd-signature-type">BaseInfo</a>, css<span class="tsd-signature-symbol">?: </span><a href="../interfaces/cssdef.html" class="tsd-signature-type">CssDef</a><span class="tsd-signature-symbol">[]</span>, assets<span class="tsd-signature-symbol">?: </span><a href="../interfaces/assets.html" class="tsd-signature-type">Assets</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in template-parser.ts:40</li>
+									<li>Defined in template-parser.ts:72</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Create package file
+									This the most important file!.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
+									<h5>chapters: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
 									<h5>prop: <a href="../interfaces/baseinfo.html" class="tsd-signature-type">BaseInfo</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>epub properties</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> css: <a href="../interfaces/cssdef.html" class="tsd-signature-type">CssDef</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>css array definition</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> assets: <a href="../interfaces/assets.html" class="tsd-signature-type">Assets</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>assets array definition</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
@@ -535,13 +670,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in template-parser.ts:23</li>
+									<li>Defined in template-parser.ts:33</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Load specific template class</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>models: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>a template name</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -562,6 +705,9 @@
 				<ul class="before-current">
 					<li class=" tsd-kind-class">
 						<a href="epub2template.html" class="tsd-kind-icon">Epub2<wbr>Template</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="epub3htmltemplate.html" class="tsd-kind-icon">Epub3<wbr>Html<wbr>Template</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="epub3template.html" class="tsd-kind-icon">Epub3<wbr>Template</a>
@@ -617,6 +763,12 @@
 								<a href="templateparser.html#cover" class="tsd-kind-icon">cover</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="templateparser.html#getext" class="tsd-kind-icon">get<wbr>Ext</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="templateparser.html#getsectiontag" class="tsd-kind-icon">get<wbr>Section<wbr>Tag</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="templateparser.html#mimetype" class="tsd-kind-icon">mimetype</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -643,6 +795,9 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/baseinfo.html" class="tsd-kind-icon">Base<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/chapters.html" class="tsd-kind-icon">Chapters</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/cssdef.html" class="tsd-kind-icon">Css<wbr>Def</a>

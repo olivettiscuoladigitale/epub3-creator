@@ -2,6 +2,8 @@ import { BaseInfo } from "../../interfaces/base-info";
 import { FileContent } from "../../interfaces/file-content";
 export declare class Epub2Template {
     staticTemplate: any;
+    mediaType: string;
+    ext: string;
     constructor();
     getMimetype(): FileContent;
     getContainer(): FileContent;

@@ -1,9 +1,9 @@
 import { BaseInfo } from "./interfaces/base-info";
 import { CssDef } from "./interfaces/css-def";
 import { Assets } from "./interfaces/assets";
+import { Chapters } from "./interfaces/chapters";
 /**
- * Create a Epub 3 Compliant Idpf file
- *
+ * Create a Epub Compliant Idpf book
  *
  * @author Giorgio Modoni <g.modoni@alfabook.it>
  */
@@ -22,7 +22,6 @@ export declare class EpubCreator {
     properties: BaseInfo;
     /**
      * Epub content as string
-     *
      * @type {string}
      */
     epubContent: string;
@@ -33,7 +32,6 @@ export declare class EpubCreator {
     private css;
     /**
      * Navigation menu and properties
-     *
      * @type {{toc: Array; landmarks: Array}}
      */
     private navigation;
@@ -43,24 +41,29 @@ export declare class EpubCreator {
     private parser;
     /**
      * Asset image data
-     *
      * @type {Array}
      */
     private assets;
+    /**
+     * Template model string data
+     * @type {string}
+     */
+    private templateModel;
+    private chapters;
     constructor();
     /**
      * Create a default values for epub creation
      */
     setDefaultBaseInfo(): void;
     /**
-     * Set specific template for epub creation,
-     * default epub3
+     * Set specific template for epub creation.
+     * Available: epub3 (default), epub3html, epub2
      *
      * More template can be available in future
      *
-     * @param models template model
+     * @param model template model
      */
-    template(models?: string): void;
+    template(model?: string): void;
     /**
      * Add mimetype
      */
@@ -83,17 +86,38 @@ export declare class EpubCreator {
     ncx(): void;
     /**
      * Add contento to epub
-     *
+     * @param name - filename
      * @param content - epub string contet
      */
-    content(content: string): void;
-    cover(): void;
+    content(name: string, content: string): void;
     /**
-     * Add content as section and structures
+     * Add a cover page by default if exist properties.cover.file
+     *
+     * @returns {boolean}
+     */
+    cover(): boolean;
+    /**
+     * Add all content's chapters
+     */
+    chapterAll(): void;
+    /**
+     * Add a chapter as new file
+     *
+     * @param chapter -  chapter object
+     */
+    addChapter(chapter: Chapters): void;
+    /**
+     * Add content as section and structures.
+     * Section is a portion of chapter contents.
+     * You can add more section for a chapter.
+     *
+     * epubCreator.addSection(mysectioncontent, "chapter01");
+     * epubCreator.addSection(myothersection, "chapter01");
      *
      * @param epubSections - epub section object
+     * @param name - chapter name
      */
-    addSections(epubSections: any): string;
+    addSections(epubSections: any, name?: string): void;
     /**
      * Add css file and populate css value for proper ocx
      *
@@ -183,21 +207,21 @@ export declare class EpubCreator {
      *
      * @returns {Promise<T>}
      */
-    blobUrl(): Promise<{}>;
+    blobUrl(): Promise<any>;
     /**
      * Genrate result as arrayBuffer,
      * usefull to pass as file to epub reader
      *
      * @returns {Promise<T>}
      */
-    asArrayBuffer(): Promise<{}>;
+    asArrayBuffer(): Promise<any>;
     /**
      * Generate a file Url,
      * this is the most compatible way and to pass data as blob Url
      *
      * @returns {Promise<T>}
      */
-    asBase64(): Promise<{}>;
+    asBase64(): Promise<any>;
     /**
      * Download Epub
      *
@@ -205,5 +229,5 @@ export declare class EpubCreator {
      * @param fileName
      * @returns {Promise<T>}
      */
-    download(fileName?: string): any;
+    download(fileName?: string): Promise<any>;
 }

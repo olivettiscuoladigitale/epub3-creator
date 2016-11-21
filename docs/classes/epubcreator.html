@@ -67,11 +67,11 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Create a Epub 3 Compliant Idpf file</p>
+						<p>Create a Epub Compliant Idpf book</p>
 					</div>
 					<dl class="tsd-comment-tags">
 						<dt>author</dt>
-						<dd><p>Giorgio Modoni <a href="&#109;&#97;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#x67;&#46;&#109;&#x6f;&#100;&#111;&#x6e;&#x69;&#x40;&#97;&#x6c;&#x66;&#x61;&#98;&#x6f;&#x6f;&#107;&#x2e;&#105;&#116;">&#x67;&#46;&#109;&#x6f;&#100;&#111;&#x6e;&#x69;&#x40;&#97;&#x6c;&#x66;&#x61;&#98;&#x6f;&#x6f;&#107;&#x2e;&#105;&#116;</a></p>
+						<dd><p>Giorgio Modoni <a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#x6f;&#58;&#103;&#x2e;&#109;&#x6f;&#100;&#x6f;&#110;&#x69;&#64;&#x61;&#108;&#x66;&#x61;&#x62;&#111;&#111;&#107;&#x2e;&#x69;&#116;">&#103;&#x2e;&#109;&#x6f;&#100;&#x6f;&#110;&#x69;&#64;&#x61;&#108;&#x66;&#x61;&#x62;&#111;&#111;&#107;&#x2e;&#x69;&#116;</a></p>
 						</dd>
 					</dl>
 				</div>
@@ -98,11 +98,13 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="epubcreator.html#assets" class="tsd-kind-icon">assets</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="epubcreator.html#chapters" class="tsd-kind-icon">chapters</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="epubcreator.html#css" class="tsd-kind-icon">css</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="epubcreator.html#epubcontent" class="tsd-kind-icon">epub<wbr>Content</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="epubcreator.html#epubzip" class="tsd-kind-icon">epub<wbr>Zip</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="epubcreator.html#parser" class="tsd-kind-icon">parser</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="epubcreator.html#properties" class="tsd-kind-icon">properties</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="epubcreator.html#templatemodel" class="tsd-kind-icon">template<wbr>Model</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="epubcreator.html#utils" class="tsd-kind-icon">utils</a></li>
 							</ul>
 						</section>
@@ -118,12 +120,14 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="epubcreator.html#_addsections" class="tsd-kind-icon">_add<wbr>Sections</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="epubcreator.html#_prepare" class="tsd-kind-icon">_prepare</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="epubcreator.html#addasset" class="tsd-kind-icon">add<wbr>Asset</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="epubcreator.html#addchapter" class="tsd-kind-icon">add<wbr>Chapter</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="epubcreator.html#addcss" class="tsd-kind-icon">add<wbr>Css</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="epubcreator.html#addsections" class="tsd-kind-icon">add<wbr>Sections</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="epubcreator.html#asarraybuffer" class="tsd-kind-icon">as<wbr>Array<wbr>Buffer</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="epubcreator.html#asbase64" class="tsd-kind-icon">as<wbr>Base64</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="epubcreator.html#assignidasset" class="tsd-kind-icon">assign<wbr>IdAsset</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="epubcreator.html#bloburl" class="tsd-kind-icon">blob<wbr>Url</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="epubcreator.html#chapterall" class="tsd-kind-icon">chapter<wbr>All</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="epubcreator.html#container" class="tsd-kind-icon">container</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="epubcreator.html#content" class="tsd-kind-icon">content</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="epubcreator.html#cover" class="tsd-kind-icon">cover</a></li>
@@ -157,7 +161,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:74</li>
+									<li>Defined in index.ts:80</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="epubcreator.html" class="tsd-signature-type">EpubCreator</a></h4>
@@ -173,7 +177,7 @@
 					<div class="tsd-signature tsd-kind-icon">assets<span class="tsd-signature-symbol">:</span> <a href="../interfaces/assets.html" class="tsd-signature-type">Assets</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in index.ts:74</li>
+							<li>Defined in index.ts:71</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -188,12 +192,22 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="chapters" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> chapters</h3>
+					<div class="tsd-signature tsd-kind-icon">chapters<span class="tsd-signature-symbol">:</span> <a href="../interfaces/chapters.html" class="tsd-signature-type">Chapters</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in index.ts:80</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="css" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> css</h3>
 					<div class="tsd-signature tsd-kind-icon">css<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in index.ts:52</li>
+							<li>Defined in index.ts:51</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -213,7 +227,7 @@
 					<div class="tsd-signature tsd-kind-icon">epub<wbr>Content<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in index.ts:46</li>
+							<li>Defined in index.ts:45</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -248,7 +262,7 @@
 					<div class="tsd-signature tsd-kind-icon">parser<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in index.ts:67</li>
+							<li>Defined in index.ts:65</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -270,6 +284,26 @@
 						<div class="lead">
 							<p>Base epub properties</p>
 						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="templatemodel" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> template<wbr>Model</h3>
+					<div class="tsd-signature tsd-kind-icon">template<wbr>Model<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;epub3&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in index.ts:77</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Template model string data</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>type</dt>
+							<dd><p>{string}</p>
+							</dd>
+						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
@@ -300,7 +334,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:382</li>
+									<li>Defined in index.ts:447</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -349,7 +383,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:401</li>
+									<li>Defined in index.ts:466</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -386,7 +420,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:418</li>
+									<li>Defined in index.ts:483</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -429,7 +463,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:343</li>
+									<li>Defined in index.ts:408</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -452,7 +486,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:446</li>
+									<li>Defined in index.ts:511</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -483,7 +517,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:468</li>
+									<li>Defined in index.ts:533</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -520,7 +554,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:479</li>
+									<li>Defined in index.ts:544</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -548,7 +582,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:307</li>
+									<li>Defined in index.ts:374</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -570,7 +604,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:236</li>
+									<li>Defined in index.ts:305</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -592,6 +626,37 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="addchapter" class="tsd-anchor"></a>
+					<h3>add<wbr>Chapter</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Chapter<span class="tsd-signature-symbol">(</span>chapter<span class="tsd-signature-symbol">: </span><a href="../interfaces/chapters.html" class="tsd-signature-type">Chapters</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in index.ts:222</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Add a chapter as new file</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chapter: <a href="../interfaces/chapters.html" class="tsd-signature-type">Chapters</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>chapter object</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="addcss" class="tsd-anchor"></a>
 					<h3>add<wbr>Css</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -601,7 +666,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:200</li>
+									<li>Defined in index.ts:269</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -626,19 +691,23 @@
 					<a name="addsections" class="tsd-anchor"></a>
 					<h3>add<wbr>Sections</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Sections<span class="tsd-signature-symbol">(</span>epubSections<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Sections<span class="tsd-signature-symbol">(</span>epubSections<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:189</li>
+									<li>Defined in index.ts:251</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Add content as section and structures</p>
+									<p>Add content as section and structures.
+										Section is a portion of chapter contents.
+									You can add more section for a chapter.</p>
 								</div>
+								<p>epubCreator.addSection(mysectioncontent, &quot;chapter01&quot;);
+								epubCreator.addSection(myothersection, &quot;chapter01&quot;);</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -648,8 +717,14 @@
 										<p>epub section object</p>
 									</div>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> name: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;ebook-content&quot;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>chapter name</p>
+									</div>
+								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -657,13 +732,13 @@
 					<a name="asarraybuffer" class="tsd-anchor"></a>
 					<h3>as<wbr>Array<wbr>Buffer</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">as<wbr>Array<wbr>Buffer<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">as<wbr>Array<wbr>Buffer<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:556</li>
+									<li>Defined in index.ts:621</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -672,7 +747,7 @@
 									usefull to pass as file to epub reader</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -680,13 +755,13 @@
 					<a name="asbase64" class="tsd-anchor"></a>
 					<h3>as<wbr>Base64</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">as<wbr>Base64<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">as<wbr>Base64<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:579</li>
+									<li>Defined in index.ts:644</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -695,7 +770,7 @@
 									this is the most compatible way and to pass data as blob Url</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -709,7 +784,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:290</li>
+									<li>Defined in index.ts:357</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -725,13 +800,13 @@
 					<a name="bloburl" class="tsd-anchor"></a>
 					<h3>blob<wbr>Url</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">blob<wbr>Url<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">blob<wbr>Url<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:526</li>
+									<li>Defined in index.ts:591</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -741,7 +816,29 @@
 									reader without saving it to file</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="chapterall" class="tsd-anchor"></a>
+					<h3>chapter<wbr>All</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">chapter<wbr>All<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in index.ts:211</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Add all content&#39;s chapters</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -755,7 +852,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:134</li>
+									<li>Defined in index.ts:142</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -771,13 +868,13 @@
 					<a name="content" class="tsd-anchor"></a>
 					<h3>content</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">content<span class="tsd-signature-symbol">(</span>content<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">content<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, content<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:172</li>
+									<li>Defined in index.ts:180</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -787,6 +884,12 @@
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>filename</p>
+									</div>
+								</li>
 								<li>
 									<h5>content: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
@@ -802,16 +905,21 @@
 					<a name="cover" class="tsd-anchor"></a>
 					<h3>cover</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">cover<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">cover<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:178</li>
+									<li>Defined in index.ts:192</li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Add a cover page by default if exist properties.cover.file</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -819,13 +927,13 @@
 					<a name="download" class="tsd-anchor"></a>
 					<h3>download</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">download<span class="tsd-signature-symbol">(</span>fileName<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">download<span class="tsd-signature-symbol">(</span>fileName<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:606</li>
+									<li>Defined in index.ts:671</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -839,7 +947,7 @@
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> fileName: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -853,7 +961,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:125</li>
+									<li>Defined in index.ts:133</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -875,7 +983,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:152</li>
+									<li>Defined in index.ts:160</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -897,7 +1005,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:161</li>
+									<li>Defined in index.ts:169</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -919,7 +1027,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:143</li>
+									<li>Defined in index.ts:151</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -941,7 +1049,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:87</li>
+									<li>Defined in index.ts:93</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -957,26 +1065,26 @@
 					<a name="template" class="tsd-anchor"></a>
 					<h3>template</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">template<span class="tsd-signature-symbol">(</span>models<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">template<span class="tsd-signature-symbol">(</span>model<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.ts:118</li>
+									<li>Defined in index.ts:124</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Set specific template for epub creation,
-									default epub3</p>
+									<p>Set specific template for epub creation.
+									Available: epub3 (default), epub3html, epub2</p>
 								</div>
 								<p>More template can be available in future</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> models: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;epub3&quot;</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> model: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;epub3&quot;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>template model</p>
 									</div>
@@ -995,7 +1103,7 @@
 					<div class="tsd-signature tsd-kind-icon">navigation<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in index.ts:59</li>
+							<li>Defined in index.ts:57</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1014,7 +1122,7 @@
 						<div class="tsd-signature tsd-kind-icon">landmarks<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in index.ts:61</li>
+								<li>Defined in index.ts:59</li>
 							</ul>
 						</aside>
 					</section>
@@ -1024,7 +1132,7 @@
 						<div class="tsd-signature tsd-kind-icon">toc<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in index.ts:60</li>
+								<li>Defined in index.ts:58</li>
 							</ul>
 						</aside>
 					</section>
@@ -1045,6 +1153,9 @@
 						<a href="epub2template.html" class="tsd-kind-icon">Epub2<wbr>Template</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="epub3htmltemplate.html" class="tsd-kind-icon">Epub3<wbr>Html<wbr>Template</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="epub3template.html" class="tsd-kind-icon">Epub3<wbr>Template</a>
 					</li>
 				</ul>
@@ -1057,6 +1168,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="epubcreator.html#assets" class="tsd-kind-icon">assets</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="epubcreator.html#chapters" class="tsd-kind-icon">chapters</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="epubcreator.html#css" class="tsd-kind-icon">css</a>
@@ -1072,6 +1186,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="epubcreator.html#properties" class="tsd-kind-icon">properties</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="epubcreator.html#templatemodel" class="tsd-kind-icon">template<wbr>Model</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="epubcreator.html#utils" class="tsd-kind-icon">utils</a>
@@ -1104,6 +1221,9 @@
 								<a href="epubcreator.html#addasset" class="tsd-kind-icon">add<wbr>Asset</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="epubcreator.html#addchapter" class="tsd-kind-icon">add<wbr>Chapter</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="epubcreator.html#addcss" class="tsd-kind-icon">add<wbr>Css</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -1120,6 +1240,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="epubcreator.html#bloburl" class="tsd-kind-icon">blob<wbr>Url</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="epubcreator.html#chapterall" class="tsd-kind-icon">chapter<wbr>All</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="epubcreator.html#container" class="tsd-kind-icon">container</a>
@@ -1172,6 +1295,9 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/baseinfo.html" class="tsd-kind-icon">Base<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/chapters.html" class="tsd-kind-icon">Chapters</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/cssdef.html" class="tsd-kind-icon">Css<wbr>Def</a>
