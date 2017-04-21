@@ -291,16 +291,26 @@ Note: id params is not mandatory, if not preset epubcreator assing a random id t
 In epub all assets (image, audio) must be included in epub and declared in definition file. 
 
 
-### Add asset as base64 data
+### Add asset with inline content as base64 data
+	epubCreator.addAsset({ 
+				content: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAgE-THIS IS JUST AN EXAMPLE IS NOT A BASE64 VALID IMAGE- 8eIpiq7FX//2Q==",
+				mediaType:"image/jpeg",
+				name:"myimage.jpg",
+				base64: true,
+				id:"image0"
+	});
+`Id` params is optional.
+
+
+### Add asset with inline content
 	epubCreator.addAsset({ 
 				content: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAgE-THIS IS JUST AN EXAMPLE IS NOT A BASE64 VALID IMAGE- 8eIpiq7FX//2Q==",
 				mediaType:"image/jpeg",
 				name:"myimage.jpg",
 				id:"image0"
 	});
-`Id` params is optional.
 
-### Add asset with path
+### Add asset from file path
 	epubCreator.addAsset({ 
 					path: "./demo/image0.jpg",
 					mediaType:"image/jpeg",

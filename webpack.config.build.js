@@ -1,7 +1,7 @@
-var TypedocWebpackPlugin = require('typedoc-webpack-plugin'),
-    webpack = require('webpack'),
-    yargs = require('yargs'),
-    path = require('path');
+let TypedocWebpackPlugin = require('typedoc-webpack-plugin');
+let webpack = require('webpack');
+let argv = require('yargs').argv;
+let path = require('path');
 
 
 function VersionPlugin(options) {
@@ -10,15 +10,15 @@ function VersionPlugin(options) {
 VersionPlugin.prototype.apply = function (compiler) {
     compiler.plugin('done', function () {
 
-        var fs = require('fs');
-        var pkg = require('./package.json');
-        var version = pkg.version.split('.');
-        var last = version.length - 1;
-        var newVersion = '';
+        let fs = require('fs');
+        let pkg = require('./package.json');
+        let version = pkg.version.split('.');
+        let last = version.length - 1;
+        let newVersion = '';
 
         version[last] = parseInt(version[last]) + 1;
 
-        for (var i = 0; i < version.length; i++) {
+        for (let i = 0; i < version.length; i++) {
             newVersion += version[i];
             if (i != version.length - 1) {
                 newVersion += '.';
@@ -34,11 +34,11 @@ VersionPlugin.prototype.apply = function (compiler) {
 module.exports = VersionPlugin;
 
 
-var libraryName = 'epub-creator',
+let libraryName = 'epubCreator',
     plugins = [],
     outputFile;
 
-if (yargs.argv.p) {
+if (argv.p) {
     plugins.push(new webpack.optimize.UglifyJsPlugin({
         include: /\.min\.js$/,
         minimize: true,
@@ -53,7 +53,7 @@ if (yargs.argv.p) {
     outputFile = libraryName + '.js';
 }
 
-if (yargs.argv.d) {
+if (argv.d) {
     plugins.push(new TypedocWebpackPlugin({
             name: libraryName,
             mode: 'file',
@@ -68,7 +68,7 @@ if (yargs.argv.d) {
 plugins.push(new VersionPlugin({options: true}));
 
 
-var config = {
+let config = {
     entry: {
         "epub-creator": __dirname + '/src/index.ts',
         "epub-creator.min": __dirname + '/src/index.ts',

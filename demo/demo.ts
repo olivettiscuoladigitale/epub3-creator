@@ -1,6 +1,7 @@
 import {EpubCreator} from "../src/index";
 
-let epub = require("../node_modules/epubjs/build/epub.min");
+ let epub = require("../node_modules/epubjs/build/epub.min");
+
 
 
 class Demo {
@@ -22,8 +23,10 @@ class Demo {
 
         // load epub
         document.getElementById("showepub").addEventListener("click", () => {
-            let e = <HTMLSelectElement>document.getElementById("template");
-            let template: string = e.options[e.selectedIndex].value;
+            let e = <HTMLSelectElement> document.getElementById("template");
+            let t: any =  e.options[e.selectedIndex];
+            let template: string = t.value;
+
             console.log("TEMPLATE SELECTED: ", template);
             this.generate(template);
         });

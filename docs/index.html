@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>epub-creator</title>
+	<title>epubCreator</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">epub-creator</a>
+					<a href="index.html" class="title">epubCreator</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -54,7 +54,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> epub-creator</h1>
+			<h1> epubCreator</h1>
 		</div>
 	</div>
 </header>
@@ -275,15 +275,23 @@ content:<span class="hljs-built_in"> array/string </span> -&gt; the content insi
 </code></pre><p>Note: id params is not mandatory, if not preset epubcreator assing a random id to section. Only item that contain <code>navLabel</code> properties are elegible for navigation.</p>
 				<h2 id="add-assets">Add Assets</h2>
 				<p>In epub all assets (image, audio) must be included in epub and declared in definition file. </p>
-				<h3 id="add-asset-as-base64-data">Add asset as base64 data</h3>
+				<h3 id="add-asset-with-inline-content-as-base64-data">Add asset with inline content as base64 data</h3>
+				<pre><code><span class="hljs-selector-tag">epubCreator</span><span class="hljs-selector-class">.addAsset</span>({
+            <span class="hljs-attribute">content</span>: <span class="hljs-string">"data:image/jpeg;base64,/9j/4AAQSkZJRgABAgE-THIS IS JUST AN EXAMPLE IS NOT A BASE64 VALID IMAGE- 8eIpiq7FX//2Q=="</span>,
+            mediaType:<span class="hljs-string">"image/jpeg"</span>,
+            name:<span class="hljs-string">"myimage.jpg"</span>,
+            base64: true,
+            id:<span class="hljs-string">"image0"</span>
+});
+</code></pre><p><code>Id</code> params is optional.</p>
+				<h3 id="add-asset-with-inline-content">Add asset with inline content</h3>
 				<pre><code><span class="hljs-selector-tag">epubCreator</span><span class="hljs-selector-class">.addAsset</span>({
             <span class="hljs-attribute">content</span>: <span class="hljs-string">"data:image/jpeg;base64,/9j/4AAQSkZJRgABAgE-THIS IS JUST AN EXAMPLE IS NOT A BASE64 VALID IMAGE- 8eIpiq7FX//2Q=="</span>,
             mediaType:<span class="hljs-string">"image/jpeg"</span>,
             name:<span class="hljs-string">"myimage.jpg"</span>,
             id:<span class="hljs-string">"image0"</span>
 });
-</code></pre><p><code>Id</code> params is optional.</p>
-				<h3 id="add-asset-with-path">Add asset with path</h3>
+</code></pre><h3 id="add-asset-from-file-path">Add asset from file path</h3>
 				<pre><code><span class="hljs-selector-tag">epubCreator</span><span class="hljs-selector-class">.addAsset</span>({
                 <span class="hljs-attribute">path</span>: <span class="hljs-string">"./demo/image0.jpg"</span>,
                 mediaType:<span class="hljs-string">"image/jpeg"</span>,
@@ -442,12 +450,6 @@ epubCreator.addCss({
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/nav.html" class="tsd-kind-icon">Nav</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="globals.html#jsziputils" class="tsd-kind-icon">JSZip<wbr>Utils</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="globals.html#require" class="tsd-kind-icon">require</a>
 					</li>
 				</ul>
 			</nav>
