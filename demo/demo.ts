@@ -1,8 +1,6 @@
 import {EpubCreator} from "../src/index";
 
- let epub = require("../node_modules/epubjs/build/epub.min");
-
-
+let epub = require("../node_modules/epubjs/build/epub");
 
 class Demo {
 
@@ -24,7 +22,7 @@ class Demo {
         // load epub
         document.getElementById("showepub").addEventListener("click", () => {
             let e = <HTMLSelectElement> document.getElementById("template");
-            let t: any =  e.options[e.selectedIndex];
+            let t: any = e.options[e.selectedIndex];
             let template: string = t.value;
 
             console.log("TEMPLATE SELECTED: ", template);
@@ -35,7 +33,7 @@ class Demo {
 
     getDefaultProperties(): any {
         this.epubCreator.properties.title = "Alfabook book title";
-        this.epubCreator.properties.cover.file = "./demo/cover.jpg";
+        this.epubCreator.properties.cover.file = "/demo/cover.jpg";
 
         return this.epubCreator.properties;
     }
@@ -162,7 +160,12 @@ class Demo {
 
         if (this.Book) {
             console.log("book destroyed");
-            this.Book.destroy();
+
+            try {
+                this.Book.destroy();
+            }catch(e) {
+                console.log(e);
+            }
             this.Book = "";
         }
 

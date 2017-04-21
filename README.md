@@ -25,6 +25,7 @@ Epub-creator is still in beta.
 
 Create a epub in a quick and drity way:
 
+    // ts
 	let epubCreator = new EpubCreator(); // init class
 	epubCreator.properties.title = "Alfabook book title"; //set title property
 	epubCreator.addSections([
@@ -34,6 +35,22 @@ Create a epub in a quick and drity way:
 										"content": "Hi this is an epub3"
 									}
 							   ]);
+	 epubCreator.download();
+	 
+	 
+	
+	// es6
+	let epc = new epubCreator.EpubCreator();		
+	epc.properties.title = "Alfabook book title"; //set title property
+    epc.addSections([
+                       				{
+                       					tag: "section", 
+                       					name: "bodymatter", 
+                       					"content": "Hi this is an epub3"
+                       				}
+                       			]);
+    epc.download();
+							  
 
 
 ## Make epub great again -> epub.properties
@@ -362,14 +379,17 @@ Create epub on the fly and read it with your favourite reader. there are some me
 
 
 
-			var epubCreator = new EpubCreator();
+			
 			...
 			// es6
-			epubCreator.asArrayBuffer().then( 
+			let epc = new epubCreator.EpubCreator();
+			epc.asArrayBuffer().then( 
 			(content) => console.log(content), 
 			(err) => console.log(err));
+			
 			// es5
-			epubCreator.asArrayBuffer().then( 
+			var epc = new epubCreator.EpubCreator();
+			epc.asArrayBuffer().then( 
 			function (content) { 
 				// this is the blob url content, send it to your epub reader
 				console.log(content) ;

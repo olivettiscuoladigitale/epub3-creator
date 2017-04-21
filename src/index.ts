@@ -1,19 +1,17 @@
-// declare const require: any;
 
+import * as FileSaver from "file-saver";
 import * as JSZip from "jszip";
 import * as JSZipUtils from "jszip-utils";
-import * as FileSaver from "file-saver";
 
-import {Utils} from "./utils";
-import {TemplateParser} from "./template-parser";
-import {FileContent} from "./interfaces/file-content";
-import {BaseInfo} from "./interfaces/base-info";
-import {FileInfo} from "./interfaces/file-info";
-import {CssDef} from "./interfaces/css-def";
-import {Nav} from "./interfaces/nav";
 import {Assets} from "./interfaces/assets";
+import {BaseInfo} from "./interfaces/base-info";
 import {Chapters} from "./interfaces/chapters";
-
+import {CssDef} from "./interfaces/css-def";
+import {FileContent} from "./interfaces/file-content";
+import {FileInfo} from "./interfaces/file-info";
+import {Nav} from "./interfaces/nav";
+import {TemplateParser} from "./template-parser";
+import {Utils} from "./utils";
 
 /**
  * Create a Epub Compliant Idpf book

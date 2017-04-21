@@ -1,8 +1,7 @@
-let TypedocWebpackPlugin = require('typedoc-webpack-plugin');
-let webpack = require('webpack');
-let argv = require('yargs').argv;
-let path = require('path');
-
+const path = require('path');
+const webpack = require('webpack');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const TypedocWebpackPlugin = require('typedoc-webpack-plugin');
 
 function VersionPlugin(options) {
 }
@@ -20,7 +19,7 @@ VersionPlugin.prototype.apply = function (compiler) {
 
         for (let i = 0; i < version.length; i++) {
             newVersion += version[i];
-            if (i != version.length - 1) {
+            if (i !== version.length - 1) {
                 newVersion += '.';
             }
         }
@@ -34,74 +33,74 @@ VersionPlugin.prototype.apply = function (compiler) {
 module.exports = VersionPlugin;
 
 
-let libraryName = 'epubCreator',
-    plugins = [],
-    outputFile;
-
-if (argv.p) {
-    plugins.push(new webpack.optimize.UglifyJsPlugin({
-        include: /\.min\.js$/,
-        minimize: true,
-        compress: {
-            warnings: false,
-            unused: false,
-            booleans: false
-        }
-    }));
-    outputFile = libraryName + '.min.js';
-} else {
-    outputFile = libraryName + '.js';
-}
-
-if (argv.d) {
-    plugins.push(new TypedocWebpackPlugin({
-            name: libraryName,
+module.exports = {
+    target: "web",
+    context: path.resolve(__dirname, './src'),
+    devtool: 'source-map',
+    entry: {
+        "epub-creator": "index.ts",
+        "epub-creator.min": "index.ts",
+    },
+    output: {
+        path: path.resolve(__dirname, "./dist"), // string
+        filename: "[name].js", // for multiple entry points
+        library: "epc",
+        libraryTarget: "umd"
+    },
+    plugins: [
+        new UglifyJSPlugin({
+            include: /\.min\.js$/,
+            minimize: true,
+            compress: {
+                warnings: false,
+                unused: false,
+                booleans: false
+            }
+        }),
+        new VersionPlugin({options: true}),
+        new TypedocWebpackPlugin({
+            name: "Epub-Creator",
             mode: 'file',
             //   theme: './typedoc-theme/',
             includeDeclarations: false,
             ignoreCompilerErrors: true,
         }, './src')
-    );
 
-}
+    ],
 
-plugins.push(new VersionPlugin({options: true}));
-
-
-let config = {
-    entry: {
-        "epub-creator": __dirname + '/src/index.ts',
-        "epub-creator.min": __dirname + '/src/index.ts',
-    },
-    devtool: 'source-map',
-    output: {
-        filename: './dist/[name].js',
-        library: libraryName,
-        libraryTarget: 'umd',
-        umdNamedDefine: true,
-        verbose: false
-    },
     module: {
-        preLoaders: [
-            {test: /\.tsx?$/, loader: 'tslint', exclude: /node_modules/}
-        ],
-        loaders: [
-            {test: /\.tsx?$/, loader: 'ts', exclude: /node_modules/}
+        rules: [
+            {
+                test: /\.ts$/,
+                enforce: 'pre',
+                loader: 'tslint-loader',
+                options: {
+                    emitErrors: true,
+                    failOnHint: true,
+                    typeCheck: false,
+                }
+            },
+            {
+                test: /\.tsx?$/,
+                loader: 'ts-loader?',
+                exclude: [
+                    path.resolve(__dirname, "/node_modules/")
+                ]
+            }
         ]
+
     },
     resolve: {
-        root: path.resolve('./src'),
-        extensions: ['', '.webpack.js', '.web.js', '.js', '.ts', '.jsx', '.tsx']
+        modules: [
+            "node_modules",
+            path.resolve(__dirname, "src")
+        ],
+        extensions: ['.webpack.js', '.web.js', '.js', '.ts', '.jsx', '.tsx']
     },
-    plugins: plugins,
-
-    // Individual Plugin Options
-    tslint: {
-        emitErrors: true,
-        failOnHint: true
+    performance: {
+        hints: "warning",
+        maxAssetSize: 200000,
+        maxEntrypointSize: 400000
     }
+
 };
-
-module.exports = config;
-
-

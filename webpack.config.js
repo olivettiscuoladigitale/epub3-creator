@@ -1,31 +1,75 @@
-var webpack = require('webpack');
-var OpenBrowserPlugin = require('open-browser-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
+
 
 module.exports = {
-    entry:'./demo/demo.ts',
+    target: "web",
+    context: path.resolve(__dirname),
+    devtool: 'inline-source-map',
+    entry: {
+        demo: path.resolve(__dirname, "./demo/demo.ts")
+    },
     output: {
-        publicPath: '/',
-        filename: './dist/epub-creator.js'
+        filename: "[name].[hash].js"
     },
-    devtool: 'source-map',
-    resolve: {
-        extensions: ['', "*", '.webpack.js', '.web.js', '.ts', '.js']
-    },
-    plugins: [
-        new OpenBrowserPlugin({ url: 'http://localhost:8080' })
-      //   new webpack.optimize.UglifyJsPlugin()
-    ],
-    tslint: {
-        emitErrors: true,
-        failOnHint: true
+    devServer: {
+        contentBase: path.join(__dirname, '/'), // boolean | string | array, static file location
+        compress: true, // enable gzip compression
+        hot: true, // hot module replacement. Depends on HotModuleReplacementPlugin
+        port: 8000
     },
     module: {
-        preLoaders: [
-            { test: /\.tsx?$/, loader: 'tslint', exclude: /node_modules/ }
-        ],
-        loaders: [
-            { test: /\.ts$/, loader: 'ts' },
-            { test: /\*/, loader: 'url' },
+        rules: [
+            {
+                test: /\.ts$/,
+                enforce: 'pre',
+                loader: 'tslint-loader',
+                options: {
+                    emitErrors: true,
+                    failOnHint: true,
+                    typeCheck: false,
+                }
+            },
+            {
+                enforce: 'pre',
+                test: /\.tsx?$/,
+                use: "source-map-loader"
+            },
+            {
+                enforce: 'pre',
+                test: /\.js$/,
+                loader: "source-map-loader"
+            },
+            {
+                test: /\.ts?$/,
+                loader: 'ts-loader?',
+                exclude: [
+                    path.resolve(__dirname, "/node_modules/")
+                ]
+            },
+            {test: /\*/, loader: 'url'},
         ]
+
+    },
+    plugins: [
+        new webpack.IgnorePlugin(/vertx/),
+        function () {
+            this.plugin("done", function (stats) {
+                require("fs").writeFileSync(
+                    path.join(__dirname, "./demo", "stats.js"),
+                    "var wpManifest = '" + JSON.stringify(stats.toJson().assetsByChunkName) + "'");
+            });
+        },
+        new OpenBrowserPlugin({url: 'http://localhost:8000/demo'}),
+
+    ],
+    resolve: {
+        modules: [
+            "node_modules",
+            path.resolve(__dirname)
+        ],
+        extensions: ['*', '.webpack.js', '.web.js', '.ts', '.js']
     }
+
 };

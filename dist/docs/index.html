@@ -1,0 +1,543 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Epub-Creator</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">Epub-Creator</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> Epub-Creator</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<p><img src="http://www.alfabook.it/wp-content/uploads/2013/03/logo-alfabook2.png" alt=""></p>
+				<h1 id="epub-creator">EPUB-CREATOR</h1>
+				<p>A simple class writed in Typescript (and transpiled in es5) that help you to create epub from source text/html.
+				It work on client browser or server side nodejs.</p>
+				<h1 id="note">Note</h1>
+				<p>This project is very much still a work in progress.
+				Epub-creator is still in beta.</p>
+				<h2 id="install">Install</h2>
+				<p><strong><em>npm</em></strong></p>
+				<pre><code>npm <span class="hljs-keyword">install</span> <span class="hljs-comment">--save epub-creator</span>
+</code></pre><p><strong><em>bower</em></strong></p>
+				<pre><code><span class="hljs-keyword">bower </span><span class="hljs-keyword">install </span>--save epub-creator
+</code></pre><h2 id="quick-and-dirty">Quick and dirty</h2>
+				<p>Create a epub in a quick and drity way:</p>
+				<pre><code><span class="hljs-comment">// ts</span>
+<span class="hljs-keyword">let</span> epubCreator = <span class="hljs-keyword">new</span> EpubCreator(); <span class="hljs-comment">// init class</span>
+epubCreator.properties.<span class="hljs-built_in">title</span> = <span class="hljs-string">"Alfabook book title"</span>; <span class="hljs-comment">//set title property</span>
+epubCreator.addSections([
+                                {
+                                    tag: <span class="hljs-string">"section"</span>, 
+                                    name: <span class="hljs-string">"bodymatter"</span>, 
+                                    <span class="hljs-string">"content"</span>: <span class="hljs-string">"Hi this is an epub3"</span>
+                                }
+                           ]);
+ epubCreator.download();
+
+
+
+<span class="hljs-comment">// es6</span>
+<span class="hljs-keyword">let</span> epc = <span class="hljs-keyword">new</span> epubCreator.EpubCreator();        
+epc.properties.<span class="hljs-built_in">title</span> = <span class="hljs-string">"Alfabook book title"</span>; <span class="hljs-comment">//set title property</span>
+epc.addSections([
+                                   {
+                                       tag: <span class="hljs-string">"section"</span>, 
+                                       name: <span class="hljs-string">"bodymatter"</span>, 
+                                       <span class="hljs-string">"content"</span>: <span class="hljs-string">"Hi this is an epub3"</span>
+                                   }
+                               ]);
+epc.download();
+</code></pre><h2 id="make-epub-great-again-epub-properties">Make epub great again -&gt; epub.properties</h2>
+				<p>You can create epub with more options and configure it with properties object. Take a look in te example &quot;quick and dirty&quot; at line 2: </p>
+				<pre><code>epubCreator.properties.title = <span class="hljs-string">"Alfabook book title"</span>; //set title <span class="hljs-keyword">property</span><span class="hljs-title"></span>
+</code></pre><p>Epubcreator expose a public <code>properties object</code> that you can set:</p>
+				<p>This is the default settings for properties object: </p>
+				<pre><code>        {
+<span class="hljs-symbol">                uuid:</span> <span class="hljs-string">"github.com/bbottema/js-epub-maker::it-came-from::example-using-idpf-wasteland"</span>,
+<span class="hljs-symbol">                author:</span> <span class="hljs-string">"Alfabook"</span>,
+<span class="hljs-symbol">                language:</span> <span class="hljs-string">"it-IT"</span>,
+<span class="hljs-symbol">                modificationDate:</span> new Date().toString(),
+<span class="hljs-symbol">                rights:</span> {
+<span class="hljs-symbol">                    description:</span> <span class="hljs-string">"This work is shared with the public using the Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0) license."</span>,
+<span class="hljs-symbol">                    license:</span> <span class="hljs-string">"http://creativecommons.org/licenses/by-sa/3.0/"</span>
+                },
+<span class="hljs-symbol">                attributionUrl:</span> <span class="hljs-string">"https://www.alfabook.it"</span>,
+<span class="hljs-symbol">                cover:</span> {
+<span class="hljs-symbol">                    file:</span> <span class="hljs-string">""</span>,
+<span class="hljs-symbol">                    license:</span> <span class="hljs-string">"http://creativecommons.org/licenses/by-sa/3.0/"</span>,
+<span class="hljs-symbol">                    mediaType:</span> <span class="hljs-string">"image/jpeg"</span>,
+<span class="hljs-symbol">                    attributionUrl:</span> <span class="hljs-string">"https://www.alfabook.it"</span>,
+<span class="hljs-symbol">                    inline:</span> <span class="hljs-string">"no"</span>
+                },
+<span class="hljs-symbol">                title:</span> <span class="hljs-string">"Book Title"</span>,
+<span class="hljs-symbol">                publicationDate:</span> new Date().toString()
+            };
+</code></pre><p>Channge it as you needed.</p>
+				<pre><code>    epubCreator.properties.language = <span class="hljs-string">"en-EN"</span><span class="hljs-comment">;</span>
+    epubCretor.properties.author = <span class="hljs-string">"my Favorites author"</span><span class="hljs-comment">;</span>
+</code></pre><h1 id="cover">Cover</h1>
+				<p>Cover is a image that your epub reader display as thumbnail.
+				It&#39;s not mandatory, but make epub cool.  </p>
+				<p>You can found the cover settings inside <code>properties</code> object</p>
+				<pre><code><span class="hljs-symbol">cover:</span> {
+<span class="hljs-symbol">                        file:</span> <span class="hljs-string">""</span>,
+<span class="hljs-symbol">                        license:</span> <span class="hljs-string">"http://creativecommons.org/licenses/by-sa/3.0/"</span>,
+<span class="hljs-symbol">                        mediaType:</span> <span class="hljs-string">"image/jpeg"</span>,
+<span class="hljs-symbol">                        attributionUrl:</span> <span class="hljs-string">"https://www.alfabook.it"</span>
+                    },
+</code></pre><p>If <code>cover.file</code> properties is not specified, no cover is set.  </p>
+				<p>To set a cover we must compile the <code>cover.file</code> settings. We can pass two type of image:  </p>
+				<ul>
+					<li>a string with path of image </li>
+					<li>a base64 image </li>
+				</ul>
+				<h3 id="cover-with-a-string-">Cover with a string:</h3>
+				<pre><code><span class="hljs-symbol">cover:</span> {
+<span class="hljs-symbol">                            file:</span> <span class="hljs-string">"./images/mycover.jpg"</span>,
+<span class="hljs-symbol">                            license:</span> <span class="hljs-string">"http://mysite.com/licence"</span>,
+<span class="hljs-symbol">                            mediaType:</span> <span class="hljs-string">"image/jpeg"</span>,
+<span class="hljs-symbol">                            attributionUrl:</span> <span class="hljs-string">"https://www.thisismyimage.com"</span>
+                        },
+</code></pre><h3 id="cover-with-base64-image-data-">Cover with base64 image data:</h3>
+				<pre><code>cover: {
+                            <span class="hljs-keyword">file</span>: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAgE-THIS IS JUST <span class="hljs-keyword">AN</span> EXAMPLE IS NOT A BASE64 VALID IMAGE- 8eIpiq7FX<span class="hljs-comment">//2Q==,</span>
+                            license: <span class="hljs-string">"http://mysite.com/licence"</span>,
+                            mediaType: <span class="hljs-string">"image/jpeg"</span>,
+                            attributionUrl: <span class="hljs-string">"https://www.thisismyimage.com"</span>
+                        },
+</code></pre><p>[^emphasize]:<br>Don&#39;t forget to set <code>cover.mediaType</code> for image different to jpg. </p>
+				<p>On some example in idpf the cover are jpg image data Width: 398px Height:510px, but large are better (600x800, 1200x783)</p>
+				<h2 id="add-a-custom-css-files">Add a custom css files</h2>
+				<p>Ok, now we have a epub with right properties and a cover, but we need to make it better with custom css!.
+				We can add a css as a string of parameters or linking a file:</p>
+				<h3 id="add-css-with-string-">Add css with string:</h3>
+				<pre><code>    epubCreator.addCss({
+    <span class="hljs-string">"content"</span>: <span class="hljs-string">"@namespace '@charset 'UTF-8'; http://www.w3.org/1999/xhtml'; @namespace epub 'http://www.idpf.org/2007/ops'; body: { margin-left:6em, margin-right:2em}"</span>,
+    <span class="hljs-string">"name"</span>: <span class="hljs-string">"base.css"</span>
+})
+</code></pre><p>Super easy! We have used <code>addCss</code> with a object <code>{content:string, name:string}</code>. </p>
+				<p><code>content</code> has css string parameters and <code>name</code> is the name of file.</p>
+				<h3 id="add-css-with-file-path-">Add css with file path:</h3>
+				<pre><code>epubCreator.<span class="hljs-keyword">addCss({
+</span>          <span class="hljs-string">"path"</span>: <span class="hljs-string">"./demo/day.css"</span>,
+    })
+</code></pre><p>You can set <code>name</code> as optional parameter <code>{path:string, name?:string}</code></p>
+				<p>You can add more than one css as you like:</p>
+				<pre><code>epubCreator.addCss({
+        "<span class="hljs-attribute">content"</span>: "@namespace '@charset 'UTF-8'; <span class="hljs-attribute">http</span>://www<span class="hljs-variable">.w</span>3<span class="hljs-variable">.org</span>/1999/xhtml'; @<span class="hljs-attribute">namespace epub 'http</span>://www<span class="hljs-variable">.idpf</span><span class="hljs-variable">.org</span>/2007/ops'; <span class="hljs-attribute">body</span>: { margin-left:6em, margin-right:2em}",
+        "name": "base<span class="hljs-variable">.css</span>"
+    }) 
+epubCreator<span class="hljs-variable">.addCss</span>({
+          "path": "./demo/day<span class="hljs-variable">.css</span>",
+    })
+</code></pre><h2 id="add-content">Add Content</h2>
+				<p>This is the most important part. EpubCreator help you to insert a valid content but you need to know some Epub3 basic concept:</p>
+				<p>1 - content is organizied by section<br>2 - there are 3 basic section:  </p>
+				<pre><code>        - Front Matter: A section <span class="hljs-keyword">in</span> the beginning <span class="hljs-keyword">of</span> the work
+         - Body Matter: <span class="hljs-comment">'An introductory section that sets the background to a story, typically part of the narrative.     </span>
+        - Back Matter: An ending section.      
+</code></pre><p>3 - this section have some subsection... but this is an other story...<br>4 - the main content of an epub is placed in section bodyMatter.<br>5 - for a better epub we need to study idpf line guide.    </p>
+				<h3 id="add-section-content">Add section content</h3>
+				<p>To add a section we need to call the method <code>addSection</code> and set an array of object with params:</p>
+				<pre><code>{
+tag: string -&gt; what type of section, 90%  = section
+name: string -&gt; name of section ex. bodymatter
+content:<span class="hljs-built_in"> array/string </span> -&gt; the content inside this section, string for display content,<span class="hljs-built_in"> array </span>for neted content
+}
+</code></pre><p>###A simple example</p>
+				<pre><code>epubCreator.addSections([
+                                {
+<span class="hljs-symbol">                                    tag:</span> <span class="hljs-string">"section"</span>, 
+<span class="hljs-symbol">                                    name:</span> <span class="hljs-string">"frontmatter"</span>, 
+                                    <span class="hljs-string">"content"</span>:<span class="hljs-string">"this is the start of my book"</span>
+                                }
+                            ]);
+</code></pre><p><strong><em>What append if inside of my frontmatter i need to add other section?</em></strong>.<br>We can solve this in 2 way
+					1 - autopilot, with nested object
+				2 - manual, with string</p>
+				<h3 id="autopilot-add-nested-object-inside-section-section-of-section-">Autopilot: Add nested object inside section (section of section)</h3>
+				<p>We say above that <code>content</code> properties of section can be a string or array, in the example we have see the use of string, let now explain how use the content as array: </p>
+				<pre><code><span class="hljs-selector-tag">epubCreator</span><span class="hljs-selector-class">.addSections</span>([
+                                {
+                                    <span class="hljs-attribute">tag</span>: <span class="hljs-string">"section"</span>, 
+                                    <span class="hljs-attribute">name</span>: <span class="hljs-string">"frontmatter"</span>, 
+                                    <span class="hljs-string">"content"</span>:[
+                                      {<span class="hljs-attribute">tag</span>: <span class="hljs-string">"section"</span>, <span class="hljs-attribute">name</span>: <span class="hljs-string">"frontmatter"</span>, <span class="hljs-string">"content"</span>: [
+                                                                      {
+                                                                    <span class="hljs-attribute">tag</span>: <span class="hljs-string">"section"</span>,
+                                                                    <span class="hljs-attribute">name</span>: <span class="hljs-string">"epigraph"</span>,
+                                                                    <span class="hljs-attribute">content</span>: <span class="hljs-string">"this is epigraph content "</span>
+                                                                      },
+                                                                    ]
+                                }
+                            ]);
+</code></pre><p>In the example above section frontMatter has inside content an other section called <code>epigraph</code> that has a string content. We can use array of array of array x n. object inside content. </p>
+				<h3 id="add-nested-object-with-inside-html">Add nested object with inside html</h3>
+				<p>What about if we need to add some text/html before epigraph section without a section?<br>We can do it set <code>tag</code> propery as <code>html</code> and leaving name as <code>null</code>:
+				<code>{tag: &quot;html&quot;, content: &quot;&lt;br&gt;this is a content&quot;}</code></p>
+				<pre><code> <span class="hljs-selector-tag">epubCreator</span><span class="hljs-selector-class">.addSections</span>([
+                                    {
+                                        <span class="hljs-attribute">tag</span>: <span class="hljs-string">"section"</span>, 
+                                        <span class="hljs-attribute">name</span>: <span class="hljs-string">"frontmatter"</span>, 
+                                        <span class="hljs-string">"content"</span>:[
+                                          {<span class="hljs-attribute">tag</span>: <span class="hljs-string">"section"</span>, <span class="hljs-attribute">name</span>: <span class="hljs-string">"frontmatter"</span>, <span class="hljs-string">"content"</span>: [    
+                                                            {<span class="hljs-attribute">tag</span>: <span class="hljs-string">"html"</span>, <span class="hljs-attribute">content</span>: <span class="hljs-string">"&lt;br&gt;this is a content"</span>},                                               
+                                                            {
+                                                                        <span class="hljs-attribute">tag</span>: <span class="hljs-string">"section"</span>,
+                                                                        <span class="hljs-attribute">name</span>: <span class="hljs-string">"epigraph"</span>,
+                                                                        <span class="hljs-attribute">content</span>: <span class="hljs-string">"this is epigraph content "</span>
+                                                                          },
+                                                                        ]
+                                    }
+                                ]);
+</code></pre><p>Now we have an example with frontmatter that has 2 section with one that has only html and the other that is an epigraph.</p>
+				<h3 id="section-tag">section Tag</h3>
+				<p>For most content <code>section</code> tag is the best values but we can use a html5 tag:</p>
+				<pre><code><span class="hljs-selector-tag">epubCreator</span><span class="hljs-selector-class">.addSections</span>([
+                                {
+                                    <span class="hljs-attribute">tag</span>: <span class="hljs-string">"section"</span>, 
+                                    <span class="hljs-attribute">name</span>: <span class="hljs-string">"frontmatter"</span>, 
+                                    <span class="hljs-string">"content"</span>:[
+                                      {<span class="hljs-attribute">tag</span>: <span class="hljs-string">"section"</span>, <span class="hljs-attribute">name</span>: <span class="hljs-string">"frontmatter"</span>, <span class="hljs-string">"content"</span>: [
+                                                                      {
+                                                                    <span class="hljs-attribute">tag</span>: <span class="hljs-string">"div"</span>,
+                                                                    <span class="hljs-attribute">name</span>: <span class="hljs-string">"epigraph"</span>,
+                                                                    <span class="hljs-attribute">content</span>: <span class="hljs-string">"this is epigraph content "</span>
+                                                                      },
+                                                                    ]
+                                }
+                            ]);
+</code></pre><p>In this example <code>epigraph</code> is created with tag <code>id</code></p>
+				<h2 id="manual-add-content-as-string">Manual add content as string</h2>
+				<p>We can add content using the nested object only for the main structure. This case is usefull if we have content formatted as epub and we can insert <code>as is</code>:</p>
+				<pre><code> epubCreator.addSections([
+                                        {
+                                            <span class="hljs-keyword">ta</span><span class="hljs-variable">g:</span> <span class="hljs-string">"section"</span>, 
+                                            name: <span class="hljs-string">"frontmatter"</span>, 
+                                            <span class="hljs-string">"content"</span>:<span class="hljs-comment">"</span>
+                                            &lt;section epu<span class="hljs-variable">b:type</span>=<span class="hljs-string">'titlepage'</span> id=<span class="hljs-string">'titlepage'</span>&gt;
+                                            <span class="hljs-symbol">&lt;h1&gt;</span>The Waste Land&lt;/h1&gt; 
+                                            This <span class="hljs-keyword">is</span> html content 
+                                            &lt;div epu<span class="hljs-variable">b:type</span>=<span class="hljs-string">'epigraph'</span>&gt;
+                                            this <span class="hljs-keyword">is</span> epigraph conmtent
+                                            &lt;/section&gt;
+                                            &lt;/section&gt;
+                                            <span class="hljs-comment">"</span>
+                                        }
+</code></pre><h2 id="create-index-navigation">Create index -&gt; navigation</h2>
+				<p>Epubcreator generate a index and pupulate it with items that contain object <code>navLavel</code>.  </p>
+				<pre><code><span class="hljs-selector-tag">epubCreator</span><span class="hljs-selector-class">.addSections</span>([
+     {
+    <span class="hljs-attribute">tag</span>: <span class="hljs-string">"section"</span>, <span class="hljs-attribute">name</span>: <span class="hljs-string">"bodymatter"</span>, <span class="hljs-string">"content"</span>: [
+    {<span class="hljs-attribute">tag</span>: <span class="hljs-string">"section"</span>, <span class="hljs-attribute">id</span>: <span class="hljs-string">"ch1"</span>, <span class="hljs-attribute">navLabel</span>: <span class="hljs-string">"Chapter 1"</span>, <span class="hljs-attribute">content</span>: <span class="hljs-string">"Body content for this section"</span>},
+    {<span class="hljs-attribute">tag</span>: <span class="hljs-string">"section"</span>, <span class="hljs-attribute">id</span>: <span class="hljs-string">"ch2"</span>, <span class="hljs-attribute">navLabel</span>: <span class="hljs-string">"chapter 2"</span>, <span class="hljs-attribute">content</span>: <span class="hljs-string">"Body Content for this other section"</span>}
+                                                ]
+    }
+])
+</code></pre><p>Note: id params is not mandatory, if not preset epubcreator assing a random id to section. Only item that contain <code>navLabel</code> properties are elegible for navigation.</p>
+				<h2 id="add-assets">Add Assets</h2>
+				<p>In epub all assets (image, audio) must be included in epub and declared in definition file. </p>
+				<h3 id="add-asset-with-inline-content-as-base64-data">Add asset with inline content as base64 data</h3>
+				<pre><code><span class="hljs-selector-tag">epubCreator</span><span class="hljs-selector-class">.addAsset</span>({
+            <span class="hljs-attribute">content</span>: <span class="hljs-string">"data:image/jpeg;base64,/9j/4AAQSkZJRgABAgE-THIS IS JUST AN EXAMPLE IS NOT A BASE64 VALID IMAGE- 8eIpiq7FX//2Q=="</span>,
+            mediaType:<span class="hljs-string">"image/jpeg"</span>,
+            name:<span class="hljs-string">"myimage.jpg"</span>,
+            base64: true,
+            id:<span class="hljs-string">"image0"</span>
+});
+</code></pre><p><code>Id</code> params is optional.</p>
+				<h3 id="add-asset-with-inline-content">Add asset with inline content</h3>
+				<pre><code><span class="hljs-selector-tag">epubCreator</span><span class="hljs-selector-class">.addAsset</span>({
+            <span class="hljs-attribute">content</span>: <span class="hljs-string">"data:image/jpeg;base64,/9j/4AAQSkZJRgABAgE-THIS IS JUST AN EXAMPLE IS NOT A BASE64 VALID IMAGE- 8eIpiq7FX//2Q=="</span>,
+            mediaType:<span class="hljs-string">"image/jpeg"</span>,
+            name:<span class="hljs-string">"myimage.jpg"</span>,
+            id:<span class="hljs-string">"image0"</span>
+});
+</code></pre><h3 id="add-asset-from-file-path">Add asset from file path</h3>
+				<pre><code><span class="hljs-selector-tag">epubCreator</span><span class="hljs-selector-class">.addAsset</span>({
+                <span class="hljs-attribute">path</span>: <span class="hljs-string">"./demo/image0.jpg"</span>,
+                mediaType:<span class="hljs-string">"image/jpeg"</span>,
+                name:<span class="hljs-string">"myimage.jpg"</span>,
+                id:<span class="hljs-string">"image0"</span>
+    });
+</code></pre><p><code>name</code> and <code>id</code> params are optionals</p>
+				<h1 id="template">Template</h1>
+				<p>Epub creation is base on template system.<br>We can choose from this template:   </p>
+				<ul>
+					<li>epub3 -&gt; a xhtml standard epub3</li>
+					<li>epub3html -&gt; a html5 epub3 </li>
+					<li>epub2 -&gt; a xhtml epub2 </li>
+				</ul>
+				<p>example:</p>
+				<pre><code> <span class="hljs-keyword">var</span> epubCreator = <span class="hljs-keyword">new</span> <span class="hljs-type">EpubCreator</span>();
+ epubCreator.template(<span class="hljs-string">"epub3html"</span>);
+ .....
+</code></pre><p>Default template is <code>epub3</code>.<br>More template cooming in next version....</p>
+				<h1 id="download-file">Download file</h1>
+				<p>When we are ready to download a file we can call method <code>download</code>.</p>
+				<pre><code>var epubCreator = new EpubCreator()<span class="hljs-comment">;</span>
+    epubCreator.properties.title = <span class="hljs-string">"Alfabook book title"</span><span class="hljs-comment">;</span>
+    epubCreator.properties.cover.file = <span class="hljs-string">"./demo/cover.jpg"</span><span class="hljs-comment">;</span>
+    epubCreator.<span class="hljs-keyword">addSections(...)
+</span>    epubCreator.<span class="hljs-keyword">addCss({
+</span>    <span class="hljs-string">"content"</span>: <span class="hljs-string">"@namespace '@charset 'UTF-8'; http://www.w3.org/1999/xhtml'; @namespace epub 'http://www.idpf.org/2007/ops'; body: { margin-left:6em, margin-right:2em}"</span>,
+    <span class="hljs-string">"name"</span>: <span class="hljs-string">"base.css"</span>
+})<span class="hljs-comment">;</span>
+epubCreator.download()<span class="hljs-comment">; // this is important!!</span>
+</code></pre><p>This method accepts a string params: nameFile, add it for custom name. <code>epubCreator.download(&quot;mybook.epub&quot;);</code></p>
+				<h1 id="get-epub-without-download">Get epub without download</h1>
+				<p>Create epub on the fly and read it with your favourite reader. there are some methods:</p>
+				<ul>
+					<li>blobUrl -&gt; generate a blob url.   </li>
+					<li>asBase64 -&gt; generate a base64 of epub zip. </li>
+					<li>asArrayBuffer -&gt; generate a buffer for on the fly reading. </li>
+				</ul>
+				<pre><code>        ...
+        <span class="hljs-comment">// es6</span>
+        <span class="hljs-keyword">let</span> epc = <span class="hljs-keyword">new</span> epubCreator.EpubCreator();
+        epc.asArrayBuffer().then( 
+        <span class="hljs-function">(<span class="hljs-params">content</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(content), 
+        (err) =&gt; <span class="hljs-built_in">console</span>.log(err));
+
+        <span class="hljs-comment">// es5</span>
+        <span class="hljs-keyword">var</span> epc = <span class="hljs-keyword">new</span> epubCreator.EpubCreator();
+        epc.asArrayBuffer().then( 
+        <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">content</span>) </span>{ 
+            <span class="hljs-comment">// this is the blob url content, send it to your epub reader</span>
+            <span class="hljs-built_in">console</span>.log(content) ;
+        }, 
+        <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err</span>) </span>{ 
+            <span class="hljs-built_in">console</span>.log(err) }
+        );
+</code></pre><h1 id="a-more-complex-example">A more Complex Example</h1>
+				<p>Create a Epub with frontmatter title and content bodymatter with 2 chapter and download it.</p>
+				<pre><code>let content = [
+    {
+<span class="hljs-symbol">        tag:</span> <span class="hljs-string">"section"</span>, <span class="hljs-string">name:</span> <span class="hljs-string">"frontmatter"</span>, <span class="hljs-string">"content"</span>: [
+        {
+<span class="hljs-symbol">            tag:</span> <span class="hljs-string">"section"</span>, <span class="hljs-string">name:</span> <span class="hljs-string">"titlepage"</span>, <span class="hljs-string">"content"</span>: [
+            {<span class="hljs-string">tag:</span> <span class="hljs-string">"html"</span>, <span class="hljs-string">content:</span> <span class="hljs-string">"&lt;h1&gt;My book title Section&lt;/h1&gt;     &lt;div class='aut'&gt;Author&lt;/div&gt;"</span>},
+            {
+<span class="hljs-symbol">                tag:</span> <span class="hljs-string">"div"</span>,
+<span class="hljs-symbol">                name:</span> <span class="hljs-string">"epigraph"</span>,
+<span class="hljs-symbol">                content:</span> <span class="hljs-string">"&lt;span xml:lang=\"la\"&gt;\"Nam Sibyllam quidem Cumis ego ipse oculismeis&lt;br /&gt;vidi in ampulla pendere, et cum illi pueri dicerent&lt;/span&gt;: &lt;br /&gt; "</span>
+            },
+        ]
+        }
+    ]
+    },
+    {
+<span class="hljs-symbol">        tag:</span> <span class="hljs-string">"section"</span>, <span class="hljs-string">name:</span> <span class="hljs-string">"bodymatter"</span>, <span class="hljs-string">"content"</span>: [
+        {<span class="hljs-string">tag:</span> <span class="hljs-string">"section"</span>, <span class="hljs-string">id:</span> <span class="hljs-string">"ch1"</span>, <span class="hljs-string">navLabel:</span> <span class="hljs-string">"Chapter 1"</span>, <span class="hljs-string">content:</span> <span class="hljs-string">"sono il contenuto del body"</span>},
+        {<span class="hljs-string">tag:</span> <span class="hljs-string">"section"</span>, <span class="hljs-string">id:</span> <span class="hljs-string">"ch2"</span>, <span class="hljs-string">navLabel:</span> <span class="hljs-string">"Chapter 2"</span>, <span class="hljs-string">content:</span> <span class="hljs-string">"sono il secondo capitolo"</span>}
+    ]
+    }
+];
+
+
+let epubCreator = <span class="hljs-keyword">new</span> EpubCreator();
+
+epubCreator.template(<span class="hljs-string">"epub3"</span>);
+epubCreator.properties.title = <span class="hljs-string">"Alfabook book title"</span>;
+epubCreator.properties.cover.file = <span class="hljs-string">"./demo/cover.jpg"</span>;
+epubCreator.addSections(content);
+epubCreator.addCss({
+    <span class="hljs-string">"content"</span>: <span class="hljs-string">"@namespace '@charset 'UTF-8'; http://www.w3.org/1999/xhtml'; @namespace epub 'http://www.idpf.org/2007/ops'; body: { margin-left:6em, margin-right:2em}"</span>,
+    <span class="hljs-string">"name"</span>: <span class="hljs-string">"base.css"</span>
+});
+
+ epubCreator.download();
+</code></pre><h2 id="development">Development</h2>
+				<p>Clone this repo and <code>npm install</code>.
+					<code>npn start</code> -&gt; change code and restart with webpack
+				<code>npm run build</code> -&gt; create dist in ./dist folder</p>
+				<p><code>./src</code> contain source code.</p>
+				<h1 id="todo">TODO</h1>
+				<ul>
+					<li>add more template</li>
+					<li>add more option</li>
+					<li>make more simple</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="classes/epub2template.html" class="tsd-kind-icon">Epub2<wbr>Template</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/epub3htmltemplate.html" class="tsd-kind-icon">Epub3<wbr>Html<wbr>Template</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/epub3template.html" class="tsd-kind-icon">Epub3<wbr>Template</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/epubcreator.html" class="tsd-kind-icon">Epub<wbr>Creator</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/statictemplate.html" class="tsd-kind-icon">Static<wbr>Template</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/templateparser.html" class="tsd-kind-icon">Template<wbr>Parser</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/utils.html" class="tsd-kind-icon">Utils</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/assets.html" class="tsd-kind-icon">Assets</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/baseinfo.html" class="tsd-kind-icon">Base<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/chapters.html" class="tsd-kind-icon">Chapters</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/cssdef.html" class="tsd-kind-icon">Css<wbr>Def</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/epubtp.html" class="tsd-kind-icon">Epub<wbr>Tp</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/filecontent.html" class="tsd-kind-icon">File<wbr>Content</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/fileinfo.html" class="tsd-kind-icon">File<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/nav.html" class="tsd-kind-icon">Nav</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

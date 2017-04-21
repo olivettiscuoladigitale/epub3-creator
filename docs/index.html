@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>epubCreator</title>
+	<title>epc</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">epubCreator</a>
+					<a href="index.html" class="title">epc</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -54,7 +54,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> epubCreator</h1>
+			<h1> epc</h1>
 		</div>
 	</div>
 </header>
@@ -76,7 +76,8 @@
 				<pre><code><span class="hljs-keyword">bower </span><span class="hljs-keyword">install </span>--save epub-creator
 </code></pre><h2 id="quick-and-dirty">Quick and dirty</h2>
 				<p>Create a epub in a quick and drity way:</p>
-				<pre><code><span class="hljs-keyword">let</span> epubCreator = <span class="hljs-keyword">new</span> EpubCreator(); <span class="hljs-comment">// init class</span>
+				<pre><code><span class="hljs-comment">// ts</span>
+<span class="hljs-keyword">let</span> epubCreator = <span class="hljs-keyword">new</span> EpubCreator(); <span class="hljs-comment">// init class</span>
 epubCreator.properties.<span class="hljs-built_in">title</span> = <span class="hljs-string">"Alfabook book title"</span>; <span class="hljs-comment">//set title property</span>
 epubCreator.addSections([
                                 {
@@ -85,6 +86,21 @@ epubCreator.addSections([
                                     <span class="hljs-string">"content"</span>: <span class="hljs-string">"Hi this is an epub3"</span>
                                 }
                            ]);
+ epubCreator.download();
+
+
+
+<span class="hljs-comment">// es6</span>
+<span class="hljs-keyword">let</span> epc = <span class="hljs-keyword">new</span> epubCreator.EpubCreator();        
+epc.properties.<span class="hljs-built_in">title</span> = <span class="hljs-string">"Alfabook book title"</span>; <span class="hljs-comment">//set title property</span>
+epc.addSections([
+                                   {
+                                       tag: <span class="hljs-string">"section"</span>, 
+                                       name: <span class="hljs-string">"bodymatter"</span>, 
+                                       <span class="hljs-string">"content"</span>: <span class="hljs-string">"Hi this is an epub3"</span>
+                                   }
+                               ]);
+epc.download();
 </code></pre><h2 id="make-epub-great-again-epub-properties">Make epub great again -&gt; epub.properties</h2>
 				<p>You can create epub with more options and configure it with properties object. Take a look in te example &quot;quick and dirty&quot; at line 2: </p>
 				<pre><code>epubCreator.properties.title = <span class="hljs-string">"Alfabook book title"</span>; //set title <span class="hljs-keyword">property</span><span class="hljs-title"></span>
@@ -330,14 +346,16 @@ epubCreator.download()<span class="hljs-comment">; // this is important!!</span>
 					<li>asBase64 -&gt; generate a base64 of epub zip. </li>
 					<li>asArrayBuffer -&gt; generate a buffer for on the fly reading. </li>
 				</ul>
-				<pre><code>        <span class="hljs-keyword">var</span> epubCreator = <span class="hljs-keyword">new</span> EpubCreator();
-        ...
+				<pre><code>        ...
         <span class="hljs-comment">// es6</span>
-        epubCreator.asArrayBuffer().then( 
+        <span class="hljs-keyword">let</span> epc = <span class="hljs-keyword">new</span> epubCreator.EpubCreator();
+        epc.asArrayBuffer().then( 
         <span class="hljs-function">(<span class="hljs-params">content</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(content), 
         (err) =&gt; <span class="hljs-built_in">console</span>.log(err));
+
         <span class="hljs-comment">// es5</span>
-        epubCreator.asArrayBuffer().then( 
+        <span class="hljs-keyword">var</span> epc = <span class="hljs-keyword">new</span> epubCreator.EpubCreator();
+        epc.asArrayBuffer().then( 
         <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">content</span>) </span>{ 
             <span class="hljs-comment">// this is the blob url content, send it to your epub reader</span>
             <span class="hljs-built_in">console</span>.log(content) ;
