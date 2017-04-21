@@ -17,7 +17,9 @@ module.exports = {
         contentBase: path.join(__dirname, '/'), // boolean | string | array, static file location
         compress: true, // enable gzip compression
         hot: true, // hot module replacement. Depends on HotModuleReplacementPlugin
-        port: 8000
+        port: 8000,
+        overlay: true,
+        watchContentBase: true
     },
     module: {
         rules: [
