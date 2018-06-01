@@ -1,12 +1,13 @@
-import {BaseInfo} from "../../interfaces/base-info";
+import {BaseInfo} from '../../interfaces/base-info';
+import {BaseTemplate} from '../../interfaces/base-template';
 
 /**
  * Static file template.
  * Leave this class without code.
  *
- * @author Giorgio Modoni <g.modoni@olivettiscuoladigitale.it>
+ * @author Marco Bergantin <m.bergantin@olivettiscuoladigitale.it>
  */
-export class StaticTemplate {
+export class EiTemplate implements BaseTemplate {
 
     _mimetype(): string {
         return `application/epub+zip`;
@@ -18,11 +19,10 @@ export class StaticTemplate {
                   <rootfiles>
                   <rootfile full-path="EPUB/ebook.opf" media-type="application/oebps-package+xml"/>
                   </rootfiles>   
-                </container>
-            `;
+                </container>`;
     }
 
-    _opf(prop: BaseInfo, metadata: string, manifest: string, spine: string) {
+    _opf(prop: BaseInfo, metadata: string, manifest: string, spine: string): string {
         return `<?xml version="1.0" encoding="UTF-8"?>
             <package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="uid" xml:lang="${prop.language}" prefix="cc: http://creativecommons.org/ns#">
                 <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
@@ -44,11 +44,10 @@ export class StaticTemplate {
                 <spine toc="ncx">
                     ${spine}
                 </spine>    
-            </package>
-            `;
+            </package>`;
     }
 
-    _nav(cssFiles: string, landmarks: string, toc: string) {
+    _nav(cssFiles: string, landmarks: string, toc: string): string {
 
         return `<?xml version="1.0" encoding="UTF-8"?>
                 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:epub="http://www.idpf.org/2007/ops">
@@ -84,11 +83,10 @@ export class StaticTemplate {
                         <!-- 2.01 NCX: playOrder is optional -->
                         ${toc}
                     </navMap>
-                </ncx>
-                    `;
+                </ncx>`;
     }
 
-    _contentBody(prop: BaseInfo, content, cssFiles: string) {
+    _contentBody(prop: BaseInfo, content, cssFiles: string): string {
         return `<?xml version="1.0" encoding="UTF-8"?>
                 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:epub="http://www.idpf.org/2007/ops">
                     <head>
@@ -99,8 +97,7 @@ export class StaticTemplate {
                     <body>
                      ${content}
                     </body>
-                </html>
-                `;
+                </html>`;
     }
 
     _cover(prop: BaseInfo, cssFiles: string) {

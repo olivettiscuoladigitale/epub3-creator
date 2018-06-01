@@ -1,4 +1,4 @@
-import {BaseInfo} from "../../interfaces/base-info";
+import {BaseInfo} from '../../interfaces/base-info';
 
 /**
  * Static file template.
@@ -6,7 +6,7 @@ import {BaseInfo} from "../../interfaces/base-info";
  *
  * @author Giorgio Modoni <g.modoni@olivettiscuoladigitale.it>
  */
-export class StaticTemplate {
+export class EhTemplate {
 
     _mimetype(): string {
         return `application/epub+zip`;
@@ -18,8 +18,7 @@ export class StaticTemplate {
                 <rootfiles>
                 <rootfile full-path="EPUB/ebook.opf" media-type="application/oebps-package+xml"/>
                 </rootfiles>
-                </container>
-            `;
+                </container>`;
     }
 
     _opf(prop: BaseInfo, metadata: string, manifest: string, spine: string) {
@@ -74,8 +73,7 @@ export class StaticTemplate {
                            </nav>
                       </section>
                     </body>
-                    </html>
-                `;
+                    </html>`;
     }
 
     _ncx(prop: BaseInfo, toc): string {
@@ -91,8 +89,7 @@ export class StaticTemplate {
                         <!-- 2.01 NCX: playOrder is optional -->
                         ${toc}
                     </navMap>
-                </ncx>
-                    `;
+                </ncx>`;
     }
 
     _contentBody(prop: BaseInfo, content, cssFiles: string) {
@@ -106,14 +103,11 @@ export class StaticTemplate {
                     <body>
                     ${content}
                     </body>
-                    </html>
-                    `;
+                    </html>`;
     }
 
     _cover(prop: BaseInfo, cssFiles: string) {
-        return `
-                 <div class="body"><img src="${prop.cover.asFileName}" alt="Cover Image" title="Cover Image"></div> 
-                `;
+        return `<div class="body"><img src="${prop.cover.asFileName}" alt="Cover Image" title="Cover Image"></div>`;
     }
 
 }

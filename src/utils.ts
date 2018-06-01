@@ -1,4 +1,4 @@
-import {FileInfo} from  "./interfaces/file-info";
+import {FileInfo} from  './interfaces/file-info';
 
 /**
  * Utils class
@@ -28,7 +28,7 @@ export class Utils {
      */
     public generateName(): string {
         let fileName: string;
-        fileName = this.getTimeStamp() + ".epub";
+        fileName = this.getTimeStamp() + '.epub';
 
         return fileName;
     }
@@ -36,10 +36,10 @@ export class Utils {
 
     public getFileNameFromPath(fullPath: string): FileInfo {
 
-        const fileName: string = fullPath.replace(/^.*[\\\/]/, "");
-        const extension: string = fileName.substr(fileName.lastIndexOf(".") + 1);
+        const fileName: string = fullPath.replace(/^.*[\\\/]/, '');
+        const extension: string = fileName.substr(fileName.lastIndexOf('.') + 1);
         const name: string = fileName.substr(0, fileName.length - extension.length - 1);
-        const path: string = fullPath.replace(fileName, "");
+        const path: string = fullPath.replace(fileName, '');
 
         return {
             fullName: fileName,

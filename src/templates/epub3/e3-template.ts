@@ -1,4 +1,5 @@
-import {BaseInfo} from "../../interfaces/base-info";
+import {BaseInfo} from '../../interfaces/base-info';
+import {BaseTemplate} from '../../interfaces/base-template';
 
 /**
  * Static file template.
@@ -6,7 +7,7 @@ import {BaseInfo} from "../../interfaces/base-info";
  *
  * @author Giorgio Modoni <g.modoni@olivettiscuoladigitale.it>
  */
-export class StaticTemplate {
+export class E3Template implements BaseTemplate {
 
     _mimetype(): string {
         return `application/epub+zip`;
