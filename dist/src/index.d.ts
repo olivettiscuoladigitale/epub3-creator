@@ -1,7 +1,7 @@
-import { BaseInfo } from "./interfaces/base-info";
-import { CssDef } from "./interfaces/css-def";
 import { Assets } from "./interfaces/assets";
+import { BaseInfo } from "./interfaces/base-info";
 import { Chapters } from "./interfaces/chapters";
+import { CssDef } from "./interfaces/css-def";
 /**
  * Create a Epub Compliant Idpf book
  *
@@ -150,7 +150,7 @@ export declare class EpubCreator {
      * @returns {Promise<T>}
      * @private
      */
-    private _addCover();
+    private _addCover;
     /**
      * Add asset to Epub
      *

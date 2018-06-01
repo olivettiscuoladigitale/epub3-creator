@@ -1,4 +1,4 @@
-![](http://www.alfabook.it/wp-content/uploads/2013/03/logo-alfabook2.png)
+![](https://www.olivettiscuoladigitale.it/wp-content/uploads/2013/03/olivetti-scuola-digitale-2.png)
 
 # EPUB-CREATOR
 
@@ -27,7 +27,7 @@ Create a epub in a quick and drity way:
 
     // ts
 	let epubCreator = new EpubCreator(); // init class
-	epubCreator.properties.title = "Alfabook book title"; //set title property
+	epubCreator.properties.title = "Olivetti Scuola Digitale book title"; //set title property
 	epubCreator.addSections([
 									{
 										tag: "section", 
@@ -41,7 +41,7 @@ Create a epub in a quick and drity way:
 	
 	// es6
 	let epc = new epubCreator.EpubCreator();		
-	epc.properties.title = "Alfabook book title"; //set title property
+	epc.properties.title = "Olivetti Scuola Digitale book title"; //set title property
     epc.addSections([
                        				{
                        					tag: "section", 
@@ -56,7 +56,7 @@ Create a epub in a quick and drity way:
 ## Make epub great again -> epub.properties
 You can create epub with more options and configure it with properties object. Take a look in te example "quick and dirty" at line 2: 
 
-	epubCreator.properties.title = "Alfabook book title"; //set title property
+	epubCreator.properties.title = "Olivetti Scuola Digitale book title"; //set title property
 	
 Epubcreator expose a public `properties object` that you can set:
 
@@ -64,19 +64,19 @@ This is the default settings for properties object:
 
 			{
 		            uuid: "github.com/bbottema/js-epub-maker::it-came-from::example-using-idpf-wasteland",
-		            author: "Alfabook",
+		            author: "Olivetti Scuola Digitale",
 		            language: "it-IT",
 		            modificationDate: new Date().toString(),
 		            rights: {
 		                description: "This work is shared with the public using the Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0) license.",
 		                license: "http://creativecommons.org/licenses/by-sa/3.0/"
 		            },
-		            attributionUrl: "https://www.alfabook.it",
+		            attributionUrl: "https://www.olivettiscuoladigitale.it",
 		            cover: {
 		                file: "",
 		                license: "http://creativecommons.org/licenses/by-sa/3.0/",
 		                mediaType: "image/jpeg",
-		                attributionUrl: "https://www.alfabook.it",
+		                attributionUrl: "https://www.olivettiscuoladigitale.it",
 		                inline: "no"
 		            },
 		            title: "Book Title",
@@ -99,7 +99,7 @@ You can found the cover settings inside `properties` object
 			                file: "",
 			                license: "http://creativecommons.org/licenses/by-sa/3.0/",
 			                mediaType: "image/jpeg",
-			                attributionUrl: "https://www.alfabook.it"
+			                attributionUrl: "https://www.olivettiscuoladigitale.it"
 			            },
 
 If `cover.file` properties is not specified, no cover is set.  
@@ -358,8 +358,8 @@ More template cooming in next version....
 When we are ready to download a file we can call method `download`.
 
 	var epubCreator = new EpubCreator();
-		epubCreator.properties.title = "Alfabook book title";
-		epubCreator.properties.cover.file = "./demo/cover.jpg";
+		epubCreator.properties.title = "Olivetti Scuola Digitale book title";
+		epubCreator.properties.cover.file = "./demo/cover.png";
 		epubCreator.addSections(...)
 		epubCreator.addCss({
 	    "content": "@namespace '@charset 'UTF-8'; http://www.w3.org/1999/xhtml'; @namespace epub 'http://www.idpf.org/2007/ops'; body: { margin-left:6em, margin-right:2em}",
@@ -430,8 +430,8 @@ Create a Epub with frontmatter title and content bodymatter with 2 chapter and d
 	let epubCreator = new EpubCreator();
 	
 	epubCreator.template("epub3");
-	epubCreator.properties.title = "Alfabook book title";
-	epubCreator.properties.cover.file = "./demo/cover.jpg";
+	epubCreator.properties.title = "Olivetti Scuola Digitale book title";
+	epubCreator.properties.cover.file = "./demo/cover.png";
 	epubCreator.addSections(content);
 	epubCreator.addCss({
 	    "content": "@namespace '@charset 'UTF-8'; http://www.w3.org/1999/xhtml'; @namespace epub 'http://www.idpf.org/2007/ops'; body: { margin-left:6em, margin-right:2em}",

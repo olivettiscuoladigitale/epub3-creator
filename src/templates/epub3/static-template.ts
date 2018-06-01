@@ -4,7 +4,7 @@ import {BaseInfo} from "../../interfaces/base-info";
  * Static file template.
  * Leave this class without code.
  *
- * @author Giorgio Modoni <g.modoni@alfabook.it>
+ * @author Giorgio Modoni <g.modoni@olivettiscuoladigitale.it>
  */
 export class StaticTemplate {
 

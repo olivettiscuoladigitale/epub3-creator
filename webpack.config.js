@@ -11,7 +11,10 @@ module.exports = {
         demo: path.resolve(__dirname, "./demo/demo.ts")
     },
     output: {
-        filename: "[name].[hash].js"
+        filename: "[name].[hash].js",
+        path: path.resolve(__dirname, "./dist"), // string
+        library: "epc",
+        libraryTarget: "umd"
     },
     devServer: {
         contentBase: path.join(__dirname, '/'), // boolean | string | array, static file location

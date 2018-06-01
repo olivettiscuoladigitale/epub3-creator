@@ -1,12 +1,13 @@
 {
 	"name": "epub-creator",
-	"version": "1.0.28",
+	"version": "1.0.36",
 	"description": "Create epub from html or text",
 	"main": "dist/epub-creator.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"doc": "./node_modules/.bin/typedoc  --exclude ./node_modules/@types/jszip/index.d --out doc/ src/",
 		"build": "./node_modules/.bin/webpack --config webpack.config.build.js --progress --colors",
+		"build:watch": "./node_modules/.bin/webpack --watch --progress --colors",
 		"start": "./node_modules/.bin/webpack-dev-server --hot --inline --colors"
 	},
 	"author": "",

@@ -32,8 +32,8 @@ class Demo {
     }
 
     getDefaultProperties(): any {
-        this.epubCreator.properties.title = "Alfabook book title";
-        this.epubCreator.properties.cover.file = "/demo/cover.jpg";
+        this.epubCreator.properties.title = "Olivetti Scuola Digitale book title";
+        this.epubCreator.properties.cover.file = "/demo/cover.png";
 
         return this.epubCreator.properties;
     }

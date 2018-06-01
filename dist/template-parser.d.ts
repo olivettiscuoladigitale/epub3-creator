@@ -84,7 +84,7 @@ export declare class TemplateParser {
      * @returns {string}
      * @private
      */
-    private _navLandmarks(data);
+    private _navLandmarks;
     /**
      * Get section tag.
      * This is the tag inside "section" and it's different between html and xhtml epub template
@@ -92,11 +92,11 @@ export declare class TemplateParser {
      * @returns {string}
      */
     getSectionTag(): string;
-    private _navToc(data);
-    private _ncxToc(data);
-    private _cssLink(css?);
-    private _opfCss(css?);
-    private _metadata(prop);
-    private _manifest(chapters, prop, css?, assets?);
-    private _spine(chapters, prop);
+    private _navToc;
+    private _ncxToc;
+    private _cssLink;
+    private _opfCss;
+    private _metadata;
+    private _manifest;
+    private _spine;
 }

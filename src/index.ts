@@ -16,7 +16,7 @@ import {Utils} from "./utils";
 /**
  * Create a Epub Compliant Idpf book
  *
- * @author Giorgio Modoni <g.modoni@alfabook.it>
+ * @author Giorgio Modoni <g.modoni@olivettiscuoladigitale.it>
  */
 export class EpubCreator {
 
@@ -90,19 +90,19 @@ export class EpubCreator {
     setDefaultBaseInfo() {
         this.properties = {
             uuid: "github.com/bbottema/js-epub-maker::it-came-from::example-using-idpf-wasteland",
-            author: "Alfabook",
+            author: "Olivetti Scuola Digitale",
             language: "it-IT",
             modificationDate: new Date().toString(),
             rights: {
                 description: "This work is shared with the public using the Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0) license.",
                 license: "http://creativecommons.org/licenses/by-sa/3.0/"
             },
-            attributionUrl: "https://www.alfabook.it",
+            attributionUrl: "https://www.olivettiscuoladigitale.it",
             cover: {
                 file: "",
                 license: "http://creativecommons.org/licenses/by-sa/3.0/",
                 mediaType: "image/jpeg",
-                attributionUrl: "https://www.alfabook.it",
+                attributionUrl: "https://www.olivettiscuoladigitale.it",
                 inline: "no"
             },
             title: "Book Title",
@@ -411,7 +411,7 @@ export class EpubCreator {
 
             // we have a base64 data but no name for file, ok assuming is a jpg
             if (!this.properties.cover.asFileName)
-                this.properties.cover.asFileName = "cover.jpg";
+                this.properties.cover.asFileName = "cover.png";
 
             if (this.properties.cover.base64) {
 

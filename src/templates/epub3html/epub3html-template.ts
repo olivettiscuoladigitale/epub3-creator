@@ -8,7 +8,7 @@ import {FileContent} from "../../interfaces/file-content";
  * This is a template for epub3 based on: https://github.com/IDPF/epub3-samples/tree/master/30/wasteland/EPUB
  * Template for epub Creation.
  *
- * @author Giorgio Modoni <g.modoni@alfabook.it>
+ * @author Giorgio Modoni <g.modoni@olivettiscuoladigitale.it>
  */
 export class Epub3HtmlTemplate {
 

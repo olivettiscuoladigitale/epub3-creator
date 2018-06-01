@@ -15,7 +15,7 @@ import {Epub3HtmlTemplate} from "./templates/epub3html/epub3html-template";
  * Tag structure:
  * https://idpf.github.io/a11y-guidelines/content/semantics/epub-type.html
  *
- * @author Giorgio Modoni <g.modoni@alfabook.it>
+ * @author Giorgio Modoni <g.modoni@olivettiscuoladigitale.it>
  */
 export class TemplateParser {
 
@@ -32,14 +32,20 @@ export class TemplateParser {
      */
     public template(models: string) {
 
-        if (models === "epub3")
+        if (models === "epub3") {
             this.templateClass = new Epub3Template();
+            return;
+        }
 
-        if (models === "epub2")
+        if (models === "epub2") {
             this.templateClass = new Epub2Template();
+            return;
+        }
 
-        if (models === "epub3html")
+        if (models === "epub3html") {
             this.templateClass = new Epub3HtmlTemplate();
+            return;
+        }
     }
 
     /**
@@ -139,6 +145,16 @@ export class TemplateParser {
     }
 
     /**
+     * Get section tag.
+     * This is the tag inside "section" and it's different between html and xhtml epub template
+     *
+     * @returns {string}
+     */
+    public getSectionTag(): string {
+        return this.templateClass.sectionTag;
+    }
+
+    /**
      * Generate a string of landmark used in opf data
      * @param data - landmarks data
      * @returns {string}
@@ -154,16 +170,6 @@ export class TemplateParser {
         return landmarks;
     }
 
-    /**
-     * Get section tag.
-     * This is the tag inside "section" and it's different between html and xhtml epub template
-     *
-     * @returns {string}
-     */
-    public getSectionTag(): string {
-        return this.templateClass.sectionTag;
-    }
-
     private _navToc(data) {
         let toc = "";
 
@@ -174,7 +180,7 @@ export class TemplateParser {
         return toc;
     }
 
-    private  _ncxToc(data): string {
+    private _ncxToc(data): string {
         let toc: string = "";
 
         for (let t of data) {
@@ -203,7 +209,7 @@ export class TemplateParser {
         return cssFiles;
     }
 
-    private  _opfCss(css?: CssDef[]): string {
+    private _opfCss(css?: CssDef[]): string {
 
         let cssFiles = "";
         let cssIdCounter = 0;
@@ -245,10 +251,9 @@ export class TemplateParser {
 `;
         }
 
-        /*   <item id="cover" href="cover.${this.templateClass.ext}" media-type="${this.templateClass.mediaType}"/>
-*/
+        /*   <item id="cover" href="cover.${this.templateClass.ext}" media-type="${this.templateClass.mediaType}"/>*/
 
-         manifest += cssFiles;
+        manifest += cssFiles;
 
         for (let page of chapters) {
             manifest += `<item id="${page.id}" href="${page.name}.${this.templateClass.ext}" media-type="${this.templateClass.mediaType}" />
@@ -272,8 +277,8 @@ export class TemplateParser {
 
         let spine: string = "";
 
-       // if (prop.cover.file !== "" && prop.cover.asFileName)
-         //   spine += `<itemref idref="cover" linear="${prop.cover.inline}"/>`;
+        // if (prop.cover.file !== "" && prop.cover.asFileName)
+        //   spine += `<itemref idref="cover" linear="${prop.cover.inline}"/>`;
 
         for (let page of chapters) {
             spine += `<itemref idref="${page.id}" linear="${page.inline}"/>`;

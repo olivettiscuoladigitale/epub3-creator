@@ -4,7 +4,7 @@ import {FileInfo} from  "./interfaces/file-info";
  * Utils class
  * group some usefull methods for epub creations
  *
- * @author Giorgio Modoni <g.modoni@alfabook.it>
+ * @author Giorgio Modoni <g.modoni@olivettiscuoladigitale.it>
  */
 export class Utils {
 

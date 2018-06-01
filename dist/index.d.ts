@@ -150,7 +150,7 @@ export declare class EpubCreator {
      * @returns {Promise<T>}
      * @private
      */
-    private _addCover();
+    private _addCover;
     /**
      * Add asset to Epub
      *

@@ -62,7 +62,7 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<p><img src="http://www.alfabook.it/wp-content/uploads/2013/03/logo-alfabook2.png" alt=""></p>
+				<p><img src="https://www.olivettiscuoladigitale.it/wp-content/uploads/2013/03/olivetti-scuola-digitale-2.png" alt=""></p>
 				<h1 id="epub-creator">EPUB-CREATOR</h1>
 				<p>A simple class writed in Typescript (and transpiled in es5) that help you to create epub from source text/html.
 				It work on client browser or server side nodejs.</p>
@@ -78,7 +78,7 @@
 				<p>Create a epub in a quick and drity way:</p>
 				<pre><code><span class="hljs-comment">// ts</span>
 <span class="hljs-keyword">let</span> epubCreator = <span class="hljs-keyword">new</span> EpubCreator(); <span class="hljs-comment">// init class</span>
-epubCreator.properties.<span class="hljs-built_in">title</span> = <span class="hljs-string">"Alfabook book title"</span>; <span class="hljs-comment">//set title property</span>
+epubCreator.properties.<span class="hljs-built_in">title</span> = <span class="hljs-string">"Olivetti Scuola Digitale book title"</span>; <span class="hljs-comment">//set title property</span>
 epubCreator.addSections([
                                 {
                                     tag: <span class="hljs-string">"section"</span>, 
@@ -92,7 +92,7 @@ epubCreator.addSections([
 
 <span class="hljs-comment">// es6</span>
 <span class="hljs-keyword">let</span> epc = <span class="hljs-keyword">new</span> epubCreator.EpubCreator();        
-epc.properties.<span class="hljs-built_in">title</span> = <span class="hljs-string">"Alfabook book title"</span>; <span class="hljs-comment">//set title property</span>
+epc.properties.<span class="hljs-built_in">title</span> = <span class="hljs-string">"Olivetti Scuola Digitale book title"</span>; <span class="hljs-comment">//set title property</span>
 epc.addSections([
                                    {
                                        tag: <span class="hljs-string">"section"</span>, 
@@ -103,24 +103,24 @@ epc.addSections([
 epc.download();
 </code></pre><h2 id="make-epub-great-again-epub-properties">Make epub great again -&gt; epub.properties</h2>
 				<p>You can create epub with more options and configure it with properties object. Take a look in te example &quot;quick and dirty&quot; at line 2: </p>
-				<pre><code>epubCreator.properties.title = <span class="hljs-string">"Alfabook book title"</span>; //set title <span class="hljs-keyword">property</span><span class="hljs-title"></span>
+				<pre><code>epubCreator.properties.title = <span class="hljs-string">"Olivetti Scuola Digitale book title"</span>; //set title <span class="hljs-keyword">property</span><span class="hljs-title"></span>
 </code></pre><p>Epubcreator expose a public <code>properties object</code> that you can set:</p>
 				<p>This is the default settings for properties object: </p>
 				<pre><code>        {
 <span class="hljs-symbol">                uuid:</span> <span class="hljs-string">"github.com/bbottema/js-epub-maker::it-came-from::example-using-idpf-wasteland"</span>,
-<span class="hljs-symbol">                author:</span> <span class="hljs-string">"Alfabook"</span>,
+<span class="hljs-symbol">                author:</span> <span class="hljs-string">"Olivetti Scuola Digitale"</span>,
 <span class="hljs-symbol">                language:</span> <span class="hljs-string">"it-IT"</span>,
 <span class="hljs-symbol">                modificationDate:</span> new Date().toString(),
 <span class="hljs-symbol">                rights:</span> {
 <span class="hljs-symbol">                    description:</span> <span class="hljs-string">"This work is shared with the public using the Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0) license."</span>,
 <span class="hljs-symbol">                    license:</span> <span class="hljs-string">"http://creativecommons.org/licenses/by-sa/3.0/"</span>
                 },
-<span class="hljs-symbol">                attributionUrl:</span> <span class="hljs-string">"https://www.alfabook.it"</span>,
+<span class="hljs-symbol">                attributionUrl:</span> <span class="hljs-string">"https://www.olivettiscuoladigitale.it"</span>,
 <span class="hljs-symbol">                cover:</span> {
 <span class="hljs-symbol">                    file:</span> <span class="hljs-string">""</span>,
 <span class="hljs-symbol">                    license:</span> <span class="hljs-string">"http://creativecommons.org/licenses/by-sa/3.0/"</span>,
 <span class="hljs-symbol">                    mediaType:</span> <span class="hljs-string">"image/jpeg"</span>,
-<span class="hljs-symbol">                    attributionUrl:</span> <span class="hljs-string">"https://www.alfabook.it"</span>,
+<span class="hljs-symbol">                    attributionUrl:</span> <span class="hljs-string">"https://www.olivettiscuoladigitale.it"</span>,
 <span class="hljs-symbol">                    inline:</span> <span class="hljs-string">"no"</span>
                 },
 <span class="hljs-symbol">                title:</span> <span class="hljs-string">"Book Title"</span>,
@@ -137,7 +137,7 @@ epc.download();
 <span class="hljs-symbol">                        file:</span> <span class="hljs-string">""</span>,
 <span class="hljs-symbol">                        license:</span> <span class="hljs-string">"http://creativecommons.org/licenses/by-sa/3.0/"</span>,
 <span class="hljs-symbol">                        mediaType:</span> <span class="hljs-string">"image/jpeg"</span>,
-<span class="hljs-symbol">                        attributionUrl:</span> <span class="hljs-string">"https://www.alfabook.it"</span>
+<span class="hljs-symbol">                        attributionUrl:</span> <span class="hljs-string">"https://www.olivettiscuoladigitale.it"</span>
                     },
 </code></pre><p>If <code>cover.file</code> properties is not specified, no cover is set.  </p>
 				<p>To set a cover we must compile the <code>cover.file</code> settings. We can pass two type of image:  </p>
@@ -330,8 +330,8 @@ content:<span class="hljs-built_in"> array/string </span> -&gt; the content insi
 				<h1 id="download-file">Download file</h1>
 				<p>When we are ready to download a file we can call method <code>download</code>.</p>
 				<pre><code>var epubCreator = new EpubCreator()<span class="hljs-comment">;</span>
-    epubCreator.properties.title = <span class="hljs-string">"Alfabook book title"</span><span class="hljs-comment">;</span>
-    epubCreator.properties.cover.file = <span class="hljs-string">"./demo/cover.jpg"</span><span class="hljs-comment">;</span>
+    epubCreator.properties.title = <span class="hljs-string">"Olivetti Scuola Digitale book title"</span><span class="hljs-comment">;</span>
+    epubCreator.properties.cover.file = <span class="hljs-string">"./demo/cover.png"</span><span class="hljs-comment">;</span>
     epubCreator.<span class="hljs-keyword">addSections(...)
 </span>    epubCreator.<span class="hljs-keyword">addCss({
 </span>    <span class="hljs-string">"content"</span>: <span class="hljs-string">"@namespace '@charset 'UTF-8'; http://www.w3.org/1999/xhtml'; @namespace epub 'http://www.idpf.org/2007/ops'; body: { margin-left:6em, margin-right:2em}"</span>,
@@ -392,8 +392,8 @@ epubCreator.download()<span class="hljs-comment">; // this is important!!</span>
 let epubCreator = <span class="hljs-keyword">new</span> EpubCreator();
 
 epubCreator.template(<span class="hljs-string">"epub3"</span>);
-epubCreator.properties.title = <span class="hljs-string">"Alfabook book title"</span>;
-epubCreator.properties.cover.file = <span class="hljs-string">"./demo/cover.jpg"</span>;
+epubCreator.properties.title = <span class="hljs-string">"Olivetti Scuola Digitale book title"</span>;
+epubCreator.properties.cover.file = <span class="hljs-string">"./demo/cover.png"</span>;
 epubCreator.addSections(content);
 epubCreator.addCss({
     <span class="hljs-string">"content"</span>: <span class="hljs-string">"@namespace '@charset 'UTF-8'; http://www.w3.org/1999/xhtml'; @namespace epub 'http://www.idpf.org/2007/ops'; body: { margin-left:6em, margin-right:2em}"</span>,
