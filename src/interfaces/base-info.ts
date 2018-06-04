@@ -19,5 +19,17 @@ export interface BaseInfo {
         inline: string
     },
     title: string,
-    publicationDate: string
+    publicationDate: string,
+    media?: {
+        activeClass?: string,
+        duration?: Array<{
+            refines: string,
+            value: string
+        }>
+    },
+    rendition?: {
+        layout?: string,
+        orientation?: string,
+        spread?: string
+    }
 }

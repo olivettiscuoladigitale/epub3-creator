@@ -7,7 +7,7 @@ import {BaseTemplate} from '../../interfaces/base-template';
  *
  * @author Giorgio Modoni <g.modoni@olivettiscuoladigitale.it>
  */
-export class E3Template implements BaseTemplate {
+export class E3Template extends BaseTemplate {
 
     _mimetype(): string {
         return `application/epub+zip`;
@@ -103,11 +103,4 @@ export class E3Template implements BaseTemplate {
                 </html>
                 `;
     }
-
-    _cover(prop: BaseInfo, cssFiles: string) {
-        return `
-                 <div class="body"><img src="${prop.cover.asFileName}" alt="Cover Image" title="Cover Image"/></div>
-               `;
-    }
-
 }

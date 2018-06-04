@@ -37,8 +37,8 @@ export abstract class BaseBuilder {
         };
     }
 
-    public getOpf(prop: BaseInfo, metadataCoverFragment: string, manifestFragment: string, spine: string) {
-        let content: string = this.template._opf(prop, metadataCoverFragment, manifestFragment, spine);
+    public getOpf(prop: BaseInfo, metadataFragment: string, manifestFragment: string, spineFragment: string) {
+        let content: string = this.template._opf(prop, metadataFragment, manifestFragment, spineFragment);
 
         return {
             name: this.fileNames.opf,
@@ -67,8 +67,8 @@ export abstract class BaseBuilder {
         };
     }
 
-    public getContentBody(prop: BaseInfo, body: string, cssFiles: string) {
-        let content: string = this.template._contentBody(prop, body, cssFiles);
+    public getContentBody(prop: BaseInfo, body: string, assets: string, metadata?: string) {
+        let content: string = this.template._contentBody(prop, body, assets, metadata);
 
         return {
             name: this.fileNames.content,

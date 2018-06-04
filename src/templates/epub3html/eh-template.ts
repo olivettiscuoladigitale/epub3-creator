@@ -1,4 +1,5 @@
 import {BaseInfo} from '../../interfaces/base-info';
+import {BaseTemplate} from '../../interfaces/base-template';
 
 /**
  * Static file template.
@@ -6,7 +7,7 @@ import {BaseInfo} from '../../interfaces/base-info';
  *
  * @author Giorgio Modoni <g.modoni@olivettiscuoladigitale.it>
  */
-export class EhTemplate {
+export class EhTemplate extends BaseTemplate {
 
     _mimetype(): string {
         return `application/epub+zip`;
@@ -105,9 +106,4 @@ export class EhTemplate {
                     </body>
                     </html>`;
     }
-
-    _cover(prop: BaseInfo, cssFiles: string) {
-        return `<div class="body"><img src="${prop.cover.asFileName}" alt="Cover Image" title="Cover Image"></div>`;
-    }
-
 }

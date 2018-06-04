@@ -1,6 +1,6 @@
-export interface CssDef {
-    name?: string,
+export interface JsDef {
     path?: string,
+    name?: string,
     content?: string,
     type?: string
 }

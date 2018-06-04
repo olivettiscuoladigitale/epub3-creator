@@ -110,6 +110,7 @@
 
                     <div class="input-field col s12">
                         <select id="template">
+                            <option value="epub3interactive" selected>Epub3 Interactive</option>
                             <option value="epub3" selected>Epub3 standard xhtml</option>
                             <option value="epub3html">Epub3 with html5 content</option>
                             <option value="epub2">Epub2 standard xhtml</option>
@@ -148,8 +149,13 @@
         Refresh content with code
     </a>
 
+    <a id="setdefaults" class="waves-effect waves-light btn purple">
+        <i class="material-icons left">undo</i>
+        Reset with defaults for template
+    </a>
+
     <div>
-        <h5>Epub Template: <span id="templateText">epub3</span></h5>
+        <h5>Epub Template: <span id="templateText">epub3interactive</span></h5>
     </div>
 
 </div>
@@ -228,10 +234,12 @@
     editor.getSession().on('change', function (e) {
         jQuery("#code").val(editor.getValue());
     });
+    jQuery("#code").on('updated', function(){ editor.setValue($(this).val()) });
 
     editorContent.getSession().on('change', function (e) {
         jQuery("#codeContent").val(editorContent.getValue());
     });
+    jQuery("#codeContent").on('updated', function(){ editorContent.setValue($(this).val()) });
 
 
     function remove() {

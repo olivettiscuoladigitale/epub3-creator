@@ -8,6 +8,9 @@ import {E3Builder} from './templates/epub3/e3-builder';
 import {E2Builder} from './templates/epub2/e2-builder';
 import {EhBuilder} from './templates/epub3html/eh-builder';
 import {EiBuilder} from './templates/epub3interactive/ei-builder';
+import {Utils} from './utils';
+import {JsDef} from './interfaces/js-def';
+import {MetaDef} from './interfaces/meta-def';
 
 /**
  * Prepare data for Template
@@ -18,11 +21,13 @@ import {EiBuilder} from './templates/epub3interactive/ei-builder';
  *
  * @author Giorgio Modoni <g.modoni@olivettiscuoladigitale.it>
  */
-export class TemplateParser {
+export class BuilderLoader {
 
     private builder: any;
+    private utils: any;
 
     constructor(models) {
+        this.utils = new Utils();
         this.getBuilder(models);
     }
 
@@ -32,7 +37,6 @@ export class TemplateParser {
      * @param models - a template name
      */
     public getBuilder(models: string) {
-
         if (models === 'epub3') {
             this.builder = new E3Builder();
             return;
@@ -97,7 +101,7 @@ export class TemplateParser {
      * @returns {{name: string, folder: string, content: string}}
      */
     public nav(navigation: Nav, css?: CssDef[]) {
-        const cssFiles: string = this._cssLink(css);
+        const cssFiles: string = this._cssTags(css);
         const landmarks: string = this._navLandmarks(navigation.landmarks);
         const toc: string = this._navToc(navigation.toc);
 
@@ -125,10 +129,13 @@ export class TemplateParser {
      * @param css - stylesheet array
      * @returns {{name: string, folder: string, content: string}}
      */
-    public contentBody(prop: BaseInfo, body, css?: CssDef[]) {
-        let cssFiles = this._cssLink(css);
+    public contentBody(prop: BaseInfo, body, css?: CssDef[], jss?: JsDef[], metas?: MetaDef[]) {
+        let assets = '';
+        assets += this._cssTags(css);
+        assets += this._jsTags(jss);
+        const metadata = this._metaTags(metas);
 
-        return this.builder.getContentBody(prop, body, cssFiles);
+        return this.builder.getContentBody(prop, body, assets, metadata);
     }
 
     /**
@@ -140,7 +147,7 @@ export class TemplateParser {
      * @returns {{name: string, folder: string, content: string}}
      */
     public cover(prop: BaseInfo, css?: CssDef[]) {
-        let cssFiles = this._cssLink(css);
+        let cssFiles = this._cssTags(css);
 
         return this.builder.getCover(prop, cssFiles);
     }
@@ -170,7 +177,7 @@ export class TemplateParser {
         let landmarks: string = '';
 
         for (let l of data) {
-            landmarks += `<li><a epub:type="${l.type}" href="${l.href}" >${l.type}</a></li>`;
+            landmarks += `<li><a epub:type="${this.utils.safeUrl(l.type)}" href="${l.href}">${this.utils.safeHtml(l.type)}</a></li>`;
         }
 
         return landmarks;
@@ -180,7 +187,7 @@ export class TemplateParser {
         let toc = '';
 
         for (let t of data) {
-            toc += `<li><a href="${t.href}">${t.label}</a></li>`;
+            toc += `<li><a href="${this.utils.safeUrl(t.href)}">${this.utils.safeHtml(t.label)}</a></li>`;
         }
 
         return toc;
@@ -192,27 +199,57 @@ export class TemplateParser {
         for (let t of data) {
             toc += `<navPoint id="${t.id}">
                      <navLabel>
-                        <text>${t.label}</text>
+                        <text>${this.utils.safeHtml(t.label)}</text>
                      </navLabel>
-                     <content src="${t.href}"/>
+                     <content src="${this.utils.safeUrl(t.href)}"/>
                     </navPoint>`;
         }
 
         return toc;
     }
 
-    private _cssLink(css?: CssDef[]): string {
-        let cssFiles: string = '';
+    private _cssTags(css?: CssDef[]): string {
+        let styleTags: string = '';
 
         if (css) {
             for (let style of css) {
                 let isAlternate = '';
                 if (style.type === 'night') isAlternate = 'alternate ';
-                cssFiles += `<link rel="${isAlternate}stylesheet" type="text/css" href="${style.name}" class="${style.type}" title="${style.type}"/> `;
+                styleTags += `<link rel="${isAlternate}stylesheet" type="text/css" 
+                    href="${this.utils.safeUrl(style.name)}" class="${style.type}" title="${style.type}"/>`;
             }
         }
 
-        return cssFiles;
+        return styleTags;
+    }
+
+    private _jsTags(jss?: JsDef[]): string {
+        let jsTags: string = '';
+
+        if (jss && Array.isArray(jss)) {
+            for (let script of jss) {
+                if (script.content) {
+                    return jsTags += `<script type="text/javascript">${script.content}</script>`;
+                }
+                jsTags += `<script type="text/javascript" src="${this.utils.safeUrl(script.path)}"></script>`;
+            }
+        }
+
+        return jsTags;
+    }
+
+    private _metaTags(metas?: MetaDef[]): string {
+        let metaTags: string = '';
+
+        if (metas && Array.isArray(metas)) {
+            for (let meta of metas) {
+                if (meta.name) {
+                    return metaTags += `<meta name="${meta.name}" content="${meta.content}"/>`;
+                }
+            }
+        }
+
+        return metaTags;
     }
 
     private _opfCss(css?: CssDef[]): string {
@@ -222,7 +259,7 @@ export class TemplateParser {
 
         for (let style of css) {
             let cssId = 'css-' + cssIdCounter;
-            cssFiles += `<item id="${cssId}" href="${style.name}" media-type="text/css" />`;
+            cssFiles += `<item id="${cssId}" href="${this.utils.safeUrl(style.name)}" media-type="text/css" />`;
             cssIdCounter++;
         }
 
@@ -235,15 +272,32 @@ export class TemplateParser {
 
         if (prop.cover.file !== '' && prop.cover.asFileName) {
             metadata += `<!-- rights expression for the cover image -->       
-                    <link rel="cc:license" refines="#cover-image" href="${prop.cover.license}" />
-                    <link rel="cc:attributionURL" refines="#cover-image" href="${prop.cover.attributionUrl}" />        
+                    <link rel="cc:license" refines="#cover-image" href="${prop.cover.license}"/>
+                    <link rel="cc:attributionURL" refines="#cover-image" href="${prop.cover.attributionUrl}"/>        
                     <!-- cover meta element included for 2.0 reading system compatibility: -->
                     <meta name="cover" content="cover-image"/>`;
         }
 
+        if (prop.media) {
+            if (prop.media.activeClass) {
+                metadata += `<meta property="media:active-class">${prop.media.activeClass}</meta>`;
+            }
+            if (prop.media.duration && Array.isArray(prop.media.duration)) {
+                prop.media.duration.forEach((duration) => {
+                    metadata += `<meta property="media:duration" refines="${duration.refines}">
+                        ${this.utils.safeHtml(duration.value)}</meta>`;
+                });
+            }
+        }
+
+        if (prop.rendition) {
+            Object.keys(prop.rendition).forEach((key)=>{
+                metadata += `<meta property="rendition:${key}">${prop.rendition[key]}</meta>`;
+            });
+        }
+
         return metadata;
     }
-
 
     private _manifest(chapters, prop: BaseInfo, css?: CssDef[], assets?: Assets[]): string {
 
@@ -257,14 +311,13 @@ export class TemplateParser {
         }
 
         for (let page of chapters) {
-            manifest += `<item id="${page.id}" href="${page.name}.${this.builder.ext}" media-type="${this.builder.mediaType}" />
-            `;
+            manifest += `<item id="${page.id}" href="${page.name}.${this.builder.ext}" media-type="${this.builder.mediaType}" />`;
         }
 
 
         manifest += `<item id="nav" href="ebook-nav.${this.builder.ext}" properties="nav" media-type="${this.builder.mediaType}" />
                      <!-- ncx included for 2.0 reading system compatibility: -->
-                     <item id="ncx" href="ebook.ncx" media-type="application/x-dtbncx+xml" />`;
+                     <item id="ncx" href="ebook.ncx" media-type="application/x-dtbncx+xml"/>`;
 
         for (let a of assets) {
             manifest += `<item id="${a.id}" href="${a.name}" media-type="${a.mediaType}" media-overlay="${a.mediaOverlay}"/>`;

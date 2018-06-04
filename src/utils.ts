@@ -1,4 +1,4 @@
-import {FileInfo} from  './interfaces/file-info';
+import {FileInfo} from './interfaces/file-info';
 
 /**
  * Utils class
@@ -7,7 +7,11 @@ import {FileInfo} from  './interfaces/file-info';
  * @author Giorgio Modoni <g.modoni@olivettiscuoladigitale.it>
  */
 export class Utils {
-
+    tagsToReplace: { [key: string]: string } = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;'
+    };
 
     /**
      * Generate a timestamp
@@ -49,5 +53,28 @@ export class Utils {
         };
     }
 
+    /**
+     * Sanitize html entities for content
+     *
+     * @param {string} str
+     * @returns {string}
+     */
+    public safeHtml(str: string): string {
+        return str.replace(/[&<>]/g, this.replaceTag);
+    }
+
+    /**
+     * Sanitize url
+     * @param {string} str
+     * @returns {string}
+     */
+    public safeUrl(str: string): string {
+        return encodeURI(str);
+    }
+
+
+    private replaceTag(tag) {
+        return this.tagsToReplace[tag] || tag;
+    }
 
 }
