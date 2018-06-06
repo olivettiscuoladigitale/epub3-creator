@@ -2,7 +2,7 @@ import * as FileSaver from 'file-saver';
 import * as JSZip from 'jszip';
 import * as JSZipUtils from 'jszip-utils';
 
-import {Assets} from './interfaces/assets';
+import {Asset} from './interfaces/asset';
 import {BaseInfo} from './interfaces/base-info';
 import {Chapters} from './interfaces/chapters';
 import {CssDef} from './interfaces/css-def';
@@ -13,6 +13,7 @@ import {BuilderLoader} from './builder-loader';
 import {Utils} from './utils';
 import {JsDef} from './interfaces/js-def';
 import {MetaDef} from './interfaces/meta-def';
+import {ZipExportType} from './interfaces/zip-export-types';
 
 /**
  * Create a Epub Compliant Idpf book
@@ -67,7 +68,7 @@ export class EpubCreator {
      * Asset image data
      * @type {Array}
      */
-    private assets: Assets[] = [];
+    private assets: Asset[] = [];
 
     /**
      * Template model string data
@@ -310,7 +311,7 @@ export class EpubCreator {
      * @param asset - image asset object
      * @returns {Promise<T>}
      */
-    public addAsset(asset: Assets) {
+    public addAsset(asset: Asset) {
         return new Promise((resolve, reject) => {
 
             let name: string;
@@ -373,45 +374,18 @@ export class EpubCreator {
         }
     }
 
-    /**
-     * Create blob url, useful
-     * to render epub and pass to your epub
-     * reader without saving it to file
-     *
-     * @returns {Promise<T>}
-     */
-    public blobUrl(): Promise<any> {
-        return new Promise((resolve, reject): any => {
-            this._prepare().then(
-                () => {
-                    this.epubZip.generateAsync({type: 'blob'})
-                        .then((content) => {
-                                let epub: any = URL.createObjectURL(content);
-
-                                return resolve(epub);
-                            },
-                            (err) => reject(err)
-                        );
-                },
-                (err) => {
-                    console.log('Download error on insert asset data: ', err);
-                    return reject(err);
-                }
-            );
-        });
-    }
 
     /**
-     * Genrate result as arrayBuffer,
+     * Generate result as arrayBuffer,
      * usefull to pass as file to epub reader
      *
      * @returns {Promise<T>}
      */
-    public asArrayBuffer(): Promise<any> {
+    public exportAs(type: ZipExportType): Promise<any> {
         return new Promise((resolve, reject): any => {
             this._prepare().then(
                 () => {
-                    this.epubZip.generateAsync({type: 'arraybuffer'}).then(
+                    this.epubZip.generateAsync({type: type}).then(
                         (content) => resolve(content),
                         (err) => reject(err)
                     );
@@ -425,28 +399,44 @@ export class EpubCreator {
     }
 
     /**
+     * Generate result as arrayBuffer,
+     * useful to pass as file to epub reader
+     *
+     * @returns {Promise<T>}
+     */
+    public asBlob(): Promise<Blob> {
+        return this.exportAs(ZipExportType.blob);
+    }
+
+    /**
+     * Create blob url, useful
+     * to render epub and pass to your epub
+     * reader without saving it to file
+     *
+     * @returns {Promise<T>}
+     */
+    public blobUrl(): Promise<any> {
+        return this.asBlob();
+    }
+
+    /**
+     * Generate result as arrayBuffer,
+     * useful to pass as file to epub reader
+     *
+     * @returns {Promise<T>}
+     */
+    public asArrayBuffer(): Promise<ArrayBuffer> {
+        return this.exportAs(ZipExportType.arraybuffer);
+    }
+
+    /**
      * Generate a file Url,
      * this is the most compatible way and to pass data as blob Url
      *
      * @returns {Promise<T>}
      */
-    public asBase64(): Promise<any> {
-        return new Promise((resolve, reject): any => {
-            this._prepare().then(
-                () => {
-
-                    this.epubZip.generateAsync({type: 'base64'}).then((base64) => {
-
-                        return resolve(base64);
-                    });
-
-                },
-                (err) => {
-                    console.log('Download error on insert asset data: ', err);
-                    return reject(err);
-                }
-            );
-        });
+    public asBase64(): Promise<string> {
+        return this.exportAs(ZipExportType.base64);
     }
 
     /**

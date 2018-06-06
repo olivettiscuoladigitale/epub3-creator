@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Utils | Epub-Creator</title>
+	<title>BaseTemplate | Epub-Creator</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,34 +54,35 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="utils.html">Utils</a>
+					<a href="basetemplate.html">BaseTemplate</a>
 				</li>
 			</ul>
-			<h1>Class Utils</h1>
+			<h1>Class BaseTemplate</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Utils class
-						group some usefull methods for epub creations</p>
-					</div>
-					<dl class="tsd-comment-tags">
-						<dt>author</dt>
-						<dd><p>Giorgio Modoni <a href="mailto:&#103;&#x2e;&#x6d;&#111;&#x64;&#x6f;&#x6e;&#105;&#64;&#x6f;&#x6c;&#x69;&#118;&#x65;&#x74;&#116;&#x69;&#x73;&#99;&#x75;&#x6f;&#108;&#97;&#100;&#x69;&#x67;&#105;&#x74;&#97;&#x6c;&#101;&#46;&#x69;&#116;">&#103;&#x2e;&#x6d;&#111;&#x64;&#x6f;&#x6e;&#105;&#64;&#x6f;&#x6c;&#x69;&#118;&#x65;&#x74;&#116;&#x69;&#x73;&#99;&#x75;&#x6f;&#108;&#97;&#100;&#x69;&#x67;&#105;&#x74;&#97;&#x6c;&#101;&#46;&#x69;&#116;</a></p>
-						</dd>
-					</dl>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Utils</span>
+						<span class="target">BaseTemplate</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<a href="e3template.html" class="tsd-signature-type">E3Template</a>
+							</li>
+							<li>
+								<a href="e2template.html" class="tsd-signature-type">E2Template</a>
+							</li>
+							<li>
+								<a href="ehtemplate.html" class="tsd-signature-type">EhTemplate</a>
+							</li>
+							<li>
+								<a href="eitemplate.html" class="tsd-signature-type">EiTemplate</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -90,217 +91,245 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Methods</h3>
+							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="utils.html#generatename" class="tsd-kind-icon">generate<wbr>Name</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="utils.html#getfilenamefrompath" class="tsd-kind-icon">get<wbr>File<wbr>Name<wbr>From<wbr>Path</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="utils.html#gettimestamp" class="tsd-kind-icon">get<wbr>Time<wbr>Stamp</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="utils.html#replacetag" class="tsd-kind-icon">replace<wbr>Tag</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="utils.html#safehtml" class="tsd-kind-icon">safe<wbr>Html</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="utils.html#safeurl" class="tsd-kind-icon">safe<wbr>Url</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="basetemplate.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-private-protected">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="basetemplate.html#utils" class="tsd-kind-icon">utils</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
-							<h3>Object literals</h3>
+							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-object-literal tsd-parent-kind-class"><a href="utils.html#tagstoreplace" class="tsd-kind-icon">tags<wbr>ToReplace</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="basetemplate.html#_container" class="tsd-kind-icon">_container</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="basetemplate.html#_contentbody" class="tsd-kind-icon">_content<wbr>Body</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="basetemplate.html#_cover" class="tsd-kind-icon">_cover</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="basetemplate.html#_mimetype" class="tsd-kind-icon">_mimetype</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="basetemplate.html#_nav" class="tsd-kind-icon">_nav</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="basetemplate.html#_ncx" class="tsd-kind-icon">_ncx</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="basetemplate.html#_opf" class="tsd-kind-icon">_opf</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="generatename" class="tsd-anchor"></a>
-					<h3>generate<wbr>Name</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">generate<wbr>Name<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Base<wbr>Template<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="basetemplate.html" class="tsd-signature-type">BaseTemplate</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/utils.ts#L33">utils.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/interfaces/base-template.ts#L5">interfaces/base-template.ts:5</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Generate a unique name for epub</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-							<p>fileName</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getfilenamefrompath" class="tsd-anchor"></a>
-					<h3>get<wbr>File<wbr>Name<wbr>From<wbr>Path</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>File<wbr>Name<wbr>From<wbr>Path<span class="tsd-signature-symbol">(</span>fullPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/fileinfo.html" class="tsd-signature-type">FileInfo</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/utils.ts#L41">utils.ts:41</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>fullPath: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/fileinfo.html" class="tsd-signature-type">FileInfo</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="gettimestamp" class="tsd-anchor"></a>
-					<h3>get<wbr>Time<wbr>Stamp</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Time<wbr>Stamp<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/utils.ts#L21">utils.ts:21</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Generate a timestamp</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-							<p>timestamp</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="replacetag" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> replace<wbr>Tag</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">replace<wbr>Tag<span class="tsd-signature-symbol">(</span>tag<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/utils.ts#L76">utils.ts:76</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>tag: <span class="tsd-signature-type">any</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="safehtml" class="tsd-anchor"></a>
-					<h3>safe<wbr>Html</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">safe<wbr>Html<span class="tsd-signature-symbol">(</span>str<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/utils.ts#L62">utils.ts:62</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Sanitize html entities for content</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>str: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="safeurl" class="tsd-anchor"></a>
-					<h3>safe<wbr>Url</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">safe<wbr>Url<span class="tsd-signature-symbol">(</span>str<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/utils.ts#L71">utils.ts:71</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Sanitize url</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>str: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="basetemplate.html" class="tsd-signature-type">BaseTemplate</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Object literals</h2>
-				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-class">
-					<a name="tagstoreplace" class="tsd-anchor"></a>
-					<h3>tags<wbr>ToReplace</h3>
-					<div class="tsd-signature tsd-kind-icon">tags<wbr>ToReplace<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="utils" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> utils</h3>
+					<div class="tsd-signature tsd-kind-icon">utils<span class="tsd-signature-symbol">:</span> <a href="utils.html" class="tsd-signature-type">Utils</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/utils.ts#L10">utils.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/interfaces/base-template.ts#L5">interfaces/base-template.ts:5</a></li>
 						</ul>
 					</aside>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-						<a name="tagstoreplace._" class="tsd-anchor"></a>
-						<h3>&</h3>
-						<div class="tsd-signature tsd-kind-icon">&<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&amp;amp;&quot;</span></div>
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/utils.ts#L11">utils.ts:11</a></li>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="_container" class="tsd-anchor"></a>
+					<h3>_container</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">_container<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/interfaces/base-template.ts#L13">interfaces/base-template.ts:13</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="_contentbody" class="tsd-anchor"></a>
+					<h3>_content<wbr>Body</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">_content<wbr>Body<span class="tsd-signature-symbol">(</span>prop<span class="tsd-signature-symbol">: </span><a href="../interfaces/baseinfo.html" class="tsd-signature-type">BaseInfo</a>, content<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, assets<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, metadata<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/interfaces/base-template.ts#L21">interfaces/base-template.ts:21</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>prop: <a href="../interfaces/baseinfo.html" class="tsd-signature-type">BaseInfo</a></h5>
+								</li>
+								<li>
+									<h5>content: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>assets: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> metadata: <span class="tsd-signature-type">string</span></h5>
+								</li>
 							</ul>
-						</aside>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-						<a name="tagstoreplace._-1" class="tsd-anchor"></a>
-						<h3><</h3>
-						<div class="tsd-signature tsd-kind-icon"><<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&amp;lt;&quot;</span></div>
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/utils.ts#L12">utils.ts:12</a></li>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="_cover" class="tsd-anchor"></a>
+					<h3>_cover</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">_cover<span class="tsd-signature-symbol">(</span>prop<span class="tsd-signature-symbol">: </span><a href="../interfaces/baseinfo.html" class="tsd-signature-type">BaseInfo</a>, cssFiles<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/interfaces/base-template.ts#L23">interfaces/base-template.ts:23</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>prop: <a href="../interfaces/baseinfo.html" class="tsd-signature-type">BaseInfo</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> cssFiles: <span class="tsd-signature-type">string</span></h5>
+								</li>
 							</ul>
-						</aside>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-						<a name="tagstoreplace._-2" class="tsd-anchor"></a>
-						<h3>></h3>
-						<div class="tsd-signature tsd-kind-icon">><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&amp;gt;&quot;</span></div>
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/utils.ts#L13">utils.ts:13</a></li>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="_mimetype" class="tsd-anchor"></a>
+					<h3>_mimetype</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">_mimetype<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/interfaces/base-template.ts#L11">interfaces/base-template.ts:11</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="_nav" class="tsd-anchor"></a>
+					<h3>_nav</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">_nav<span class="tsd-signature-symbol">(</span>cssFiles<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, landmarks<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, toc<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/interfaces/base-template.ts#L17">interfaces/base-template.ts:17</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>cssFiles: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>landmarks: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>toc: <span class="tsd-signature-type">string</span></h5>
+								</li>
 							</ul>
-						</aside>
-					</section>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="_ncx" class="tsd-anchor"></a>
+					<h3>_ncx</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">_ncx<span class="tsd-signature-symbol">(</span>prop<span class="tsd-signature-symbol">: </span><a href="../interfaces/baseinfo.html" class="tsd-signature-type">BaseInfo</a>, toc<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/interfaces/base-template.ts#L19">interfaces/base-template.ts:19</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>prop: <a href="../interfaces/baseinfo.html" class="tsd-signature-type">BaseInfo</a></h5>
+								</li>
+								<li>
+									<h5>toc: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="_opf" class="tsd-anchor"></a>
+					<h3>_opf</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">_opf<span class="tsd-signature-symbol">(</span>prop<span class="tsd-signature-symbol">: </span><a href="../interfaces/baseinfo.html" class="tsd-signature-type">BaseInfo</a>, metadata<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, manifest<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, spine<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/interfaces/base-template.ts#L15">interfaces/base-template.ts:15</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>prop: <a href="../interfaces/baseinfo.html" class="tsd-signature-type">BaseInfo</a></h5>
+								</li>
+								<li>
+									<h5>metadata: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>manifest: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>spine: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -320,9 +349,42 @@
 					<li class=" tsd-kind-class">
 						<a href="basebuilder.html" class="tsd-kind-icon">Base<wbr>Builder</a>
 					</li>
-					<li class=" tsd-kind-class">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
 						<a href="basetemplate.html" class="tsd-kind-icon">Base<wbr>Template</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="basetemplate.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="basetemplate.html#utils" class="tsd-kind-icon">utils</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="basetemplate.html#_container" class="tsd-kind-icon">_container</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="basetemplate.html#_contentbody" class="tsd-kind-icon">_content<wbr>Body</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="basetemplate.html#_cover" class="tsd-kind-icon">_cover</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="basetemplate.html#_mimetype" class="tsd-kind-icon">_mimetype</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="basetemplate.html#_nav" class="tsd-kind-icon">_nav</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="basetemplate.html#_ncx" class="tsd-kind-icon">_ncx</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="basetemplate.html#_opf" class="tsd-kind-icon">_opf</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="builderloader.html" class="tsd-kind-icon">Builder<wbr>Loader</a>
 					</li>
@@ -353,36 +415,9 @@
 					<li class=" tsd-kind-class">
 						<a href="epubcreator.html" class="tsd-kind-icon">Epub<wbr>Creator</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class">
+					<li class=" tsd-kind-class">
 						<a href="utils.html" class="tsd-kind-icon">Utils</a>
-						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="utils.html#generatename" class="tsd-kind-icon">generate<wbr>Name</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="utils.html#getfilenamefrompath" class="tsd-kind-icon">get<wbr>File<wbr>Name<wbr>From<wbr>Path</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="utils.html#gettimestamp" class="tsd-kind-icon">get<wbr>Time<wbr>Stamp</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="utils.html#replacetag" class="tsd-kind-icon">replace<wbr>Tag</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="utils.html#safehtml" class="tsd-kind-icon">safe<wbr>Html</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="utils.html#safeurl" class="tsd-kind-icon">safe<wbr>Url</a>
-							</li>
-							<li class=" tsd-kind-object-literal tsd-parent-kind-class">
-								<a href="utils.html#tagstoreplace" class="tsd-kind-icon">tags<wbr>ToReplace</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/asset.html" class="tsd-kind-icon">Asset</a>
 					</li>

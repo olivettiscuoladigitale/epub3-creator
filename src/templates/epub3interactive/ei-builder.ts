@@ -19,12 +19,11 @@ export class EiBuilder extends BaseBuilder {
     constructor() {
         super();
         this.template = new EiTemplate();
-        Object.assign(this.fileNames, {
+        this.fileNames = Object.assign(this.fileNames, {
             cover: 'cover.html',
-            nav: 'ebook-nav.html',
+            nav: 'ebook-nav.xhtml',
             container: 'container.xml',
             content: 'ebook-content.html'
         });
     }
-
 }

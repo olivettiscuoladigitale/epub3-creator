@@ -1,1 +1,1 @@
-var wpManifest = '{"demo":["demo.3762690f23cacb5e0572.js","0.50a36077b1fecbf43dcc.hot-update.js"]}'
+var wpManifest = '{"demo":"demo.f819d5d25b4f20a46b2a.js"}'

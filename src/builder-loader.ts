@@ -2,7 +2,7 @@ import {FileContent} from './interfaces/file-content';
 import {BaseInfo} from './interfaces/base-info';
 import {CssDef} from './interfaces/css-def';
 import {Nav} from './interfaces/nav';
-import {Assets} from './interfaces/assets';
+import {Asset} from './interfaces/asset';
 
 import {E3Builder} from './templates/epub3/e3-builder';
 import {E2Builder} from './templates/epub2/e2-builder';
@@ -11,6 +11,7 @@ import {EiBuilder} from './templates/epub3interactive/ei-builder';
 import {Utils} from './utils';
 import {JsDef} from './interfaces/js-def';
 import {MetaDef} from './interfaces/meta-def';
+import {BaseBuilder} from './interfaces/base-builder';
 
 /**
  * Prepare data for Template
@@ -23,8 +24,8 @@ import {MetaDef} from './interfaces/meta-def';
  */
 export class BuilderLoader {
 
-    private builder: any;
-    private utils: any;
+    private builder: BaseBuilder;
+    private utils: Utils;
 
     constructor(models) {
         this.utils = new Utils();
@@ -85,7 +86,7 @@ export class BuilderLoader {
      * @param assets - assets array definition
      * @returns {{name: string, folder: string, content: string}}
      */
-    public opf(chapters: any, prop: BaseInfo, css?: CssDef[], assets?: Assets[]) {
+    public opf(chapters: any, prop: BaseInfo, css?: CssDef[], assets?: Asset[]) {
         let metadata: string = this._metadata(prop);
         let manifest: string = this._manifest(chapters, prop, css, assets);
         let spine: string = this._spine(chapters, prop);
@@ -299,7 +300,7 @@ export class BuilderLoader {
         return metadata;
     }
 
-    private _manifest(chapters, prop: BaseInfo, css?: CssDef[], assets?: Assets[]): string {
+    private _manifest(chapters, prop: BaseInfo, css?: CssDef[], assets?: Asset[]): string {
 
         let manifest: string = '';
         let cssFiles: string = this._opfCss(css);
@@ -320,7 +321,8 @@ export class BuilderLoader {
                      <item id="ncx" href="ebook.ncx" media-type="application/x-dtbncx+xml"/>`;
 
         for (let a of assets) {
-            manifest += `<item id="${a.id}" href="${a.name}" media-type="${a.mediaType}" media-overlay="${a.mediaOverlay}"/>`;
+            const mediaOverlay = a.mediaOverlay ? `media-overlay="${a.mediaOverlay}"` : '';
+            manifest += `<item id="${a.id}" href="${a.name}" media-type="${a.mediaType}" ${mediaOverlay}/>`;
         }
 
         return manifest;

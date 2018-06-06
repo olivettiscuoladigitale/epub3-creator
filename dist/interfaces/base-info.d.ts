@@ -19,4 +19,16 @@ export interface BaseInfo {
     };
     title: string;
     publicationDate: string;
+    media?: {
+        activeClass?: string;
+        duration?: Array<{
+            refines: string;
+            value: string;
+        }>;
+    };
+    rendition?: {
+        layout?: string;
+        orientation?: string;
+        spread?: string;
+    };
 }

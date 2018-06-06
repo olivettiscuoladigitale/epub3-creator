@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 103);
+/******/ 	return __webpack_require__(__webpack_require__.s = 106);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -84,9 +84,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 var support = __webpack_require__(3);
-var base64 = __webpack_require__(29);
+var base64 = __webpack_require__(32);
 var nodejsUtils = __webpack_require__(14);
-var setImmediate = __webpack_require__(56);
+var setImmediate = __webpack_require__(59);
 var external = __webpack_require__(10);
 
 
@@ -846,9 +846,9 @@ module.exports = GenericWorker;
 
 
 
-var base64 = __webpack_require__(55)
-var ieee754 = __webpack_require__(70)
-var isArray = __webpack_require__(28)
+var base64 = __webpack_require__(58)
+var ieee754 = __webpack_require__(73)
+var isArray = __webpack_require__(31)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -2667,7 +2667,7 @@ else {
 }
 
 try {
-    exports.nodestream = !!__webpack_require__(32).Readable;
+    exports.nodestream = !!__webpack_require__(35).Readable;
 } catch(e) {
     exports.nodestream = false;
 }
@@ -2811,7 +2811,7 @@ var objectKeys = Object.keys || function (obj) {
 module.exports = Duplex;
 
 /*<replacement>*/
-var processNextTick = __webpack_require__(21);
+var processNextTick = __webpack_require__(24);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -2819,8 +2819,8 @@ var util = __webpack_require__(9);
 util.inherits = __webpack_require__(6);
 /*</replacement>*/
 
-var Readable = __webpack_require__(49);
-var Writable = __webpack_require__(23);
+var Readable = __webpack_require__(52);
+var Writable = __webpack_require__(26);
 
 util.inherits(Duplex, Readable);
 
@@ -3334,7 +3334,7 @@ var ES6Promise = null;
 if (typeof Promise !== "undefined") {
     ES6Promise = Promise;
 } else {
-    ES6Promise = __webpack_require__(85);
+    ES6Promise = __webpack_require__(88);
 }
 
 /**
@@ -3925,11 +3925,11 @@ var EE = __webpack_require__(13).EventEmitter;
 var inherits = __webpack_require__(6);
 
 inherits(Stream, EE);
-Stream.Readable = __webpack_require__(97);
-Stream.Writable = __webpack_require__(99);
-Stream.Duplex = __webpack_require__(95);
-Stream.Transform = __webpack_require__(98);
-Stream.PassThrough = __webpack_require__(96);
+Stream.Readable = __webpack_require__(100);
+Stream.Writable = __webpack_require__(102);
+Stream.Duplex = __webpack_require__(98);
+Stream.Transform = __webpack_require__(101);
+Stream.PassThrough = __webpack_require__(99);
 
 // Backwards-compat with node 0.4.x
 Stream.Stream = Stream;
@@ -4031,18 +4031,103 @@ Stream.prototype.pipe = function(dest, options) {
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// Thank's IE8 for his funny defineProperty
-module.exports = !__webpack_require__(27)(function(){
-  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
-});
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var BaseBuilder = /** @class */ (function () {
+    function BaseBuilder() {
+        this.ext = 'xhtml';
+        this.mediaType = 'application/xhtml+xml';
+        this.sectionTag = 'epub:type';
+        this.fileNames = {
+            cover: 'cover.xhtml',
+            opf: 'ebook.opf',
+            nav: 'ebook-nav.xhtml',
+            ncx: 'ebook.ncx',
+            container: 'container.xml',
+            content: 'ebook-content.xhtml'
+        };
+    }
+    BaseBuilder.prototype.getMimetype = function () {
+        var content = this.template._mimetype();
+        return {
+            name: 'mimetype',
+            folder: '',
+            content: content
+        };
+    };
+    BaseBuilder.prototype.getContainer = function () {
+        var content = this.template._container();
+        return {
+            name: this.fileNames.container,
+            folder: 'META-INF',
+            content: content
+        };
+    };
+    BaseBuilder.prototype.getOpf = function (prop, metadataFragment, manifestFragment, spineFragment) {
+        var content = this.template._opf(prop, metadataFragment, manifestFragment, spineFragment);
+        return {
+            name: this.fileNames.opf,
+            folder: 'EPUB',
+            content: content
+        };
+    };
+    BaseBuilder.prototype.getNav = function (cssFiles, landmarks, toc) {
+        var content = this.template._nav(cssFiles, landmarks, toc);
+        return {
+            name: this.fileNames.nav,
+            folder: 'EPUB',
+            content: content
+        };
+    };
+    BaseBuilder.prototype.getNcx = function (prop, toc) {
+        var content = this.template._ncx(prop, toc);
+        return {
+            name: this.fileNames.ncx,
+            folder: 'EPUB',
+            content: content
+        };
+    };
+    BaseBuilder.prototype.getContentBody = function (prop, body, assets, metadata) {
+        var content = this.template._contentBody(prop, body, assets, metadata);
+        return {
+            name: this.fileNames.content,
+            folder: 'EPUB',
+            content: content
+        };
+    };
+    BaseBuilder.prototype.getCover = function (prop, css) {
+        var content = this.template._cover(prop, css);
+        return {
+            name: this.fileNames.cover,
+            folder: 'EPUB',
+            content: content
+        };
+    };
+    return BaseBuilder;
+}());
+exports.BaseBuilder = BaseBuilder;
+
 
 /***/ }),
 /* 17 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = function(it){
-  return typeof it === 'object' ? it !== null : typeof it === 'function';
-};
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var utils_1 = __webpack_require__(18);
+var BaseTemplate = /** @class */ (function () {
+    function BaseTemplate() {
+        this.utils = new utils_1.Utils();
+    }
+    BaseTemplate.prototype._cover = function (prop, cssFiles) {
+        return "<div class=\"body\"><img src=\"" + prop.cover.asFileName + "\" alt=\"Cover Image\" title=\"Cover Image\"/></div>";
+    };
+    return BaseTemplate;
+}());
+exports.BaseTemplate = BaseTemplate;
+
 
 /***/ }),
 /* 18 */
@@ -4050,12 +4135,107 @@ module.exports = function(it){
 
 "use strict";
 
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Utils class
+ * group some usefull methods for epub creations
+ *
+ * @author Giorgio Modoni <g.modoni@olivettiscuoladigitale.it>
+ */
+var Utils = /** @class */ (function () {
+    function Utils() {
+        this.tagsToReplace = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;'
+        };
+    }
+    /**
+     * Generate a timestamp
+     *
+     * @returns {number} timestamp
+     */
+    Utils.prototype.getTimeStamp = function () {
+        if (!Date.now)
+            Date.now = function () { return new Date().getTime(); };
+        return Math.floor(Date.now() / 1000);
+    };
+    /**
+     * Generate a unique name for epub
+     *
+     * @returns {string} fileName
+     */
+    Utils.prototype.generateName = function () {
+        var fileName;
+        fileName = this.getTimeStamp() + '.epub';
+        return fileName;
+    };
+    Utils.prototype.getFileNameFromPath = function (fullPath) {
+        var fileName = fullPath.replace(/^.*[\\\/]/, '');
+        var extension = fileName.substr(fileName.lastIndexOf('.') + 1);
+        var name = fileName.substr(0, fileName.length - extension.length - 1);
+        var path = fullPath.replace(fileName, '');
+        return {
+            fullName: fileName,
+            name: name,
+            extension: extension,
+            path: path
+        };
+    };
+    /**
+     * Sanitize html entities for content
+     *
+     * @param {string} str
+     * @returns {string}
+     */
+    Utils.prototype.safeHtml = function (str) {
+        return str.replace(/[&<>]/g, this.replaceTag);
+    };
+    /**
+     * Sanitize url
+     * @param {string} str
+     * @returns {string}
+     */
+    Utils.prototype.safeUrl = function (str) {
+        return encodeURI(str);
+    };
+    Utils.prototype.replaceTag = function (tag) {
+        return this.tagsToReplace[tag] || tag;
+    };
+    return Utils;
+}());
+exports.Utils = Utils;
+
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Thank's IE8 for his funny defineProperty
+module.exports = !__webpack_require__(30)(function(){
+  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
+});
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports) {
+
+module.exports = function(it){
+  return typeof it === 'object' ? it !== null : typeof it === 'function';
+};
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 var external = __webpack_require__(10);
-var DataWorker = __webpack_require__(40);
-var DataLengthProbe = __webpack_require__(39);
-var Crc32Probe = __webpack_require__(38);
-var DataLengthProbe = __webpack_require__(39);
+var DataWorker = __webpack_require__(43);
+var DataLengthProbe = __webpack_require__(42);
+var Crc32Probe = __webpack_require__(41);
+var DataLengthProbe = __webpack_require__(42);
 
 /**
  * Represent a compressed object, with everything needed to decompress it.
@@ -4127,7 +4307,7 @@ module.exports = CompressedObject;
 
 
 /***/ }),
-/* 19 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4212,7 +4392,7 @@ module.exports = function crc32wrapper(input, crc) {
 
 
 /***/ }),
-/* 20 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4251,7 +4431,7 @@ module.exports = {
 
 
 /***/ }),
-/* 21 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4302,7 +4482,7 @@ function nextTick(fn, arg1, arg2, arg3) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
 
 /***/ }),
-/* 22 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4488,7 +4668,7 @@ function done(stream, er) {
 }
 
 /***/ }),
-/* 23 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4501,7 +4681,7 @@ function done(stream, er) {
 module.exports = Writable;
 
 /*<replacement>*/
-var processNextTick = __webpack_require__(21);
+var processNextTick = __webpack_require__(24);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -4521,7 +4701,7 @@ util.inherits = __webpack_require__(6);
 
 /*<replacement>*/
 var internalUtil = {
-  deprecate: __webpack_require__(110)
+  deprecate: __webpack_require__(115)
 };
 /*</replacement>*/
 
@@ -5008,21 +5188,21 @@ function CorkedRequest(state) {
     }
   };
 }
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(102).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(105).setImmediate))
 
 /***/ }),
-/* 24 */
+/* 27 */
 /***/ (function(module, exports) {
 
 var core = module.exports = {version: '2.3.0'};
 if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
 
 /***/ }),
-/* 25 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // optional / simple context binding
-var aFunction = __webpack_require__(57);
+var aFunction = __webpack_require__(60);
 module.exports = function(fn, that, length){
   aFunction(fn);
   if(that === undefined)return fn;
@@ -5043,10 +5223,10 @@ module.exports = function(fn, that, length){
 };
 
 /***/ }),
-/* 26 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(17)
+var isObject = __webpack_require__(20)
   , document = __webpack_require__(12).document
   // in old IE typeof document.createElement is 'object'
   , is = isObject(document) && isObject(document.createElement);
@@ -5055,7 +5235,7 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 27 */
+/* 30 */
 /***/ (function(module, exports) {
 
 module.exports = function(exec){
@@ -5067,7 +5247,7 @@ module.exports = function(exec){
 };
 
 /***/ }),
-/* 28 */
+/* 31 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -5078,7 +5258,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 29 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5191,7 +5371,7 @@ exports.decode = function(input) {
 
 
 /***/ }),
-/* 30 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5208,11 +5388,11 @@ exports.STORE = {
         return new GenericWorker("STORE decompression");
     }
 };
-exports.DEFLATE = __webpack_require__(72);
+exports.DEFLATE = __webpack_require__(75);
 
 
 /***/ }),
-/* 31 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5230,7 +5410,7 @@ exports.dosPermissions = null;
 
 
 /***/ }),
-/* 32 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -5245,12 +5425,12 @@ module.exports = __webpack_require__(15);
 
 
 /***/ }),
-/* 33 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var DataReader = __webpack_require__(34);
+var DataReader = __webpack_require__(37);
 var utils = __webpack_require__(0);
 
 function ArrayReader(data) {
@@ -5309,7 +5489,7 @@ module.exports = ArrayReader;
 
 
 /***/ }),
-/* 34 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5432,12 +5612,12 @@ module.exports = DataReader;
 
 
 /***/ }),
-/* 35 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var ArrayReader = __webpack_require__(33);
+var ArrayReader = __webpack_require__(36);
 var utils = __webpack_require__(0);
 
 function Uint8ArrayReader(data) {
@@ -5461,7 +5641,7 @@ module.exports = Uint8ArrayReader;
 
 
 /***/ }),
-/* 36 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5469,10 +5649,10 @@ module.exports = Uint8ArrayReader;
 
 var utils = __webpack_require__(0);
 var support = __webpack_require__(3);
-var ArrayReader = __webpack_require__(33);
-var StringReader = __webpack_require__(80);
-var NodeBufferReader = __webpack_require__(79);
-var Uint8ArrayReader = __webpack_require__(35);
+var ArrayReader = __webpack_require__(36);
+var StringReader = __webpack_require__(83);
+var NodeBufferReader = __webpack_require__(82);
+var Uint8ArrayReader = __webpack_require__(38);
 
 /**
  * Create a reader adapted to the data.
@@ -5498,7 +5678,7 @@ module.exports = function (data) {
 
 
 /***/ }),
-/* 37 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5512,14 +5692,14 @@ exports.DATA_DESCRIPTOR = "PK\x07\x08";
 
 
 /***/ }),
-/* 38 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var GenericWorker = __webpack_require__(1);
-var crc32 = __webpack_require__(19);
+var crc32 = __webpack_require__(22);
 var utils = __webpack_require__(0);
 
 /**
@@ -5543,7 +5723,7 @@ module.exports = Crc32Probe;
 
 
 /***/ }),
-/* 39 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5579,7 +5759,7 @@ module.exports = DataLengthProbe;
 
 
 /***/ }),
-/* 40 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5702,23 +5882,23 @@ module.exports = DataWorker;
 
 
 /***/ }),
-/* 41 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(Buffer) {
 
 var utils = __webpack_require__(0);
-var ConvertWorker = __webpack_require__(81);
+var ConvertWorker = __webpack_require__(84);
 var GenericWorker = __webpack_require__(1);
-var base64 = __webpack_require__(29);
+var base64 = __webpack_require__(32);
 var support = __webpack_require__(3);
 var external = __webpack_require__(10);
 
 var NodejsStreamOutputAdapter = null;
 if (support.nodestream) {
     try {
-        NodejsStreamOutputAdapter = __webpack_require__(77);
+        NodejsStreamOutputAdapter = __webpack_require__(80);
     } catch(e) {}
 }
 
@@ -5929,7 +6109,7 @@ module.exports = StreamHelper;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2).Buffer))
 
 /***/ }),
-/* 42 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5958,7 +6138,7 @@ module.exports = StreamHelper;
 
 /*<replacement>*/
 
-var Buffer = __webpack_require__(100).Buffer;
+var Buffer = __webpack_require__(103).Buffer;
 /*</replacement>*/
 
 var isEncoding = Buffer.isEncoding || function (encoding) {
@@ -6231,7 +6411,7 @@ function simpleEnd(buf) {
 }
 
 /***/ }),
-/* 43 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6423,7 +6603,7 @@ exports.utf8border = function (buf, max) {
 
 
 /***/ }),
-/* 44 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6481,7 +6661,7 @@ module.exports = adler32;
 
 
 /***/ }),
-/* 45 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6556,7 +6736,7 @@ module.exports = {
 
 
 /***/ }),
-/* 46 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6622,7 +6802,7 @@ module.exports = crc32;
 
 
 /***/ }),
-/* 47 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6676,7 +6856,7 @@ module.exports = ZStream;
 
 
 /***/ }),
-/* 48 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6688,7 +6868,7 @@ module.exports = ZStream;
 
 module.exports = PassThrough;
 
-var Transform = __webpack_require__(22);
+var Transform = __webpack_require__(25);
 
 /*<replacement>*/
 var util = __webpack_require__(9);
@@ -6708,7 +6888,7 @@ PassThrough.prototype._transform = function (chunk, encoding, cb) {
 };
 
 /***/ }),
-/* 49 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6717,11 +6897,11 @@ PassThrough.prototype._transform = function (chunk, encoding, cb) {
 module.exports = Readable;
 
 /*<replacement>*/
-var processNextTick = __webpack_require__(21);
+var processNextTick = __webpack_require__(24);
 /*</replacement>*/
 
 /*<replacement>*/
-var isArray = __webpack_require__(28);
+var isArray = __webpack_require__(31);
 /*</replacement>*/
 
 /*<replacement>*/
@@ -6757,7 +6937,7 @@ util.inherits = __webpack_require__(6);
 /*</replacement>*/
 
 /*<replacement>*/
-var debugUtil = __webpack_require__(116);
+var debugUtil = __webpack_require__(121);
 var debug = undefined;
 if (debugUtil && debugUtil.debuglog) {
   debug = debugUtil.debuglog('stream');
@@ -6831,7 +7011,7 @@ function ReadableState(options, stream) {
   this.decoder = null;
   this.encoding = null;
   if (options.encoding) {
-    if (!StringDecoder) StringDecoder = __webpack_require__(42).StringDecoder;
+    if (!StringDecoder) StringDecoder = __webpack_require__(45).StringDecoder;
     this.decoder = new StringDecoder(options.encoding);
     this.encoding = options.encoding;
   }
@@ -6942,7 +7122,7 @@ function needMoreData(state) {
 
 // backwards compatibility.
 Readable.prototype.setEncoding = function (enc) {
-  if (!StringDecoder) StringDecoder = __webpack_require__(42).StringDecoder;
+  if (!StringDecoder) StringDecoder = __webpack_require__(45).StringDecoder;
   this._readableState.decoder = new StringDecoder(enc);
   this._readableState.encoding = enc;
   return this;
@@ -7595,7 +7775,7 @@ function indexOf(xs, x) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
 
 /***/ }),
-/* 50 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/* FileSaver.js
@@ -7781,7 +7961,7 @@ var saveAs = saveAs || (function(view) {
 
 if (typeof module !== "undefined" && module.exports) {
   module.exports.saveAs = saveAs;
-} else if (("function" !== "undefined" && __webpack_require__(114) !== null) && (__webpack_require__(115) !== null)) {
+} else if (("function" !== "undefined" && __webpack_require__(119) !== null) && (__webpack_require__(120) !== null)) {
   !(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
     return saveAs;
   }.call(exports, __webpack_require__, exports, module),
@@ -7790,7 +7970,7 @@ if (typeof module !== "undefined" && module.exports) {
 
 
 /***/ }),
-/* 51 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7900,7 +8080,7 @@ module.exports = JSZipUtils;
 
 
 /***/ }),
-/* 52 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7941,10 +8121,10 @@ function JSZip() {
         return newObj;
     };
 }
-JSZip.prototype = __webpack_require__(78);
-JSZip.prototype.loadAsync = __webpack_require__(75);
+JSZip.prototype = __webpack_require__(81);
+JSZip.prototype.loadAsync = __webpack_require__(78);
 JSZip.support = __webpack_require__(3);
-JSZip.defaults = __webpack_require__(31);
+JSZip.defaults = __webpack_require__(34);
 
 // TODO find a better way to handle this version,
 // a require('package.json').version doesn't work with webpack, see #327
@@ -7959,15 +8139,17 @@ module.exports = JSZip;
 
 
 /***/ }),
-/* 53 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var epub3_template_1 = __webpack_require__(106);
-var epub2_templates_1 = __webpack_require__(104);
-var epub3html_template_1 = __webpack_require__(108);
+var e3_builder_1 = __webpack_require__(109);
+var e2_builder_1 = __webpack_require__(107);
+var eh_builder_1 = __webpack_require__(111);
+var ei_builder_1 = __webpack_require__(113);
+var utils_1 = __webpack_require__(18);
 /**
  * Prepare data for Template
  *
@@ -7975,39 +8157,50 @@ var epub3html_template_1 = __webpack_require__(108);
  * Tag structure:
  * https://idpf.github.io/a11y-guidelines/content/semantics/epub-type.html
  *
- * @author Giorgio Modoni <g.modoni@alfabook.it>
+ * @author Giorgio Modoni <g.modoni@olivettiscuoladigitale.it>
  */
-var TemplateParser = /** @class */ (function () {
-    function TemplateParser(models) {
-        this.template(models);
+var BuilderLoader = /** @class */ (function () {
+    function BuilderLoader(models) {
+        this.utils = new utils_1.Utils();
+        this.getBuilder(models);
     }
     /**
      * Load specific template class
      *
      * @param models - a template name
      */
-    TemplateParser.prototype.template = function (models) {
-        if (models === "epub3")
-            this.templateClass = new epub3_template_1.Epub3Template();
-        if (models === "epub2")
-            this.templateClass = new epub2_templates_1.Epub2Template();
-        if (models === "epub3html")
-            this.templateClass = new epub3html_template_1.Epub3HtmlTemplate();
+    BuilderLoader.prototype.getBuilder = function (models) {
+        if (models === 'epub3') {
+            this.builder = new e3_builder_1.E3Builder();
+            return;
+        }
+        if (models === 'epub2') {
+            this.builder = new e2_builder_1.E2Builder();
+            return;
+        }
+        if (models === 'epub3html') {
+            this.builder = new eh_builder_1.EhBuilder();
+            return;
+        }
+        if (models === 'epub3interactive') {
+            this.builder = new ei_builder_1.EiBuilder();
+            return;
+        }
     };
     /**
      * Get template for mimetype file
      * @returns {FileContent}
      */
-    TemplateParser.prototype.mimetype = function () {
-        return this.templateClass.getMimetype();
+    BuilderLoader.prototype.mimetype = function () {
+        return this.builder.getMimetype();
     };
     /**
      * Get container.xml file
      *
      * @returns {FileContent}
      */
-    TemplateParser.prototype.container = function () {
-        return this.templateClass.getContainer();
+    BuilderLoader.prototype.container = function () {
+        return this.builder.getContainer();
     };
     /**
      * Create package file
@@ -8019,11 +8212,11 @@ var TemplateParser = /** @class */ (function () {
      * @param assets - assets array definition
      * @returns {{name: string, folder: string, content: string}}
      */
-    TemplateParser.prototype.opf = function (chapters, prop, css, assets) {
+    BuilderLoader.prototype.opf = function (chapters, prop, css, assets) {
         var metadata = this._metadata(prop);
         var manifest = this._manifest(chapters, prop, css, assets);
         var spine = this._spine(chapters, prop);
-        return this.templateClass.getOpf(prop, metadata, manifest, spine);
+        return this.builder.getOpf(prop, metadata, manifest, spine);
     };
     /**
      * Create a hrml/xhtml navigation
@@ -8032,11 +8225,11 @@ var TemplateParser = /** @class */ (function () {
      * @param css - stylesheet array data
      * @returns {{name: string, folder: string, content: string}}
      */
-    TemplateParser.prototype.nav = function (navigation, css) {
-        var cssFiles = this._cssLink(css);
+    BuilderLoader.prototype.nav = function (navigation, css) {
+        var cssFiles = this._cssTags(css);
         var landmarks = this._navLandmarks(navigation.landmarks);
         var toc = this._navToc(navigation.toc);
-        return this.templateClass.getNav(cssFiles, landmarks, toc);
+        return this.builder.getNav(cssFiles, landmarks, toc);
     };
     /**
      * Generate  ncx file for epub2 and for epub3 compatibility with epub2
@@ -8045,9 +8238,9 @@ var TemplateParser = /** @class */ (function () {
      * @param navigation - navigarion object data
      * @returns {{name: string, folder: string, content: string}}
      */
-    TemplateParser.prototype.ncx = function (prop, navigation) {
+    BuilderLoader.prototype.ncx = function (prop, navigation) {
         var toc = this._ncxToc(navigation.toc);
-        return this.templateClass.getNcx(prop, toc);
+        return this.builder.getNcx(prop, toc);
     };
     /**
      * Generate a chapter content
@@ -8057,9 +8250,12 @@ var TemplateParser = /** @class */ (function () {
      * @param css - stylesheet array
      * @returns {{name: string, folder: string, content: string}}
      */
-    TemplateParser.prototype.contentBody = function (prop, body, css) {
-        var cssFiles = this._cssLink(css);
-        return this.templateClass.getContentBody(prop, body, cssFiles);
+    BuilderLoader.prototype.contentBody = function (prop, body, css, jss, metas) {
+        var assets = '';
+        assets += this._cssTags(css);
+        assets += this._jsTags(jss);
+        var metadata = this._metaTags(metas);
+        return this.builder.getContentBody(prop, body, assets, metadata);
     };
     /**
      * Create a Page for cover.
@@ -8069,26 +8265,12 @@ var TemplateParser = /** @class */ (function () {
      * @param css - stylesheet array
      * @returns {{name: string, folder: string, content: string}}
      */
-    TemplateParser.prototype.cover = function (prop, css) {
-        var cssFiles = this._cssLink(css);
-        return this.templateClass.getCover(prop, cssFiles);
+    BuilderLoader.prototype.cover = function (prop, css) {
+        var cssFiles = this._cssTags(css);
+        return this.builder.getCover(prop, cssFiles);
     };
-    TemplateParser.prototype.getExt = function () {
-        return this.templateClass.ext;
-    };
-    /**
-     * Generate a string of landmark used in opf data
-     * @param data - landmarks data
-     * @returns {string}
-     * @private
-     */
-    TemplateParser.prototype._navLandmarks = function (data) {
-        var landmarks = "";
-        for (var _i = 0, data_1 = data; _i < data_1.length; _i++) {
-            var l = data_1[_i];
-            landmarks += "<li><a epub:type=\"" + l.type + "\" href=\"" + l.href + "\" >" + l.type + "</a></li>";
-        }
-        return landmarks;
+    BuilderLoader.prototype.getExt = function () {
+        return this.builder.ext;
     };
     /**
      * Get section tag.
@@ -8096,78 +8278,132 @@ var TemplateParser = /** @class */ (function () {
      *
      * @returns {string}
      */
-    TemplateParser.prototype.getSectionTag = function () {
-        return this.templateClass.sectionTag;
+    BuilderLoader.prototype.getSectionTag = function () {
+        return this.builder.sectionTag;
     };
-    TemplateParser.prototype._navToc = function (data) {
-        var toc = "";
+    /**
+     * Generate a string of landmark used in opf data
+     * @param data - landmarks data
+     * @returns {string}
+     * @private
+     */
+    BuilderLoader.prototype._navLandmarks = function (data) {
+        var landmarks = '';
+        for (var _i = 0, data_1 = data; _i < data_1.length; _i++) {
+            var l = data_1[_i];
+            landmarks += "<li><a epub:type=\"" + this.utils.safeUrl(l.type) + "\" href=\"" + l.href + "\">" + this.utils.safeHtml(l.type) + "</a></li>";
+        }
+        return landmarks;
+    };
+    BuilderLoader.prototype._navToc = function (data) {
+        var toc = '';
         for (var _i = 0, data_2 = data; _i < data_2.length; _i++) {
             var t = data_2[_i];
-            toc += "<li><a href=\"" + t.href + "\">" + t.label + "</a></li>";
+            toc += "<li><a href=\"" + this.utils.safeUrl(t.href) + "\">" + this.utils.safeHtml(t.label) + "</a></li>";
         }
         return toc;
     };
-    TemplateParser.prototype._ncxToc = function (data) {
-        var toc = "";
+    BuilderLoader.prototype._ncxToc = function (data) {
+        var toc = '';
         for (var _i = 0, data_3 = data; _i < data_3.length; _i++) {
             var t = data_3[_i];
-            toc += "<navPoint id=\"" + t.id + "\">\n                     <navLabel>\n                        <text>" + t.label + "</text>\n                     </navLabel>\n                     <content src=\"" + t.href + "\"/>\n                    </navPoint>";
+            toc += "<navPoint id=\"" + t.id + "\">\n                     <navLabel>\n                        <text>" + this.utils.safeHtml(t.label) + "</text>\n                     </navLabel>\n                     <content src=\"" + this.utils.safeUrl(t.href) + "\"/>\n                    </navPoint>";
         }
         return toc;
     };
-    TemplateParser.prototype._cssLink = function (css) {
-        var cssFiles = "";
+    BuilderLoader.prototype._cssTags = function (css) {
+        var styleTags = '';
         if (css) {
             for (var _i = 0, css_1 = css; _i < css_1.length; _i++) {
                 var style = css_1[_i];
-                var isAlternate = "";
-                if (style.type === "night")
-                    isAlternate = "alternate ";
-                cssFiles += "<link rel=\"" + isAlternate + "stylesheet\" type=\"text/css\" href=\"" + style.name + "\" class=\"" + style.type + "\" title=\"" + style.type + "\"/> ";
+                var isAlternate = '';
+                if (style.type === 'night')
+                    isAlternate = 'alternate ';
+                styleTags += "<link rel=\"" + isAlternate + "stylesheet\" type=\"text/css\" \n                    href=\"" + this.utils.safeUrl(style.name) + "\" class=\"" + style.type + "\" title=\"" + style.type + "\"/>";
             }
         }
-        return cssFiles;
+        return styleTags;
     };
-    TemplateParser.prototype._opfCss = function (css) {
-        var cssFiles = "";
+    BuilderLoader.prototype._jsTags = function (jss) {
+        var jsTags = '';
+        if (jss && Array.isArray(jss)) {
+            for (var _i = 0, jss_1 = jss; _i < jss_1.length; _i++) {
+                var script = jss_1[_i];
+                if (script.content) {
+                    return jsTags += "<script type=\"text/javascript\">" + script.content + "</script>";
+                }
+                jsTags += "<script type=\"text/javascript\" src=\"" + this.utils.safeUrl(script.path) + "\"></script>";
+            }
+        }
+        return jsTags;
+    };
+    BuilderLoader.prototype._metaTags = function (metas) {
+        var metaTags = '';
+        if (metas && Array.isArray(metas)) {
+            for (var _i = 0, metas_1 = metas; _i < metas_1.length; _i++) {
+                var meta = metas_1[_i];
+                if (meta.name) {
+                    return metaTags += "<meta name=\"" + meta.name + "\" content=\"" + meta.content + "\"/>";
+                }
+            }
+        }
+        return metaTags;
+    };
+    BuilderLoader.prototype._opfCss = function (css) {
+        var cssFiles = '';
         var cssIdCounter = 0;
         for (var _i = 0, css_2 = css; _i < css_2.length; _i++) {
             var style = css_2[_i];
-            var cssId = "css-" + cssIdCounter;
-            cssFiles += "<item id=\"" + cssId + "\" href=\"" + style.name + "\" media-type=\"text/css\" />";
+            var cssId = 'css-' + cssIdCounter;
+            cssFiles += "<item id=\"" + cssId + "\" href=\"" + this.utils.safeUrl(style.name) + "\" media-type=\"text/css\" />";
             cssIdCounter++;
         }
         return cssFiles;
     };
-    TemplateParser.prototype._metadata = function (prop) {
-        var metadata = "";
-        if (prop.cover.file !== "" && prop.cover.asFileName) {
-            metadata += "<!-- rights expression for the cover image -->       \n                    <link rel=\"cc:license\" refines=\"#cover-image\" href=\"" + prop.cover.license + "\" />\n                    <link rel=\"cc:attributionURL\" refines=\"#cover-image\" href=\"" + prop.cover.attributionUrl + "\" />        \n                    <!-- cover meta element included for 2.0 reading system compatibility: -->\n                    <meta name=\"cover\" content=\"cover-image\"/>";
+    BuilderLoader.prototype._metadata = function (prop) {
+        var _this = this;
+        var metadata = '';
+        if (prop.cover.file !== '' && prop.cover.asFileName) {
+            metadata += "<!-- rights expression for the cover image -->       \n                    <link rel=\"cc:license\" refines=\"#cover-image\" href=\"" + prop.cover.license + "\"/>\n                    <link rel=\"cc:attributionURL\" refines=\"#cover-image\" href=\"" + prop.cover.attributionUrl + "\"/>        \n                    <!-- cover meta element included for 2.0 reading system compatibility: -->\n                    <meta name=\"cover\" content=\"cover-image\"/>";
+        }
+        if (prop.media) {
+            if (prop.media.activeClass) {
+                metadata += "<meta property=\"media:active-class\">" + prop.media.activeClass + "</meta>";
+            }
+            if (prop.media.duration && Array.isArray(prop.media.duration)) {
+                prop.media.duration.forEach(function (duration) {
+                    metadata += "<meta property=\"media:duration\" refines=\"" + duration.refines + "\">\n                        " + _this.utils.safeHtml(duration.value) + "</meta>";
+                });
+            }
+        }
+        if (prop.rendition) {
+            Object.keys(prop.rendition).forEach(function (key) {
+                metadata += "<meta property=\"rendition:" + key + "\">" + prop.rendition[key] + "</meta>";
+            });
         }
         return metadata;
     };
-    TemplateParser.prototype._manifest = function (chapters, prop, css, assets) {
-        var manifest = "";
+    BuilderLoader.prototype._manifest = function (chapters, prop, css, assets) {
+        var manifest = '';
         var cssFiles = this._opfCss(css);
-        if (prop.cover.file !== "" && prop.cover.asFileName) {
-            manifest += "<item id=\"cover-image\" href=\"" + prop.cover.asFileName + "\" media-type=\"" + prop.cover.mediaType + "\" properties=\"cover-image\" />\n                     \n";
-        }
-        /*   <item id="cover" href="cover.${this.templateClass.ext}" media-type="${this.templateClass.mediaType}"/>
-*/
         manifest += cssFiles;
+        if (prop.cover.file !== '' && prop.cover.asFileName) {
+            manifest += "<item id=\"cover-image\" href=\"" + prop.cover.asFileName + "\" media-type=\"" + prop.cover.mediaType + "\" properties=\"cover-image\" />";
+        }
         for (var _i = 0, chapters_1 = chapters; _i < chapters_1.length; _i++) {
             var page = chapters_1[_i];
-            manifest += "<item id=\"" + page.id + "\" href=\"" + page.name + "." + this.templateClass.ext + "\" media-type=\"" + this.templateClass.mediaType + "\" />\n            ";
+            manifest += "<item id=\"" + page.id + "\" href=\"" + page.name + "." + this.builder.ext + "\" media-type=\"" + this.builder.mediaType + "\" />";
         }
-        manifest += "<item id=\"nav\" href=\"ebook-nav." + this.templateClass.ext + "\" properties=\"nav\" media-type=\"" + this.templateClass.mediaType + "\" />\n                     <!-- ncx included for 2.0 reading system compatibility: -->\n                     <item id=\"ncx\" href=\"ebook.ncx\" media-type=\"application/x-dtbncx+xml\" />\n                    ";
+        manifest += "<item id=\"nav\" href=\"ebook-nav." + this.builder.ext + "\" properties=\"nav\" media-type=\"" + this.builder.mediaType + "\" />\n                     <!-- ncx included for 2.0 reading system compatibility: -->\n                     <item id=\"ncx\" href=\"ebook.ncx\" media-type=\"application/x-dtbncx+xml\"/>";
         for (var _a = 0, assets_1 = assets; _a < assets_1.length; _a++) {
             var a = assets_1[_a];
-            manifest += "<item id=\"" + a.id + "\" href=\"" + a.name + "\" media-type=\"" + a.mediaType + "\"/>";
+            var mediaOverlay = a.mediaOverlay ? "media-overlay=\"" + a.mediaOverlay + "\"" : '';
+            manifest += "<item id=\"" + a.id + "\" href=\"" + a.name + "\" media-type=\"" + a.mediaType + "\" " + mediaOverlay + "/>";
         }
         return manifest;
     };
-    TemplateParser.prototype._spine = function (chapters, prop) {
-        var spine = "";
+    BuilderLoader.prototype._spine = function (chapters, prop) {
+        var spine = '';
         // if (prop.cover.file !== "" && prop.cover.asFileName)
         //   spine += `<itemref idref="cover" linear="${prop.cover.inline}"/>`;
         for (var _i = 0, chapters_2 = chapters; _i < chapters_2.length; _i++) {
@@ -8176,66 +8412,41 @@ var TemplateParser = /** @class */ (function () {
         }
         return spine;
     };
-    return TemplateParser;
+    return BuilderLoader;
 }());
-exports.TemplateParser = TemplateParser;
+exports.BuilderLoader = BuilderLoader;
 
 
 /***/ }),
-/* 54 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * Utils class
- * group some usefull methods for epub creations
- *
- * @author Giorgio Modoni <g.modoni@alfabook.it>
- */
-var Utils = /** @class */ (function () {
-    function Utils() {
-    }
-    /**
-     * Generate a timestamp
-     *
-     * @returns {number} timestamp
-     */
-    Utils.prototype.getTimeStamp = function () {
-        if (!Date.now)
-            Date.now = function () { return new Date().getTime(); };
-        return Math.floor(Date.now() / 1000);
-    };
-    /**
-     * Generate a unique name for epub
-     *
-     * @returns {string} fileName
-     */
-    Utils.prototype.generateName = function () {
-        var fileName;
-        fileName = this.getTimeStamp() + ".epub";
-        return fileName;
-    };
-    Utils.prototype.getFileNameFromPath = function (fullPath) {
-        var fileName = fullPath.replace(/^.*[\\\/]/, "");
-        var extension = fileName.substr(fileName.lastIndexOf(".") + 1);
-        var name = fileName.substr(0, fileName.length - extension.length - 1);
-        var path = fullPath.replace(fileName, "");
-        return {
-            fullName: fileName,
-            name: name,
-            extension: extension,
-            path: path
-        };
-    };
-    return Utils;
-}());
-exports.Utils = Utils;
+var ZipExportType;
+(function (ZipExportType) {
+    // the result will be a string, the binary in a base64 form
+    ZipExportType["base64"] = "base64";
+    // deprecated
+    ZipExportType["string"] = "string";
+    // the result will be a string in “binary” form, using 1 byte per char (2 bytes).
+    ZipExportType["binarystring"] = "binarystring";
+    // the result will be an Array of bytes (numbers between 0 and 255) containing the zip.
+    ZipExportType["array"] = "array";
+    // the result will be a Uint8Array containing the zip. This requires a compatible browser.
+    ZipExportType["uint8array"] = "uint8array";
+    // the result will be a ArrayBuffer containing the zip. This requires a compatible browser.
+    ZipExportType["arraybuffer"] = "arraybuffer";
+    // the result will be a Blob containing the zip. This requires a compatible browser.
+    ZipExportType["blob"] = "blob";
+    // the result will be a nodejs Buffer containing the zip. This requires nodejs
+    ZipExportType["nodebuffer"] = "nodebuffer";
+})(ZipExportType = exports.ZipExportType || (exports.ZipExportType = {}));
 
 
 /***/ }),
-/* 55 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8393,14 +8604,14 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 56 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(69);
-module.exports = __webpack_require__(24).setImmediate;
+__webpack_require__(72);
+module.exports = __webpack_require__(27).setImmediate;
 
 /***/ }),
-/* 57 */
+/* 60 */
 /***/ (function(module, exports) {
 
 module.exports = function(it){
@@ -8409,17 +8620,17 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 58 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(17);
+var isObject = __webpack_require__(20);
 module.exports = function(it){
   if(!isObject(it))throw TypeError(it + ' is not an object!');
   return it;
 };
 
 /***/ }),
-/* 59 */
+/* 62 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -8429,13 +8640,13 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 60 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global    = __webpack_require__(12)
-  , core      = __webpack_require__(24)
-  , ctx       = __webpack_require__(25)
-  , hide      = __webpack_require__(61)
+  , core      = __webpack_require__(27)
+  , ctx       = __webpack_require__(28)
+  , hide      = __webpack_require__(64)
   , PROTOTYPE = 'prototype';
 
 var $export = function(type, name, source){
@@ -8495,12 +8706,12 @@ $export.R = 128; // real proto method for `library`
 module.exports = $export;
 
 /***/ }),
-/* 61 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var dP         = __webpack_require__(65)
-  , createDesc = __webpack_require__(66);
-module.exports = __webpack_require__(16) ? function(object, key, value){
+var dP         = __webpack_require__(68)
+  , createDesc = __webpack_require__(69);
+module.exports = __webpack_require__(19) ? function(object, key, value){
   return dP.f(object, key, createDesc(1, value));
 } : function(object, key, value){
   object[key] = value;
@@ -8508,21 +8719,21 @@ module.exports = __webpack_require__(16) ? function(object, key, value){
 };
 
 /***/ }),
-/* 62 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(12).document && document.documentElement;
 
 /***/ }),
-/* 63 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = !__webpack_require__(16) && !__webpack_require__(27)(function(){
-  return Object.defineProperty(__webpack_require__(26)('div'), 'a', {get: function(){ return 7; }}).a != 7;
+module.exports = !__webpack_require__(19) && !__webpack_require__(30)(function(){
+  return Object.defineProperty(__webpack_require__(29)('div'), 'a', {get: function(){ return 7; }}).a != 7;
 });
 
 /***/ }),
-/* 64 */
+/* 67 */
 /***/ (function(module, exports) {
 
 // fast apply, http://jsperf.lnkit.com/fast-apply/5
@@ -8543,15 +8754,15 @@ module.exports = function(fn, args, that){
 };
 
 /***/ }),
-/* 65 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var anObject       = __webpack_require__(58)
-  , IE8_DOM_DEFINE = __webpack_require__(63)
-  , toPrimitive    = __webpack_require__(68)
+var anObject       = __webpack_require__(61)
+  , IE8_DOM_DEFINE = __webpack_require__(66)
+  , toPrimitive    = __webpack_require__(71)
   , dP             = Object.defineProperty;
 
-exports.f = __webpack_require__(16) ? Object.defineProperty : function defineProperty(O, P, Attributes){
+exports.f = __webpack_require__(19) ? Object.defineProperty : function defineProperty(O, P, Attributes){
   anObject(O);
   P = toPrimitive(P, true);
   anObject(Attributes);
@@ -8564,7 +8775,7 @@ exports.f = __webpack_require__(16) ? Object.defineProperty : function definePro
 };
 
 /***/ }),
-/* 66 */
+/* 69 */
 /***/ (function(module, exports) {
 
 module.exports = function(bitmap, value){
@@ -8577,13 +8788,13 @@ module.exports = function(bitmap, value){
 };
 
 /***/ }),
-/* 67 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var ctx                = __webpack_require__(25)
-  , invoke             = __webpack_require__(64)
-  , html               = __webpack_require__(62)
-  , cel                = __webpack_require__(26)
+var ctx                = __webpack_require__(28)
+  , invoke             = __webpack_require__(67)
+  , html               = __webpack_require__(65)
+  , cel                = __webpack_require__(29)
   , global             = __webpack_require__(12)
   , process            = global.process
   , setTask            = global.setImmediate
@@ -8619,7 +8830,7 @@ if(!setTask || !clearTask){
     delete queue[id];
   };
   // Node.js 0.8-
-  if(__webpack_require__(59)(process) == 'process'){
+  if(__webpack_require__(62)(process) == 'process'){
     defer = function(id){
       process.nextTick(ctx(run, id, 1));
     };
@@ -8657,11 +8868,11 @@ module.exports = {
 };
 
 /***/ }),
-/* 68 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.1 ToPrimitive(input [, PreferredType])
-var isObject = __webpack_require__(17);
+var isObject = __webpack_require__(20);
 // instead of the ES6 spec version, we didn't implement @@toPrimitive case
 // and the second argument - flag - preferred type is a string
 module.exports = function(it, S){
@@ -8674,18 +8885,18 @@ module.exports = function(it, S){
 };
 
 /***/ }),
-/* 69 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var $export = __webpack_require__(60)
-  , $task   = __webpack_require__(67);
+var $export = __webpack_require__(63)
+  , $task   = __webpack_require__(70);
 $export($export.G + $export.B, {
   setImmediate:   $task.set,
   clearImmediate: $task.clear
 });
 
 /***/ }),
-/* 70 */
+/* 73 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -8775,7 +8986,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 71 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8852,14 +9063,14 @@ function immediate(task) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 72 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var USE_TYPEDARRAY = (typeof Uint8Array !== 'undefined') && (typeof Uint16Array !== 'undefined') && (typeof Uint32Array !== 'undefined');
 
-var pako = __webpack_require__(86);
+var pako = __webpack_require__(89);
 var utils = __webpack_require__(0);
 var GenericWorker = __webpack_require__(1);
 
@@ -8927,7 +9138,7 @@ exports.uncompressWorker = function () {
 
 
 /***/ }),
-/* 73 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8936,8 +9147,8 @@ exports.uncompressWorker = function () {
 var utils = __webpack_require__(0);
 var GenericWorker = __webpack_require__(1);
 var utf8 = __webpack_require__(7);
-var crc32 = __webpack_require__(19);
-var signature = __webpack_require__(37);
+var crc32 = __webpack_require__(22);
+var signature = __webpack_require__(40);
 
 /**
  * Transform an integer into a string in hexadecimal.
@@ -9474,14 +9685,14 @@ module.exports = ZipFileWorker;
 
 
 /***/ }),
-/* 74 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var compressions = __webpack_require__(30);
-var ZipFileWorker = __webpack_require__(73);
+var compressions = __webpack_require__(33);
+var ZipFileWorker = __webpack_require__(76);
 
 /**
  * Find the compression to use.
@@ -9538,7 +9749,7 @@ exports.generateWorker = function (zip, options, comment) {
 
 
 /***/ }),
-/* 75 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9547,8 +9758,8 @@ var utils = __webpack_require__(0);
 var external = __webpack_require__(10);
 var utf8 = __webpack_require__(7);
 var utils = __webpack_require__(0);
-var ZipEntries = __webpack_require__(82);
-var Crc32Probe = __webpack_require__(38);
+var ZipEntries = __webpack_require__(85);
+var Crc32Probe = __webpack_require__(41);
 var nodejsUtils = __webpack_require__(14);
 
 /**
@@ -9627,7 +9838,7 @@ module.exports = function(data, options) {
 
 
 /***/ }),
-/* 76 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9708,15 +9919,15 @@ module.exports = NodejsStreamInputAdapter;
 
 
 /***/ }),
-/* 77 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Readable = __webpack_require__(32).Readable;
+var Readable = __webpack_require__(35).Readable;
 
-var util = __webpack_require__(113);
+var util = __webpack_require__(118);
 util.inherits(NodejsStreamOutputAdapter, Readable);
 
 /**
@@ -9757,7 +9968,7 @@ module.exports = NodejsStreamOutputAdapter;
 
 
 /***/ }),
-/* 78 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9765,13 +9976,13 @@ module.exports = NodejsStreamOutputAdapter;
 var utf8 = __webpack_require__(7);
 var utils = __webpack_require__(0);
 var GenericWorker = __webpack_require__(1);
-var StreamHelper = __webpack_require__(41);
-var defaults = __webpack_require__(31);
-var CompressedObject = __webpack_require__(18);
-var ZipObject = __webpack_require__(84);
-var generate = __webpack_require__(74);
+var StreamHelper = __webpack_require__(44);
+var defaults = __webpack_require__(34);
+var CompressedObject = __webpack_require__(21);
+var ZipObject = __webpack_require__(87);
+var generate = __webpack_require__(77);
 var nodejsUtils = __webpack_require__(14);
-var NodejsStreamInputAdapter = __webpack_require__(76);
+var NodejsStreamInputAdapter = __webpack_require__(79);
 
 
 /**
@@ -10153,12 +10364,12 @@ module.exports = out;
 
 
 /***/ }),
-/* 79 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var Uint8ArrayReader = __webpack_require__(35);
+var Uint8ArrayReader = __webpack_require__(38);
 var utils = __webpack_require__(0);
 
 function NodeBufferReader(data) {
@@ -10179,12 +10390,12 @@ module.exports = NodeBufferReader;
 
 
 /***/ }),
-/* 80 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var DataReader = __webpack_require__(34);
+var DataReader = __webpack_require__(37);
 var utils = __webpack_require__(0);
 
 function StringReader(data) {
@@ -10224,7 +10435,7 @@ module.exports = StringReader;
 
 
 /***/ }),
-/* 81 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10257,15 +10468,15 @@ module.exports = ConvertWorker;
 
 
 /***/ }),
-/* 82 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var readerFor = __webpack_require__(36);
+var readerFor = __webpack_require__(39);
 var utils = __webpack_require__(0);
-var sig = __webpack_require__(37);
-var ZipEntry = __webpack_require__(83);
+var sig = __webpack_require__(40);
+var ZipEntry = __webpack_require__(86);
 var utf8 = __webpack_require__(7);
 var support = __webpack_require__(3);
 //  class ZipEntries {{{
@@ -10526,17 +10737,17 @@ module.exports = ZipEntries;
 
 
 /***/ }),
-/* 83 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var readerFor = __webpack_require__(36);
+var readerFor = __webpack_require__(39);
 var utils = __webpack_require__(0);
-var CompressedObject = __webpack_require__(18);
-var crc32fn = __webpack_require__(19);
+var CompressedObject = __webpack_require__(21);
+var crc32fn = __webpack_require__(22);
 var utf8 = __webpack_require__(7);
-var compressions = __webpack_require__(30);
+var compressions = __webpack_require__(33);
 var support = __webpack_require__(3);
 
 var MADE_BY_DOS = 0x00;
@@ -10825,16 +11036,16 @@ module.exports = ZipEntry;
 
 
 /***/ }),
-/* 84 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var StreamHelper = __webpack_require__(41);
-var DataWorker = __webpack_require__(40);
+var StreamHelper = __webpack_require__(44);
+var DataWorker = __webpack_require__(43);
 var utf8 = __webpack_require__(7);
-var CompressedObject = __webpack_require__(18);
+var CompressedObject = __webpack_require__(21);
 var GenericWorker = __webpack_require__(1);
 
 /**
@@ -10956,12 +11167,12 @@ module.exports = ZipObject;
 
 
 /***/ }),
-/* 85 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var immediate = __webpack_require__(71);
+var immediate = __webpack_require__(74);
 
 /* istanbul ignore next */
 function INTERNAL() {}
@@ -11216,7 +11427,7 @@ function race(iterable) {
 
 
 /***/ }),
-/* 86 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11225,9 +11436,9 @@ function race(iterable) {
 
 var assign    = __webpack_require__(4).assign;
 
-var deflate   = __webpack_require__(87);
-var inflate   = __webpack_require__(88);
-var constants = __webpack_require__(45);
+var deflate   = __webpack_require__(90);
+var inflate   = __webpack_require__(91);
+var constants = __webpack_require__(48);
 
 var pako = {};
 
@@ -11237,18 +11448,18 @@ module.exports = pako;
 
 
 /***/ }),
-/* 87 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 
-var zlib_deflate = __webpack_require__(89);
+var zlib_deflate = __webpack_require__(92);
 var utils        = __webpack_require__(4);
-var strings      = __webpack_require__(43);
-var msg          = __webpack_require__(20);
-var ZStream      = __webpack_require__(47);
+var strings      = __webpack_require__(46);
+var msg          = __webpack_require__(23);
+var ZStream      = __webpack_require__(50);
 
 var toString = Object.prototype.toString;
 
@@ -11644,20 +11855,20 @@ exports.gzip = gzip;
 
 
 /***/ }),
-/* 88 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 
-var zlib_inflate = __webpack_require__(92);
+var zlib_inflate = __webpack_require__(95);
 var utils        = __webpack_require__(4);
-var strings      = __webpack_require__(43);
-var c            = __webpack_require__(45);
-var msg          = __webpack_require__(20);
-var ZStream      = __webpack_require__(47);
-var GZheader     = __webpack_require__(90);
+var strings      = __webpack_require__(46);
+var c            = __webpack_require__(48);
+var msg          = __webpack_require__(23);
+var ZStream      = __webpack_require__(50);
+var GZheader     = __webpack_require__(93);
 
 var toString = Object.prototype.toString;
 
@@ -12069,7 +12280,7 @@ exports.ungzip  = inflate;
 
 
 /***/ }),
-/* 89 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12095,10 +12306,10 @@ exports.ungzip  = inflate;
 // 3. This notice may not be removed or altered from any source distribution.
 
 var utils   = __webpack_require__(4);
-var trees   = __webpack_require__(94);
-var adler32 = __webpack_require__(44);
-var crc32   = __webpack_require__(46);
-var msg     = __webpack_require__(20);
+var trees   = __webpack_require__(97);
+var adler32 = __webpack_require__(47);
+var crc32   = __webpack_require__(49);
+var msg     = __webpack_require__(23);
 
 /* Public constants ==========================================================*/
 /* ===========================================================================*/
@@ -13950,7 +14161,7 @@ exports.deflateTune = deflateTune;
 
 
 /***/ }),
-/* 90 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14015,7 +14226,7 @@ module.exports = GZheader;
 
 
 /***/ }),
-/* 91 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14367,7 +14578,7 @@ module.exports = function inflate_fast(strm, start) {
 
 
 /***/ }),
-/* 92 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14393,10 +14604,10 @@ module.exports = function inflate_fast(strm, start) {
 // 3. This notice may not be removed or altered from any source distribution.
 
 var utils         = __webpack_require__(4);
-var adler32       = __webpack_require__(44);
-var crc32         = __webpack_require__(46);
-var inflate_fast  = __webpack_require__(91);
-var inflate_table = __webpack_require__(93);
+var adler32       = __webpack_require__(47);
+var crc32         = __webpack_require__(49);
+var inflate_fast  = __webpack_require__(94);
+var inflate_table = __webpack_require__(96);
 
 var CODES = 0;
 var LENS = 1;
@@ -15930,7 +16141,7 @@ exports.inflateUndermine = inflateUndermine;
 
 
 /***/ }),
-/* 93 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16280,7 +16491,7 @@ module.exports = function inflate_table(type, lens, lens_index, codes, table, ta
 
 
 /***/ }),
-/* 94 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17507,21 +17718,21 @@ exports._tr_align = _tr_align;
 
 
 /***/ }),
-/* 95 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(5)
 
 
 /***/ }),
-/* 96 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(48)
+module.exports = __webpack_require__(51)
 
 
 /***/ }),
-/* 97 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Stream = (function (){
@@ -17529,31 +17740,31 @@ var Stream = (function (){
     return __webpack_require__(15); // hack to fix a circular dependency issue when used with browserify
   } catch(_){}
 }());
-exports = module.exports = __webpack_require__(49);
+exports = module.exports = __webpack_require__(52);
 exports.Stream = Stream || exports;
 exports.Readable = exports;
-exports.Writable = __webpack_require__(23);
+exports.Writable = __webpack_require__(26);
 exports.Duplex = __webpack_require__(5);
-exports.Transform = __webpack_require__(22);
-exports.PassThrough = __webpack_require__(48);
+exports.Transform = __webpack_require__(25);
+exports.PassThrough = __webpack_require__(51);
 
 
 /***/ }),
-/* 98 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(22)
+module.exports = __webpack_require__(25)
 
 
 /***/ }),
-/* 99 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(23)
+module.exports = __webpack_require__(26)
 
 
 /***/ }),
-/* 100 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* eslint-disable node/no-deprecated-api */
@@ -17621,7 +17832,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
 
 
 /***/ }),
-/* 101 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -17814,7 +18025,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(11)))
 
 /***/ }),
-/* 102 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -17870,7 +18081,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(101);
+__webpack_require__(104);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -17884,41 +18095,47 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 103 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var FileSaver = __webpack_require__(50);
-var JSZip = __webpack_require__(52);
-var JSZipUtils = __webpack_require__(51);
-var template_parser_1 = __webpack_require__(53);
-var utils_1 = __webpack_require__(54);
+var FileSaver = __webpack_require__(53);
+var JSZip = __webpack_require__(55);
+var JSZipUtils = __webpack_require__(54);
+var builder_loader_1 = __webpack_require__(56);
+var utils_1 = __webpack_require__(18);
+var zip_export_types_1 = __webpack_require__(57);
 /**
  * Create a Epub Compliant Idpf book
  *
- * @author Giorgio Modoni <g.modoni@alfabook.it>
+ * @author Giorgio Modoni <g.modoni@olivettiscuoladigitale.it>
  */
 var EpubCreator = /** @class */ (function () {
-    function EpubCreator() {
+    function EpubCreator(template) {
         /**
          * Epub content as string
          * @type {string}
          */
-        this.epubContent = "";
+        this.epubContent = '';
         /**
          * Custom css
          * @type {Array}
          */
         this.css = [];
         /**
+         * Custom js files/inline
+         * @type {Array}
+         */
+        this.jss = [];
+        /**
          * Navigation menu and properties
          * @type {{toc: Array; landmarks: Array}}
          */
         this.navigation = {
-            "toc": [],
-            "landmarks": []
+            'toc': [],
+            'landmarks': []
         };
         /**
          * Asset image data
@@ -17929,38 +18146,13 @@ var EpubCreator = /** @class */ (function () {
          * Template model string data
          * @type {string}
          */
-        this.templateModel = "epub3";
+        this.templateModel = 'epub3';
         this.chapters = [];
         this.epubZip = new JSZip(); // get Jszip for epub compress
         this.utils = new utils_1.Utils(); // load utils class
         this.setDefaultBaseInfo(); // set default value
-        this.parser = new template_parser_1.TemplateParser("epub3");
+        this.template(template || this.templateModel);
     }
-    /**
-     * Create a default values for epub creation
-     */
-    EpubCreator.prototype.setDefaultBaseInfo = function () {
-        this.properties = {
-            uuid: "github.com/bbottema/js-epub-maker::it-came-from::example-using-idpf-wasteland",
-            author: "Alfabook",
-            language: "it-IT",
-            modificationDate: new Date().toString(),
-            rights: {
-                description: "This work is shared with the public using the Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0) license.",
-                license: "http://creativecommons.org/licenses/by-sa/3.0/"
-            },
-            attributionUrl: "https://www.alfabook.it",
-            cover: {
-                file: "",
-                license: "http://creativecommons.org/licenses/by-sa/3.0/",
-                mediaType: "image/jpeg",
-                attributionUrl: "https://www.alfabook.it",
-                inline: "no"
-            },
-            title: "Book Title",
-            publicationDate: new Date().toString()
-        };
-    };
     /**
      * Set specific template for epub creation.
      * Available: epub3 (default), epub3html, epub2
@@ -17970,15 +18162,15 @@ var EpubCreator = /** @class */ (function () {
      * @param model template model
      */
     EpubCreator.prototype.template = function (model) {
-        if (model === void 0) { model = "epub3"; }
+        if (model === void 0) { model = 'epub3'; }
         this.templateModel = model;
-        this.parser = new template_parser_1.TemplateParser(model);
+        this.builder = new builder_loader_1.BuilderLoader(model);
     };
     /**
      * Add mimetype
      */
     EpubCreator.prototype.mimetype = function () {
-        var fileContent = this.parser.mimetype();
+        var fileContent = this.builder.mimetype();
         var folder = this.epubZip.folder(fileContent.folder);
         folder.file(fileContent.name, fileContent.content);
     };
@@ -17986,7 +18178,7 @@ var EpubCreator = /** @class */ (function () {
      * Create basic container file
      */
     EpubCreator.prototype.container = function () {
-        var fileContent = this.parser.container();
+        var fileContent = this.builder.container();
         var folder = this.epubZip.folder(fileContent.folder);
         folder.file(fileContent.name, fileContent.content);
     };
@@ -17994,7 +18186,7 @@ var EpubCreator = /** @class */ (function () {
      * Create opf file
      */
     EpubCreator.prototype.opf = function () {
-        var fileContent = this.parser.opf(this.chapters, this.properties, this.css, this.assets);
+        var fileContent = this.builder.opf(this.chapters, this.properties, this.css, this.assets);
         var folder = this.epubZip.folder(fileContent.folder);
         folder.file(fileContent.name, fileContent.content);
     };
@@ -18002,7 +18194,7 @@ var EpubCreator = /** @class */ (function () {
      * Create navigation file for epub3
      */
     EpubCreator.prototype.nav = function () {
-        var fileContent = this.parser.nav(this.navigation, this.css);
+        var fileContent = this.builder.nav(this.navigation, this.css);
         var folder = this.epubZip.folder(fileContent.folder);
         folder.file(fileContent.name, fileContent.content);
     };
@@ -18010,7 +18202,7 @@ var EpubCreator = /** @class */ (function () {
      * Create ncx menu for epub2 compatibility
      */
     EpubCreator.prototype.ncx = function () {
-        var fileContent = this.parser.ncx(this.properties, this.navigation);
+        var fileContent = this.builder.ncx(this.properties, this.navigation);
         var folder = this.epubZip.folder(fileContent.folder);
         folder.file(fileContent.name, fileContent.content);
     };
@@ -18019,10 +18211,10 @@ var EpubCreator = /** @class */ (function () {
      * @param name - filename
      * @param content - epub string contet
      */
-    EpubCreator.prototype.content = function (name, content) {
-        var fileContent = this.parser.contentBody(this.properties, content, this.css);
+    EpubCreator.prototype.content = function (name, content, metadata) {
+        var fileContent = this.builder.contentBody(this.properties, content, this.css, this.jss, metadata);
         var folder = this.epubZip.folder(fileContent.folder);
-        folder.file(name + "." + this.parser.getExt(), fileContent.content);
+        folder.file(name + "." + this.builder.getExt(), fileContent.content);
     };
     /**
      * Add a cover page by default if exist properties.cover.file
@@ -18032,12 +18224,12 @@ var EpubCreator = /** @class */ (function () {
     EpubCreator.prototype.cover = function () {
         if (!this.properties.cover.asFileName)
             return false;
-        var fileContent = this.parser.cover(this.properties, this.css);
+        var fileContent = this.builder.cover(this.properties, this.css);
         this.addChapter({
-            name: "cover",
+            name: 'cover',
             content: fileContent.content,
             inline: this.properties.cover.inline,
-            id: "cover",
+            id: 'cover',
             asfirst: true
         });
     };
@@ -18047,7 +18239,7 @@ var EpubCreator = /** @class */ (function () {
     EpubCreator.prototype.chapterAll = function () {
         for (var _i = 0, _a = this.chapters; _i < _a.length; _i++) {
             var chapter = _a[_i];
-            this.content(chapter.name, chapter.content);
+            this.content(chapter.name, chapter.content, chapter.metadata);
         }
     };
     /**
@@ -18059,9 +18251,9 @@ var EpubCreator = /** @class */ (function () {
         if (!chapter.id)
             chapter.id = "ch_" + name;
         if (!chapter.inline)
-            chapter.inline = "yes";
+            chapter.inline = 'yes';
         if (!chapter.content)
-            chapter.content = "";
+            chapter.content = '';
         if (chapter.asfirst)
             this.chapters.unshift(chapter);
         else
@@ -18079,7 +18271,7 @@ var EpubCreator = /** @class */ (function () {
      * @param name - chapter name
      */
     EpubCreator.prototype.addSections = function (epubSections, name) {
-        if (name === void 0) { name = "ebook-content"; }
+        if (name === void 0) { name = 'ebook-content'; }
         var content = this._addSections(epubSections);
         var item = this.chapters.find(function (el) { return el.name === name; });
         if (item)
@@ -18098,7 +18290,7 @@ var EpubCreator = /** @class */ (function () {
         return new Promise(function (resolve, reject) {
             if (cssDef.content) {
                 _this._addAsset(cssDef.content, cssDef.name).then(function (fileName) {
-                    _this.css.push({ "name": fileName, type: "day" });
+                    _this.css.push({ 'name': fileName, type: 'day' });
                     return resolve(true);
                 }, function (err) { return reject(err); });
             }
@@ -18108,7 +18300,34 @@ var EpubCreator = /** @class */ (function () {
                     cssDef.name = fileInfo.fullName;
                 }
                 _this._addAssetWithPath(cssDef.path, cssDef.name).then(function () {
-                    _this.css.push({ "name": cssDef.name, type: "day" });
+                    _this.css.push({ 'name': cssDef.name, type: 'day' });
+                    return resolve(true);
+                }, function (err) { return reject(err); });
+            }
+        });
+    };
+    /**
+     * Add css file and populate css value for proper ocx
+     *
+     * @param jsDef - js object
+     * @returns {Promise<T>}
+     */
+    EpubCreator.prototype.addJs = function (jsDef) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            if (jsDef.content) {
+                _this._addAsset(jsDef.content, jsDef.name).then(function (fileName) {
+                    _this.jss.push({ 'name': fileName, type: 'day' });
+                    return resolve(true);
+                }, function (err) { return reject(err); });
+            }
+            else {
+                if (!jsDef.name) {
+                    var fileInfo = _this.utils.getFileNameFromPath(jsDef.path);
+                    jsDef.name = fileInfo.fullName;
+                }
+                _this._addAssetWithPath(jsDef.path, jsDef.name).then(function () {
+                    _this.jss.push({ 'name': jsDef.name, type: 'day' });
                     return resolve(true);
                 }, function (err) { return reject(err); });
             }
@@ -18134,7 +18353,7 @@ var EpubCreator = /** @class */ (function () {
                 name = fileInfo.fullName;
                 path = fileInfo.path;
                 _this._addAsset(asset.content, name, options, path).then(function (fileName) {
-                    _this.assets.push({ "name": asset.name, mediaType: asset.mediaType, id: asset.id });
+                    _this.assets.push({ 'name': asset.name, mediaType: asset.mediaType, id: asset.id });
                     return resolve(true);
                 }, function (err) { return reject(err); });
             }
@@ -18142,7 +18361,7 @@ var EpubCreator = /** @class */ (function () {
                 if (!asset.name) {
                     fileInfo = _this.utils.getFileNameFromPath(asset.path);
                     asset.name = fileInfo.fullName;
-                    path = "";
+                    path = '';
                 }
                 else {
                     fileInfo = _this.utils.getFileNameFromPath(asset.name);
@@ -18150,7 +18369,7 @@ var EpubCreator = /** @class */ (function () {
                     path = fileInfo.path;
                 }
                 _this._addAssetWithPath(asset.path, name, path).then(function () {
-                    _this.assets.push({ "name": asset.name, mediaType: asset.mediaType, id: asset.id });
+                    _this.assets.push({ 'name': asset.name, mediaType: asset.mediaType, id: asset.id });
                     return resolve(true);
                 }, function (err) { return reject(err); });
             }
@@ -18168,6 +18387,84 @@ var EpubCreator = /** @class */ (function () {
             }
             i++;
         }
+    };
+    /**
+     * Generate result as arrayBuffer,
+     * usefull to pass as file to epub reader
+     *
+     * @returns {Promise<T>}
+     */
+    EpubCreator.prototype.exportAs = function (type) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this._prepare().then(function () {
+                _this.epubZip.generateAsync({ type: type }).then(function (content) { return resolve(content); }, function (err) { return reject(err); });
+            }, function (err) {
+                console.log('Download error on insert asset data: ', err);
+                return reject(err);
+            });
+        });
+    };
+    /**
+     * Generate result as arrayBuffer,
+     * useful to pass as file to epub reader
+     *
+     * @returns {Promise<T>}
+     */
+    EpubCreator.prototype.asBlob = function () {
+        return this.exportAs(zip_export_types_1.ZipExportType.blob);
+    };
+    /**
+     * Create blob url, useful
+     * to render epub and pass to your epub
+     * reader without saving it to file
+     *
+     * @returns {Promise<T>}
+     */
+    EpubCreator.prototype.blobUrl = function () {
+        return this.asBlob();
+    };
+    /**
+     * Generate result as arrayBuffer,
+     * useful to pass as file to epub reader
+     *
+     * @returns {Promise<T>}
+     */
+    EpubCreator.prototype.asArrayBuffer = function () {
+        return this.exportAs(zip_export_types_1.ZipExportType.arraybuffer);
+    };
+    /**
+     * Generate a file Url,
+     * this is the most compatible way and to pass data as blob Url
+     *
+     * @returns {Promise<T>}
+     */
+    EpubCreator.prototype.asBase64 = function () {
+        return this.exportAs(zip_export_types_1.ZipExportType.base64);
+    };
+    /**
+     * Download Epub
+     *
+     *
+     * @param fileName
+     * @returns {Promise<T>}
+     */
+    EpubCreator.prototype.download = function (fileName) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this._prepare().then(function () {
+                if (!fileName)
+                    fileName = _this.utils.getTimeStamp() + '.epub';
+                _this.epubZip.generateAsync({ type: 'blob' })
+                    .then(function (content) {
+                    FileSaver.saveAs(content, fileName);
+                    return resolve(true);
+                });
+            }, function (err) {
+                console.log('Download error on insert asset data:', err);
+                return reject(err);
+            });
+        });
     };
     /**
      * Create epub
@@ -18194,30 +18491,60 @@ var EpubCreator = /** @class */ (function () {
         });
     };
     /**
-     * Add cover add a special asseect, cover image
-     * Cover is set in properties.cover
-     *
+     * Add data as base 64
+     * @param data - data encode as base64
+     * @param fileName - file name
      * @returns {Promise<T>}
-     * @private
      */
-    EpubCreator.prototype._addCover = function () {
+    EpubCreator.prototype._addAssetAsBase64 = function (data, fileName) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            // if no cover ok -> skip and return true
-            if (!_this.properties.cover.file && !_this.properties.cover.base64)
-                return resolve(true);
-            // we have a base64 data but no name for file, ok assuming is a jpg
-            if (!_this.properties.cover.asFileName)
-                _this.properties.cover.asFileName = "cover.jpg";
-            if (_this.properties.cover.base64) {
-                _this._addAssetAsBase64(_this.properties.cover.base64, _this.properties.cover.asFileName);
-                return resolve(true);
+            _this._addAsset(fileName, data, { base64: true }).then(function (result) { return resolve(result); }, function (err) { return reject(err); });
+        });
+    };
+    /**
+     * Add navigation toc
+     *
+     * @param id - string id
+     * @param label - toc label
+     * @private
+     */
+    EpubCreator.prototype._addNavToc = function (id, label) {
+        this.navigation.toc.push({ label: label, href: 'ebook-content.xhtml#' + id, id: id });
+    };
+    /**
+     * Navigation Toc
+     *
+     * @param epubSections
+     * @returns {string}
+     * @private
+     */
+    EpubCreator.prototype._addSections = function (epubSections) {
+        var sectionAsText = '';
+        var progressiveId = 0;
+        for (var _i = 0, epubSections_1 = epubSections; _i < epubSections_1.length; _i++) {
+            var data = epubSections_1[_i];
+            var id = data.id ? data.id : data.name + '_' + progressiveId;
+            var content = '';
+            if (Array.isArray(data.content))
+                content = this._addSections(data.content);
+            else
+                content = data.content;
+            if (data.navLabel)
+                this._addNavToc(id, data.navLabel);
+            if (data.tag && data.tag !== 'html') {
+                this._addNavLandmarks(data);
+                var epubType = '';
+                if (data.name)
+                    epubType = this.builder.getSectionTag() + "=\"" + data.name + "\"";
+                sectionAsText += "\n                    <" + data.tag + " " + epubType + " id=\"" + id + "\">\n                        " + content + "\n                    </" + data.tag + ">";
             }
             else {
-                var fileInfo = _this.utils.getFileNameFromPath(_this.properties.cover.file);
-                _this._addAssetWithPath(_this.properties.cover.file, fileInfo.fullName).then(function () { return resolve(true); }, function (err) { return reject(err); });
+                sectionAsText += content;
             }
-        });
+            progressiveId++;
+        }
+        return sectionAsText;
     };
     /**
      * Add asset to Epub
@@ -18231,25 +18558,13 @@ var EpubCreator = /** @class */ (function () {
     EpubCreator.prototype._addAsset = function (data, fileName, options, folder) {
         var _this = this;
         if (options === void 0) { options = {}; }
-        if (folder === void 0) { folder = ""; }
+        if (folder === void 0) { folder = ''; }
         return new Promise(function (resolve) {
             // all files are under EPUB dir, if not start with / we need to add it
-            if (folder !== "" && folder.charAt(0) !== "/")
-                folder = "/" + folder;
-            _this.epubZip.folder("EPUB" + folder).file(fileName, data, options);
+            if (folder !== '' && folder.charAt(0) !== '/')
+                folder = '/' + folder;
+            _this.epubZip.folder('EPUB' + folder).file(fileName, data, options);
             return resolve(fileName);
-        });
-    };
-    /**
-     * Add data as base 64
-     * @param data - data encode as base64
-     * @param fileName - file name
-     * @returns {Promise<T>}
-     */
-    EpubCreator.prototype._addAssetAsBase64 = function (data, fileName) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this._addAsset(fileName, data, { base64: true }).then(function (result) { return resolve(result); }, function (err) { return reject(err); });
         });
     };
     /**
@@ -18262,7 +18577,7 @@ var EpubCreator = /** @class */ (function () {
      */
     EpubCreator.prototype._addAssetWithPath = function (path, name, folder) {
         var _this = this;
-        if (folder === void 0) { folder = ""; }
+        if (folder === void 0) { folder = ''; }
         return new Promise(function (resolve, reject) {
             if (!name) {
                 var fileInfo = _this.utils.getFileNameFromPath(_this.properties.cover.file);
@@ -18282,140 +18597,65 @@ var EpubCreator = /** @class */ (function () {
      * @private
      */
     EpubCreator.prototype._addNavLandmarks = function (data) {
-        if (data.tag === "section" && data.name === "frontmatter") {
-            this.navigation.landmarks.push({ type: "frontmatter", href: "ebook-content.xhtml#frontmatter" });
+        if (data.tag === 'section' && data.name === 'frontmatter') {
+            this.navigation.landmarks.push({ type: 'frontmatter', href: 'ebook-content.xhtml#frontmatter' });
         }
-        if (data.tag === "section" && data.name === "bodymatter") {
-            this.navigation.landmarks.push({ type: "bodymatter", href: "ebook-content.xhtml#bodymatter" });
+        if (data.tag === 'section' && data.name === 'bodymatter') {
+            this.navigation.landmarks.push({ type: 'bodymatter', href: 'ebook-content.xhtml#bodymatter' });
         }
-        if (data.tag === "section" && data.name === "backmatter") {
-            this.navigation.landmarks.push({ type: "backmatter", href: "ebook-content.xhtml#backmatter" });
+        if (data.tag === 'section' && data.name === 'backmatter') {
+            this.navigation.landmarks.push({ type: 'backmatter', href: 'ebook-content.xhtml#backmatter' });
         }
     };
     /**
-     * Add navigation toc
-     *
-     * @param id - string id
-     * @param label - toc label
-     * @private
+     * Create a default values for epub creation
      */
-    EpubCreator.prototype._addNavToc = function (id, label) {
-        this.navigation.toc.push({ label: label, href: "ebook-content.xhtml#" + id, id: id });
+    EpubCreator.prototype.setDefaultBaseInfo = function () {
+        this.properties = {
+            uuid: 'github.com/bbottema/js-epub-maker::it-came-from::example-using-idpf-wasteland',
+            author: 'Olivetti Scuola Digitale',
+            language: 'it-IT',
+            modificationDate: new Date().toString(),
+            rights: {
+                description: 'This work is shared with the public using the Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0) license.',
+                license: 'http://creativecommons.org/licenses/by-sa/3.0/'
+            },
+            attributionUrl: 'https://www.olivettiscuoladigitale.it',
+            cover: {
+                file: '',
+                license: 'http://creativecommons.org/licenses/by-sa/3.0/',
+                mediaType: 'image/jpeg',
+                attributionUrl: 'https://www.olivettiscuoladigitale.it',
+                inline: 'no'
+            },
+            title: 'Book Title',
+            publicationDate: new Date().toString()
+        };
     };
     /**
-     * Navigation Toc
+     * Add cover add a special asseect, cover image
+     * Cover is set in properties.cover
      *
-     * @param epubSections
-     * @returns {string}
+     * @returns {Promise<T>}
      * @private
      */
-    EpubCreator.prototype._addSections = function (epubSections) {
-        var sectionAsText = "";
-        var progressiveId = 0;
-        for (var _i = 0, epubSections_1 = epubSections; _i < epubSections_1.length; _i++) {
-            var data = epubSections_1[_i];
-            var id = data.id ? data.id : data.name + "_" + progressiveId;
-            var content = "";
-            if (Array.isArray(data.content))
-                content = this._addSections(data.content);
-            else
-                content = data.content;
-            if (data.navLabel)
-                this._addNavToc(id, data.navLabel);
-            if (data.tag && data.tag !== "html") {
-                this._addNavLandmarks(data);
-                var epubType = "";
-                if (data.name)
-                    epubType = this.parser.getSectionTag() + "=\"" + data.name + "\"";
-                sectionAsText += "\n                    <" + data.tag + " " + epubType + " id=\"" + id + "\">\n                        " + content + "\n                    </" + data.tag + ">";
+    EpubCreator.prototype._addCover = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            // if no cover ok -> skip and return true
+            if (!_this.properties.cover.file && !_this.properties.cover.base64)
+                return resolve(true);
+            // we have a base64 data but no name for file, ok assuming is a jpg
+            if (!_this.properties.cover.asFileName)
+                _this.properties.cover.asFileName = 'cover.png';
+            if (_this.properties.cover.base64) {
+                _this._addAssetAsBase64(_this.properties.cover.base64, _this.properties.cover.asFileName);
+                return resolve(true);
             }
             else {
-                sectionAsText += content;
+                var fileInfo = _this.utils.getFileNameFromPath(_this.properties.cover.file);
+                _this._addAssetWithPath(_this.properties.cover.file, fileInfo.fullName).then(function () { return resolve(true); }, function (err) { return reject(err); });
             }
-            progressiveId++;
-        }
-        return sectionAsText;
-    };
-    /**
-     * Create blob url, usefull
-     * to render epub and pass to your epub
-     * reader without saving it to file
-     *
-     * @returns {Promise<T>}
-     */
-    EpubCreator.prototype.blobUrl = function () {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this._prepare().then(function () {
-                _this.epubZip.generateAsync({ type: "blob" })
-                    .then(function (content) {
-                    var epub = URL.createObjectURL(content);
-                    return resolve(epub);
-                }, function (err) { return reject(err); });
-            }, function (err) {
-                console.log("Download error on insert asset data: ", err);
-                return reject(err);
-            });
-        });
-    };
-    /**
-     * Genrate result as arrayBuffer,
-     * usefull to pass as file to epub reader
-     *
-     * @returns {Promise<T>}
-     */
-    EpubCreator.prototype.asArrayBuffer = function () {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this._prepare().then(function () {
-                _this.epubZip.generateAsync({ type: "arraybuffer" }).then(function (content) { return resolve(content); }, function (err) { return reject(err); });
-            }, function (err) {
-                console.log("Download error on insert asset data: ", err);
-                return reject(err);
-            });
-        });
-    };
-    /**
-     * Generate a file Url,
-     * this is the most compatible way and to pass data as blob Url
-     *
-     * @returns {Promise<T>}
-     */
-    EpubCreator.prototype.asBase64 = function () {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this._prepare().then(function () {
-                _this.epubZip.generateAsync({ type: "base64" }).then(function (base64) {
-                    return resolve(base64);
-                });
-            }, function (err) {
-                console.log("Download error on insert asset data: ", err);
-                return reject(err);
-            });
-        });
-    };
-    /**
-     * Download Epub
-     *
-     *
-     * @param fileName
-     * @returns {Promise<T>}
-     */
-    EpubCreator.prototype.download = function (fileName) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this._prepare().then(function () {
-                if (!fileName)
-                    fileName = _this.utils.getTimeStamp() + ".epub";
-                _this.epubZip.generateAsync({ type: "blob" })
-                    .then(function (content) {
-                    FileSaver.saveAs(content, fileName);
-                    return resolve(true);
-                });
-            }, function (err) {
-                console.log("Download error on insert asset data:", err);
-                return reject(err);
-            });
         });
     };
     return EpubCreator;
@@ -18424,244 +18664,34 @@ exports.EpubCreator = EpubCreator;
 
 
 /***/ }),
-/* 104 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var static_template_1 = __webpack_require__(105);
-var Epub2Template = /** @class */ (function () {
-    function Epub2Template() {
-        this.mediaType = "application/xhtml+xml";
-        this.ext = "xhtml";
-        this.staticTemplate = new static_template_1.StaticTemplate();
-    }
-    Epub2Template.prototype.getMimetype = function () {
-        var content = this.staticTemplate._mimetype();
-        return {
-            name: "mimetype",
-            folder: "",
-            content: content
-        };
-    };
-    Epub2Template.prototype.getContainer = function () {
-        var content = this.staticTemplate._container();
-        return {
-            name: "container.xml",
-            folder: "META-INF",
-            content: content
-        };
-    };
-    Epub2Template.prototype.getOpf = function (prop, metadataCoverFragment, manifestFragment, spine) {
-        var content = this.staticTemplate._opf(prop, metadataCoverFragment, manifestFragment, spine);
-        return {
-            name: "ebook.opf",
-            folder: "EPUB",
-            content: content
-        };
-    };
-    Epub2Template.prototype.getNav = function (cssFiles, landmarks, toc) {
-        var content = this.staticTemplate._nav(cssFiles, landmarks, toc);
-        return {
-            name: "ebook-nav.xhtml",
-            folder: "EPUB",
-            content: content
-        };
-    };
-    Epub2Template.prototype.getNcx = function (prop, toc) {
-        var content = this.staticTemplate._ncx(prop, toc);
-        return {
-            name: "ebook.ncx",
-            folder: "EPUB",
-            content: content
-        };
-    };
-    Epub2Template.prototype.getContentBody = function (prop, body, cssFiles) {
-        var content = this.staticTemplate._contentBody(prop, body, cssFiles);
-        return {
-            name: "ebook-content.xhtml",
-            folder: "EPUB",
-            content: content
-        };
-    };
-    Epub2Template.prototype.getCover = function (prop, css) {
-        var content = this.staticTemplate._cover(prop, css);
-        return {
-            name: "cover.xhtml",
-            folder: "EPUB",
-            content: content
-        };
-    };
-    return Epub2Template;
-}());
-exports.Epub2Template = Epub2Template;
-
-
-/***/ }),
-/* 105 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * Static file template.
- * Leave this class without code.
- *
- * @author Giorgio Modoni <g.modoni@alfabook.it>
- */
-var StaticTemplate = /** @class */ (function () {
-    function StaticTemplate() {
-    }
-    StaticTemplate.prototype._mimetype = function () {
-        return "application/epub+zip";
-    };
-    StaticTemplate.prototype._container = function () {
-        return "<?xml version=\"1.0\"?>\n                <container version=\"1.0\" xmlns=\"urn:oasis:names:tc:opendocument:xmlns:container\">\n                    <rootfiles>\n                        <rootfile full-path=\"EPUB/ebook.opf\" media-type=\"application/oebps-package+xml\"/>\n                    </rootfiles>\n                </container>\n            ";
-    };
-    StaticTemplate.prototype._opf = function (prop, metadata, manifest, spine) {
-        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n        <package xmlns=\"http://www.idpf.org/2007/opf\" version=\"2.0\" unique-identifier=\"epub" + prop.uuid + "\">\n        <metadata xmlns:opf=\"http://www.idpf.org/2007/opf\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\">\n            <dc:identifier id=\"epub" + prop.uuid + "}\" opf:scheme=\"ISBN\">1111122233333</dc:identifier>\n            <dc:title>Purity</dc:title>\n            <dc:creator opf:role=\"aut\" opf:file-as=\"" + prop.author + "\">" + prop.author + "</dc:creator>\n            <dc:publisher>" + prop.attributionUrl + "</dc:publisher>\n            <dc:rights>" + prop.rights.description + "</dc:rights>\n            <dc:language>" + prop.language + "</dc:language>  \n            " + metadata + "\n        </metadata>\n        <manifest>\n            " + manifest + "\n        </manifest>\n        <spine toc=\"toc\">\n            " + spine + "\n        </spine>\n        <guide></guide>\n        </package>";
-    };
-    StaticTemplate.prototype._nav = function (cssFiles, landmarks, toc) {
-        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n                <html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\" xmlns:epub=\"http://www.idpf.org/2007/ops\">\n                    <head>\n                        <meta charset=\"utf-8\"></meta>\n                        " + cssFiles + "\n                    </head>\n                    <body>\n                        <nav epub:type=\"toc\" id=\"toc\">\t\t\t\n                            <ol>\n                              " + toc + "\n                            </ol>\n                        </nav>\n                        <nav epub:type=\"landmarks\">\n                            <ol>\n                             " + landmarks + "\n                            </ol>\n                        </nav>\n                    </body>\n                </html>";
-    };
-    StaticTemplate.prototype._ncx = function (prop, toc) {
-        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n                            <!DOCTYPE ncx PUBLIC \"-//NISO//DTD ncx 2005-1//EN\" \"http://www.daisy.org/z3986/2005/ncx-2005-1.dtd\">\n                            <ncx xmlns=\"http://www.daisy.org/z3986/2005/ncx/\" version=\"2005-1\" xml:lang=\"" + prop.language + "\">\n                                <head>\n                                    <meta name=\"dtb:uid\" content=\"epub" + prop.uuid + "\"/>\n                                    <meta name=\"dtb:depth\" content=\"1\"/>\n                                    <meta name=\"dtb:totalPageCount\" content=\"0\"/>\n                                    <meta name=\"dtb:maxPageNumber\" content=\"0\"/>\n                                </head>\n                                <docTitle><text>" + prop.title + "</text></docTitle>\n                                <docAuthor><text>" + prop.author + "</text></docAuthor>\n                                <navMap>\n                                  " + toc + "\n                                </navMap>\n                            </ncx>";
-    };
-    StaticTemplate.prototype._contentBody = function (prop, content, cssFiles) {
-        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n                        <!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\" \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">\n                        <html xmlns=\"http://www.w3.org/1999/xhtml\">\n                        <head>\n                        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n                        <title>" + prop.title + "</title>\n                         " + cssFiles + "\n                        </head>\n                        <body id=\"chapter\" xml:lang=\"" + prop.language + "\">\n                        " + content + "\n                        </body>\n                        </html>";
-    };
-    StaticTemplate.prototype._cover = function (prop, cssFiles) {
-        return "\n                  <div class=\"body\"><img src=\"" + prop.cover.asFileName + "\" alt=\"Cover Image\" title=\"Cover Image\"/></div>\n               ";
-    };
-    return StaticTemplate;
-}());
-exports.StaticTemplate = StaticTemplate;
-
-
-/***/ }),
-/* 106 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var static_template_1 = __webpack_require__(107);
-/**
- * This is a template for epub3 based on: https://github.com/IDPF/epub3-samples/tree/master/30/wasteland/EPUB
- * Template for epub Creation.
- *
- * @author Giorgio Modoni <g.modoni@alfabook.it>
- */
-var Epub3Template = /** @class */ (function () {
-    function Epub3Template() {
-        this.mediaType = "application/xhtml+xml";
-        this.ext = "xhtml";
-        this.sectionTag = "epub:type";
-        this.staticTemplate = new static_template_1.StaticTemplate();
-    }
-    Epub3Template.prototype.getMimetype = function () {
-        var content = this.staticTemplate._mimetype();
-        return {
-            name: "mimetype",
-            folder: "",
-            content: content
-        };
-    };
-    Epub3Template.prototype.getContainer = function () {
-        var content = this.staticTemplate._container();
-        return {
-            name: "container.xml",
-            folder: "META-INF",
-            content: content
-        };
-    };
-    Epub3Template.prototype.getOpf = function (prop, metadataCoverFragment, manifestFragment, spine) {
-        var content = this.staticTemplate._opf(prop, metadataCoverFragment, manifestFragment, spine);
-        return {
-            name: "ebook.opf",
-            folder: "EPUB",
-            content: content
-        };
-    };
-    Epub3Template.prototype.getNav = function (cssFiles, landmarks, toc) {
-        var content = this.staticTemplate._nav(cssFiles, landmarks, toc);
-        return {
-            name: "ebook-nav.xhtml",
-            folder: "EPUB",
-            content: content
-        };
-    };
-    Epub3Template.prototype.getNcx = function (prop, toc) {
-        var content = this.staticTemplate._ncx(prop, toc);
-        return {
-            name: "ebook.ncx",
-            folder: "EPUB",
-            content: content
-        };
-    };
-    Epub3Template.prototype.getContentBody = function (prop, body, cssFiles) {
-        var content = this.staticTemplate._contentBody(prop, body, cssFiles);
-        return {
-            name: "ebook-content.xhtml",
-            folder: "EPUB",
-            content: content
-        };
-    };
-    Epub3Template.prototype.getCover = function (prop, css) {
-        var content = this.staticTemplate._cover(prop, css);
-        return {
-            name: "cover.xhtml",
-            folder: "EPUB",
-            content: content
-        };
-    };
-    return Epub3Template;
-}());
-exports.Epub3Template = Epub3Template;
-
-
-/***/ }),
 /* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * Static file template.
- * Leave this class without code.
- *
- * @author Giorgio Modoni <g.modoni@alfabook.it>
- */
-var StaticTemplate = /** @class */ (function () {
-    function StaticTemplate() {
+var e2_template_1 = __webpack_require__(108);
+var base_builder_1 = __webpack_require__(16);
+var E2Builder = /** @class */ (function (_super) {
+    __extends(E2Builder, _super);
+    function E2Builder() {
+        var _this = _super.call(this) || this;
+        _this.template = new e2_template_1.E2Template();
+        return _this;
     }
-    StaticTemplate.prototype._mimetype = function () {
-        return "application/epub+zip";
-    };
-    StaticTemplate.prototype._container = function () {
-        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?> \n                 <container xmlns=\"urn:oasis:names:tc:opendocument:xmlns:container\" version=\"1.0\"> \n                  <rootfiles>\n                  <rootfile full-path=\"EPUB/ebook.opf\" media-type=\"application/oebps-package+xml\"/>\n                  </rootfiles>   \n                </container>\n            ";
-    };
-    StaticTemplate.prototype._opf = function (prop, metadata, manifest, spine) {
-        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n            <package xmlns=\"http://www.idpf.org/2007/opf\" version=\"3.0\" unique-identifier=\"uid\" xml:lang=\"" + prop.language + "\" prefix=\"cc: http://creativecommons.org/ns#\">\n                <metadata xmlns:dc=\"http://purl.org/dc/elements/1.1/\">\n                    <dc:identifier id=\"uid\">" + prop.uuid + "</dc:identifier>\n                    <dc:title>" + prop.title + "</dc:title>\n                    <dc:creator>" + prop.author + "</dc:creator>\n                    <dc:language>" + prop.language + "</dc:language>\n                    <dc:date>" + prop.publicationDate + "</dc:date>\n                    <meta property=\"dcterms:modified\">" + prop.modificationDate + "</meta>\n                    <!-- rights expressions for the work as a whole -->\n                    <dc:rights>" + prop.rights.description + "</dc:rights>        \n                    <link rel=\"cc:license\" href=\"" + prop.rights.description + "\"/>\n                    <meta property=\"cc:attributionURL\">" + prop.attributionUrl + "</meta>\n                    " + metadata + "\n                </metadata> \n                <manifest>\n                    " + manifest + "\n                </manifest>\n                <spine toc=\"ncx\">\n                    " + spine + "\n                </spine>    \n            </package>\n            ";
-    };
-    StaticTemplate.prototype._nav = function (cssFiles, landmarks, toc) {
-        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n                <html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\" xmlns:epub=\"http://www.idpf.org/2007/ops\">\n                    <head>\n                        <meta charset=\"utf-8\"></meta>\n                        " + cssFiles + "\n                    </head>\n                    <body>\n                        <nav epub:type=\"toc\" id=\"toc\">\t\t\t\n                            <ol>\n                              " + toc + "\n                            </ol>\n                        </nav>\n                        <nav epub:type=\"landmarks\">\n                            <ol>\n                             " + landmarks + "\n                            </ol>\n                        </nav>\n                    </body>\n                </html>";
-    };
-    StaticTemplate.prototype._ncx = function (prop, toc) {
-        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n                <ncx xmlns:ncx=\"http://www.daisy.org/z3986/2005/ncx/\" xmlns=\"http://www.daisy.org/z3986/2005/ncx/\" version=\"2005-1\" xml:lang=\"en\">\n                    <head>\n                        <meta name=\"dtb:uid\" content=\"" + prop.uuid + "\"/>\n                    </head>\n                    <docTitle>\n                        <text>" + prop.title + "</text>\n                    </docTitle>\n                    <navMap>\n                        <!-- 2.01 NCX: playOrder is optional -->\n                        " + toc + "\n                    </navMap>\n                </ncx>\n                    ";
-    };
-    StaticTemplate.prototype._contentBody = function (prop, content, cssFiles) {
-        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n                <html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\" xmlns:epub=\"http://www.idpf.org/2007/ops\">\n                    <head>\n                        <meta charset=\"utf-8\"></meta>\n                        <title>" + prop.title + "</title>\n                         " + cssFiles + "\n                    </head>\n                    <body>\n                     " + content + "\n                    </body>\n                </html>\n                ";
-    };
-    StaticTemplate.prototype._cover = function (prop, cssFiles) {
-        return "\n                 <div class=\"body\"><img src=\"" + prop.cover.asFileName + "\" alt=\"Cover Image\" title=\"Cover Image\"/></div>\n               ";
-    };
-    return StaticTemplate;
-}());
-exports.StaticTemplate = StaticTemplate;
+    return E2Builder;
+}(base_builder_1.BaseBuilder));
+exports.E2Builder = E2Builder;
 
 
 /***/ }),
@@ -18670,80 +18700,50 @@ exports.StaticTemplate = StaticTemplate;
 
 "use strict";
 
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
-var static_template_1 = __webpack_require__(109);
+var base_template_1 = __webpack_require__(17);
 /**
- * This is a template for epub3 based on: https://github.com/IDPF/epub3-samples/tree/master/30/wasteland/EPUB
- * Template for epub Creation.
+ * Static file template.
+ * Leave this class without code.
  *
- * @author Giorgio Modoni <g.modoni@alfabook.it>
+ * @author Giorgio Modoni <g.modoni@olivettiscuoladigitale.it>
  */
-var Epub3HtmlTemplate = /** @class */ (function () {
-    function Epub3HtmlTemplate() {
-        this.mediaType = "text/html";
-        this.ext = "html";
-        this.sectionTag = "class";
-        this.staticTemplate = new static_template_1.StaticTemplate();
+var E2Template = /** @class */ (function (_super) {
+    __extends(E2Template, _super);
+    function E2Template() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-    Epub3HtmlTemplate.prototype.getMimetype = function () {
-        var content = this.staticTemplate._mimetype();
-        return {
-            name: "mimetype",
-            folder: "",
-            content: content
-        };
+    E2Template.prototype._mimetype = function () {
+        return "application/epub+zip";
     };
-    Epub3HtmlTemplate.prototype.getContainer = function () {
-        var content = this.staticTemplate._container();
-        return {
-            name: "container.xml",
-            folder: "META-INF",
-            content: content
-        };
+    E2Template.prototype._container = function () {
+        return "<?xml version=\"1.0\"?>\n                <container version=\"1.0\" xmlns=\"urn:oasis:names:tc:opendocument:xmlns:container\">\n                    <rootfiles>\n                        <rootfile full-path=\"EPUB/ebook.opf\" media-type=\"application/oebps-package+xml\"/>\n                    </rootfiles>\n                </container>";
     };
-    Epub3HtmlTemplate.prototype.getOpf = function (prop, metadataCoverFragment, manifestFragment, spine) {
-        var content = this.staticTemplate._opf(prop, metadataCoverFragment, manifestFragment, spine);
-        return {
-            name: "ebook.opf",
-            folder: "EPUB",
-            content: content
-        };
+    E2Template.prototype._opf = function (prop, metadata, manifest, spine) {
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n        <package xmlns=\"http://www.idpf.org/2007/opf\" version=\"2.0\" unique-identifier=\"epub" + prop.uuid + "\">\n        <metadata xmlns:opf=\"http://www.idpf.org/2007/opf\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\">\n            <dc:identifier id=\"epub" + prop.uuid + "}\" opf:scheme=\"ISBN\">1111122233333</dc:identifier>\n            <dc:title>Purity</dc:title>\n            <dc:creator opf:role=\"aut\" opf:file-as=\"" + prop.author + "\">" + prop.author + "</dc:creator>\n            <dc:publisher>" + prop.attributionUrl + "</dc:publisher>\n            <dc:rights>" + prop.rights.description + "</dc:rights>\n            <dc:language>" + prop.language + "</dc:language>  \n            " + metadata + "\n        </metadata>\n        <manifest>\n            " + manifest + "\n        </manifest>\n        <spine toc=\"toc\">\n            " + spine + "\n        </spine>\n        <guide></guide>\n        </package>";
     };
-    Epub3HtmlTemplate.prototype.getNav = function (cssFiles, landmarks, toc) {
-        var content = this.staticTemplate._nav(cssFiles, landmarks, toc);
-        return {
-            name: "ebook-nav.html",
-            folder: "EPUB",
-            content: content
-        };
+    E2Template.prototype._nav = function (cssFiles, landmarks, toc) {
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n                <html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\" xmlns:epub=\"http://www.idpf.org/2007/ops\">\n                    <head>\n                        <meta charset=\"utf-8\"></meta>\n                        " + cssFiles + "\n                    </head>\n                    <body>\n                        <nav epub:type=\"toc\" id=\"toc\">\t\t\t\n                            <ol>\n                              " + toc + "\n                            </ol>\n                        </nav>\n                        <nav epub:type=\"landmarks\">\n                            <ol>\n                             " + landmarks + "\n                            </ol>\n                        </nav>\n                    </body>\n                </html>";
     };
-    Epub3HtmlTemplate.prototype.getNcx = function (prop, toc) {
-        var content = this.staticTemplate._ncx(prop, toc);
-        return {
-            name: "ebook.ncx",
-            folder: "EPUB",
-            content: content
-        };
+    E2Template.prototype._ncx = function (prop, toc) {
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n                            <!DOCTYPE ncx PUBLIC \"-//NISO//DTD ncx 2005-1//EN\" \"http://www.daisy.org/z3986/2005/ncx-2005-1.dtd\">\n                            <ncx xmlns=\"http://www.daisy.org/z3986/2005/ncx/\" version=\"2005-1\" xml:lang=\"" + prop.language + "\">\n                                <head>\n                                    <meta name=\"dtb:uid\" content=\"epub" + prop.uuid + "\"/>\n                                    <meta name=\"dtb:depth\" content=\"1\"/>\n                                    <meta name=\"dtb:totalPageCount\" content=\"0\"/>\n                                    <meta name=\"dtb:maxPageNumber\" content=\"0\"/>\n                                </head>\n                                <docTitle><text>" + prop.title + "</text></docTitle>\n                                <docAuthor><text>" + prop.author + "</text></docAuthor>\n                                <navMap>\n                                  " + toc + "\n                                </navMap>\n                            </ncx>";
     };
-    Epub3HtmlTemplate.prototype.getContentBody = function (prop, body, cssFiles) {
-        var content = this.staticTemplate._contentBody(prop, body, cssFiles);
-        return {
-            name: "ebook-content.html",
-            folder: "EPUB",
-            content: content
-        };
+    E2Template.prototype._contentBody = function (prop, content, cssFiles) {
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n                        <!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\" \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">\n                        <html xmlns=\"http://www.w3.org/1999/xhtml\">\n                        <head>\n                        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n                        <title>" + prop.title + "</title>\n                         " + cssFiles + "\n                        </head>\n                        <body id=\"chapter\" xml:lang=\"" + prop.language + "\">\n                        " + content + "\n                        </body>\n                        </html>";
     };
-    Epub3HtmlTemplate.prototype.getCover = function (prop, css) {
-        var content = this.staticTemplate._cover(prop, css);
-        return {
-            name: "cover.html",
-            folder: "EPUB",
-            content: content
-        };
-    };
-    return Epub3HtmlTemplate;
-}());
-exports.Epub3HtmlTemplate = Epub3HtmlTemplate;
+    return E2Template;
+}(base_template_1.BaseTemplate));
+exports.E2Template = E2Template;
 
 
 /***/ }),
@@ -18752,44 +18752,287 @@ exports.Epub3HtmlTemplate = Epub3HtmlTemplate;
 
 "use strict";
 
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
+var e3_template_1 = __webpack_require__(110);
+var base_builder_1 = __webpack_require__(16);
 /**
- * Static file template.
- * Leave this class without code.
+ * This is a template for epub3 based on: https://github.com/IDPF/epub3-samples/tree/master/30/wasteland/EPUB
+ * Template for epub Creation.
  *
- * @author Giorgio Modoni <g.modoni@alfabook.it>
+ * @author Giorgio Modoni <g.modoni@olivettiscuoladigitale.it>
  */
-var StaticTemplate = /** @class */ (function () {
-    function StaticTemplate() {
+var E3Builder = /** @class */ (function (_super) {
+    __extends(E3Builder, _super);
+    function E3Builder() {
+        var _this = _super.call(this) || this;
+        _this.template = new e3_template_1.E3Template();
+        return _this;
     }
-    StaticTemplate.prototype._mimetype = function () {
-        return "application/epub+zip";
-    };
-    StaticTemplate.prototype._container = function () {
-        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n                <container xmlns=\"urn:oasis:names:tc:opendocument:xmlns:container\" version=\"1.0\">\n                <rootfiles>\n                <rootfile full-path=\"EPUB/ebook.opf\" media-type=\"application/oebps-package+xml\"/>\n                </rootfiles>\n                </container>\n            ";
-    };
-    StaticTemplate.prototype._opf = function (prop, metadata, manifest, spine) {
-        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n            <package xmlns=\"http://www.idpf.org/2007/opf\" version=\"3.1\" xml:lang=\"en\" unique-identifier=\"uid\" prefix=\"dc: http://purl.org/dc/elements/1.1/\">\n              <metadata xmlns:dc=\"http://purl.org/dc/elements/1.1/\">\n                <dc:identifier id=\"uid\">" + prop.uuid + "</dc:identifier>\n                <dc:title>" + prop.title + "</dc:title>\n                <dc:creator>" + prop.author + "</dc:creator>\n                <dc:language>" + prop.language + "</dc:language>\n                <meta property=\"dcterms:modified\">" + prop.modificationDate + "</meta>\n                <!-- rights expressions for the work as a whole -->\n                <dc:rights>" + prop.rights.description + "</dc:rights>        \n                <link rel=\"cc:license\" href=\"" + prop.rights.description + "\"/>\n                <meta property=\"cc:attributionURL\">" + prop.attributionUrl + "</meta>\n                <dc:publisher>Harper &amp; Brothers, Publishers</dc:publisher>\n                " + metadata + "\n              </metadata>\n              <manifest>\n                " + manifest + "\n              </manifest>\n              <spine>\n                " + spine + "\n              </spine>\n            </package>";
-    };
-    StaticTemplate.prototype._nav = function (cssFiles, landmarks, toc) {
-        return "<!DOCTYPE html>\n                    <html>\n                    <head>\n                      <title>Book</title>\n                       " + cssFiles + "\n                      <meta charset=\"utf-8\">\n                    </head>\n                    <body>\n                      <section class=\"frontmatter TableOfContents\">\n                        <header>\n                          <h1>Contents</h1>\n                        </header>\n                        <nav id=\"toc\" role=\"doc-toc\">\n                          <ol>\n                            " + toc + "\n                          </ol>\n                        </nav>\n                         <nav id=\"guide\" role=\"directory\">\n                         <h2>Guide</h2>\n                          <ol>\n                             " + landmarks + "\n                          </ol>\n                           </nav>\n                      </section>\n                    </body>\n                    </html>\n                ";
-    };
-    StaticTemplate.prototype._ncx = function (prop, toc) {
-        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n                <ncx xmlns:ncx=\"http://www.daisy.org/z3986/2005/ncx/\" xmlns=\"http://www.daisy.org/z3986/2005/ncx/\" version=\"2005-1\" xml:lang=\"en\">\n                    <head>\n                        <meta name=\"dtb:uid\" content=\"" + prop.uuid + "\"/>\n                    </head>\n                    <docTitle>\n                        <text>" + prop.title + "</text>\n                    </docTitle>\n                    <navMap>\n                        <!-- 2.01 NCX: playOrder is optional -->\n                        " + toc + "\n                    </navMap>\n                </ncx>\n                    ";
-    };
-    StaticTemplate.prototype._contentBody = function (prop, content, cssFiles) {
-        return "<!DOCTYPE html>\n                    <html>\n                    <head>\n                      <title>" + prop.title + "</title>\n                       " + cssFiles + "\n                      <meta charset=\"utf-8\">\n                    </head>\n                    <body>\n                    " + content + "\n                    </body>\n                    </html>\n                    ";
-    };
-    StaticTemplate.prototype._cover = function (prop, cssFiles) {
-        return "\n                 <div class=\"body\"><img src=\"" + prop.cover.asFileName + "\" alt=\"Cover Image\" title=\"Cover Image\"></div> \n                ";
-    };
-    return StaticTemplate;
-}());
-exports.StaticTemplate = StaticTemplate;
+    return E3Builder;
+}(base_builder_1.BaseBuilder));
+exports.E3Builder = E3Builder;
 
 
 /***/ }),
 /* 110 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var base_template_1 = __webpack_require__(17);
+/**
+ * Static file template.
+ * Leave this class without code.
+ *
+ * @author Giorgio Modoni <g.modoni@olivettiscuoladigitale.it>
+ */
+var E3Template = /** @class */ (function (_super) {
+    __extends(E3Template, _super);
+    function E3Template() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    E3Template.prototype._mimetype = function () {
+        return "application/epub+zip";
+    };
+    E3Template.prototype._container = function () {
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?> \n                 <container xmlns=\"urn:oasis:names:tc:opendocument:xmlns:container\" version=\"1.0\"> \n                  <rootfiles>\n                  <rootfile full-path=\"EPUB/ebook.opf\" media-type=\"application/oebps-package+xml\"/>\n                  </rootfiles>   \n                </container>\n            ";
+    };
+    E3Template.prototype._opf = function (prop, metadata, manifest, spine) {
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n            <package xmlns=\"http://www.idpf.org/2007/opf\" version=\"3.0\" unique-identifier=\"uid\" xml:lang=\"" + prop.language + "\" prefix=\"cc: http://creativecommons.org/ns#\">\n                <metadata xmlns:dc=\"http://purl.org/dc/elements/1.1/\">\n                    <dc:identifier id=\"uid\">" + prop.uuid + "</dc:identifier>\n                    <dc:title>" + prop.title + "</dc:title>\n                    <dc:creator>" + prop.author + "</dc:creator>\n                    <dc:language>" + prop.language + "</dc:language>\n                    <dc:date>" + prop.publicationDate + "</dc:date>\n                    <meta property=\"dcterms:modified\">" + prop.modificationDate + "</meta>\n                    <!-- rights expressions for the work as a whole -->\n                    <dc:rights>" + prop.rights.description + "</dc:rights>        \n                    <link rel=\"cc:license\" href=\"" + prop.rights.description + "\"/>\n                    <meta property=\"cc:attributionURL\">" + prop.attributionUrl + "</meta>\n                    " + metadata + "\n                </metadata> \n                <manifest>\n                    " + manifest + "\n                </manifest>\n                <spine toc=\"ncx\">\n                    " + spine + "\n                </spine>    \n            </package>\n            ";
+    };
+    E3Template.prototype._nav = function (cssFiles, landmarks, toc) {
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n                <html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\" xmlns:epub=\"http://www.idpf.org/2007/ops\">\n                    <head>\n                        <meta charset=\"utf-8\"></meta>\n                        " + cssFiles + "\n                    </head>\n                    <body>\n                        <nav epub:type=\"toc\" id=\"toc\">\t\t\t\n                            <ol>\n                              " + toc + "\n                            </ol>\n                        </nav>\n                        <nav epub:type=\"landmarks\">\n                            <ol>\n                             " + landmarks + "\n                            </ol>\n                        </nav>\n                    </body>\n                </html>";
+    };
+    E3Template.prototype._ncx = function (prop, toc) {
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n                <ncx xmlns:ncx=\"http://www.daisy.org/z3986/2005/ncx/\" xmlns=\"http://www.daisy.org/z3986/2005/ncx/\" version=\"2005-1\" xml:lang=\"en\">\n                    <head>\n                        <meta name=\"dtb:uid\" content=\"" + prop.uuid + "\"/>\n                    </head>\n                    <docTitle>\n                        <text>" + prop.title + "</text>\n                    </docTitle>\n                    <navMap>\n                        <!-- 2.01 NCX: playOrder is optional -->\n                        " + toc + "\n                    </navMap>\n                </ncx>\n                    ";
+    };
+    E3Template.prototype._contentBody = function (prop, content, cssFiles) {
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n                <html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\" xmlns:epub=\"http://www.idpf.org/2007/ops\">\n                    <head>\n                        <meta charset=\"utf-8\"></meta>\n                        <title>" + prop.title + "</title>\n                         " + cssFiles + "\n                    </head>\n                    <body>\n                     " + content + "\n                    </body>\n                </html>\n                ";
+    };
+    return E3Template;
+}(base_template_1.BaseTemplate));
+exports.E3Template = E3Template;
+
+
+/***/ }),
+/* 111 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var eh_template_1 = __webpack_require__(112);
+var base_builder_1 = __webpack_require__(16);
+/**
+ * This is a template for epub3 based on: https://github.com/IDPF/epub3-samples/tree/master/30/wasteland/EPUB
+ * Template for epub Creation.
+ *
+ * @author Giorgio Modoni <g.modoni@olivettiscuoladigitale.it>
+ */
+var EhBuilder = /** @class */ (function (_super) {
+    __extends(EhBuilder, _super);
+    function EhBuilder() {
+        var _this = _super.call(this) || this;
+        _this.mediaType = 'text/html';
+        _this.ext = 'html';
+        _this.sectionTag = 'class';
+        _this.template = new eh_template_1.EhTemplate();
+        Object.assign(_this.fileNames, {
+            cover: 'cover.html',
+            nav: 'ebook-nav.html',
+            container: 'container.xml',
+            content: 'ebook-content.html'
+        });
+        return _this;
+    }
+    return EhBuilder;
+}(base_builder_1.BaseBuilder));
+exports.EhBuilder = EhBuilder;
+
+
+/***/ }),
+/* 112 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var base_template_1 = __webpack_require__(17);
+/**
+ * Static file template.
+ * Leave this class without code.
+ *
+ * @author Giorgio Modoni <g.modoni@olivettiscuoladigitale.it>
+ */
+var EhTemplate = /** @class */ (function (_super) {
+    __extends(EhTemplate, _super);
+    function EhTemplate() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    EhTemplate.prototype._mimetype = function () {
+        return "application/epub+zip";
+    };
+    EhTemplate.prototype._container = function () {
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n                <container xmlns=\"urn:oasis:names:tc:opendocument:xmlns:container\" version=\"1.0\">\n                <rootfiles>\n                <rootfile full-path=\"EPUB/ebook.opf\" media-type=\"application/oebps-package+xml\"/>\n                </rootfiles>\n                </container>";
+    };
+    EhTemplate.prototype._opf = function (prop, metadata, manifest, spine) {
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n            <package xmlns=\"http://www.idpf.org/2007/opf\" version=\"3.1\" xml:lang=\"en\" unique-identifier=\"uid\" prefix=\"dc: http://purl.org/dc/elements/1.1/\">\n              <metadata xmlns:dc=\"http://purl.org/dc/elements/1.1/\">\n                <dc:identifier id=\"uid\">" + prop.uuid + "</dc:identifier>\n                <dc:title>" + prop.title + "</dc:title>\n                <dc:creator>" + prop.author + "</dc:creator>\n                <dc:language>" + prop.language + "</dc:language>\n                <meta property=\"dcterms:modified\">" + prop.modificationDate + "</meta>\n                <!-- rights expressions for the work as a whole -->\n                <dc:rights>" + prop.rights.description + "</dc:rights>        \n                <link rel=\"cc:license\" href=\"" + prop.rights.description + "\"/>\n                <meta property=\"cc:attributionURL\">" + prop.attributionUrl + "</meta>\n                <dc:publisher>Harper &amp; Brothers, Publishers</dc:publisher>\n                " + metadata + "\n              </metadata>\n              <manifest>\n                " + manifest + "\n              </manifest>\n              <spine>\n                " + spine + "\n              </spine>\n            </package>";
+    };
+    EhTemplate.prototype._nav = function (cssFiles, landmarks, toc) {
+        return "<!DOCTYPE html>\n                    <html>\n                    <head>\n                      <title>Book</title>\n                       " + cssFiles + "\n                      <meta charset=\"utf-8\">\n                    </head>\n                    <body>\n                      <section class=\"frontmatter TableOfContents\">\n                        <header>\n                          <h1>Contents</h1>\n                        </header>\n                        <nav id=\"toc\" role=\"doc-toc\">\n                          <ol>\n                            " + toc + "\n                          </ol>\n                        </nav>\n                         <nav id=\"guide\" role=\"directory\">\n                         <h2>Guide</h2>\n                          <ol>\n                             " + landmarks + "\n                          </ol>\n                           </nav>\n                      </section>\n                    </body>\n                    </html>";
+    };
+    EhTemplate.prototype._ncx = function (prop, toc) {
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n                <ncx xmlns:ncx=\"http://www.daisy.org/z3986/2005/ncx/\" xmlns=\"http://www.daisy.org/z3986/2005/ncx/\" version=\"2005-1\" xml:lang=\"en\">\n                    <head>\n                        <meta name=\"dtb:uid\" content=\"" + prop.uuid + "\"/>\n                    </head>\n                    <docTitle>\n                        <text>" + prop.title + "</text>\n                    </docTitle>\n                    <navMap>\n                        <!-- 2.01 NCX: playOrder is optional -->\n                        " + toc + "\n                    </navMap>\n                </ncx>";
+    };
+    EhTemplate.prototype._contentBody = function (prop, content, cssFiles) {
+        return "<!DOCTYPE html>\n                    <html>\n                    <head>\n                      <title>" + prop.title + "</title>\n                       " + cssFiles + "\n                      <meta charset=\"utf-8\">\n                    </head>\n                    <body>\n                    " + content + "\n                    </body>\n                    </html>";
+    };
+    return EhTemplate;
+}(base_template_1.BaseTemplate));
+exports.EhTemplate = EhTemplate;
+
+
+/***/ }),
+/* 113 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var ei_template_1 = __webpack_require__(114);
+var base_builder_1 = __webpack_require__(16);
+/**
+ * This is a template for epub3 based on: pubcoder example
+ * Template for epub Creation.
+ *
+ * @author @author Marco Bergantin <m.bergantin@olivettiscuoladigitale.it>
+ */
+var EiBuilder = /** @class */ (function (_super) {
+    __extends(EiBuilder, _super);
+    function EiBuilder() {
+        var _this = _super.call(this) || this;
+        _this.mediaType = 'application/xhtml+xml';
+        _this.ext = 'xhtml';
+        _this.sectionTag = 'epub:type';
+        _this.template = new ei_template_1.EiTemplate();
+        _this.fileNames = Object.assign(_this.fileNames, {
+            cover: 'cover.html',
+            nav: 'ebook-nav.xhtml',
+            container: 'container.xml',
+            content: 'ebook-content.html'
+        });
+        return _this;
+    }
+    return EiBuilder;
+}(base_builder_1.BaseBuilder));
+exports.EiBuilder = EiBuilder;
+
+
+/***/ }),
+/* 114 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var base_template_1 = __webpack_require__(17);
+/**
+ * Static file template.
+ * Leave this class without code.
+ *
+ * @author Marco Bergantin <m.bergantin@olivettiscuoladigitale.it>
+ */
+var EiTemplate = /** @class */ (function (_super) {
+    __extends(EiTemplate, _super);
+    function EiTemplate() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    EiTemplate.prototype._mimetype = function () {
+        return "application/epub+zip";
+    };
+    EiTemplate.prototype._container = function () {
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?> \n                <container xmlns=\"urn:oasis:names:tc:opendocument:xmlns:container\" version=\"1.0\"> \n                  <rootfiles>\n                    <rootfile full-path=\"EPUB/ebook.opf\" media-type=\"application/oebps-package+xml\"/>\n                  </rootfiles>   \n                </container>";
+    };
+    EiTemplate.prototype._opf = function (prop, metadata, manifest, spine) {
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n                <package xmlns=\"http://www.idpf.org/2007/opf\" version=\"3.0\" unique-identifier=\"uid\" xml:lang=\"" + prop.language + "\" prefix=\"cc: http://creativecommons.org/ns#\">\n                    <metadata xmlns:dc=\"http://purl.org/dc/elements/1.1/\">\n                        <dc:identifier id=\"uid\">" + this.utils.safeHtml(prop.uuid) + "</dc:identifier>\n                        <dc:title>" + this.utils.safeHtml(prop.title) + "</dc:title>\n                        <dc:creator>" + this.utils.safeHtml(prop.author) + "</dc:creator>\n                        <dc:language>" + this.utils.safeHtml(prop.language) + "</dc:language>\n                        <dc:date>" + this.utils.safeHtml(prop.publicationDate) + "</dc:date>\n                        <meta property=\"dcterms:modified\">" + this.utils.safeHtml(prop.modificationDate) + "</meta>\n                        <!-- rights expressions for the work as a whole -->\n                        <dc:rights>" + this.utils.safeHtml(prop.rights.description) + "</dc:rights>        \n                        <link rel=\"cc:license\" href=\"" + this.utils.safeHtml(prop.rights.description) + "\"/>\n                        <meta property=\"cc:attributionURL\">" + this.utils.safeHtml(prop.attributionUrl) + "</meta>\n                        " + metadata + "\n                    </metadata> \n                    <manifest>\n                        " + manifest + "\n                    </manifest>\n                    <spine toc=\"ncx\">\n                        " + spine + "\n                    </spine>    \n                </package>";
+    };
+    EiTemplate.prototype._nav = function (cssFiles, landmarks, toc) {
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n                <html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\" xmlns:epub=\"http://www.idpf.org/2007/ops\">\n                    <head>\n                        <meta charset=\"utf-8\"></meta>\n                        " + cssFiles + "\n                    </head>\n                    <body>\n                        <nav epub:type=\"toc\" id=\"toc\">\t\t\t\n                            <ol>\n                              " + toc + "\n                            </ol>\n                        </nav>\n                        <nav epub:type=\"landmarks\">\n                            <ol>\n                             " + landmarks + "\n                            </ol>\n                        </nav>\n                    </body>\n                </html>";
+    };
+    EiTemplate.prototype._ncx = function (prop, toc) {
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n                <ncx xmlns:ncx=\"http://www.daisy.org/z3986/2005/ncx/\" xmlns=\"http://www.daisy.org/z3986/2005/ncx/\" version=\"2005-1\" xml:lang=\"en\">\n                    <head>\n                        <meta name=\"dtb:uid\" content=\"" + prop.uuid + "\"/>\n                    </head>\n                    <docTitle>\n                        <text>" + prop.title + "</text>\n                    </docTitle>\n                    <navMap>\n                        <!-- 2.01 NCX: playOrder is optional -->\n                        " + toc + "\n                    </navMap>\n                </ncx>";
+    };
+    EiTemplate.prototype._contentBody = function (prop, content, assets, metadata) {
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n                <html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\" xmlns:epub=\"http://www.idpf.org/2007/ops\">\n                    <head>\n                        <meta charset=\"utf-8\"></meta>\n                        <title>" + prop.title + "</title>\n                        " + assets + "\n                    </head>\n                    <body>\n                     " + content + "\n                    </body>\n                </html>";
+    };
+    return EiTemplate;
+}(base_template_1.BaseTemplate));
+exports.EiTemplate = EiTemplate;
+
+
+/***/ }),
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -18863,7 +19106,7 @@ function config (name) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 111 */
+/* 116 */
 /***/ (function(module, exports) {
 
 if (typeof Object.create === 'function') {
@@ -18892,7 +19135,7 @@ if (typeof Object.create === 'function') {
 
 
 /***/ }),
-/* 112 */
+/* 117 */
 /***/ (function(module, exports) {
 
 module.exports = function isBuffer(arg) {
@@ -18903,7 +19146,7 @@ module.exports = function isBuffer(arg) {
 }
 
 /***/ }),
-/* 113 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {// Copyright Joyent, Inc. and other Node contributors.
@@ -19431,7 +19674,7 @@ function isPrimitive(arg) {
 }
 exports.isPrimitive = isPrimitive;
 
-exports.isBuffer = __webpack_require__(112);
+exports.isBuffer = __webpack_require__(117);
 
 function objectToString(o) {
   return Object.prototype.toString.call(o);
@@ -19475,7 +19718,7 @@ exports.log = function() {
  *     prototype.
  * @param {function} superCtor Constructor function to inherit prototype from.
  */
-exports.inherits = __webpack_require__(111);
+exports.inherits = __webpack_require__(116);
 
 exports._extend = function(origin, add) {
   // Don't do anything if add isn't an object
@@ -19496,7 +19739,7 @@ function hasOwnProperty(obj, prop) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(11)))
 
 /***/ }),
-/* 114 */
+/* 119 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -19505,7 +19748,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 115 */
+/* 120 */
 /***/ (function(module, exports) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
@@ -19514,7 +19757,7 @@ module.exports = __webpack_amd_options__;
 /* WEBPACK VAR INJECTION */}.call(exports, {}))
 
 /***/ }),
-/* 116 */
+/* 121 */
 /***/ (function(module, exports) {
 
 /* (ignored) */

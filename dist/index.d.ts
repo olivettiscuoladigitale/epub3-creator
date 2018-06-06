@@ -1,21 +1,16 @@
-import { Assets } from "./interfaces/assets";
-import { BaseInfo } from "./interfaces/base-info";
-import { Chapters } from "./interfaces/chapters";
-import { CssDef } from "./interfaces/css-def";
+import { Asset } from './interfaces/asset';
+import { BaseInfo } from './interfaces/base-info';
+import { Chapters } from './interfaces/chapters';
+import { CssDef } from './interfaces/css-def';
+import { JsDef } from './interfaces/js-def';
+import { MetaDef } from './interfaces/meta-def';
+import { ZipExportType } from './interfaces/zip-export-types';
 /**
  * Create a Epub Compliant Idpf book
  *
- * @author Giorgio Modoni <g.modoni@alfabook.it>
+ * @author Giorgio Modoni <g.modoni@olivettiscuoladigitale.it>
  */
 export declare class EpubCreator {
-    /**
-     * JSZip internal
-     */
-    private epubZip;
-    /**
-     * Utils class
-     */
-    private utils;
     /**
      * Base epub properties
      */
@@ -26,10 +21,23 @@ export declare class EpubCreator {
      */
     epubContent: string;
     /**
+     * JSZip internal
+     */
+    private epubZip;
+    /**
+     * Utils class
+     */
+    private utils;
+    /**
      * Custom css
      * @type {Array}
      */
     private css;
+    /**
+     * Custom js files/inline
+     * @type {Array}
+     */
+    private jss;
     /**
      * Navigation menu and properties
      * @type {{toc: Array; landmarks: Array}}
@@ -38,7 +46,7 @@ export declare class EpubCreator {
     /**
      * Template class
      */
-    private parser;
+    private builder;
     /**
      * Asset image data
      * @type {Array}
@@ -50,11 +58,7 @@ export declare class EpubCreator {
      */
     private templateModel;
     private chapters;
-    constructor();
-    /**
-     * Create a default values for epub creation
-     */
-    setDefaultBaseInfo(): void;
+    constructor(template?: string);
     /**
      * Set specific template for epub creation.
      * Available: epub3 (default), epub3html, epub2
@@ -89,7 +93,7 @@ export declare class EpubCreator {
      * @param name - filename
      * @param content - epub string contet
      */
-    content(name: string, content: string): void;
+    content(name: string, content: string, metadata?: MetaDef[]): void;
     /**
      * Add a cover page by default if exist properties.cover.file
      *
@@ -126,31 +130,97 @@ export declare class EpubCreator {
      */
     addCss(cssDef: CssDef): Promise<{}>;
     /**
+     * Add css file and populate css value for proper ocx
+     *
+     * @param jsDef - js object
+     * @returns {Promise<T>}
+     */
+    addJs(jsDef: JsDef): Promise<{}>;
+    /**
      * Add image assets
      *
      * @param asset - image asset object
      * @returns {Promise<T>}
      */
-    addAsset(asset: Assets): Promise<{}>;
+    addAsset(asset: Asset): Promise<{}>;
     /**
      * Before start injecting document, add id if not preset
      */
     assignIdAsset(): void;
+    /**
+     * Generate result as arrayBuffer,
+     * usefull to pass as file to epub reader
+     *
+     * @returns {Promise<T>}
+     */
+    exportAs(type: ZipExportType): Promise<any>;
+    /**
+     * Generate result as arrayBuffer,
+     * useful to pass as file to epub reader
+     *
+     * @returns {Promise<T>}
+     */
+    asBlob(): Promise<Blob>;
+    /**
+     * Create blob url, useful
+     * to render epub and pass to your epub
+     * reader without saving it to file
+     *
+     * @returns {Promise<T>}
+     */
+    blobUrl(): Promise<any>;
+    /**
+     * Generate result as arrayBuffer,
+     * useful to pass as file to epub reader
+     *
+     * @returns {Promise<T>}
+     */
+    asArrayBuffer(): Promise<ArrayBuffer>;
+    /**
+     * Generate a file Url,
+     * this is the most compatible way and to pass data as blob Url
+     *
+     * @returns {Promise<T>}
+     */
+    asBase64(): Promise<string>;
+    /**
+     * Download Epub
+     *
+     *
+     * @param fileName
+     * @returns {Promise<T>}
+     */
+    download(fileName?: string): Promise<any>;
     /**
      * Create epub
      *
      * @returns {Promise<T>}
      * @private
      */
-    _prepare(): Promise<{}>;
+    private _prepare;
     /**
-     * Add cover add a special asseect, cover image
-     * Cover is set in properties.cover
-     *
+     * Add data as base 64
+     * @param data - data encode as base64
+     * @param fileName - file name
      * @returns {Promise<T>}
+     */
+    private _addAssetAsBase64;
+    /**
+     * Add navigation toc
+     *
+     * @param id - string id
+     * @param label - toc label
      * @private
      */
-    private _addCover;
+    private _addNavToc;
+    /**
+     * Navigation Toc
+     *
+     * @param epubSections
+     * @returns {string}
+     * @private
+     */
+    private _addSections;
     /**
      * Add asset to Epub
      *
@@ -160,14 +230,7 @@ export declare class EpubCreator {
      * @param folder - folder path
      * @returns {Promise<T>}
      */
-    _addAsset(data: string, fileName: string, options?: any, folder?: string): Promise<any>;
-    /**
-     * Add data as base 64
-     * @param data - data encode as base64
-     * @param fileName - file name
-     * @returns {Promise<T>}
-     */
-    _addAssetAsBase64(data: string, fileName: string): Promise<any>;
+    private _addAsset;
     /**
      * Add data with file path
      *
@@ -176,58 +239,24 @@ export declare class EpubCreator {
      * @param folder - folder path
      * @returns {Promise<T>}
      */
-    _addAssetWithPath(path: string, name?: string, folder?: string): Promise<any>;
+    private _addAssetWithPath;
     /**
      * Populate landmark navigation object
      *
      * @param data - landmark
      * @private
      */
-    _addNavLandmarks(data: any): void;
+    private _addNavLandmarks;
     /**
-     * Add navigation toc
+     * Create a default values for epub creation
+     */
+    private setDefaultBaseInfo;
+    /**
+     * Add cover add a special asseect, cover image
+     * Cover is set in properties.cover
      *
-     * @param id - string id
-     * @param label - toc label
+     * @returns {Promise<T>}
      * @private
      */
-    _addNavToc(id: string, label: string): void;
-    /**
-     * Navigation Toc
-     *
-     * @param epubSections
-     * @returns {string}
-     * @private
-     */
-    _addSections(epubSections: any): string;
-    /**
-     * Create blob url, usefull
-     * to render epub and pass to your epub
-     * reader without saving it to file
-     *
-     * @returns {Promise<T>}
-     */
-    blobUrl(): Promise<any>;
-    /**
-     * Genrate result as arrayBuffer,
-     * usefull to pass as file to epub reader
-     *
-     * @returns {Promise<T>}
-     */
-    asArrayBuffer(): Promise<any>;
-    /**
-     * Generate a file Url,
-     * this is the most compatible way and to pass data as blob Url
-     *
-     * @returns {Promise<T>}
-     */
-    asBase64(): Promise<any>;
-    /**
-     * Download Epub
-     *
-     *
-     * @param fileName
-     * @returns {Promise<T>}
-     */
-    download(fileName?: string): Promise<any>;
+    private _addCover;
 }

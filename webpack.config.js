@@ -66,7 +66,7 @@ module.exports = {
                     "var wpManifest = '" + JSON.stringify(stats.toJson().assetsByChunkName) + "'");
             });
         },
-        new OpenBrowserPlugin({url: 'http://localhost:8000/demo'}),
+        // new OpenBrowserPlugin({url: 'http://localhost:8000/demo'}),
 
     ],
     resolve: {

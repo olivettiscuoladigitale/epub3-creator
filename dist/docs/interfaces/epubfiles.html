@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>EpubTp | Epub-Creator</title>
+	<title>EpubFiles | Epub-Creator</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="epubtp.html">EpubTp</a>
+					<a href="epubfiles.html">EpubFiles</a>
 				</li>
 			</ul>
-			<h1>Interface EpubTp</h1>
+			<h1>Interface EpubFiles</h1>
 		</div>
 	</div>
 </header>
@@ -68,7 +68,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">EpubTp</span>
+						<span class="target">EpubFiles</span>
 					</li>
 				</ul>
 			</section>
@@ -79,9 +79,12 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="epubtp.html#description" class="tsd-kind-icon">description</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="epubtp.html#group" class="tsd-kind-icon">group</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="epubtp.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="epubfiles.html#container" class="tsd-kind-icon">container</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="epubfiles.html#content" class="tsd-kind-icon">content</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="epubfiles.html#cover" class="tsd-kind-icon">cover</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="epubfiles.html#nav" class="tsd-kind-icon">nav</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="epubfiles.html#ncx" class="tsd-kind-icon">ncx</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="epubfiles.html#opf" class="tsd-kind-icon">opf</a></li>
 							</ul>
 						</section>
 					</div>
@@ -90,32 +93,62 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="description" class="tsd-anchor"></a>
-					<h3>description</h3>
-					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="container" class="tsd-anchor"></a>
+					<h3>container</h3>
+					<div class="tsd-signature tsd-kind-icon">container<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/interfaces/epub-types.ts#L4">interfaces/epub-types.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/interfaces/epub-files.ts#L6">interfaces/epub-files.ts:6</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="group" class="tsd-anchor"></a>
-					<h3>group</h3>
-					<div class="tsd-signature tsd-kind-icon">group<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="content" class="tsd-anchor"></a>
+					<h3>content</h3>
+					<div class="tsd-signature tsd-kind-icon">content<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/interfaces/epub-types.ts#L3">interfaces/epub-types.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/interfaces/epub-files.ts#L7">interfaces/epub-files.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="name" class="tsd-anchor"></a>
-					<h3>name</h3>
-					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="cover" class="tsd-anchor"></a>
+					<h3>cover</h3>
+					<div class="tsd-signature tsd-kind-icon">cover<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/interfaces/epub-types.ts#L2">interfaces/epub-types.ts:2</a></li>
+							<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/interfaces/epub-files.ts#L2">interfaces/epub-files.ts:2</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="nav" class="tsd-anchor"></a>
+					<h3>nav</h3>
+					<div class="tsd-signature tsd-kind-icon">nav<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/interfaces/epub-files.ts#L4">interfaces/epub-files.ts:4</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="ncx" class="tsd-anchor"></a>
+					<h3>ncx</h3>
+					<div class="tsd-signature tsd-kind-icon">ncx<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/interfaces/epub-files.ts#L5">interfaces/epub-files.ts:5</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="opf" class="tsd-anchor"></a>
+					<h3>opf</h3>
+					<div class="tsd-signature tsd-kind-icon">opf<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/olivettiscuoladigitale/epub3-creator/blob/c71a629/src/interfaces/epub-files.ts#L3">interfaces/epub-files.ts:3</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -185,27 +218,36 @@
 					<li class=" tsd-kind-interface">
 						<a href="cssdef.html" class="tsd-kind-icon">Css<wbr>Def</a>
 					</li>
-					<li class=" tsd-kind-interface">
-						<a href="epubfiles.html" class="tsd-kind-icon">Epub<wbr>Files</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="epubtp.html" class="tsd-kind-icon">Epub<wbr>Tp</a>
+						<a href="epubfiles.html" class="tsd-kind-icon">Epub<wbr>Files</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="epubtp.html#description" class="tsd-kind-icon">description</a>
+								<a href="epubfiles.html#container" class="tsd-kind-icon">container</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="epubtp.html#group" class="tsd-kind-icon">group</a>
+								<a href="epubfiles.html#content" class="tsd-kind-icon">content</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="epubtp.html#name" class="tsd-kind-icon">name</a>
+								<a href="epubfiles.html#cover" class="tsd-kind-icon">cover</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="epubfiles.html#nav" class="tsd-kind-icon">nav</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="epubfiles.html#ncx" class="tsd-kind-icon">ncx</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="epubfiles.html#opf" class="tsd-kind-icon">opf</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface">
+						<a href="epubtp.html" class="tsd-kind-icon">Epub<wbr>Tp</a>
+					</li>
 					<li class=" tsd-kind-interface">
 						<a href="filecontent.html" class="tsd-kind-icon">File<wbr>Content</a>
 					</li>
