@@ -2,8 +2,80 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f66b06f5-aefc-4ba7-96c0-e576dfeb1cec" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/zip-export-types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/stats.js" beforeDir="false" afterPath="$PROJECT_DIR$/demo/stats.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/demo.de1d827e38661183aa57.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/demo/demo.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/docs/assets/css/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/docs/assets/css/main.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/docs/assets/images/icons.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/docs/assets/images/icons@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/docs/assets/images/widgets.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/docs/assets/images/widgets@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/docs/assets/js/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/docs/assets/js/search.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/docs/classes/epub2template.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/docs/classes/epub3htmltemplate.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/docs/classes/epub3template.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/docs/classes/epubcreator.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/docs/classes/statictemplate.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/docs/classes/templateparser.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/docs/classes/utils.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/docs/globals.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/docs/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/docs/interfaces/assets.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/docs/interfaces/baseinfo.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/docs/interfaces/chapters.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/docs/interfaces/cssdef.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/docs/interfaces/epubtp.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/docs/interfaces/filecontent.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/docs/interfaces/fileinfo.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/docs/interfaces/nav.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/epub-creator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/epub-creator.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/epub-creator.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/interfaces/assets.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/interfaces/base-info.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/interfaces/chapters.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/interfaces/css-def.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/interfaces/epub-types.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/interfaces/file-content.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/interfaces/file-info.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/interfaces/nav.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/src/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/src/interfaces/assets.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/src/interfaces/base-info.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/src/interfaces/chapters.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/src/interfaces/css-def.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/src/interfaces/epub-types.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/src/interfaces/file-content.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/src/interfaces/file-info.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/src/interfaces/nav.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/src/template-parser.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/src/templates/epub2/epub2-templates.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/src/templates/epub2/static-template.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/src/templates/epub3/epub3-template.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/src/templates/epub3/static-template.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/src/templates/epub3html/epub3html-template.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/src/templates/epub3html/static-template.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/src/utils.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/template-parser.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/templates/epub2/epub2-templates.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/templates/epub2/static-template.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/templates/epub3/epub3-template.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/templates/epub3/static-template.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/templates/epub3html/epub3html-template.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/templates/epub3html/static-template.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/utils.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/builder-loader.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/builder-loader.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/assets.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/asset.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/templates/epub3interactive/ei-builder.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/templates/epub3interactive/ei-builder.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
     </list>
     <ignored path="epub-creator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,43 +96,113 @@
     <favorites_list name="epub-creator" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="demo.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/demo/demo.ts">
+    <leaf>
+      <file leaf-file-name="index.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/index.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2820">
-              <caret line="188" column="12" selection-start-line="188" selection-start-column="12" selection-end-line="188" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="36" column="6" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/demo/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1680">
-              <caret line="112" column="69" selection-start-line="112" selection-start-column="69" selection-end-line="112" selection-end-column="69" />
+            <state relative-caret-position="235">
+              <caret line="133" column="53" selection-start-line="133" selection-start-column="53" selection-end-line="133" selection-end-column="53" />
               <folding>
-                <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#0#40#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="chapters.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/interfaces/chapters.ts">
+      <file leaf-file-name="index.d.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/@types/filesaver/index.d.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+            <state relative-caret-position="120">
+              <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="webpack.config.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webpack.config.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="419">
+              <caret line="67" column="10" lean-forward="true" selection-start-line="67" selection-start-column="10" selection-end-line="67" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="demo.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/demo/demo.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="246">
+              <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base-builder.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/interfaces/base-builder.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="229">
+              <caret line="49" column="11" selection-start-line="49" selection-start-column="11" selection-end-line="49" selection-end-column="11" />
+              <folding>
+                <element signature="e#0#45#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ei-template.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/templates/epub3interactive/ei-template.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="795">
+              <caret line="88" column="10" lean-forward="true" selection-start-line="88" selection-start-column="10" selection-end-line="88" selection-end-column="10" />
+              <folding>
+                <element signature="e#0#52#0" expanded="true" />
+                <element signature="n#!!block;n#_nav#0;n#EiTemplate#0" />
+                <element signature="n#!!block;n#_ncx#0;n#EiTemplate#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ei-builder.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/templates/epub3interactive/ei-builder.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base-template.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/interfaces/base-template.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="15" lean-forward="true" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
+              <folding>
+                <element signature="e#0#37#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="builder-loader.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/builder-loader.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="484">
+              <caret line="56" column="35" selection-start-line="56" selection-start-column="35" selection-end-line="56" selection-end-column="35" />
+              <folding>
+                <element signature="e#0#54#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="asset.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/interfaces/asset.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="26" lean-forward="true" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -69,16 +211,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>es5</find>
-      <find>pre</find>
-      <find>EPUBJS.Renderer.prototype.remove</find>
-      <find>docs</find>
-      <find>dist</find>
-      <find>gry</find>
-      <find>alfabook</find>
-      <find>cover.jpg</find>
-      <find>_opf</find>
-      <find>getOpf</find>
       <find>ncx</find>
       <find>container()</find>
       <find>container</find>
@@ -89,7 +221,6 @@
       <find>modificationDate</find>
       <find>Olivetti Scuola Digitale book title</find>
       <find>getHtml5Content</find>
-      <find>opf</find>
       <find>ace</find>
       <find>showepub</find>
       <find>cover</find>
@@ -99,18 +230,31 @@
       <find>section epub:type</find>
       <find>addSections</find>
       <find>png</find>
+      <find>:</find>
+      <find>brows</find>
+      <find>nav</find>
+      <find>mediaOverla</find>
+      <find>assets</find>
+      <find>interfaces/asset</find>
+      <find>Asset</find>
+      <find>download</find>
+      <find>opf</find>
+      <find>nav(</find>
+      <find>ebook-nav.xhtml</find>
     </findStrings>
     <replaceStrings>
       <replace>olivettiscuoladigitale</replace>
       <replace>cover.png</replace>
       <replace />
       <replace>'</replace>
+      <replace>=</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/demo</dir>
-      <dir>$PROJECT_DIR$</dir>
       <dir>$PROJECT_DIR$/src</dir>
+      <dir>$PROJECT_DIR$/src/interfaces</dir>
       <dir>$PROJECT_DIR$/</dir>
+      <dir>$PROJECT_DIR$</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -124,8 +268,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/interfaces/file-content.ts" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/src/templates/epub3html/epub3html-template.ts" />
         <option value="$PROJECT_DIR$/src/templates/epub2/static-template.ts" />
         <option value="$PROJECT_DIR$/dist/epub-creator.js" />
@@ -138,10 +280,8 @@
         <option value="$PROJECT_DIR$/demo/test.json" />
         <option value="$PROJECT_DIR$/node_modules/epubjs/build/hooks.min.map" />
         <option value="$PROJECT_DIR$/node_modules/epubjs/build/epub.js" />
-        <option value="$PROJECT_DIR$/webpack.config.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/docs/index.html" />
-        <option value="$PROJECT_DIR$/src/interfaces/assets.ts" />
         <option value="$PROJECT_DIR$/src/templates/epub3interactive/epub3-template.ts" />
         <option value="$PROJECT_DIR$/src/templates/epub3interactive/epub3-builder.ts" />
         <option value="$PROJECT_DIR$/src/templates/epub3interactive/e-i-builder.ts" />
@@ -155,7 +295,6 @@
         <option value="$PROJECT_DIR$/src/templates/epub3/e3-builder.ts" />
         <option value="$PROJECT_DIR$/src/interfaces/epub-files.ts" />
         <option value="$PROJECT_DIR$/src/templates/epub3html/eh-builder.ts" />
-        <option value="$PROJECT_DIR$/src/templates/epub3interactive/ei-builder.ts" />
         <option value="$PROJECT_DIR$/src/utils.ts" />
         <option value="$PROJECT_DIR$/src/template-parser.ts" />
         <option value="$PROJECT_DIR$/src/interfaces/css-def.ts" />
@@ -164,17 +303,22 @@
         <option value="$PROJECT_DIR$/demo/stats.json" />
         <option value="$PROJECT_DIR$/src/interfaces/base-builder.ts" />
         <option value="$PROJECT_DIR$/src/interfaces/meta-def.ts" />
-        <option value="$PROJECT_DIR$/src/builder-loader.ts" />
         <option value="$PROJECT_DIR$/src/templates/epub3interactive/ei-template.ts" />
         <option value="$PROJECT_DIR$/src/templates/epub3html/eh-template.ts" />
         <option value="$PROJECT_DIR$/src/templates/epub3/e3-template.ts" />
         <option value="$PROJECT_DIR$/src/templates/epub2/e2-template.ts" />
         <option value="$PROJECT_DIR$/src/interfaces/base-template.ts" />
         <option value="$PROJECT_DIR$/src/interfaces/chapters.ts" />
-        <option value="$PROJECT_DIR$/src/index.ts" />
         <option value="$PROJECT_DIR$/demo/index.html" />
         <option value="$PROJECT_DIR$/demo/demo.ts" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/interfaces/zip-export-types.ts" />
+        <option value="$PROJECT_DIR$/webpack.config.js" />
+        <option value="$PROJECT_DIR$/src/interfaces/assets.ts" />
+        <option value="$PROJECT_DIR$/src/interfaces/asset.ts" />
+        <option value="$PROJECT_DIR$/src/index.ts" />
+        <option value="$PROJECT_DIR$/src/builder-loader.ts" />
+        <option value="$PROJECT_DIR$/src/templates/epub3interactive/ei-builder.ts" />
       </list>
     </option>
   </component>
@@ -201,9 +345,9 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="563" />
+    <option name="x" value="916" />
     <option name="y" value="22" />
-    <option name="width" value="1485" />
+    <option name="width" value="1132" />
     <option name="height" value="1130" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -215,6 +359,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -222,11 +367,33 @@
               <item name="epub3-creator" type="b2602c69:ProjectViewProjectNode" />
               <item name="epub3-creator" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="epub3-creator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="epub3-creator" type="462c0819:PsiDirectoryNode" />
+              <item name="demo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="epub3-creator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="epub3-creator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="epub3-creator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="epub3-creator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="epub3-creator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="epub3-creator" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="epub3interactive" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -325,9 +492,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start" />
-        <item itemvalue="npm.build:watch" />
         <item itemvalue="npm.build" />
+        <item itemvalue="npm.build:watch" />
+        <item itemvalue="npm.start" />
       </list>
     </recent_temporary>
   </component>
@@ -354,7 +521,8 @@
       <workItem from="1492807949057" duration="1279000" />
       <workItem from="1527844083928" duration="14155000" />
       <workItem from="1528099601798" duration="14238000" />
-      <workItem from="1528128462173" duration="48000" />
+      <workItem from="1528128462173" duration="293000" />
+      <workItem from="1528278756363" duration="9284000" />
     </task>
     <task id="LOCAL-00001" summary="Rebranding OSD">
       <created>1527848214857</created>
@@ -384,14 +552,21 @@
       <option name="project" value="LOCAL" />
       <updated>1528128450019</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Epub interactive on the go...">
+      <created>1528128529531</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1528128529531</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="254594000" />
+    <option name="totallyTimeSpent" value="264123000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="563" y="22" width="1485" height="1130" extended-state="0" />
+    <frame x="916" y="22" width="1132" height="1130" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -399,43 +574,43 @@
       <window_info anchor="bottom" id="DB Execution Console" order="7" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="NativeScript" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.28460795" />
-      <window_info id="npm" order="2" sideWeight="0.43290043" side_tool="true" weight="0.16932686" />
-      <window_info anchor="bottom" id="Version Control" order="9" visible="true" weight="0.32913843" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28460795" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32913843" />
+      <window_info id="npm" order="2" sideWeight="0.18132612" side_tool="true" visible="true" weight="0.34558824" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.19941917" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5670996" visible="true" weight="0.16932686" />
+      <window_info anchor="bottom" id="TypeScript" order="7" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8186739" visible="true" weight="0.34558824" />
       <window_info anchor="bottom" id="Docker" order="7" />
       <window_info anchor="right" id="Nativescript Palette" order="3" />
-      <window_info id="Structure" order="1" sideWeight="0.54385966" side_tool="true" weight="0.19744161" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3281704" />
+      <window_info id="Structure" order="1" sideWeight="0.49080348" side_tool="true" weight="0.20306122" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="3" sideWeight="0.18085106" side_tool="true" weight="0.18683812" />
-      <window_info anchor="bottom" id="TypeScript" order="7" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3281704" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.81914896" visible="true" weight="0.15766503" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32923833" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.2002457" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32923833" />
       <window_info id="Favorites" order="3" sideWeight="0.18085106" side_tool="true" weight="0.18683812" />
     </layout-to-restore>
   </component>
@@ -471,9 +646,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/_webpack.config.js" />
-    <entry file="file://$PROJECT_DIR$/demo/test.json" />
-    <entry file="file://$PROJECT_DIR$/node_modules/epubjs/build/hooks.min.map" />
     <entry file="file://$PROJECT_DIR$/node_modules/epubjs/build/epub.min.js" />
     <entry file="file://$PROJECT_DIR$/node_modules/epubjs/build/epub.js" />
     <entry file="file://$PROJECT_DIR$/dist/templates/epub3html/epub3html-template.d.ts">
@@ -484,20 +656,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webpack.config.build.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2">
-          <caret line="48" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webpack.config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="27" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -526,13 +684,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/@types/jszip/index.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="86" column="4" selection-start-line="86" selection-start-column="4" selection-end-line="86" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tslint.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -545,13 +696,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/interfaces/nav.ts">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="56" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/interfaces/epub-files.ts">
       <provider selected="true" editor-type-id="text-editor">
@@ -598,9 +742,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="31" lean-forward="true" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -608,23 +749,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/epub3interactive/ei-builder.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="58" selection-start-line="6" selection-start-column="58" selection-end-line="6" selection-end-column="58" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/interfaces/assets.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -693,65 +817,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/interfaces/chapters.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/interfaces/base-builder.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="69" column="19" selection-start-line="69" selection-start-column="19" selection-end-line="69" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/interfaces/base-template.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="85" column="21" selection-start-line="85" selection-start-column="13" selection-end-line="85" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/templates/epub3interactive/ei-template.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="88" column="10" lean-forward="true" selection-start-line="88" selection-start-column="10" selection-end-line="88" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-            <element signature="n#!!block;n#_nav#0;n#EiTemplate#0" />
-            <element signature="n#!!block;n#_ncx#0;n#EiTemplate#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/builder-loader.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="131" column="19" selection-start-line="131" selection-start-column="19" selection-end-line="131" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#54#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/templates/epub3html/eh-template.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1605">
@@ -772,9 +837,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="38" column="22" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/demo/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1680">
+        <state relative-caret-position="15">
           <caret line="112" column="69" selection-start-line="112" selection-start-column="69" selection-end-line="112" selection-end-column="69" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -783,17 +855,131 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/demo.ts">
+    <entry file="file://$PROJECT_DIR$/src/interfaces/chapters.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2820">
-          <caret line="188" column="12" selection-start-line="188" selection-start-column="12" selection-end-line="188" selection-end-column="12" />
+        <state relative-caret-position="60">
+          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/src/interfaces/zip-export-types.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="36" column="6" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="6" />
+        <state relative-caret-position="255">
+          <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/jszip/package.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@types/jszip/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="219" column="15" selection-start-line="219" selection-start-column="15" selection-end-line="219" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.config.build.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="48" column="6" lean-forward="true" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="67" column="10" lean-forward="true" selection-start-line="67" selection-start-column="10" selection-end-line="67" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/interfaces/base-template.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="15" lean-forward="true" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/interfaces/asset.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="26" lean-forward="true" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/demo.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@types/filesaver/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/epub3interactive/ei-template.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="795">
+          <caret line="88" column="10" lean-forward="true" selection-start-line="88" selection-start-column="10" selection-end-line="88" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+            <element signature="n#!!block;n#_nav#0;n#EiTemplate#0" />
+            <element signature="n#!!block;n#_ncx#0;n#EiTemplate#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="133" column="53" selection-start-line="133" selection-start-column="53" selection-end-line="133" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/interfaces/base-builder.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="49" column="11" selection-start-line="49" selection-start-column="11" selection-end-line="49" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/builder-loader.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="56" column="35" selection-start-line="56" selection-start-column="35" selection-end-line="56" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/templates/epub3interactive/ei-builder.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
