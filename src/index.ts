@@ -146,9 +146,10 @@ export class EpubCreator {
     }
 
     /**
-     * Add contento to epub
+     * Add content to epub
      * @param name - filename
-     * @param content - epub string contet
+     * @param content - epub string content
+     * @param metadata - chapter header metadata
      */
     content(name: string, content: string, metadata?: MetaDef[]) {
         let fileContent: FileContent = this.builder.contentBody(this.properties, content, this.css, this.jss, metadata);

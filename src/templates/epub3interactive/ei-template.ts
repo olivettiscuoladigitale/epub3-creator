@@ -92,6 +92,7 @@ export class EiTemplate extends BaseTemplate {
                     <head>
                         <meta charset="utf-8"></meta>
                         <title>${prop.title}</title>
+                        ${metadata}
                         ${assets}
                     </head>
                     <body>
