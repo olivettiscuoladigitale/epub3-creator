@@ -18207,9 +18207,10 @@ var EpubCreator = /** @class */ (function () {
         folder.file(fileContent.name, fileContent.content);
     };
     /**
-     * Add contento to epub
+     * Add content to epub
      * @param name - filename
-     * @param content - epub string contet
+     * @param content - epub string content
+     * @param metadata - chapter header metadata
      */
     EpubCreator.prototype.content = function (name, content, metadata) {
         var fileContent = this.builder.contentBody(this.properties, content, this.css, this.jss, metadata);
@@ -19024,7 +19025,7 @@ var EiTemplate = /** @class */ (function (_super) {
         return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n                <ncx xmlns:ncx=\"http://www.daisy.org/z3986/2005/ncx/\" xmlns=\"http://www.daisy.org/z3986/2005/ncx/\" version=\"2005-1\" xml:lang=\"en\">\n                    <head>\n                        <meta name=\"dtb:uid\" content=\"" + prop.uuid + "\"/>\n                    </head>\n                    <docTitle>\n                        <text>" + prop.title + "</text>\n                    </docTitle>\n                    <navMap>\n                        <!-- 2.01 NCX: playOrder is optional -->\n                        " + toc + "\n                    </navMap>\n                </ncx>";
     };
     EiTemplate.prototype._contentBody = function (prop, content, assets, metadata) {
-        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n                <html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\" xmlns:epub=\"http://www.idpf.org/2007/ops\">\n                    <head>\n                        <meta charset=\"utf-8\"></meta>\n                        <title>" + prop.title + "</title>\n                        " + assets + "\n                    </head>\n                    <body>\n                     " + content + "\n                    </body>\n                </html>";
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n                <html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\" xmlns:epub=\"http://www.idpf.org/2007/ops\">\n                    <head>\n                        <meta charset=\"utf-8\"></meta>\n                        <title>" + prop.title + "</title>\n                        " + metadata + "\n                        " + assets + "\n                    </head>\n                    <body>\n                     " + content + "\n                    </body>\n                </html>";
     };
     return EiTemplate;
 }(base_template_1.BaseTemplate));

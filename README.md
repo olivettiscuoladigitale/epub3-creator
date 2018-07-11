@@ -1,4 +1,4 @@
-![](https://www.olivettiscuoladigitale.it/wp-content/uploads/2013/03/olivetti-scuola-digitale-2.png)
+![](https://www.olivettiscuoladigitale.it/wp-content/uploads/2013/03/olivetti-scuola-digitale.png)
 
 # EPUB-CREATOR
 

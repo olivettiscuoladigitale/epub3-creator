@@ -89,9 +89,10 @@ export declare class EpubCreator {
      */
     ncx(): void;
     /**
-     * Add contento to epub
+     * Add content to epub
      * @param name - filename
-     * @param content - epub string contet
+     * @param content - epub string content
+     * @param metadata - chapter header metadata
      */
     content(name: string, content: string, metadata?: MetaDef[]): void;
     /**
